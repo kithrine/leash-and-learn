@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { authLogin } from "../redux/authSlice";
-import Footer from "../components/Footer";
+import Footer from "../components/footers/Footer";
 
 const Login = () => {
   const [loginForm, setLoginForm] = useState({ username: "", password: "" });

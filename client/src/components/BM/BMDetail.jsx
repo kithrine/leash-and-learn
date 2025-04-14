@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { trainingClassGetOne, trainingClassSessionDelete } from "../redux/trainingClassSlice";
+import { trainingClassGetOne, trainingClassSessionDelete } from "../../redux/trainingClassSlice";
 import { ToastContainer } from "react-toastify";
-import BMEditForm from "./BMEditForm";
-import SessionEditModal from "./SessionEditModal";
-import SessionDeleteModal from "./SessionDeleteModal";
-import DetailPageLoadingSkeleton from "./DetailPageLoadingSkeleton";
+import BMTrainingClassEditModal from "../modals/BMTrainingClassEditModal"
+import SessionEditModal from "../modals/SessionEditModal";
+import SessionDeleteModal from "../modals/SessionDeleteModal";
+import DetailPageLoadingSkeleton from "../skeletons/DetailPageLoadingSkeleton";
 
 const BMDetail = () => {
   const dispatch = useDispatch();
@@ -143,7 +143,7 @@ const BMDetail = () => {
                     </dl>
                     {/* Button to Edit the Details Form */}
                     <div className="justify-self-center">
-                    <BMEditForm />
+                    <BMTrainingClassEditModal />
                     </div>
                   </div>
                 </div>

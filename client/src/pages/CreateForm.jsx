@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import BMCreateForm from '../components/BMCreateForm';
-import DashboardFooter from '../components/DashboardFooter';
+import BMCreateForm from '../components/BM/BMCreateForm';
+import DashboardFooter from '../components/footers/DashboardFooter';
 
 
 const CreateForm = () => {

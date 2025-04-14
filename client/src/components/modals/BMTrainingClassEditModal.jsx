@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { trainingClassGetOne, trainingClassUpdate } from "../redux/trainingClassSlice";
-import { userGetMany } from "../redux/userSlice";
+import { trainingClassGetOne, trainingClassUpdate } from "../../redux/trainingClassSlice";
+import { userGetMany } from "../../redux/userSlice";
 
-const BMEditForm = () => {
+const BMTrainingClassEditModal = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   let trainingClassId = location.pathname.split("/")[2];
@@ -12,7 +12,7 @@ const BMEditForm = () => {
   const { trainingClass } = useSelector((state) => state.trainingClass);
 
   const [showModal, setShowModal] = useState(false);
-  const [trainingClassForm, setTrainingClassForm] = useState({
+  const [trainingClassEditForm, setTrainingClassEditForm] = useState({
     trainingClassType: "",
     trainer: "",
     trainingClassName: "",
@@ -23,14 +23,15 @@ const BMEditForm = () => {
 
   useEffect(() => {
     let id = location.pathname.split("/")[2]
-    console.log("BMEditForm useEffect location", location, id)
+    console.log("BMTrainingClassEditModal useEffect location", location, id)
     dispatch(trainingClassGetOne(id));
     dispatch(userGetMany({userType: "Trainer"}))
   }, []);
 
   useEffect(() => {
     if (trainingClass.trainingClassName !== "") {
-      setTrainingClassForm(trainingClass)
+      console.log("trainingClass.trainingClassName", trainingClass.trainingClassName)
+      setTrainingClassEditForm(trainingClass)
     }
   }, [trainingClass])
   
@@ -39,7 +40,7 @@ const BMEditForm = () => {
     console.log("handleSubmit");
     // Validation
     // dispatch(trainingClassUpdate(trainingClass));
-    dispatch(trainingClassUpdate({ trainingClassId, trainingClassForm: { ...trainingClassForm}}))
+    dispatch(trainingClassUpdate({ trainingClassId, trainingClassEditForm: { ...trainingClassEditForm}}))
     setShowModal(false);
   };
 
@@ -111,10 +112,10 @@ const BMEditForm = () => {
                     Name
                   </label>
                   <input
-                  value={trainingClassForm.trainingClassName}
+                  value={trainingClassEditForm.trainingClassName}
                   onChange={(e) =>
-                    setTrainingClassForm({
-                      ...trainingClassForm,
+                    setTrainingClassEditForm({
+                      ...trainingClassEditForm,
                       trainingClassName: e.target.value,
                     })
                   }
@@ -133,14 +134,14 @@ const BMEditForm = () => {
                     Type
                   </label>
                   <select
-                  value={trainingClassForm.trainingClassType}
+                  value={trainingClassEditForm.trainingClassType}
                  
                     id="category"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     disabled={true}
                   >
                   
-                    <option value={trainingClassForm.trainingClassType}>{trainingClassForm.trainingClassType}</option>
+                    <option value={trainingClassEditForm.trainingClassType}>{trainingClassEditForm.trainingClassType}</option>
                   
                   </select>
                 </div>
@@ -153,10 +154,10 @@ const BMEditForm = () => {
                     Trainer
                   </label>
                   <select
-                  value={trainingClassForm.trainer.username}
+                  value={trainingClassEditForm.trainer.username}
                   onChange={(e) =>
-                    setTrainingClassForm({
-                      ...trainingClassForm,
+                    setTrainingClassEditForm({
+                      ...trainingClassEditForm,
                       trainer: e.target.value,
                     })
                   }
@@ -183,10 +184,10 @@ const BMEditForm = () => {
                     Description
                   </label>
                   <textarea
-                  value={trainingClassForm.trainingClassDescription}
+                  value={trainingClassEditForm.trainingClassDescription}
                   onChange={(e) =>
-                    setTrainingClassForm({
-                      ...trainingClassForm,
+                    setTrainingClassEditForm({
+                      ...trainingClassEditForm,
                       trainingClassDescription: e.target.value,
                     })
                   }
@@ -206,10 +207,10 @@ const BMEditForm = () => {
                     Start Date
                   </label>
                   <input
-                  value={handleDatepickerFormat(trainingClassForm.startDate)}
+                  value={handleDatepickerFormat(trainingClassEditForm.startDate)}
                   onChange={(e) =>
-                    setTrainingClassForm({
-                      ...trainingClassForm,
+                    setTrainingClassEditForm({
+                      ...trainingClassEditForm,
                       startDate: handleDatepickerFormat(e.target.value),
                     })
                   }
@@ -229,10 +230,10 @@ const BMEditForm = () => {
                     End Date
                   </label>
                   <input
-                  value={handleDatepickerFormat(trainingClassForm.endDate)}
+                  value={handleDatepickerFormat(trainingClassEditForm.endDate)}
                   onChange={(e) =>
-                    setTrainingClassForm({
-                      ...trainingClassForm,
+                    setTrainingClassEditForm({
+                      ...trainingClassEditForm,
                       endDate: handleDatepickerFormat(e.target.value),
                     })
                   }
@@ -281,4 +282,4 @@ const BMEditForm = () => {
   );
 };
 
-export default BMEditForm;
+export default BMTrainingClassEditModal;

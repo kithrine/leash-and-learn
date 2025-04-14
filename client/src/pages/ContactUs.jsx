@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import EnrollBanner from "../components/EnrollBanner";
-import Footer from "../components/Footer";
+import Footer from "../components/footers/Footer";
 
 const ContactUs = () => {
   const navigate = useNavigate()

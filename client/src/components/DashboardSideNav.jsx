@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { trainingClassGetMany } from '../redux/trainingClassSlice';
-import BMSideBar from '../components/BMSideBar';
-import TrainerSideBar from '../components/TrainerSideBar';
+import BMSideNav from './navigation/BMSideNav';
+import TrainerSideNav from "./navigation/TrainerSideNav"
 // import UserSideBar from '../components/UserSideBar';
 
 
-const DashboardSideBar = () => {
+const DashboardSideNav = () => {
 
   const dispatch = useDispatch()
 
@@ -30,10 +30,10 @@ const DashboardSideBar = () => {
   return (
     <>
     {user.role.includes("Business Manager") &&
-    (<BMSideBar />) }
+    (<BMSideNav />) }
 
     {user.role.includes("Trainer") &&
-    (<TrainerSideBar />) }
+    (<TrainerSideNav />) }
 
     {/* {user.role.includes("User") &&
     (<UserSideBar />) } */}
@@ -43,4 +43,4 @@ const DashboardSideBar = () => {
   
 };
 
-export default DashboardSideBar;
+export default DashboardSideNav;

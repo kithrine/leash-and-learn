@@ -25,6 +25,7 @@ const trainingClassService = {
   },
   trainingClassUpdate: async (trainingClassId, trainingClassEditForm) => {
     // console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/training-classes`)
+    console.log("trainingClassId", trainingClassId, "trainingClassEditForm", trainingClassEditForm)
     return await axios.put(
       `${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/${trainingClassId}`,
       trainingClassEditForm

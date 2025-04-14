@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { Navigate, Outlet } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import BMDashboard from '../components/BMDashboard';
-import TrainerDashboard from '../components/TrainerDashboard';
-import TrainerSideBar from "../components/TrainerSideBar";
-import UserDashboard from '../components/UserDashboard';
-import DashboardFooter from '../components/DashboardFooter';
-import BMSideBar from '../components/BMSideBar';
+import BMDashboard from '../components/BM/BMDashboard';
+import TrainerDashboard from '../components/Trainer/TrainerDashboard';
+import TrainerSideNav from "../components/navigation/TrainerSideNav";
+import UserDashboard from "../components/User/UserDashboard";
+import DashboardFooter from '../components/footers/DashboardFooter';
+import BMSideNav from "../components/navigation/BMSideNav";
 import { trainingClassGetAll, trainingClassGetMany } from "../redux/trainingClassSlice";
 import { contactGetAll } from "../redux/contactSlice";
 
@@ -42,14 +42,14 @@ const DashboardSideNavLayout = () => {
       {user.role.includes("Business Manager") && (
         <>
           {/* <BMDashboard /> */}
-          <BMSideBar />
+          <BMSideNav />
         </>
       )}
 
       {user.role.includes("Trainer") && (
         <>
           {/* <TrainerDashboard /> */}
-          <TrainerSideBar />
+          <TrainerSideNav />
         </>
       )}
 

@@ -1,4 +1,4 @@
-import Footer from "../components/Footer"
+import Footer from "../components/footers/Footer"
 import EnrollBanner from "../components/EnrollBanner"
 import HomepageCarousel from "../components/HomepageCarousel"
 import { ToastContainer } from "react-toastify"

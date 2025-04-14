@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import { trainingClassGetAll } from "../redux/trainingClassSlice";
-import BMSideBar from "./BMSideBar";
+import { trainingClassGetAll } from "../../redux/trainingClassSlice";
+import BMSideNav from "../navigation/BMSideNav";
 
 const BMTrainingClasses = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const BMTrainingClasses = () => {
 
   return (
     <>
-      <BMSideBar />
+      <BMSideNav />
       <div className="antialiased dark:bg-gray-900 min-h-[89vh]">
         <main className="p-4 md:ml-64 h-auto pt-20">
           <h3 className="learn text-center text-4xl font-bold">LIST OF TRAINING CLASSES</h3>

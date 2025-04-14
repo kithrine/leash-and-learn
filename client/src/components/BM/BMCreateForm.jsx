@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { trainingClassCreate } from "../redux/trainingClassSlice";
-import { builderGetMany } from "../redux/builderSlice";
-import BMSideBar from "./BMSideBar";
-import BMCreateFormConfirmationModal from "./BMCreateFormConfirmationModal";
-import DashboardFooter from "./DashboardFooter";
+import { trainingClassCreate } from "../../redux/trainingClassSlice";
+import { builderGetMany } from "../../redux/builderSlice";
+import BMSideNav from "../navigation/BMSideNav";
+import BMCreateFormConfirmationModal from "../modals/BMCreateFormConfirmationModal";
+import DashboardFooter from "../footers/DashboardFooter";
 // import { DatePicker } from "react-datepicker"
 // import 'react-datepicker/dist/react-datepicker.css';
 

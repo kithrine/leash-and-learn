@@ -1,30 +1,29 @@
 import { useEffect } from "react";
+import { Link, useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import { trainingClassGetMany } from "../redux/trainingClassSlice";
-import TrainerSideBar from "./TrainerSideBar"
-import DashboardFooter from "./DashboardFooter"
-import LineChartTrainer from "./LineChartTrainer"
-// import PieChartMaleToFemaleDogs from "./PieChartMaleToFemaleDogs";
-// import BarChartTotalNumberOfDogsPerService from "./BarChartTotalNumberOfDogsPerService";
-// import LineChartTotalDogsEnrolledPerServicePastYear from "./LineChartTotalDogsEnrolledPerServicePastYear"
+import { trainingClassGetAll } from "../../redux/trainingClassSlice";
+import BMSideNav from "../navigation/BMSideNav";
+import DashboardFooter from "../footers/DashboardFooter";
+import PieChartMaleToFemaleDogs from "../charts/PieChartMaleToFemaleDogs";
+import BarChartTotalNumberOfDogsPerService from "../charts/BarChartTotalNumberOfDogsPerService";
+import LineChartTotalDogsEnrolledPerServicePastYear from "../charts/LineChartTotalDogsEnrolledPerServicePastYear"
 
-const TrainerDashboard = () => {
+const BMDashboard = () => {
   const navigate = useDispatch();
   const dispatch = useDispatch();
 
   const { trainingClasses } = useSelector((state) => state.trainingClass);
-  const { user } = useSelector((state) => state.auth);
   console.log("BMTrainingClassesDashboard trainingClasses", trainingClasses);
 
   useEffect(() => {
-    dispatch(trainingClassGetMany(user.username));
+    dispatch(trainingClassGetAll());
   }, []);
+
   return (
     <>
-      <TrainerSideBar />
       <div className="antialiased dark:bg-gray-900">
         <main className="p-4 md:ml-64 h-auto pt-20">
-          {/* <div className="flex">
+          <div className="flex">
             <h1 className="w-1/4 text-center mb-6 phudu font-bold">
               Total Number of Male to Female Dogs Enrolled
             </h1>
@@ -39,19 +38,19 @@ const TrainerDashboard = () => {
             <div className="w-3/4 h-80 mb-1 ml-4 overflow-y-auto relative overflow-x-auto shadow-md sm:rounded-lg">
               <BarChartTotalNumberOfDogsPerService />
             </div>
-          </div> */}
+          </div>
           <div className="flex">
           <h1 className="w-full text-center mb-3 phudu font-bold">
-              Dogs Enrolled in Puppy Socialization - Year 2024
+              Dogs Enrolled per Service - 2024
             </h1>
           </div>
           <div className="flex">
             <div className="w-full h-80 mb-1 overflow-y-auto relative overflow-x-auto shadow-md sm:rounded-lg">
-              <LineChartTrainer />
+              <LineChartTotalDogsEnrolledPerServicePastYear />
             </div>
           
           </div>
-          <div className="h-80 my-8 overflow-y-auto relative overflow-x-auto shadow-md sm:rounded-lg">
+          <div className="h-96 my-8 overflow-y-auto relative overflow-x-auto shadow-md sm:rounded-lg">
             <table className="overflow-y-auto w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -129,47 +128,33 @@ const TrainerDashboard = () => {
           </div>
         </main>
       </div>
+
       <DashboardFooter />
     </>
-  )
-}
+  );
+};
 
-export default TrainerDashboard
+export default BMDashboard;
 
+// {/* THE BASIC DASHBOARD WITH BLOCKS AND DASHES */}
 
-// {/* MY OTHER OLD LAYOUT WITH THE PURPLE SQUARES */}
-
-// <div className="ml-64">
-// <div className="grid grid-rows-3 grid-flow-col gap-4 px-4 py-4 leading-10 h-96">
-//   <div className="p-4 w-full bg-fuchsia-900 rounded-xl row-span-3">
-//     &nbsp;
-//   </div>
-//   <div className="p-4 w-full bg-fuchsia-800 rounded-xl col-span-2">
-//     &nbsp;
-//   </div>
-//   <div className="p-4 w-full bg-fuchsia-700 rounded-xl row-span-2 col-span-2">
-//     &nbsp;
-//   </div>
+// <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+// <div className="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 h-32 md:h-64"></div>
+// <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"></div>
+// <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"></div>
+// <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"></div>
 // </div>
-
-// <div className="grid grid-cols-3 gap-4 px-4 py-4">
-//   <div className="w-full h-96 bg-purple-700 rounded-xl"></div>
-//   <div className="w-full h-96 bg-purple-700 rounded-xl"></div>
-//   <div className="w-full h-96 bg-purple-700 rounded-xl"></div>
-//   <div className="w-full h-96 bg-purple-700 rounded-xl"></div>
-//   <div className="w-full h-96 bg-purple-700 rounded-xl"></div>
-//   <div className="w-full h-96 bg-purple-700 rounded-xl"></div>
-
+// <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"></div>
+// <div className="grid grid-cols-2 gap-4 mb-4">
+// <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
+// <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
+// <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
+// <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
 // </div>
-// <div className="grid grid-rows-3 grid-flow-col gap-4 px-4 py-4 leading-10 h-96">
-//   <div className="p-4 w-full bg-fuchsia-800 rounded-xl col-span-2">
-//     &nbsp;
-//   </div>
-//   <div className="p-4 w-full bg-fuchsia-700 rounded-xl row-span-2 col-span-2">
-//     &nbsp;
-//   </div>
-//   <div className="p-4 w-full bg-fuchsia-900 rounded-xl row-span-3">
-//     &nbsp;
-//   </div>
-// </div>
-// </div>
+// <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"></div>
+// <div className="grid grid-cols-2 gap-4">
+// <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
+// <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
+// <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
+// <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"></div>
+// </div> 

@@ -1,8 +1,8 @@
 import { useEffect } from "react"
 import { Link, useNavigate } from "react-router"
 import { useSelector, useDispatch } from "react-redux"
-import { trainingClassGetMany } from "../redux/trainingClassSlice"
-import TrainerSideBar from "./TrainerSideBar"
+import { trainingClassGetMany } from "../../redux/trainingClassSlice"
+import TrainerSideNav from "../navigation/TrainerSideNav"
 
 const TrainerTrainingClasses = () => {
   const navigate = useNavigate()
@@ -18,7 +18,7 @@ const TrainerTrainingClasses = () => {
 
   return (
     <>
-    <TrainerSideBar />
+    <TrainerSideNav />
     <div className="antialiased dark:bg-gray-900">
         <main className="p-4 md:ml-64 h-auto pt-20">
           <h3 className="learn text-center text-4xl font-bold">LIST OF TRAINING CLASSES</h3>

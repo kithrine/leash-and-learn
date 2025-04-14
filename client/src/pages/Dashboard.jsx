@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { trainingClassGetMany } from '../redux/trainingClassSlice';
-import BMDashboard from '../components/BMDashboard';
-import TrainerDashboard from '../components/TrainerDashboard';
-import UserDashboard from '../components/UserDashboard';
-import DashboardFooter from '../components/DashboardFooter';
-import BMSideBar from '../components/BMSideBar';
+import BMDashboard from '../components/BM/BMDashboard';
+import TrainerDashboard from '../components/Trainer/TrainerDashboard';
+import UserDashboard from '../components/User/UserDashboard';
+import DashboardFooter from '../components/footers/DashboardFooter';
+import BMSideNav from '../components/navigation/BMSideNav';
 
 
 const Dashboard = () => {

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import BMDetail from "../components/BMDetail";
-import TrainerDetail from "../components/TrainerDetail";
+import BMDetail from "../components/BM/BMDetail";
+import TrainerDetail from "../components/Trainer/TrainerDetail";
 
 const TrainingClassDetail = () => {
   const { user } = useSelector(state => state.auth)

@@ -1,4 +1,4 @@
-import UserDashboardFooter from "./UserDashboardFooter"
+import UserDashboardFooter from "../footers/UserDashboardFooter"
 
 const UserDashboard = () => {
   return (

@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { contactGetAll } from "../redux/contactSlice";
-import BMSideBar from "../components/BMSideBar";
-import DashboardFooter from "../components/DashboardFooter";
+import BMSideNav from "../components/navigation/BMSideNav";
+import DashboardFooter from "../components/footers/DashboardFooter";
 
 const Inbox = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Inbox = () => {
 
   return (
     <>
-      <BMSideBar />
+      <BMSideNav />
       <div className="antialiased dark:bg-gray-900 min-h-[89.5vh]">
         <main className="p-4 md:ml-64 h-auto pt-20">
           <h3 className="learn text-center text-4xl font-bold">

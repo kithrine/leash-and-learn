@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import {
   trainingClassGetOne,
   trainingClassSessionUpdate,
-} from "../redux/trainingClassSlice";
+} from "../../redux/trainingClassSlice";
 
 const SessionEditModal = ({ session }) => {
   const dispatch = useDispatch();

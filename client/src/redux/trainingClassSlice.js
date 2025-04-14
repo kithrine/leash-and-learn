@@ -77,10 +77,11 @@ export const trainingClassCreate = createAsyncThunk(
 // Training Class Update
 export const trainingClassUpdate = createAsyncThunk(
   "trainingClass/trainingClassUpdate",
-  async (trainingClassId, trainingClassEditForm) => {
+  async (trainingClassInfo) => {
+    const {trainingClassId, trainingClassEditForm} = trainingClassInfo
     console.log(
       "redux trainingClassUpdate trainingClass update",
-      trainingClassId, trainingClassEditForm
+      trainingClassInfo, trainingClassEditForm
     );
     console.log(
       "trainingClassUpdate trainingClassId, trainingClassEditForm",
@@ -88,7 +89,7 @@ export const trainingClassUpdate = createAsyncThunk(
       trainingClassEditForm
     );
     const response = await trainingClassService.trainingClassUpdate(
-      trainingClassId, 
+      trainingClassId,
       trainingClassEditForm
     );
     console.log("redux trainingClassUpdate trainingClass response", response
