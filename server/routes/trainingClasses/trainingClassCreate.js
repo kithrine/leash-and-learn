@@ -1,6 +1,6 @@
-import trainingClassModel from "../../schemas/trainingClassModel.js"
-import builderModel from "../../schemas/builderModel.js"
-import userModel from "../../schemas/userModel.js"
+import trainingClassModel from "./trainingClassModel.js"
+import builderModel from "../builders/builderModel.js"
+import userModel from "../users/userModel.js"
 
 const trainingClassCreate =  async (req, res) => {
   const { trainingClassName, trainingClassDescription, trainingClassType, startDate, endDate, trainer } = req.body

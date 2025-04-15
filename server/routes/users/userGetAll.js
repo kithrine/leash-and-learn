@@ -1,4 +1,4 @@
-import userModel from "../../schemas/userModel.js"
+import userModel from "./userModel.js"
 
 const userGetAll = async (req, res) => {
   const userList = await userModel.find()

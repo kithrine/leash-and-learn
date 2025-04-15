@@ -1,4 +1,4 @@
-import userModel from "../../schemas/userModel.js"
+import userModel from "./userModel.js"
 
 const userGetMany = async (req, res) => {
   const { userType } = req.params

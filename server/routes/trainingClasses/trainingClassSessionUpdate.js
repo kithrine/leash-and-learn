@@ -1,4 +1,4 @@
-import trainingClassModel from "../../schemas/trainingClassModel.js";
+import trainingClassModel from "./trainingClassModel.js";
 
 const trainingClassSessionUpdate = async (req, res) => {
   const { trainingClassId, sessionId } = req.params 

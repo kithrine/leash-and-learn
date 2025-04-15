@@ -1,5 +1,5 @@
 import * as argon2 from "argon2"
-import userModel from "../../schemas/userModel.js"
+import userModel from "./userModel.js"
 
 // TODO: Encrypt password before saving to database
 

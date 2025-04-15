@@ -1,4 +1,4 @@
-import trainingClassModel from "../../schemas/trainingClassModel.js"
+import trainingClassModel from "./trainingClassModel.js"
 
 const trainingClassGetAll =  async (req, res) => {
   // ** ONE THAT WORKS FOR BUSINESS MANAGER **

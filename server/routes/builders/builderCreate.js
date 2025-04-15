@@ -1,4 +1,4 @@
-import builderModel from "../../schemas/builderModel.js"
+import builderModel from "./builderModel.js"
 
 const builderCreate =  async (req, res) => {
   const { trainingClassType, sessions } = req.body

@@ -1,6 +1,6 @@
 import * as argon2 from "argon2";
 import jwt from "jsonwebtoken";
-import userModel from "../../schemas/userModel.js";
+import userModel from "./userModel.js";
 
 // TODO: Create token and store in user.token array
 // TODO: Retrun above token on successful login

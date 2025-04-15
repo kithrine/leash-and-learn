@@ -1,4 +1,4 @@
-import builderModel from "../../schemas/builderModel.js"
+import builderModel from "./builderModel.js"
 
 const builderGetMany =  async (req, res) => {
     const getBuilders = await builderModel.find()

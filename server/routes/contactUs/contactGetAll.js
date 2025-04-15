@@ -1,4 +1,4 @@
-import contactModel from "../../schemas/contactModel.js"
+import contactModel from "./contactModel.js"
 
 const contactGetAll = async (req, res) => {
   const getContacts = await contactModel.find()

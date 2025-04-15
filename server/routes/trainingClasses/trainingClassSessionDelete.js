@@ -1,4 +1,4 @@
-import trainingClassModel from "../../schemas/trainingClassModel.js";
+import trainingClassModel from "./trainingClassModel.js";
 
 const trainingClassSessionDelete = async (req, res) => {
   const { trainingClassId, sessionId } = req.params // probs projectId lolz

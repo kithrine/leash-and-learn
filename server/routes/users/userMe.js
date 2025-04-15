@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-import userModel from "../../schemas/userModel.js"
+import userModel from "./userModel.js"
 
 // TODO: Encrypt password before saving to database
 

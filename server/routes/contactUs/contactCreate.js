@@ -1,4 +1,4 @@
-import contactModel from "../../schemas/contactModel.js";
+import contactModel from "./contactModel.js";
 
 const contactCreate = async (req, res) => {
   const {     
