@@ -30,7 +30,7 @@ const Login = () => {
     e.preventDefault();
     console.log("handleSubmit");
     // Validation
-    if (loginForm.username === "" || loginForm.password === "") {
+    if (loginForm.email === "" || loginForm.password === "") {
       // Show error message/styling
       console.log("form error");
     } else {
@@ -56,7 +56,7 @@ const Login = () => {
       {!loading ? (
         <>
           <section className="bg-gradient-to-b from-white from-5% via-purple-50 via-pink-50 to-white dark:bg-gray-900">
-            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[78vh] lg:py-0">
               <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                   <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -71,14 +71,14 @@ const Login = () => {
                         htmlFor="email"
                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                       >
-                        Your Username
+                        Email
                       </label>
                       <input
-                        value={loginForm.username}
+                        value={loginForm.email}
                         onChange={(e) =>
                           setLoginForm({
                             ...loginForm,
-                            username: e.target.value,
+                            email: e.target.value, 
                           })
                         }
                         type="text"
@@ -148,12 +148,12 @@ const Login = () => {
                     </button>
                     <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                       Don’t have an account yet?{" "}
-                      <a
-                        href="#"
+                      <Link
+                        to="/sign-up"
                         className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                       >
                         Sign up
-                      </a>
+                      </Link>
                     </p>
                   </form>
                 </div>
@@ -179,14 +179,14 @@ const Login = () => {
                         htmlFor="email"
                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                       >
-                        Your Username
+                        Email
                       </label>
                       <input
-                        value={loginForm.username}
+                        value={loginForm.email}
                         onChange={(e) =>
                           setLoginForm({
                             ...loginForm,
-                            username: e.target.value,
+                            email: e.target.value,
                           })
                         }
                         type="text"
@@ -256,12 +256,12 @@ const Login = () => {
                     </button>
                     <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                       Don’t have an account yet?{" "}
-                      <a
-                        href="#"
+                      <Link
+                        to="/sign-up"
                         className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                       >
                         Sign up
-                      </a>
+                      </Link>
                     </p>
                   </form>
                 </div>

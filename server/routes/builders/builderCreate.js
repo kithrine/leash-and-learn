@@ -12,7 +12,7 @@ const builderCreate =  async (req, res) => {
   } 
   else {
     const newSessionBuilder = await builderModel.create({ trainingClassType, sessions })
-    console.log("newSessionBuilder", newSessionBuilder)
+    // console.log("newSessionBuilder", newSessionBuilder)
     res.status(200).json({ "success": true, "message": "Training Class builder created."})
   }
 }

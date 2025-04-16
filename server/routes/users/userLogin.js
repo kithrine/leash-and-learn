@@ -6,14 +6,14 @@ import userModel from "./userModel.js";
 // TODO: Retrun above token on successful login
 
 const userLogin = async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
   // Validation
-  if (!username || username == "" || !password || password == "") {
+  if (!email || email == "" || !password || password == "") {
     res.status(500).json({ message: "User information not valid." });
   } else {
     // console.log("username:", username, "password:", password)
     // Get user by username (without worrying about password)
-    const loginUser = await userModel.findOne({ username });
+    const loginUser = await userModel.findOne({ email });
     // If username not found
     if (!loginUser) {
       res
@@ -30,7 +30,7 @@ const userLogin = async (req, res) => {
     // If user exists and password is correct
     console.log(process.env.SECRET_KEY);
     const key = process.env.SECRET_KEY || "";
-    const token = jwt.sign({ username }, key);
+    const token = jwt.sign({ email }, key);
     console.log("token:", token);
     loginUser.token.push(token);
     loginUser.save();
@@ -38,6 +38,7 @@ const userLogin = async (req, res) => {
     const user = {
       firstName: loginUser.firstName,
       lastName: loginUser.lastName,
+      email: loginUser.email, // **** Added this
       username: loginUser.username,
       token: loginUser.token,
       role: loginUser.role,

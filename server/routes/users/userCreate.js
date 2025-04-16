@@ -11,8 +11,8 @@ const userCreate =  async (req, res) => {
     (!lastName || lastName == "") ||
     (!email || email == "") ||
     (!username || username == "") ||
-    (!password || password == "") ||
-    (!role || role == "")
+    (!password || password == "") 
+    // (!role || role == "")
   ) {
     res.status(500).json({ "message": "User information not valid."})
   } 

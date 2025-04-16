@@ -18,8 +18,8 @@ const userMe =  async (req, res) => {
     // Verify token
     const decoded = jwt.verify(token, process.env.SECRET_KEY)
     console.log("decoded:", decoded)
-    const loggedInUser = await userModel.findOne({ username: decoded.username })
-    console.log("loggedInUser", loggedInUser)
+    const loggedInUser = await userModel.findOne({ email: decoded.email })
+    // console.log("loggedInUser", loggedInUser)
     // If user is logged in and token verified
     if (loggedInUser.token.includes(token)) {
       // User logged in

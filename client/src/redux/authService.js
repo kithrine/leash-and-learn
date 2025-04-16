@@ -1,10 +1,10 @@
 import axios from "axios";
 
 const authService = {
-  authLogin: async (username, password) => {
+  authLogin: async (email, password) => {
     return await axios.post(
       `${import.meta.env.VITE_NODE_SERVER_URL}/users/login`,
-      { username, password }
+      { email, password }
       // {} // token?!?
     )
   },

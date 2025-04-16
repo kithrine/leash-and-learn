@@ -3,6 +3,9 @@ import trainingClassModel from "./trainingClassModel.js";
 const trainingClassUpdate = async (req, res) => {
   const { trainingClassId } = req.params;
   const { trainingClassType, trainer, trainingClassName, trainingClassDescription, startDate, endDate } = req.body
+
+  console.log("trainingClassUpdate", trainingClassId, trainingClassType, trainer, trainingClassName, trainingClassDescription, startDate, endDate)
+  
   // const { trainingClassEditForm } = req.body;
 
   // Validation
@@ -17,9 +20,13 @@ const trainingClassUpdate = async (req, res) => {
     res.status(500).json({ message: "Training Class information not valid." });
   } else {
     const newDate = new Date()
-    // const updatedTrainingClass = await trainingClassModel.findOneAndUpdate({ _id: trainingClassId } ,{trainingClassType, trainer, trainingClassName, trainingClassDescription, startDate, endDate})
 
-    const updatedTrainingClass = await trainingClassModel.findOneAndUpdate({_id: trainingClassId}, { "$set": { "trainingClass.$": { trainingClassType, trainer, trainingClassName, trainingClassDescription, startDate, endDate }}}, {new: true})
+    const updatedTrainingClass = await trainingClassModel.findOneAndUpdate({ _id: trainingClassId } , { trainingClassType, trainer, trainingClassName, trainingClassDescription, startDate, endDate}, { new: true })
+
+    // const test = await trainingClassModel.find({_id: trainingClassId})
+    // console.log("test", test)
+
+    // const updatedTrainingClass = await trainingClassModel.findOneAndUpdate({_id: trainingClassId}, { "$set": { "trainingClass.$": { trainingClassType, trainer, trainingClassName, trainingClassDescription, startDate, endDate }}}, {new: true})
 
     // const updateSession = await trainingClassModel.findOneAndUpdate(
     //   // { "sessions._id": _id },

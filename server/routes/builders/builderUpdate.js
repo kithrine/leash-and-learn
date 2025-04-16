@@ -12,7 +12,7 @@ const builderUpdate =  async (req, res) => {
   } 
   else {
     const updatedSessionBuilder = await builderModel.findOneAndUpdate({ trainingClassType }, { trainer })
-    console.log("updatedSessionBuilder", updatedSessionBuilder)
+    // console.log("updatedSessionBuilder", updatedSessionBuilder)
     res.status(200).json({ "success": true, "message": "Training Class builder updated."})
   }
 }
