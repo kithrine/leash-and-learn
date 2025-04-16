@@ -14,7 +14,7 @@ const BMTrainingClassEditModal = () => {
   const [showModal, setShowModal] = useState(false);
   const [trainingClassEditForm, setTrainingClassEditForm] = useState({
     trainingClassType: "",
-    trainer: "",
+    trainer: { firstName: "" },
     trainingClassName: "",
     trainingClassDescription: "",
     startDate: "",
@@ -43,6 +43,20 @@ const BMTrainingClassEditModal = () => {
     dispatch(trainingClassUpdate({ trainingClassId, trainingClassEditForm: { ...trainingClassEditForm}}))
     setShowModal(false);
   };
+
+  useEffect(() => {
+    console.log("trainingClassEditForm but really we're just looking for trainer", trainingClassEditForm)
+  }, [trainingClassEditForm])
+  
+
+  const findTrainer = (trainer) => {
+    console.log("findTrainer", trainer)
+    const tempUser = users.find(user => user.username === trainer)
+    console.log("tempUser", tempUser)
+    const trainerObj = { firstName: tempUser.firstName, lastName: tempUser.lastName, username: tempUser.username, email: tempUser.email }
+    console.log("trainerObj", trainerObj)
+    return trainerObj
+  }
 
   const handleDatepickerFormat = (classDate) => {
     // convert string to date
@@ -106,7 +120,7 @@ const BMTrainingClassEditModal = () => {
               <div className="grid gap-4 mb-4 sm:grid-cols-2">
                 <div className="sm:col-span-2">
                   <label
-                    for="name"
+                    htmlFor="name"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Name
@@ -128,7 +142,7 @@ const BMTrainingClassEditModal = () => {
                 </div>
                 <div>
                   <label
-                    for="brand"
+                    htmlFor="brand"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Type
@@ -148,7 +162,7 @@ const BMTrainingClassEditModal = () => {
 
                 <div>
                   <label
-                    for="trainer"
+                    htmlFor="trainer"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Trainer
@@ -158,8 +172,8 @@ const BMTrainingClassEditModal = () => {
                   onChange={(e) =>
                     setTrainingClassEditForm({
                       ...trainingClassEditForm,
-                      trainer: e.target.value,
-                    })
+                      trainer: findTrainer(e.target.value)
+                      })
                   }
                     id="category"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -178,7 +192,7 @@ const BMTrainingClassEditModal = () => {
                 </div>
                 <div className="sm:col-span-2">
                   <label
-                    for="description"
+                    htmlFor="description"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Description
@@ -201,7 +215,7 @@ const BMTrainingClassEditModal = () => {
                 </div>
                 <div>
                   <label
-                    for="category"
+                    htmlFor="category"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Start Date
@@ -224,7 +238,7 @@ const BMTrainingClassEditModal = () => {
                 </div>
                 <div>
                   <label
-                    for="category"
+                    htmlFor="category"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     End Date

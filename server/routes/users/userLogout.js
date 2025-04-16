@@ -16,7 +16,7 @@ const userLogout =  async (req, res) => {
   else {
     // Logout user, remove token
     const decoded = jwt.verify(token, process.env.SECRET_KEY)
-    const logoutUser = await userModel.findOne({ username: decoded.username })
+    const logoutUser = await userModel.findOne({ email: decoded.email })
     console.log("logoutUser", logoutUser)
     logoutUser.token = []
     await logoutUser.save()

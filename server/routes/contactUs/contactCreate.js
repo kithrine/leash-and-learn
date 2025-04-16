@@ -16,7 +16,7 @@ const contactCreate = async (req, res) => {
     phone,
     message
   })
-  console.log("contact", contact)
+  // console.log("contact", contact)
   res.status(200).json({ "success": true, "contact": contact })
 }
 

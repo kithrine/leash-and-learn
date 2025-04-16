@@ -15,6 +15,7 @@ const preloadedState = () => {
         user: {
           firstName: "",
           lastName: "",
+          email: "", // **** Added this
           username: "",
           role: [],
           token: sessionStorage.getItem("token"),
@@ -29,7 +30,7 @@ export const store = configureStore({
     auth: authReducer,
     trainingClass: trainingClassReducer,
     builder: builderReducer,
-    user: userReducer,
+    users: userReducer,
     contact: contactReducer
   },
   preloadedState: preloadedState(),

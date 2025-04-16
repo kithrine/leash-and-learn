@@ -7,6 +7,7 @@ const initialState = {
   user: {
     firstName: "",
     lastName: "",
+    email: "", // **** Added this
     username: "",
     role: [],
     token: ""
@@ -14,9 +15,9 @@ const initialState = {
 }
 
 export const authLogin = createAsyncThunk("auth/login", async (credentials) => {
-  const { username, password } = credentials
+  const { email, password } = credentials
   // console.log("authLogin:", username, password)
-  const response = await authService.authLogin(username, password)
+  const response = await authService.authLogin(email, password)
   // console.log(response)
   return response.data
 })
@@ -80,6 +81,7 @@ export const authSlice = createSlice({
         state.user = { 
           firstName: "",
           lastName: "",
+          email: "", // **** Added this
           username: "",
           role: [],
           token: "" }

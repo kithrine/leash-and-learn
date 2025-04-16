@@ -5,6 +5,7 @@ import NavBar from "./components/navigation/NavBar";
 import PrivateRoute from "./components/PrivateRoute";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 import About from "./pages/About";
 import ContactUs from "./pages/ContactUs";
 import FAQ from "./pages/FAQ";
@@ -20,10 +21,17 @@ import authService from "./redux/authService";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
+import { userGetAll } from "./redux/userSlice";
 
 function App() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const { users } = useSelector((state) => state.users)
+
+  useEffect(() => {
+    dispatch(userGetAll())
+  }, [])
+  
 
     useEffect(() => {
     if (user.token) {
@@ -54,6 +62,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/sign-up" element={<SignUp users={users} />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/faq" element={<FAQ />} />
