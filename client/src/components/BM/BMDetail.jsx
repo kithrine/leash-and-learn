@@ -37,6 +37,7 @@ const BMDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log("Id for Jack", id)
     dispatch(trainingClassGetOne(id));
   }, []);
 

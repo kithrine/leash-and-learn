@@ -40,11 +40,11 @@
   /* margin-left: 3.5%;
   margin-bottom: .5%; */
   margin-left: 35%;
-  margin-top: 3.5%
+  margin-top: 3.5%;
 }
 
 .footer {
-  width: 86.5%!important;
+  width: 86.5% !important;
   float: right;
 }
 
@@ -56,6 +56,16 @@
 .bm-dashboard-bg {
   /* background: radial-gradient(ellipse at right, #e9d0bc, transparent),
             radial-gradient(ellipse at left, #4d9f0c, transparent); */
-            /* background: radial-gradient(closest-side, #b8997f, #ffe9d1, #ffffff); */
-  background: linear-gradient(to bottom, #fff 1%, #e4d0c6, #eed8cc, #fff 99%)
+  /* background: radial-gradient(closest-side, #b8997f, #ffe9d1, #ffffff); */
+  background: linear-gradient(to bottom, #fff 1%, #e4d0c6, #eed8cc, #fff 99%);
+}
+
+.chevron-pattern {
+  background: linear-gradient(135deg, #616161 25%, transparent 25%) -50px 0,
+    linear-gradient(225deg, #333 25%, transparent 25%) -50px 0,
+    linear-gradient(315deg, #616161 25%, transparent 25%),
+    linear-gradient(45deg, #333 25%, transparent 25%);
+  background-size: 100px 100px;
+  background-color: #35c0ae;
+  height: 250px;
 }

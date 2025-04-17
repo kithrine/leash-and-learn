@@ -8,7 +8,7 @@ const BMTrainingClassEditModal = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   let trainingClassId = location.pathname.split("/")[2];
-  const { users } = useSelector((state) => state.user);
+  const { users } = useSelector((state) => state.users);
   const { trainingClass } = useSelector((state) => state.trainingClass);
 
   const [showModal, setShowModal] = useState(false);

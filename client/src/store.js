@@ -4,6 +4,7 @@ import trainingClassReducer from "./redux/trainingClassSlice";
 import builderReducer from "./redux/builderSlice";
 import userReducer from './redux/userSlice'
 import contactReducer from "./redux/contactSlice"
+import blogReducer from "./redux/blogSlice"
 import { listenerMiddleware } from "./redux/sessionStorageMiddleware";
 
 const preloadedState = () => {
@@ -31,7 +32,8 @@ export const store = configureStore({
     trainingClass: trainingClassReducer,
     builder: builderReducer,
     users: userReducer,
-    contact: contactReducer
+    contact: contactReducer,
+    blog: blogReducer
   },
   preloadedState: preloadedState(),
   middleware: (getDefaultMiddleware) =>
