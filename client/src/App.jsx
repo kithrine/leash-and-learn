@@ -88,7 +88,6 @@ function App() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/blog-homepage" element={<BlogHomepage />} />
         <Route path="/blog-list" element={<BlogList />} />
-        <Route path="/create-blog" element={<AddBlog />} />
         <Route element={<PrivateRoute />}>
           <Route element={<DashboardSideNavLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
@@ -97,6 +96,7 @@ function App() {
           <Route path="/create-training-class" element={<CreateForm />} />
           <Route path="/inbox" element={<Inbox />} />
           </Route>
+        <Route path="/create-blog" element={<AddBlog />} />
         </Route>
           {/* <Route element={<SomeOtherLayout />}>
             <Route path="/dashboard" element={<UserDashboard />} />

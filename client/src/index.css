@@ -1,2 +1,25 @@
 @import "tailwindcss";
 
+@theme {
+  --font-leash: "Rouge Script", sans-serif;
+  --font-and: "Baskervville", sans-serif;
+  --font-learn: "Arsenal SC", sans-serif;
+  --font-lexend: "Lexend Zetta", sans-serif;
+  --font-waterfall: "Waterfall", sans-serif;
+  --font-phudu: "Phudu", sans-serif;
+  --font-bona-nova: "Bona Nova SC", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --font-palanquin: "Palanquin", sans-serif;
+  --font-palanquin-dark: "Palanquin Dark", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-source: "Source Sans 3", sans-serif;
+  --font-quicksand: "Quicksand", sans-serif;
+  --font-instrument: "Instrument Sans", sans-serif;
+  --font-rubik: "Rubik", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-quattrocento: "Quattrocento Sans", sans-serif;
+  --font-encode: "Encode Sans SC", sans-serif;
+  --font-phudu: "Phudu", sans-serif;
+  --font-koulen: "Koulen", sans-serif;
+  --font-bebas: "Bebas Neue", sans-serif;
+}

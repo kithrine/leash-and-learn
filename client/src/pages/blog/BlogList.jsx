@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { Link, useLocation, useNavigate } from "react-router"
 import { useSelector, useDispatch } from "react-redux"
 import { blogList } from "../../redux/blogSlice"
+import BlogNavigation from "../../components/navigation/BlogNavigation"
 
 
 const BlogList = () => {
@@ -16,6 +17,8 @@ const BlogList = () => {
   }, [])
 
   return (
+    <>
+    <BlogNavigation />
     <div className="bg-black h-[100vh] pt-28">
       <div className="text-center font-numans text-5xl">
       <span className="text-fur">FUR </span>
@@ -121,6 +124,7 @@ const BlogList = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 
