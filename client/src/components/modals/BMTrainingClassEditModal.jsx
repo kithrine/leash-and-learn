@@ -23,7 +23,7 @@ const BMTrainingClassEditModal = () => {
 
   useEffect(() => {
     let id = location.pathname.split("/")[2]
-    console.log("BMTrainingClassEditModal useEffect location", location, id)
+    // console.log("BMTrainingClassEditModal useEffect location", location, id)
     dispatch(trainingClassGetOne(id));
     dispatch(userGetMany({userType: "Trainer"}))
   }, []);

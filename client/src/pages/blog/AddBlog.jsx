@@ -6,6 +6,8 @@ import { toast } from "react-toastify"
 import BlogNavigation from "../../components/navigation/BlogNavigation"
 
 const AddBlog = () => {
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedSubCategory, setSelectedSubCategory] = useState('');
   const [blogForm, setBlogForm] = useState({
     title: "",
     authorFullName: "",
@@ -68,6 +70,28 @@ const AddBlog = () => {
     })
     navigate("/blog-list")
   }
+
+  // const handleCategorySelect = () => {
+  //   const newSelectedCategory = e.target.value;
+  //   if (!newSelectedCategory) return;
+
+  //   setSelectedCategory(newSelectedCategory);
+
+  //   // Get the corresponding subcategories
+  //   const subCategories = getSubCategories(selectedCategory);
+
+  //   // Populate the subcategory dropdown
+  //   selectedSubCategory = '';
+  //   Object.values(subCategories).forEach((subCategory) => {
+  //     const option = document.createElement('option');
+  //     option.value = subCategory.id;
+  //     option.textContent = subCategory.name;
+  //     if (subCategory.id === 'default') {
+  //       selectedSubCategory = subCategory.name;
+  //     }
+  //     document.querySelector(`select[theme="multiple"]`).appendChild(option);
+  //   });
+  // }
 
   return (
     <>

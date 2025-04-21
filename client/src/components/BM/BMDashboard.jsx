@@ -13,7 +13,7 @@ const BMDashboard = () => {
   const dispatch = useDispatch();
 
   const { trainingClasses } = useSelector((state) => state.trainingClass);
-  console.log("BMTrainingClassesDashboard trainingClasses", trainingClasses);
+  // console.log("BMTrainingClassesDashboard trainingClasses", trainingClasses);
 
   useEffect(() => {
     dispatch(trainingClassGetAll());

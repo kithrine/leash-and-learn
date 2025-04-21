@@ -11,9 +11,9 @@ const TrainerTrainingClasses = () => {
   const { trainingClasses } = useSelector((state) => state.trainingClass)
 
   useEffect(() => {
-    console.log("user", user)
+    // console.log("user", user)
     dispatch(trainingClassGetMany(user.username))
-    console.log("TRAINING CLASSES WITH TRAINER", trainingClasses)
+    // console.log("TRAINING CLASSES WITH TRAINER", trainingClasses)
   }, [])
 
   return (

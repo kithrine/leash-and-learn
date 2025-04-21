@@ -7,7 +7,7 @@ import DashboardFooter from '../components/footers/DashboardFooter';
 const CreateForm = () => {
 
   const { user } = useSelector(state => state.auth)
-  console.log("user:", user)
+  // console.log("user:", user)
 
   if (user.role.includes("Business Manager")) {
     console.log("Business Manager")

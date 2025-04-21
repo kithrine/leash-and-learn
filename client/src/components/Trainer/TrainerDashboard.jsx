@@ -14,7 +14,7 @@ const TrainerDashboard = () => {
 
   const { trainingClasses } = useSelector((state) => state.trainingClass);
   const { user } = useSelector((state) => state.auth);
-  console.log("BMTrainingClassesDashboard trainingClasses", trainingClasses);
+  // console.log("BMTrainingClassesDashboard trainingClasses", trainingClasses);
 
   useEffect(() => {
     dispatch(trainingClassGetMany(user.username));

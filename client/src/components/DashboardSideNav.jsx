@@ -22,7 +22,7 @@ const DashboardSideNav = () => {
   }
 
   useEffect(() => {
-    console.log("user", user)
+    // console.log("user", user)
     dispatch(trainingClassGetMany(user.username))
   }, [])
   

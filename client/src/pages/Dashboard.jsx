@@ -13,20 +13,20 @@ const Dashboard = () => {
   const dispatch = useDispatch()
   const { trainingClasses } = useSelector((state) => state.trainingClass);
   const { user } = useSelector(state => state.auth)
-  console.log("Dashboard user:", user)
+  // console.log("Dashboard user:", user)
 
   if (user.role.includes("Business Manager")) {
-    console.log("Business Manager")
+    // console.log("Business Manager")
   } else if (user.role.includes("Trainer")) {
-    console.log("Trainer")
+    // console.log("Trainer")
   } else {
-    console.log("User")
+    // console.log("User")
   }
 
   useEffect(() => {
-    console.log("user", user)
+    // console.log("user", user)
     // dispatch(trainingClassGetMany(user.username))
-    console.log("TRAINING CLASSES WITH KIT", trainingClasses)
+    // console.log("TRAINING CLASSES WITH KIT", trainingClasses)
   }, [])
   
 
