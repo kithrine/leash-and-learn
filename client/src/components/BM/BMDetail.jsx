@@ -37,6 +37,7 @@ const BMDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log("Id for Jack", id)
     dispatch(trainingClassGetOne(id));
   }, []);
 
@@ -47,7 +48,7 @@ const BMDetail = () => {
   }, []);
 
   const handleDelete = (session) => {
-    console.log("handleDelete", id, session)
+    // console.log("handleDelete", id, session)
     dispatch(trainingClassSessionDelete({ trainingClassId: id, sessionId: session._id }))
   };
 

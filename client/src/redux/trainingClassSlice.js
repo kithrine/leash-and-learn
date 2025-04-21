@@ -31,7 +31,7 @@ export const trainingClassGetAll = createAsyncThunk(
   "trainingClass/getAll",
   async () => {
     const response = await trainingClassService.trainingClassGetAll();
-    console.log("redux trainingClassGetAll", response);
+    // console.log("redux trainingClassGetAll", response);
     return response.data;
   }
 );
@@ -40,9 +40,9 @@ export const trainingClassGetAll = createAsyncThunk(
 export const trainingClassGetMany = createAsyncThunk(
   "trainingClass/getMany",
   async (username = "") => {
-    console.log("redux trainingClassGetMany username", username);
+    // console.log("redux trainingClassGetMany username", username);
     const response = await trainingClassService.trainingClassGetMany(username);
-    console.log("redux trainingClassGetMany username", response);
+    // console.log("redux trainingClassGetMany username", response);
     return response.data;
   }
 );
@@ -51,9 +51,9 @@ export const trainingClassGetMany = createAsyncThunk(
 export const trainingClassGetOne = createAsyncThunk(
   "trainingClass/getOne",
   async (id) => {
-    console.log("redux trainingClassGetOne id", id);
+    // console.log("redux trainingClassGetOne id", id);
     const response = await trainingClassService.trainingClassGetOne(id);
-    console.log("redux trainingClassGetOne id", response);
+    // console.log("redux trainingClassGetOne id", response);
     return response.data;
   }
 );
@@ -62,14 +62,14 @@ export const trainingClassGetOne = createAsyncThunk(
 export const trainingClassCreate = createAsyncThunk(
   "trainingClass/create",
   async (trainingClassForm) => {
-    console.log(
-      "redux trainingClassCreate trainingClassForm",
-      trainingClassForm
-    );
+    // console.log(
+    //   "redux trainingClassCreate trainingClassForm",
+    //   trainingClassForm
+    // );
     const response = await trainingClassService.trainingClassCreate(
       trainingClassForm
     );
-    console.log(response);
+    // console.log(response);
     return response.data;
   }
 );
@@ -153,168 +153,168 @@ export const trainingClassSlice = createSlice({
 
       // Training Classes (Get All)
       .addCase(trainingClassGetAll.pending, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassGetAll.pending",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassGetAll.pending",
+        //   action.payload
+        // );
         state.loading = true;
       })
       .addCase(trainingClassGetAll.fulfilled, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassGetAll.fulfilled",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassGetAll.fulfilled",
+        //   action.payload
+        // );
         state.loading = false;
         state.trainingClasses = action.payload.trainingClasses;
       })
       .addCase(trainingClassGetAll.rejected, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassGetAll.rejected",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassGetAll.rejected",
+        //   action.payload
+        // );
         state.loading = false;
       })
 
       // Training Classes (Get Many)
       .addCase(trainingClassGetMany.pending, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassGetMany.pending",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassGetMany.pending",
+        //   action.payload
+        // );
         state.loading = true;
       })
       .addCase(trainingClassGetMany.fulfilled, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassGetMany.fulfilled",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassGetMany.fulfilled",
+        //   action.payload
+        // );
         state.loading = false;
         state.trainingClasses = action.payload.trainingClasses;
       })
       .addCase(trainingClassGetMany.rejected, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassGetMany.rejected",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassGetMany.rejected",
+        //   action.payload
+        // );
         state.loading = false;
       })
 
       // Training Class (Get One)
       .addCase(trainingClassGetOne.pending, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassGetOne.pending",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassGetOne.pending",
+        //   action.payload
+        // );
         state.loading = true;
       })
       .addCase(trainingClassGetOne.fulfilled, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassGetOne.fulfilled",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassGetOne.fulfilled",
+        //   action.payload
+        // );
         state.loading = false;
         state.trainingClass = action.payload.trainingClass;
       })
       .addCase(trainingClassGetOne.rejected, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassGetOne.rejected",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassGetOne.rejected",
+        //   action.payload
+        // );
         state.loading = false;
       })
 
       // Create a Training Class
       .addCase(trainingClassCreate.pending, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassCreate.pending",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassCreate.pending",
+        //   action.payload
+        // );
         state.loading = true;
       })
       .addCase(trainingClassCreate.fulfilled, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassCreate.fulfilled",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassCreate.fulfilled",
+        //   action.payload
+        // );
         state.loading = false;
       })
       .addCase(trainingClassCreate.rejected, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassCreate.rejected",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassCreate.rejected",
+        //   action.payload
+        // );
         state.loading = false;
       })
 
       // Update Training Class Detail
       .addCase(trainingClassUpdate.pending, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassUpdate.pending",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassUpdate.pending",
+        //   action.payload
+        // );
         state.loading = true;
       })
       .addCase(trainingClassUpdate.fulfilled, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassUpdate.fulfilled",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassUpdate.fulfilled",
+        //   action.payload
+        // );
         state.loading = false;
         state.trainingClass = action.payload.trainingClass;
       })
       .addCase(trainingClassUpdate.rejected, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassUpdate.rejected",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassUpdate.rejected",
+        //   action.payload
+        // );
         state.loading = false;
       })
 
       // Update One Training Class Session
       .addCase(trainingClassSessionUpdate.pending, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassSessionUpdate.pending",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassSessionUpdate.pending",
+        //   action.payload
+        // );
         state.loading = true;
       })
       .addCase(trainingClassSessionUpdate.fulfilled, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassSessionUpdate.fulfilled",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassSessionUpdate.fulfilled",
+        //   action.payload
+        // );
         state.loading = false;
         state.trainingClass = action.payload.trainingClass;
       })
       .addCase(trainingClassSessionUpdate.rejected, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassSessionUpdate.rejected",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassSessionUpdate.rejected",
+        //   action.payload
+        // );
         state.loading = false;
       })
 
       // Delete One Training Class Session
       .addCase(trainingClassSessionDelete.pending, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassSessionDelete.pending",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassSessionDelete.pending",
+        //   action.payload
+        // );
         state.loading = true;
       })
       .addCase(trainingClassSessionDelete.fulfilled, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassSessionDelete.fulfilled",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassSessionDelete.fulfilled",
+        //   action.payload
+        // );
         state.loading = false;
         state.trainingClass = action.payload.trainingClass;
       })
       .addCase(trainingClassSessionDelete.rejected, (state, action) => {
-        console.log(
-          "trainingClassSlice trainingClassSessionDelete.rejected",
-          action.payload
-        );
+        // console.log(
+        //   "trainingClassSlice trainingClassSessionDelete.rejected",
+        //   action.payload
+        // );
         state.loading = false;
       });
   },

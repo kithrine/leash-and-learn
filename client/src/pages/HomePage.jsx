@@ -44,7 +44,7 @@ const HomePage = () => {
             <div className="flex justify-center items-center text-7xl font-semibold text-black dark:text-white space-x-3 rtl:space-x-reverse">
               <div className="absolute mt-36">
                 <svg
-                  className="footer-paw animate-pulse absolute mt-9 ml-"
+                  className="homepage-paw animate-pulse absolute mt-9 ml-"
                   xmlns="http://www.w3.org/2000/svg"
                   height="95"
                   width="95"
@@ -57,7 +57,7 @@ const HomePage = () => {
                 <div className="flex flex-col">
                   <span className="self-center text-9xl font-semibold whitespace-nowrap dark:text-white">
                     <span className="leash mr-4">Leash </span>
-                    <span className="and text-5xl relative text-white mx-1 mr-5">
+                    <span className="and text-5xl relative text-white mx-1 mr-5 -mt-4">
                       &
                     </span>{" "}
                     <span className="learn pr-12"> learn</span>

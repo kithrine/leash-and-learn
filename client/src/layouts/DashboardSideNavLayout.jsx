@@ -17,7 +17,7 @@ const DashboardSideNavLayout = () => {
 
 
   useEffect(() => {
-    console.log("user", user)
+    // console.log("user", user)
     if (user.role.includes("Business Manager")) {
       dispatch(trainingClassGetAll())
     } else {

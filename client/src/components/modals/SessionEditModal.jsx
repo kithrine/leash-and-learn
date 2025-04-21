@@ -83,7 +83,7 @@ const SessionEditModal = ({ session }) => {
   };
 
   const handleUpdate = () => {
-    console.log("trainingClassId:", trainingClassId, "session:", sessionEditForm);
+    // console.log("trainingClassId:", trainingClassId, "session:", sessionEditForm);
     dispatch(trainingClassSessionUpdate({ trainingClassId, sessionId: sessionEditForm._id, sessionEditForm })); // add trainingClassId
     setShowEditSessionModal(false)
     toast.success("Training Session updated successfully!");

@@ -10,7 +10,7 @@ const Inbox = () => {
 
   useEffect(() => {
     dispatch(contactGetAll());
-    console.log("contacts", contacts);
+    // console.log("contacts", contacts);
   }, []);
 
   return (

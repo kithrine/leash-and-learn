@@ -33,7 +33,7 @@ const ContactUs = () => {
       `${import.meta.env.VITE_NODE_SERVER_URL}/contact`,
       contactObj
     );
-    console.log(getContact);
+    // console.log(getContact);
     toast.success("Message sent successfully!", { autoClose: 2000});
     setTimeout(() => {
       navigate("/")

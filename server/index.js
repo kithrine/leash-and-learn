@@ -6,6 +6,7 @@ import userIndex from "./routes/users/userIndex.js"
 import trainingClassIndex from "./routes/trainingClasses/trainingClassIndex.js"
 import builderIndex from "./routes/builders/builderIndex.js"
 import contactIndex from "./routes/contactUs/contactIndex.js"
+import blogIndex from "./routes/blog/blogIndex.js"
 
 console.log(process.env.MONGODB_URL)
 
@@ -22,6 +23,7 @@ app.use("/users", userIndex)
 app.use("/training-classes", trainingClassIndex)
 app.use("/builders", builderIndex)
 app.use("/contact", contactIndex)
+app.use("/blog", blogIndex)
 
 app.all("*", (req, res) => {
   res.status(404).json({

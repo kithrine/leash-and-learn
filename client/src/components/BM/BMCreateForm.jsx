@@ -30,16 +30,16 @@ const BMCreateForm = () => {
   }, [])
   
   useEffect(() => {
-    console.log("builders", builders);
+    // console.log("builders", builders);
   }, [builders]);
 
   useEffect(() => {
-    console.log("trainingClass", trainingClass);
+    // console.log("trainingClass", trainingClass);
   }, [trainingClass]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("handleSubmit");
+    // console.log("handleSubmit");
     // Validation
     dispatch(trainingClassCreate(trainingClass));
     setShowModal(true);
@@ -63,9 +63,9 @@ const BMCreateForm = () => {
     //     trainer = ""
     // }
     // return trainer
-    console.log(builders.filter(builder => builder.trainingClassType === type))
+    // console.log(builders.filter(builder => builder.trainingClassType === type))
     let trainingClass = builders.filter(builder => builder.trainingClassType === type)[0]
-    console.log(trainingClass)
+    // console.log(trainingClass)
     return `${trainingClass.trainer.firstName} ${trainingClass.trainer.lastName}`
   }
 

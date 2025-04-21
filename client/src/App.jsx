@@ -22,6 +22,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
 import { userGetAll } from "./redux/userSlice";
+import BlogHomepage from "./pages/blog/BlogHomepage";
+import BlogList from "./pages/blog/BlogList";
+import AddBlog from "./pages/blog/AddBlog";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +45,23 @@ function App() {
       checkToken();
     }
   }, []);
+
+  // ~~~ DARK MODE HELPPPPPP!!!! ~~~
+  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+  document.documentElement.classList.toggle(
+    "dark",
+    localStorage.theme === "dark" ||
+      (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
+  );
+
+  // Whenever the user explicitly chooses light mode
+  localStorage.theme = "light";
+  // Whenever the user explicitly chooses dark mode
+  localStorage.theme = "dark";
+  // Whenever the user explicitly chooses to respect the OS preference
+  localStorage.removeItem("theme");
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
   // useEffect(() => {
   //   const token = sessionStorage.getItem("token");
@@ -66,6 +86,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/faq" element={<FAQ />} />
+        <Route path="/blog-homepage" element={<BlogHomepage />} />
+        <Route path="/blog-list" element={<BlogList />} />
         <Route element={<PrivateRoute />}>
           <Route element={<DashboardSideNavLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
@@ -74,6 +96,7 @@ function App() {
           <Route path="/create-training-class" element={<CreateForm />} />
           <Route path="/inbox" element={<Inbox />} />
           </Route>
+        <Route path="/create-blog" element={<AddBlog />} />
         </Route>
           {/* <Route element={<SomeOtherLayout />}>
             <Route path="/dashboard" element={<UserDashboard />} />
