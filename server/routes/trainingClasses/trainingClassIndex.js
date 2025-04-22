@@ -6,6 +6,7 @@ import trainingClassGetOne from "./trainingClassGetOne.js"
 import trainingClassUpdate from "./trainingClassUpdate.js"
 import trainingClassSessionUpdate from "./trainingClassSessionUpdate.js"
 import trainingClassSessionDelete from "./trainingClassSessionDelete.js"
+import trainingClassSessionCreate from "./trainingClassSessionCreate.js"
 
 const trainingClassIndex = express.Router()
 
@@ -14,6 +15,7 @@ trainingClassIndex.get("/", trainingClassGetAll)
 trainingClassIndex.get("/:username?", trainingClassGetMany)
 trainingClassIndex.get("/detail/:id", trainingClassGetOne)
 trainingClassIndex.put("/:trainingClassId", trainingClassUpdate)
+trainingClassIndex.post("/:trainingClassId/sessions", trainingClassSessionCreate)
 trainingClassIndex.put("/:trainingClassId/sessions/:sessionId", trainingClassSessionUpdate)
 trainingClassIndex.delete("/:trainingClassId/sessions/:sessionId", trainingClassSessionDelete)
 

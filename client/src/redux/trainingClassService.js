@@ -31,6 +31,13 @@ const trainingClassService = {
       trainingClassEditForm
     ) 
   },
+  trainingClassSessionCreate: async (trainingClassId, sessionAddForm) => {
+    console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/sessions`)
+    return await axios.post(
+      `${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/${trainingClassId}/sessions`,
+      sessionAddForm
+    )
+  },
   trainingClassSessionUpdate: async (trainingClassId, sessionId, sessionEditForm) => {
     // console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/sessions`)
     return await axios.put(

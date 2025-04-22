@@ -79,20 +79,44 @@ export const trainingClassUpdate = createAsyncThunk(
   "trainingClass/trainingClassUpdate",
   async (trainingClassInfo) => {
     const {trainingClassId, trainingClassEditForm} = trainingClassInfo
-    console.log(
-      "redux trainingClassUpdate trainingClass update",
-      trainingClassInfo, trainingClassEditForm
-    );
-    console.log(
-      "trainingClassUpdate trainingClassId, trainingClassEditForm",
-      trainingClassId,
-      trainingClassEditForm
-    );
+    // console.log(
+    //   "redux trainingClassUpdate trainingClass update",
+    //   trainingClassInfo, trainingClassEditForm
+    // );
+    // console.log(
+    //   "trainingClassUpdate trainingClassId, trainingClassEditForm",
+    //   trainingClassId,
+    //   trainingClassEditForm
+    // );
     const response = await trainingClassService.trainingClassUpdate(
       trainingClassId,
       trainingClassEditForm
     );
-    console.log("redux trainingClassUpdate trainingClass response", response
+    // console.log("redux trainingClassUpdate trainingClass response", response
+    // );
+    return response.data;
+  }
+);
+
+// Session Create
+export const trainingClassSessionCreate = createAsyncThunk(
+  "trainingClass/sessionCreate",
+  async (trainingClassInfo) => {
+    console.log(
+      "redux trainingClassSessionCreate trainingClass session",
+      trainingClassInfo
+    );
+    const { trainingClassId, sessionAddForm } = trainingClassInfo;
+    console.log(
+      "trainingClassSessionCreate, sessionAddForm",
+      
+      sessionAddForm
+    );
+    const response = await trainingClassService.trainingClassSessionCreate(
+      trainingClassId,
+      sessionAddForm
+    );
+    console.log("redux trainingClassSessionCreate trainingClass response", response
     );
     return response.data;
   }
@@ -102,23 +126,23 @@ export const trainingClassUpdate = createAsyncThunk(
 export const trainingClassSessionUpdate = createAsyncThunk(
   "trainingClass/sessionUpdate",
   async (sessionInfo) => {
-    console.log(
-      "redux trainingClassSessionUpdate trainingClass session",
-      sessionInfo
-    );
+    // console.log(
+    //   "redux trainingClassSessionUpdate trainingClass session",
+    //   sessionInfo
+    // );
     const { trainingClassId, sessionId, sessionEditForm } = sessionInfo;
-    console.log(
-      "trainingClassSessionUpdate sessionId, sessionEditForm",
-      sessionId,
-      sessionEditForm
-    );
+    // console.log(
+    //   "trainingClassSessionUpdate sessionId, sessionEditForm",
+    //   sessionId,
+    //   sessionEditForm
+    // );
     const response = await trainingClassService.trainingClassSessionUpdate(
       trainingClassId,
       sessionId,
       sessionEditForm
     );
-    console.log("redux trainingClassSessionUpdate trainingClass response", response
-    );
+    // console.log("redux trainingClassSessionUpdate trainingClass response", response
+    // );
     return response.data;
   }
 );
@@ -127,17 +151,17 @@ export const trainingClassSessionUpdate = createAsyncThunk(
 export const trainingClassSessionDelete = createAsyncThunk(
   "trainingClass/sessionDelete",
   async (sessionInfo) => {
-    console.log("redux trainingClassSessionDelete trainingClass session", sessionInfo);
+    // console.log("redux trainingClassSessionDelete trainingClass session", sessionInfo);
     const { trainingClassId, sessionId } = sessionInfo;
-    console.log("trainingClassSessionDelete sessionId, session", trainingClassId, sessionId);
+    // console.log("trainingClassSessionDelete sessionId, session", trainingClassId, sessionId);
     const response = await trainingClassService.trainingClassSessionDelete(
       trainingClassId,
       sessionId
     );
-    console.log(
-      "redux trainingClassSessionDelete trainingClass response",
-      response
-    );
+    // console.log(
+    //   "redux trainingClassSessionDelete trainingClass response",
+    //   response
+    // );
     return response.data;
   }
 );
@@ -267,6 +291,30 @@ export const trainingClassSlice = createSlice({
         //   "trainingClassSlice trainingClassUpdate.rejected",
         //   action.payload
         // );
+        state.loading = false;
+      })
+
+      // Create One Training Class Session
+      .addCase(trainingClassSessionCreate.pending, (state, action) => {
+        console.log(
+          "trainingClassSlice trainingClassSessionCreate.pending",
+          action.payload
+        );
+        state.loading = true;
+      })
+      .addCase(trainingClassSessionCreate.fulfilled, (state, action) => {
+        console.log(
+          "trainingClassSlice trainingClassSessionCreate.fulfilled",
+          action.payload
+        );
+        state.loading = false;
+        state.trainingClass = action.payload.trainingClass;
+      })
+      .addCase(trainingClassSessionCreate.rejected, (state, action) => {
+        console.log(
+          "trainingClassSlice trainingClassSessionCreate.rejected",
+          action.payload
+        );
         state.loading = false;
       })
 
