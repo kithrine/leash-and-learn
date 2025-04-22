@@ -7,6 +7,7 @@ import BMTrainingClassEditModal from "../modals/BMTrainingClassEditModal"
 import SessionEditModal from "../modals/SessionEditModal";
 import SessionDeleteModal from "../modals/SessionDeleteModal";
 import DetailPageLoadingSkeleton from "../skeletons/DetailPageLoadingSkeleton";
+import SessionAddModal from "../modals/SessionAddModal";
 
 const BMDetail = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const BMDetail = () => {
   //     email: "",
   //   }
   // })
+  const [showSessionAddModal, setShowSessionAddModal] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const [sessionToDelete, setSessionToDelete] = useState({});
@@ -46,6 +48,15 @@ const BMDetail = () => {
       setLoading(false);
     }, 1000);
   }, []);
+
+  const handleDatepickerFormat = (classDate) => {
+    // convert string to date
+    let newDate = new Date(classDate);
+    // Set  hours back because of UTC
+    let dateMinus7 = newDate.setHours(newDate.getHours() + 7);
+    // Use en-CA default format
+    return new Date(dateMinus7).toLocaleDateString("en-CA");
+  };
 
   const handleDelete = (session) => {
     // console.log("handleDelete", id, session)
@@ -171,6 +182,14 @@ const BMDetail = () => {
                 >
                   Edit All Sessions
                 </button> */}
+                <button
+        onClick={() => setShowSessionAddModal(true)}
+        type="button"
+        className="text-black bg-gradient-to-r from-green-400 to-lime-400 hover:bg-gradient-to-l hover:from-green-400 hover:to-lime-400 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[10vw]"
+      >
+        Add Session
+      </button>
+      {showSessionAddModal && <SessionAddModal setShowSessionAddModal={setShowSessionAddModal} handleDatepickerFormat={handleDatepickerFormat} />}
               </div>
               <div className="space-y-8 lg:grid lg:grid-cols-2 sm:gap-6 xl:gap-10 lg:space-y-0">
                 {/* THE INPUT BOX I'D LIKE TO PUT WHEN EDITING THE FIELDS */}
@@ -179,7 +198,7 @@ const BMDetail = () => {
                 {/* <!-- Training Class 8 Week Cards --> */}
                 {trainingClass.sessions.map((session, index) => (
                   <div
-                    className="flex flex-col justify-between p-6 mx-auto max-w-2xl text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white"
+                    className="flex flex-col justify-between p-6 mx-auto max-w-2xl text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white min-w-[35vw]"
                     key={index}
                   >
                     <h3 className="mb-4 text-3xl font-semibold">
@@ -240,7 +259,7 @@ const BMDetail = () => {
                     </ul>
 
                     <div className="flex flex-row mx-auto space-x-40">
-                    <SessionEditModal
+                    <SessionEditModal handleDatepickerFormat={handleDatepickerFormat}
                       session={session}
                     />
                     <button

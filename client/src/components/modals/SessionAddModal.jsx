@@ -1,47 +1,23 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect} from "react";
+import { useDispatch } from "react-redux";
+import { trainingClassSessionCreate, trainingClassGetOne } from "../../redux/trainingClassSlice";
 import { toast } from "react-toastify";
 
-import {
-  trainingClassGetOne,
-  trainingClassSessionUpdate,
-} from "../../redux/trainingClassSlice";
-
-const SessionEditModal = ({ session, handleDatepickerFormat }) => {
-  const dispatch = useDispatch();
+const SessionAddModal = ({setShowSessionAddModal, handleDatepickerFormat}) => {
+  const dispatch = useDispatch()
   let trainingClassId = location.pathname.split("/")[2];
-  const { id } = useParams();
-  const { trainingClass } = useSelector((state) => state.trainingClass);
-  const [showEditSessionModal, setShowEditSessionModal] = useState(false);
-  // const [sessionEditForm, setSessionEditForm] = useState({
-    //   sessionIndex: 0,
-    //   submitEnabled: true,
-    //   sessionName: "",
-    //   sessionDescription: "",
-    //   sessionType: "",
-    //   percentComplete: 0,
-    //   sessionDate: null,
-    //   sessionTime: "",
-    //   sessionDuration: 0,
-    //   activitiesPerformed: "",
-    //   customers: [],
-    // });
-    const [sessionEditForm, setSessionEditForm] = useState({
-      sessionIndex: session.sessionIndex,
-      sessionName: session.sessionName,
-      sessionDescription: session.sessionDescription,
-      sessionType: session.sessionType,
-      percentComplete: session.percentComplete,
-      sessionDate: session.sessionDate,
-      sessionTime: session.sessionTime,
-      sessionDuration: session.sessionDuration,
-      activitiesPerformed: session.activitiesPerformed,
-      customers: [],
-    });
-    
-    // console.log("session on edit modal: ", session);
-  // console.log("testing edit text: ", sessionEditForm);
+  const [sessionAddForm, setSessionAddForm] = useState({
+    // sessionIndex: session.sessionIndex,
+    sessionName: "",
+    sessionDescription: "",
+    sessionType: "",
+    percentComplete: "",
+    sessionDate: "",
+    sessionTime: "",
+    sessionDuration: "",
+    activitiesPerformed: "",
+    customers: [],
+  });
 
   useEffect(() => {
     console.log(
@@ -52,55 +28,22 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
     dispatch(trainingClassGetOne(trainingClassId));
   }, []);
 
-  // useEffect(() => {
-  //   console.log("trainingClassSessions useEffect trainingClass", trainingClass)
-  //   console.log("trainingClassSessions useEffect trainingClass.sessions", trainingClass.sessions)
-  //   setSessionEditForm(trainingClass.sessions)
-  // }, [trainingClass])
-
   useEffect(() => {
-    setSessionEditForm(session);
-    // console.log("useEffect sessionForm", sessionEditForm);
-    // console.log("sessionEditForm", sessionEditForm)
-  }, []);
+    console.log("sessionAddForm", sessionAddForm)
+  }, [sessionAddForm])
 
-  useEffect(() => {
-    console.log("sessionEditForm", sessionEditForm)
-  }, [sessionEditForm])
-  
-  // const handleDatepickerFormat = (classDate) => {
-  //   // convert string to date
-  //   let newDate = new Date(classDate);
-  //   // Set  hours back because of UTC
-  //   let dateMinus7 = newDate.setHours(newDate.getHours() + 7);
-  //   // Use en-CA default format
-  //   return new Date(dateMinus7).toLocaleDateString("en-CA");
-  // };
-
-  const handleSessionEditModal = (session) => {
-    // setSessionEditForm(session);
-    setShowEditSessionModal(true);
-  };
-
-  const handleUpdate = () => {
+  const handleSessionCreate = () => {
     // console.log("trainingClassId:", trainingClassId, "session:", sessionEditForm);
-    dispatch(trainingClassSessionUpdate({ trainingClassId, sessionId: sessionEditForm._id, sessionEditForm })); // add trainingClassId
-    setShowEditSessionModal(false)
-    toast.success("Training Session updated successfully!");
+    dispatch(trainingClassSessionCreate({ trainingClassId, sessionAddForm })); // add trainingClassId
+    setShowSessionAddModal(false)
+    toast.success("Training Session added successfully!");
   };
+
+
 
   return (
     <>
-      <button
-        onClick={() => handleSessionEditModal(session)}
-        type="button"
-        className="text-black bg-gradient-to-r from-green-400 to-lime-400 hover:bg-gradient-to-l hover:from-green-400 hover:to-lime-400 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[10vw]"
-      >
-        Edit
-      </button>
-
-      {showEditSessionModal && (
-        <div
+      <div
           id="updateProductModal"
           tabIndex="-1"
           aria-hidden="true"
@@ -112,11 +55,11 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
               {/* <!-- Modal header --> */}
               <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  Edit Session
+                  Add Session
                 </h3>
                 <button
                   onClick={() => {
-                    setShowEditSessionModal(false);
+                    setShowSessionAddModal(false)
                   }}
                   type="button"
                   className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -146,10 +89,10 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                       {/* <!-- Edit Session Content --> */}
                       <div className="flex flex-col justify-between p-6 mx-auto max-w-2xl text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
                         <textarea
-                          value={sessionEditForm.sessionName}
+                          value={sessionAddForm.sessionName}
                           onChange={(e) =>
-                            setSessionEditForm({
-                              ...sessionEditForm,
+                            setSessionAddForm({
+                              ...sessionAddForm,
                               sessionName: e.target.value,
                             })
                           }
@@ -162,10 +105,10 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                         </h3> */}
 
                         <textarea
-                          value={sessionEditForm.sessionDescription}
+                          value={sessionAddForm.sessionDescription}
                           onChange={(e) =>
-                            setSessionEditForm({
-                              ...sessionEditForm,
+                            setSessionAddForm({
+                              ...sessionAddForm,
                               sessionDescription: e.target.value,
                             })
                           }
@@ -178,10 +121,10 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                           <li className="flex items-center justify-between space-x-3">
                             <label htmlFor="session-type">Session Type:</label>
                             <input
-                              value={sessionEditForm.sessionType}
+                              value={sessionAddForm.sessionType}
                               onChange={(e) =>
-                                setSessionEditForm({
-                                  ...sessionEditForm,
+                                setSessionAddForm({
+                                  ...sessionAddForm,
                                   sessionType: e.target.value,
                                 })
                               }
@@ -193,7 +136,7 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                             {/* *** Tried to do a selectbox - will have to save for later for sure to do it this way */}
 
                             {/* <select
-                            value={sessionEditForm.sessionType} id="session-type" className="block w-1/2 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-[#beb09d]focus:border-[#beb09d] text-black focus:outline-[#beb09d] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            value={sessionAddForm.sessionType} id="session-type" className="block w-1/2 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-[#beb09d]focus:border-[#beb09d] text-black focus:outline-[#beb09d] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                               <option value="Group">Group</option>
                               <option value="Private">Private</option>
                             </select> */}
@@ -203,10 +146,10 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                             <label>Percent Complete: </label>
 
                             <input
-                              value={sessionEditForm.percentComplete}
+                              value={sessionAddForm.percentComplete}
                               onChange={(e) =>
-                                setSessionEditForm({
-                                  ...sessionEditForm,
+                                setSessionAddForm({
+                                  ...sessionAddForm,
                                   percentComplete: e.target.value,
                                 })
                               }
@@ -224,11 +167,11 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                                 )} */}
                             <input
                               value={handleDatepickerFormat(
-                                sessionEditForm.sessionDate
+                                sessionAddForm.sessionDate
                               )}
                               onChange={(e) =>
-                                setSessionEditForm({
-                                  ...sessionEditForm,
+                                setSessionAddForm({
+                                  ...sessionAddForm,
                                   sessionDate: handleDatepickerFormat(e.target.value),
                                 })
                               }
@@ -241,10 +184,10 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                           <li className="flex justify-between items-center space-x-3">
                             <label>Session Time: </label>
                             <input
-                              value={sessionEditForm.sessionTime}
+                              value={sessionAddForm.sessionTime}
                               onChange={(e) =>
-                                setSessionEditForm({
-                                  ...sessionEditForm,
+                                setSessionAddForm({
+                                  ...sessionAddForm,
                                   sessionTime: e.target.value,
                                 })
                               }
@@ -260,10 +203,10 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                               <span className="text-xs">(in hours)</span>:{" "}
                             </label>
                             <input
-                              value={sessionEditForm.sessionDuration}
+                              value={sessionAddForm.sessionDuration}
                               onChange={(e) =>
-                                setSessionEditForm({
-                                  ...sessionEditForm,
+                                setSessionAddForm({
+                                  ...sessionAddForm,
                                   sessionDuration: e.target.value,
                                 })
                               }
@@ -278,10 +221,10 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                               Activities Performed:{" "}
                             </label>
                             <textarea
-                              value={sessionEditForm.activitiesPerformed}
+                              value={sessionAddForm.activitiesPerformed}
                               onChange={(e) =>
-                                setSessionEditForm({
-                                  ...sessionEditForm,
+                                setSessionAddForm({
+                                  ...sessionAddForm,
                                   activitiesPerformed: e.target.value,
                                 })
                               }
@@ -304,12 +247,12 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                 </section>
                 <div className="flex items-center space-x-4">
                   <button
-                    onClick={handleUpdate}
+                    onClick={handleSessionCreate}
                     // disabled={!sessionId.submitEnabled}
                     type="button"
                     className="text-white bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-800 disabled:opacity-50"
                   >
-                    Update Session
+                   Add Session
                   </button>
                   <button
                     type="button"
@@ -334,12 +277,8 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
             </div>
           </div>
         </div>
-      )}
     </>
-  );
-};
+  )
+}
 
-export default SessionEditModal;
-
-// {/* THE INPUT BOX I'D LIKE TO PUT WHEN EDITING THE FIELDS */}
-// <input className="px-2 py-1 text-base  rounded-lg border focus:outline focus:outline-1 focus:outline-offset-2 bg-[#ffffff] text-[#444444] focus:outline-[#aaaaaa] border-[#cccccc]" placeholder="Type your name.." autoComplete="off"></input>
+export default SessionAddModal

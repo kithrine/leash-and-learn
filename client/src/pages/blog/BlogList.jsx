@@ -67,7 +67,7 @@ const BlogList = () => {
                       className="m-auto rounded-md h-50 w-100"
                       src={
                         new URL(
-                          `../../assets/images/${blog.coverPhoto}`,
+                          `../../assets/images/${blog.coverPhoto.slice(12)}`,
                           import.meta.url
                         ).href
                       }
