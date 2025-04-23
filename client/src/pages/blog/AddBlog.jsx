@@ -4,10 +4,12 @@ import { useSelector, useDispatch } from "react-redux"
 import { addBlog } from "../../redux/blogSlice"
 import { toast } from "react-toastify"
 import BlogNavigation from "../../components/navigation/BlogNavigation"
+import CommunityGuidelinesModal from "../../components/modals/CommunityGuidelinesModal"
 
 const AddBlog = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSubCategory, setSelectedSubCategory] = useState('');
+  const [showCommGuideModal, setShowCommGuideModal] = useState(false)
   const [blogForm, setBlogForm] = useState({
     title: "",
     authorFullName: "",
@@ -105,7 +107,7 @@ const AddBlog = () => {
           </h2>
           <p>
             All posts are public. Please adhere to our{" "}
-            <a>community guidelines</a>
+            <span onClick={() => {setShowCommGuideModal(true)}} className="text-neutral-600 hover:underline hover:cursor-pointer">community guidelines.</span>
           </p>
         </div>
       </div>
@@ -340,6 +342,8 @@ const AddBlog = () => {
           </section>
         </div>
       </div>
+
+      {showCommGuideModal && <CommunityGuidelinesModal setShowCommGuideModal={setShowCommGuideModal} />}
     </>
   )
 }
