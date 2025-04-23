@@ -74,21 +74,21 @@ export const addBlog = createAsyncThunk("blog/add", async (data) => {
   return response.data;
 });
 
-export const blogList = createAsyncThunk("blog/list", async () => {
-  console.log("redux blogList");
-  const response = await blogService.blogList();
-  console.log("redux blogList response", response);
+export const blogGetAll = createAsyncThunk("blog/list", async () => {
+  console.log("redux blogGetAll");
+  const response = await blogService.blogGetAll();
+  console.log("redux blogGetAll response", response);
   return response.data;
 });
 
-export const getBlog = createAsyncThunk("blog/getBlog", async (id) => {
+export const blogGetOne = createAsyncThunk("blog/blogGetOne", async (id) => {
   console.log("testing freaking id", id)
-  const response = await blogService.getBlog(id);
+  const response = await blogService.blogGetOne(id);
   return response.data;
 });
 
-export const updateBlog = createAsyncThunk("blog/update", async (blog) => {
-  const response = await blogService.updateBlog(blog);
+export const updateBlog = createAsyncThunk("blog/update", async ({id, blogEditForm}) => {
+  const response = await blogService.updateBlog(id, blogEditForm);
   return response.data;
 });
 
@@ -110,20 +110,20 @@ export const blogSlice = createSlice({
   extraReducers: (builder) => {
     builder
       // Blog List
-      .addCase(blogList.pending, (state, action) => {
-        console.log("blogSlice blogList.pending", action.payload);
+      .addCase(blogGetAll.pending, (state, action) => {
+        console.log("blogSlice blogGetAll.pending", action.payload);
         state.loading = true;
         state.success = false;
       })
-      .addCase(blogList.fulfilled, (state, action) => {
-        console.log("blogSlice blogList.fulfilled", action.payload);
+      .addCase(blogGetAll.fulfilled, (state, action) => {
+        console.log("blogSlice blogGetAll.fulfilled", action.payload);
         console.log(action.payload.blogs);
         state.loading = false;
         state.blogs = action.payload.blogs;
         state.success = true;
       })
-      .addCase(blogList.rejected, (state, action) => {
-        console.log("blogSlice blogList.rejected", action.payload);
+      .addCase(blogGetAll.rejected, (state, action) => {
+        console.log("blogSlice blogGetAll.rejected", action.payload);
         state.loading = false;
         state.success = false;
       })
@@ -147,20 +147,20 @@ export const blogSlice = createSlice({
       })
 
       // Get One Blog
-      .addCase(getBlog.pending, (state, action) => {
-        console.log("blogSlice getBlog.pending", action.payload);
+      .addCase(blogGetOne.pending, (state, action) => {
+        console.log("blogSlice blogGetOne.pending", action.payload);
         state.loading = true;
         state.success = false;
       })
-      .addCase(getBlog.fulfilled, (state, action) => {
-        console.log("blogSlice getblog.fulfilled", action.payload);
+      .addCase(blogGetOne.fulfilled, (state, action) => {
+        console.log("blogSlice blogGetOne.fulfilled", action.payload);
         console.log(action.payload);
         state.loading = false;
         state.blog = action.payload;
         state.success = true;
       })
-      .addCase(getBlog.rejected, (state, action) => {
-        console.log("blogSlice getBlog.rejected", action.payload);
+      .addCase(blogGetOne.rejected, (state, action) => {
+        console.log("blogSlice blogGetOne.rejected", action.payload);
         state.loading = false;
         state.success = false;
       })
@@ -175,7 +175,7 @@ export const blogSlice = createSlice({
         console.log("blogSlice updateBlog.fulfilled", action.payload);
         console.log(action.payload);
         state.loading = false;
-        state.blog = action.payload;
+        state.blog = action.payload.blog;
         state.success = true;
       })
       .addCase(updateBlog.rejected, (state, action) => {

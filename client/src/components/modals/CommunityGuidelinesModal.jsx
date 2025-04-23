@@ -67,7 +67,7 @@ const CommunityGuidelinesModal = ({setShowCommGuideModal}) => {
               By adhering to these guidelines, we can create a welcoming environment where everyone feels valued and heard. Thank you for joining us at Leash & Learn! If you have any questions, feel free to reach out in our comment section or on our Contact Us page.
               </p>
             </div>
-            <div class="flex items-center pt-0 space-y-4 sm:flex sm:space-y-0">
+            <div class="flex items-center pt-0 space-y-4 sm:flex sm:space-y-0 justify-end">
               {/* <a
                 href="#"
                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">

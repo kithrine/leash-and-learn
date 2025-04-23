@@ -25,6 +25,7 @@ import { userGetAll } from "./redux/userSlice";
 import BlogHomepage from "./pages/blog/BlogHomepage";
 import BlogList from "./pages/blog/BlogList";
 import AddBlog from "./pages/blog/AddBlog";
+import BlogDetail from "./pages/blog/BlogDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -88,6 +89,7 @@ function App() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/blog-homepage" element={<BlogHomepage />} />
         <Route path="/blog-list" element={<BlogList />} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
         <Route element={<PrivateRoute />}>
           <Route element={<DashboardSideNavLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
