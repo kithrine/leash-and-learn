@@ -29,7 +29,7 @@ const blogUpdate = async (req, res) => {
       body,
       coverPhoto,
       comments
-    }
+    }, { new: true }
   )
   console.log("blog", blog)
   res.status(200).json({ success: true, blog: blog })

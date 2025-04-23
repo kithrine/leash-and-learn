@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const blogService = {
-  blogList: async () => {
+  blogGetAll: async () => {
     return await axios.get(`${import.meta.env.VITE_NODE_SERVER_URL}/blog`);
   },
   addBlog: async (title, authorFullName, authorTitle, avatar, category, subCategory, readTime, body, coverPhoto, comments) => {
@@ -11,14 +11,14 @@ const blogService = {
       { headers: { "Content-Type": "application/json" } }
     );
   },
-  updateBlog: async (id, blog) => {
+  updateBlog: async (id, blogEditForm) => {
     return await axios.put(
       `${import.meta.env.VITE_NODE_SERVER_URL}/blog/${id}`,
-      blog,
+      blogEditForm,
       { headers: { "Content-Type": "application/json" } }
     );
   },
-  getBlog: async (id) => {
+  blogGetOne: async (id) => {
     console.log("top get blog")
     return await axios.get(
     `${import.meta.env.VITE_NODE_SERVER_URL}/blog/${id}`

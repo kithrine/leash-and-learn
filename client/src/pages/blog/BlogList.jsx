@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { Link, useLocation, useNavigate } from "react-router"
 import { useSelector, useDispatch } from "react-redux"
-import { blogList } from "../../redux/blogSlice"
+import { blogGetAll } from "../../redux/blogSlice"
 import BlogNavigation from "../../components/navigation/BlogNavigation"
 import AnimatedList from "../../components/reactbits+framer-motion/AnimatedList"
 import { AnimatePresence } from "framer-motion"
@@ -15,8 +15,8 @@ const BlogList = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(blogList())
-    console.log("blogList", blogList)
+    dispatch(blogGetAll())
+    console.log("blogGetAll", blogGetAll)
   }, [])
 
   return (
@@ -72,7 +72,7 @@ const BlogList = () => {
                         ).href
                       }
                     />
-                    <Link reloadDocument to={`/blog/${blog.id}`}>
+                    <Link to={`/blog/${blog.id}`}>
                       <h3 className="pt-7 text-2xl text-white group-hover:text-gray-600">
                         <div dangerouslySetInnerHTML={{ __html: blog.title }} />
                       </h3>

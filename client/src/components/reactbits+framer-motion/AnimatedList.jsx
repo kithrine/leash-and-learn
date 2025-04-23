@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useSelector} from "react-redux"
-import { blogList } from '../../redux/blogSlice';
+import { blogGetAll } from '../../redux/blogSlice';
 
 
 const AnimatedItem = ({ children, delay = 0, index, onMouseEnter, onClick }) => {
