@@ -4,6 +4,12 @@ const blogService = {
   blogGetAll: async () => {
     return await axios.get(`${import.meta.env.VITE_NODE_SERVER_URL}/blog`);
   },
+  blogGetOne: async (id) => {
+    console.log("top get blog")
+    return await axios.get(
+    `${import.meta.env.VITE_NODE_SERVER_URL}/blog/${id}`
+    )
+  },
   addBlog: async (title, authorFullName, authorTitle, avatar, category, subCategory, readTime, body, coverPhoto, comments) => {
     return await axios.post(
       `${import.meta.env.VITE_NODE_SERVER_URL}/blog`,
@@ -18,17 +24,18 @@ const blogService = {
       { headers: { "Content-Type": "application/json" } }
     );
   },
-  blogGetOne: async (id) => {
-    console.log("top get blog")
-    return await axios.get(
-    `${import.meta.env.VITE_NODE_SERVER_URL}/blog/${id}`
-    )
-  },
   deleteBlog: async (id) => {
     return await axios.delete(
       `${import.meta.env.VITE_NODE_SERVER_URL}/blog/${id}`,
       { headers: { "Content-Type": "application/json" } }
     );
+  },
+  blogCommentCreate: async (id, addComment) => {
+    console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/blog/comments`)
+    return await axios.post(
+      `${import.meta.env.VITE_NODE_SERVER_URL}/blog/${id}/comments`,
+      addComment
+    )
   },
 };
 

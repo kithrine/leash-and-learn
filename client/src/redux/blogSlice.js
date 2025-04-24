@@ -97,6 +97,11 @@ export const deleteBlog = createAsyncThunk("blog/delete", async (id) => {
     return response.data;
   });
 
+export const blogCommentCreate = createAsyncThunk("blog/comments", async ({id, addComment}) => {
+  const response = await blogService.blogCommentCreate(id, addComment);
+  return response.data;
+})
+
 
 export const blogSlice = createSlice({
   name: "blog",
@@ -201,7 +206,32 @@ export const blogSlice = createSlice({
         console.log("blogSlice deleteBlog.rejected", action.payload);
         state.loading = false;
         state.success = false;
-      });
+      })
+
+      // Add a comment on a blog post
+      .addCase(blogCommentCreate.pending, (state, action) => {
+        console.log(
+          "blogSlice blogCommentCreate.pending",
+          action.payload
+        );
+        state.loading = true;
+      })
+      .addCase(blogCommentCreate.fulfilled, (state, action) => {
+        console.log(
+          "blogSlice blogCommentCreate.fulfilled",
+          action.payload
+        );
+        state.loading = false;
+        state.blog = action.payload.blog;
+      })
+      .addCase(blogCommentCreate.rejected, (state, action) => {
+        console.log(
+          "blogSlice blogCommentCreate.rejected",
+          action.payload
+        );
+        state.loading = false;
+      })
+      
   },
 });
 
