@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
-import axios from "axios";
 import EnrollBanner from "../components/EnrollBanner";
 import Footer from "../components/footers/Footer";
+import { useDispatch } from "react-redux";
+import { contactAdd } from "../redux/contactSlice";
 
 const ContactUs = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [toggle, setToggle] = useState(false);
-  const [contact, setContact] = useState({
+  const [contactForm, setContactForm] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -22,17 +24,21 @@ const ContactUs = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const contactObj = {
-      firstName: contact.firstName,
-      lastName: contact.lastName,
-      email: contact.email,
-      phone: contact.phone,
-      message: contact.message,
-    };
-    const getContact = await axios.post(
-      `${import.meta.env.VITE_NODE_SERVER_URL}/contact`,
-      contactObj
-    );
+    // const contactObj = {
+    //   firstName: contact.firstName,
+    //   lastName: contact.lastName,
+    //   email: contact.email,
+    //   phone: contact.phone,
+    //   message: contact.message,
+    // };
+    // const getContact = await axios.post(
+    //   `${import.meta.env.VITE_NODE_SERVER_URL}/contact`,
+    //   contactObj
+    // );
+
+    // * DISPATCH
+    dispatch(contactAdd({ ... contactForm}))
+
     // console.log(getContact);
     toast.success("Message sent successfully!", { autoClose: 2000});
     setTimeout(() => {
@@ -82,9 +88,9 @@ const ContactUs = () => {
                 </label>
                 <div className="mt-2.5">
                   <input
-                    value={contact.firstName}
+                    value={contactForm.firstName}
                     onChange={(e) =>
-                      setContact({ ...contact, firstName: e.target.value })
+                      setContactForm({ ...contactForm, firstName: e.target.value })
                     }
                     type="text"
                     name="first-name"
@@ -104,9 +110,9 @@ const ContactUs = () => {
                 </label>
                 <div className="mt-2.5">
                   <input
-                    value={contact.lastName}
+                    value={contactForm.lastName}
                     onChange={(e) =>
-                      setContact({ ...contact, lastName: e.target.value })
+                      setContactForm({ ...contactForm, lastName: e.target.value })
                     }
                     type="text"
                     name="last-name"
@@ -127,9 +133,9 @@ const ContactUs = () => {
                 </label>
                 <div className="mt-2.5">
                   <input
-                    value={contact.email}
+                    value={contactForm.email}
                     onChange={(e) =>
-                      setContact({ ...contact, email: e.target.value })
+                      setContactForm({ ...contactForm, email: e.target.value })
                     }
                     type="email"
                     name="email"
@@ -176,9 +182,9 @@ const ContactUs = () => {
                       </svg>
                     </div>
                     <input
-                      value={contact.phone}
+                      value={contactForm.phone}
                       onChange={(e) =>
-                        setContact({ ...contact, phone: e.target.value })
+                        setContactForm({ ...contactForm, phone: e.target.value })
                       }
                       type="text"
                       name="phone-number"
@@ -199,9 +205,9 @@ const ContactUs = () => {
                 </label>
                 <div className="mt-2.5">
                   <textarea
-                    value={contact.message}
+                    value={contactForm.message}
                     onChange={(e) =>
-                      setContact({ ...contact, message: e.target.value })
+                      setContactForm({ ...contactForm, message: e.target.value })
                     }
                     name="message"
                     id="message"

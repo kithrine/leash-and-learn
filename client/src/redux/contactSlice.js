@@ -21,6 +21,16 @@ export const contactGetAll = createAsyncThunk("contact/getAll", async () => {
   return response.data
 })
 
+export const contactAdd = createAsyncThunk("contact/add", async (contactForm) => {
+  const response = await contactService.contactAdd(contactForm);
+  return response.data;
+});
+
+export const contactDelete = createAsyncThunk("contact/delete", async (id) => {
+  const response = await contactService.contactDelete(id);
+  return response.data;
+});
+
 export const contactSlice = createSlice({
   name: 'contact',
   initialState,
@@ -41,6 +51,43 @@ export const contactSlice = createSlice({
       .addCase(contactGetAll.rejected, (state, action) => {
         // console.log("contactSlice contactGetAll.rejected", action.payload)
         state.loading = false
+      })
+
+      // Add Contact message
+      .addCase(contactAdd.pending, (state, action) => {
+        console.log("contactSlice contactAdd.pending", action.payload);
+        state.loading = true;
+        state.success = false;
+      })
+      .addCase(contactAdd.fulfilled, (state, action) => {
+        console.log("contactSlice contactAdd.fulfilled", action.payload);
+        console.log(action.payload.contact);
+        state.loading = false;
+        state.success = true;
+      })
+      .addCase(contactAdd.rejected, (state, action) => {
+        console.log("contactSlice contactAdd.rejected", action.payload);
+        state.loading = false;
+        state.success = false;
+      })
+
+      // Delete Contact message
+      .addCase(contactDelete.pending, (state, action) => {
+        console.log("contactSlice contactDelete.pending", action.payload);
+        state.loading = true;
+        state.success = false;
+      })
+      .addCase(contactDelete.fulfilled, (state, action) => {
+        console.log("contactSlice contactDelete.fulfilled", action.payload);
+        console.log(action.payload);
+        state.loading = false;
+        state.contact = action.payload.contact;
+        state.success = true;
+      })
+      .addCase(contactDelete.rejected, (state, action) => {
+        console.log("contactSlice contactDelete.rejected", action.payload);
+        state.loading = false;
+        state.success = false;
       })
       
   }

@@ -33,7 +33,7 @@ const BlogDetail = () => {
     lastName: "",
     username: "",
     comment: "",
-    timestamp: new Date().toLocaleString("en-US")
+    timestamp: new Date()
   })
 
   useEffect(() => {
@@ -172,7 +172,7 @@ URL: https://flowbite.com/docs/components/typography/
           
           <section class="not-format">
               <div class="flex justify-between items-center mb-6">
-                  <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (20)</h2>
+                  <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion ({blog.comments.length})</h2>
               </div>
               <form onSubmit={handleAddComment} class="mb-6">
                   <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -205,7 +205,7 @@ URL: https://flowbite.com/docs/components/typography/
                                   src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
                                   alt="Michael Gough" />Michael Gough</p>
                           <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
-                                  title="February 8th, 2022">Feb. 8, 2022</time></p>
+                                  title="February 8th, 2022">{comment.timestamp.toLocaleString("en-US")}</time></p>
                       </div>
                       <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
                           class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:text-gray-400 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"

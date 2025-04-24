@@ -1,17 +1,29 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { contactGetAll } from "../redux/contactSlice";
+import { contactDelete, contactGetAll } from "../redux/contactSlice";
 import BMSideNav from "../components/navigation/BMSideNav";
 import DashboardFooter from "../components/footers/DashboardFooter";
+import { useParams } from "react-router";
+import ContactDeleteModal from "../components/modals/ContactDeleteModal";
 
 const Inbox = () => {
   const dispatch = useDispatch();
+  const {id} = useParams()
   const { contacts } = useSelector((state) => state.contact);
+  const [contactToDelete, setContactToDelete ] = useState({})
+  const [showContactDeleteModal, setShowContactDeleteModal] = useState(false)
 
   useEffect(() => {
     dispatch(contactGetAll());
     // console.log("contacts", contacts);
   }, []);
+
+  const handleDeleteContact = (id) => {
+    dispatch(contactDelete(id))
+    setShowContactDeleteModal(false)
+    dispatch(contactGetAll())
+  }
+
 
   return (
     <>
@@ -49,13 +61,25 @@ const Inbox = () => {
                 <tbody>
                   {contacts &&
                     contacts.map((contact, index) => (
+                      <>
                       <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <td className="px-6 py-4">{contact.firstName}</td>
                         <td className="px-6 py-4">{contact.lastName}</td>
                         <td className="px-6 py-4">{contact.email}</td>
                         <td className="px-6 py-4">{contact.phone}</td>
                         <td className="px-6 py-4">{contact.message}</td>
+                        <td className="px-4 py-3 flex items-center justify-end">
+                            <button
+                              onClick={() => {setContactToDelete(contact); setShowContactDeleteModal(true)}}
+                              id="delete-contact-message"
+                              className="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
+                              type="button"
+                            >
+                              Delete
+                            </button>
+                            </td>
                       </tr>
+                        </>
                     ))}
                 </tbody>
               </table>
@@ -63,6 +87,8 @@ const Inbox = () => {
           </section>
         </main>
       </div>
+
+      {showContactDeleteModal && <ContactDeleteModal setShowContactDeleteModal={setShowContactDeleteModal} handleDeleteContact={handleDeleteContact} contactToDelete={contactToDelete}/>}
 
       <DashboardFooter />
     </>

@@ -47,18 +47,19 @@ const AddBlog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    setBlogForm({
-      title: blogForm.title,
-      authorFullName: blogForm.authorFullName,
-      authorTitle: blogForm.authorTitle,
-      avatar: blogForm.avatar,
-      category: blogForm.category,
-      subCategory: blogForm.subCategory,
-      readTime: blogForm.readTime,
-      coverPhoto: blogForm.coverPhoto,
-      body: blogForm.body,
-      date: new Date()
-    })
+    // DO NOT NEED THIS! SETTING STATE ABOVE - NO IDEA WHY THIS IS HERE
+    // setBlogForm({
+    //   title: blogForm.title,
+    //   authorFullName: blogForm.authorFullName,
+    //   authorTitle: blogForm.authorTitle,
+    //   avatar: blogForm.avatar,
+    //   category: blogForm.category,
+    //   subCategory: blogForm.subCategory,
+    //   readTime: blogForm.readTime,
+    //   coverPhoto: blogForm.coverPhoto,
+    //   body: blogForm.body,
+    //   date: new Date()
+    // })
 
     dispatch(addBlog({ ...blogForm }))
     //Redirect to BlogList (All posts page)
