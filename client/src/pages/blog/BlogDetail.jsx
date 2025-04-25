@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams, Link, useNavigate } from "react-router"
 import { useSelector, useDispatch } from "react-redux"
-import { blogCommentCreate, blogGetOne, deleteBlog, updateBlog } from "../../redux/blogSlice"
+import { blogCommentCreate, blogCommentDelete, blogGetOne, deleteBlog, updateBlog } from "../../redux/blogSlice"
 import { toast } from "react-toastify"
 import BlogDeleteModal from "../../components/modals/BlogDeleteModal"
 import BlogNavigation from "../../components/navigation/BlogNavigation"
@@ -13,6 +13,7 @@ const BlogDetail = () => {
   const { id } = useParams()
   const { blog } = useSelector((state) => state.blog)
   const [showBlogEditModal, setShowBlogEditModal] =useState(false)
+  const [showCommentActions, setShowCommentActions] = useState(false)
   const [blogEditForm, setBlogEditForm] =useState({
     title: "",
     authorFullName: "",
@@ -28,6 +29,7 @@ const BlogDetail = () => {
   })
   const [showBlogDeleteModal, setShowBlogDeleteModal] = useState(false)
   const [blogToDelete, setBlogToDelete] = useState({})
+  const [commentToDelete, setCommentToDelete] = useState({})
   const [addComment, setAddComment] = useState({
     firstName: "",
     lastName: "",
@@ -68,10 +70,15 @@ const BlogDetail = () => {
       comment: "",
       timestamp: ""
     })
-    // *** COME BACK TO THIS
+    // !!! COME BACK TO THIS
     // if (blogCommentCreate.status === 200) {
     //   setAddComment("")
     // }
+  }
+
+  const handleDeleteComment = (comment) => {
+    console.log("handleCommentDelete", id, comment)
+    dispatch(blogCommentDelete({ blogId: id, commentId: comment._id }))
   }
 
   return (
@@ -205,9 +212,10 @@ URL: https://flowbite.com/docs/components/typography/
                                   src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
                                   alt="Michael Gough" />Michael Gough</p>
                           <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
-                                  title="February 8th, 2022">{comment.timestamp.toLocaleString("en-US")}</time></p>
+                                  title="February 8th, 2022">{comment.timestamp ? new Date(comment.timestamp).toLocaleString("en-US") : ""}</time></p>
                       </div>
-                      <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
+                      <button
+                      onClick={() => {setShowCommentActions(true); setCommentToDelete(comment)}} id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
                           class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:text-gray-400 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                           type="button">
                             <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
@@ -215,9 +223,13 @@ URL: https://flowbite.com/docs/components/typography/
                             </svg>
                           <span class="sr-only">Comment settings</span>
                       </button>
+
+
                       {/* <!-- Dropdown menu --> */}
+
+                      {showCommentActions && commentToDelete._id === comment._id && (
                       <div id="dropdownComment1"
-                          class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                          class="absolute z-10 w-36 ml-[28vw] mt-28 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                           <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                               aria-labelledby="dropdownMenuIconHorizontalButton">
                               <li>
@@ -226,14 +238,22 @@ URL: https://flowbite.com/docs/components/typography/
                               </li>
                               <li>
                                   <a href="#"
+                                      onClick={() => handleDeleteComment(comment)}
                                       class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
                               </li>
                               <li>
                                   <a href="#"
                                       class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
                               </li>
+                              <li>
+                                  <div onClick={() => setShowCommentActions(false)}
+                                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer">Close</div>
+                              </li>
                           </ul>
                       </div>
+                      )}
+
+
                   </footer>
                   <p>{comment.comment}</p>
                   <div class="flex items-center mt-4 space-x-4">
