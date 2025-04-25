@@ -5,6 +5,7 @@ import blogGetOne from "./blogGetOne.js";
 import blogUpdate from "./blogUpdate.js";
 import blogDelete from "./blogDelete.js";
 import blogCommentCreate from "./blogCommentCreate.js";
+import blogCommentDelete from "./blogCommentDelete.js";
 
 const blogIndex = express.Router();
 
@@ -26,6 +27,8 @@ blogIndex.delete("/:id", blogDelete);
 // Blog comment create
 blogIndex.post("/:id/comments", blogCommentCreate)
 
+// Blog comment delete
+blogIndex.delete("/:blogId/comments/:commentId", blogCommentDelete)
 
 
 export default blogIndex;

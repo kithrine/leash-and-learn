@@ -1,4 +1,5 @@
 import axios from "axios";
+import blogCommentDelete from "../../../server/routes/blog/blogCommentDelete";
 
 const blogService = {
   blogGetAll: async () => {
@@ -35,6 +36,12 @@ const blogService = {
     return await axios.post(
       `${import.meta.env.VITE_NODE_SERVER_URL}/blog/${id}/comments`,
       addComment
+    )
+  },
+  blogCommentDelete: async (blogId, commentId) => {
+    console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/blog/comments`)
+    return await axios.delete(
+      `${import.meta.env.VITE_NODE_SERVER_URL}/blog/${blogId}/comments/${commentId}`
     )
   },
 };
