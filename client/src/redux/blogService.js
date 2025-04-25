@@ -1,12 +1,11 @@
 import axios from "axios";
-import blogCommentDelete from "../../../server/routes/blog/blogCommentDelete";
 
 const blogService = {
   blogGetAll: async () => {
     return await axios.get(`${import.meta.env.VITE_NODE_SERVER_URL}/blog`);
   },
   blogGetOne: async (id) => {
-    console.log("top get blog")
+    // console.log("top get blog")
     return await axios.get(
     `${import.meta.env.VITE_NODE_SERVER_URL}/blog/${id}`
     )
@@ -31,14 +30,22 @@ const blogService = {
       { headers: { "Content-Type": "application/json" } }
     );
   },
-  blogCommentCreate: async (id, addComment) => {
+  addBlogComment: async (id, addComment) => {
     console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/blog/comments`)
     return await axios.post(
       `${import.meta.env.VITE_NODE_SERVER_URL}/blog/${id}/comments`,
       addComment
     )
   },
-  blogCommentDelete: async (blogId, commentId) => {
+  updateBlogComment: async (blogId, commentId, commentEditForm) => {
+    console.log("all 3 of these", blogId, commentId, commentEditForm)
+    // console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/blog/comments`)
+    return await axios.put(
+      `${import.meta.env.VITE_NODE_SERVER_URL}/blog/${blogId}/comments/${commentId}`,
+      commentEditForm
+    )
+  },
+  deleteBlogComment: async (blogId, commentId) => {
     console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/blog/comments`)
     return await axios.delete(
       `${import.meta.env.VITE_NODE_SERVER_URL}/blog/${blogId}/comments/${commentId}`
