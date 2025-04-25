@@ -15,7 +15,7 @@ const blogCommentDelete = async (req, res) => {
     console.log("deleteComment", deleteComment);
     console.log("getBlog", getBlog);
 
-    res.status(200).json({ success: true, message: "Comment deleted.", trainingClass: getBlog });
+    res.status(200).json({ success: true, message: "Comment deleted.", blog: getBlog });
   }
 };
 
