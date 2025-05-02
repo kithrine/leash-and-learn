@@ -9,6 +9,7 @@ import DashboardFooter from '../components/footers/DashboardFooter';
 import BMSideNav from "../components/navigation/BMSideNav";
 import { trainingClassGetAll, trainingClassGetMany } from "../redux/trainingClassSlice";
 import { contactGetAll } from "../redux/contactSlice";
+import UserSideNav from "../components/navigation/UserSideNav";
 
 const DashboardSideNavLayout = () => {
   const dispatch = useDispatch()
@@ -53,7 +54,7 @@ const DashboardSideNavLayout = () => {
         </>
       )}
 
-      {/* {user.role.includes("User") && <UserDashboard />} */}
+      {/* {user.role.includes("User") && <UserSideNav />} */}
 
       <Outlet />
     </>

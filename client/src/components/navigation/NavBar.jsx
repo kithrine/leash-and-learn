@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/authSlice";
 
 const NavBar = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const { isLoggedIn } = useSelector((state) => state.auth);
   // console.log("location:", location);

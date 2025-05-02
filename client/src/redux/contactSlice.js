@@ -81,7 +81,7 @@ export const contactSlice = createSlice({
         console.log("contactSlice contactDelete.fulfilled", action.payload);
         console.log(action.payload);
         state.loading = false;
-        state.contact = action.payload.contact;
+        state.contacts = action.payload.contacts;
         state.success = true;
       })
       .addCase(contactDelete.rejected, (state, action) => {
