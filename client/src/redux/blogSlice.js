@@ -48,7 +48,7 @@ const initialState = {
 
 export const addBlog = createAsyncThunk("blog/add", async (data) => {
   const { title, authorFullName, authorTitle, avatar, category, subCategory, readTime, body,  coverPhoto, comments } = data;
-  const response = await blogService.addBlog(title, authorFullName, authorTitle, avatar, category, subCategory, readTime, body,  coverPhoto, comments);
+  const response = await blogService.addBlog(title, authorFullName, authorTitle, avatar, category, subCategory, readTime, body, coverPhoto, comments);
   return response.data;
 });
 

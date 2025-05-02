@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { listenerMiddleware } from "./redux/sessionStorageMiddleware";
 import authReducer from "./redux/authSlice";
 import trainingClassReducer from "./redux/trainingClassSlice";
 import builderReducer from "./redux/builderSlice";
 import userReducer from './redux/userSlice'
 import contactReducer from "./redux/contactSlice"
 import blogReducer from "./redux/blogSlice"
-import { listenerMiddleware } from "./redux/sessionStorageMiddleware";
 
 const preloadedState = () => {
   if (sessionStorage.getItem("token") !== null)
