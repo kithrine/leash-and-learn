@@ -26,6 +26,7 @@ import BlogHomepage from "./pages/blog/BlogHomepage";
 import BlogList from "./pages/blog/BlogList";
 import AddBlog from "./pages/blog/AddBlog";
 import BlogDetail from "./pages/blog/BlogDetail";
+import UserEditProfile from "./components/User/UserEditProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -93,6 +94,7 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route element={<DashboardSideNavLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/user/:id" element={<UserEditProfile />} />
           <Route path="/training-classes" element={<TrainingClasses />} />
           <Route path="/training-classes/:id" element={<TrainingClassDetail />} />
           <Route path="/create-training-class" element={<CreateForm />} />

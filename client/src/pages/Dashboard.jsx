@@ -15,6 +15,9 @@ const Dashboard = () => {
   const { user } = useSelector(state => state.auth)
   // console.log("Dashboard user:", user)
 
+  console.log("user.email", user.email)
+  const loggedInEmail = user.email
+
   if (user.role.includes("Business Manager")) {
     // console.log("Business Manager")
   } else if (user.role.includes("Trainer")) {
@@ -39,7 +42,7 @@ const Dashboard = () => {
     (<TrainerDashboard />) }
 
     {user.role.includes("User") &&
-    (<UserDashboard />) }
+    (<UserDashboard loggedInEmail={loggedInEmail} />) }
     </>
     
   );

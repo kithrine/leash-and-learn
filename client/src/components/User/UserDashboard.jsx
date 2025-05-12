@@ -1,23 +1,55 @@
-import { Link } from "react-router"
+import { useState, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { Link, useNavigate, useParams } from "react-router"
 import UserDashboardFooter from "../footers/UserDashboardFooter"
 import UserSideNav from "../navigation/UserSideNav"
+import { userGetOne } from "../../redux/userSlice"
 
-const UserDashboard = ({handleLogout}) => {
+const UserDashboard = ({ handleLogout, loggedInEmail }) => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  // const { id } = useParams()
+  const { user } = useSelector((state) => state.users);
+  // const { user } = useSelector((state) => state.users)
+  console.log("loggedInEmail", loggedInEmail)
+
+
+  const [ userEditProfileModal, setUserEditProfileModal ] = useState(false)
+  const [ loading, setLoading ] = useState(true)
+  useEffect(() => {
+    dispatch(userGetOne(loggedInEmail))
+  }, [])
+  
+  console.log("user & loading", user)
+  
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
   
   return (
     <>
+    {!loading && (
       <section className="mt-16 bg-white py-8 antialiased dark:bg-gray-900 md:py-8">
-        <div className="flex p-8 pl-36">
-        <UserSideNav />
+        <div className="md:px-[13vw]">
+          {/* <div className="flex p-8 px-[9vw]"> */}
+        {/* <UserSideNav loggedInEmail={loggedInEmail}  /> */}
+          {/* <div className="grid grid-cols-2 gap-8 md:ml-[16vw]">
+          <div className="col-span-2 h-36 w-[66vw] bg-teal-300"></div>
+          <div className="h-[30vh] w-full bg-blue-300"></div>
+          <div className=""></div>
+        </div>
+      </div> */}
+    
 
-      </div>
-        {/* <div className="mx-auto max-w-screen-lg px-4 2xl:px-0">
+        <div className="mx-auto max-w-screen-lg px-4 2xl:px-0 md:ml-[20vw]">
           <nav className="mb-4 flex" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
               <li className="inline-flex items-center">
                 <a
                   href="#"
-                  className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-white">
+                  className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                   <svg
                     className="me-2 h-4 w-4"
                     aria-hidden="true"
@@ -57,7 +89,7 @@ const UserDashboard = ({handleLogout}) => {
                   </svg>
                   <a
                     href="#"
-                    className="ms-1 text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-white md:ms-2">
+                    className="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white md:ms-2">
                     My account
                   </a>
                 </div>
@@ -336,12 +368,12 @@ const UserDashboard = ({handleLogout}) => {
                     alt="Helene avatar"
                   />
                   <div>
-                    <span className="mb-2 inline-block rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
+                    <span className="mb-2 inline-block rounded bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300">
                       {" "}
-                      PRO Account{" "}
+                      User Account{" "}
                     </span>
                     <h2 className="flex items-center text-xl font-bold leading-none text-gray-900 dark:text-white sm:text-2xl">
-                      Helene Engels
+                      {user.firstName}{" "}{user.lastName}
                     </h2>
                   </div>
                 </div>
@@ -350,7 +382,7 @@ const UserDashboard = ({handleLogout}) => {
                     Email Address
                   </dt>
                   <dd className="text-gray-500 dark:text-gray-400">
-                    helene@example.com
+                    {user.email}
                   </dd>
                 </dl>
                 <dl>
@@ -374,7 +406,7 @@ const UserDashboard = ({handleLogout}) => {
                         d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"
                       />
                     </svg>
-                    2 Miles Drive, NJ 071, New York, United States of America
+                    {user.address || "N/A"}
                   </dd>
                 </dl>
                 <dl>
@@ -474,11 +506,13 @@ const UserDashboard = ({handleLogout}) => {
                 </dl>
               </div>
             </div>
+
             <button
+              onClick={() => navigate(`/user/${user.id}`)}
               type="button"
-              data-modal-target="accountInformationModal2"
-              data-modal-toggle="accountInformationModal2"
-              className="inline-flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-auto">
+              data-modal-target="accountInformationModal"
+              data-modal-toggle="accountInformationModal"
+              className="inline-flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:w-auto">
               <svg
                 className="-ms-0.5 me-1.5 h-4 w-4"
                 aria-hidden="true"
@@ -496,7 +530,10 @@ const UserDashboard = ({handleLogout}) => {
               </svg>
               Edit your data
             </button>
+
           </div>
+
+          
           <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800 md:p-8">
             <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
               Latest orders
@@ -560,7 +597,7 @@ const UserDashboard = ({handleLogout}) => {
                   id="actionsMenuDropdownModal10"
                   data-dropdown-toggle="dropdownOrderModal10"
                   type="button"
-                  className="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 md:w-auto">
+                  className="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 md:w-auto">
                   Actions
                   <svg
                     className="-me-0.5 ms-1.5 h-4 w-4"
@@ -661,428 +698,46 @@ const UserDashboard = ({handleLogout}) => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-wrap items-center gap-y-4 border-b border-gray-200 py-4 pb-4 dark:border-gray-700 md:py-5">
-              <dl className="w-1/2 sm:w-48">
-                <dt className="text-base font-medium text-gray-500 dark:text-gray-400">
-                  Order ID:
-                </dt>
-                <dd className="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-                  <a href="#" className="hover:underline">
-                    #FWB12546777
-                  </a>
-                </dd>
-              </dl>
 
-              <dl className="w-1/2 sm:w-1/4 md:flex-1 lg:w-auto">
-                <dt className="text-base font-medium text-gray-500 dark:text-gray-400">
-                  Date:
-                </dt>
-                <dd className="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-                  10.11.2024
-                </dd>
-              </dl>
-
-              <dl className="w-1/2 sm:w-1/5 md:flex-1 lg:w-auto">
-                <dt className="text-base font-medium text-gray-500 dark:text-gray-400">
-                  Price:
-                </dt>
-                <dd className="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-                  $3,287
-                </dd>
-              </dl>
-
-              <dl className="w-1/2 sm:w-1/4 sm:flex-1 lg:w-auto">
-                <dt className="text-base font-medium text-gray-500 dark:text-gray-400">
-                  Status:
-                </dt>
-                <dd className="mt-1.5 inline-flex items-center rounded bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-800 dark:bg-red-900 dark:text-red-300">
-                  <svg
-                    className="me-1 h-3 w-3"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="none"
-                    viewBox="0 0 24 24">
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18 17.94 6M18 18 6.06 6"></path>
-                  </svg>
-                  Cancelled
-                </dd>
-              </dl>
-
-              <div className="w-full sm:flex sm:w-32 sm:items-center sm:justify-end sm:gap-4">
-                <button
-                  id="actionsMenuDropdownModal11"
-                  data-dropdown-toggle="dropdownOrderModal11"
-                  type="button"
-                  className="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 md:w-auto">
-                  Actions
-                  <svg
-                    className="-me-0.5 ms-1.5 h-4 w-4"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="none"
-                    viewBox="0 0 24 24">
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="m19 9-7 7-7-7"></path>
-                  </svg>
-                </button>
-                <div
-                  id="dropdownOrderModal11"
-                  className="z-10 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700"
-                  data-popper-reference-hidden=""
-                  data-popper-escaped=""
-                  data-popper-placement="bottom">
-                  <ul
-                    className="p-2 text-left text-sm font-medium text-gray-500 dark:text-gray-400"
-                    aria-labelledby="actionsMenuDropdown11">
-                    <li>
-                      <a
-                        href="#"
-                        className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                        <svg
-                          className="me-1.5 h-4 w-4 text-gray-400 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          fill="none"
-                          viewBox="0 0 24 24">
-                          <path
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"></path>
-                        </svg>
-                        <span>Order again</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                        <svg
-                          className="me-1.5 h-4 w-4 text-gray-400 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          fill="none"
-                          viewBox="0 0 24 24">
-                          <path
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"></path>
-                          <path
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
-                        </svg>
-                        Order details
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-wrap items-center gap-y-4 border-b border-gray-200 py-4 pb-4 dark:border-gray-700 md:py-5">
-              <dl className="w-1/2 sm:w-48">
-                <dt className="text-base font-medium text-gray-500 dark:text-gray-400">
-                  Order ID:
-                </dt>
-                <dd className="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-                  <a href="#" className="hover:underline">
-                    #FWB12546846
-                  </a>
-                </dd>
-              </dl>
-
-              <dl className="w-1/2 sm:w-1/4 md:flex-1 lg:w-auto">
-                <dt className="text-base font-medium text-gray-500 dark:text-gray-400">
-                  Date:
-                </dt>
-                <dd className="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-                  07.11.2024
-                </dd>
-              </dl>
-
-              <dl className="w-1/2 sm:w-1/5 md:flex-1 lg:w-auto">
-                <dt className="text-base font-medium text-gray-500 dark:text-gray-400">
-                  Price:
-                </dt>
-                <dd className="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-                  $111
-                </dd>
-              </dl>
-
-              <dl className="w-1/2 sm:w-1/4 sm:flex-1 lg:w-auto">
-                <dt className="text-base font-medium text-gray-500 dark:text-gray-400">
-                  Status:
-                </dt>
-                <dd className="mt-1.5 inline-flex items-center rounded bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-300">
-                  <svg
-                    className="me-1 h-3 w-3"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="none"
-                    viewBox="0 0 24 24">
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 11.917 9.724 16.5 19 7.5"></path>
-                  </svg>
-                  Completed
-                </dd>
-              </dl>
-
-              <div className="w-full sm:flex sm:w-32 sm:items-center sm:justify-end sm:gap-4">
-                <button
-                  id="actionsMenuDropdownModal12"
-                  data-dropdown-toggle="dropdownOrderModal12"
-                  type="button"
-                  className="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 md:w-auto">
-                  Actions
-                  <svg
-                    className="-me-0.5 ms-1.5 h-4 w-4"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="none"
-                    viewBox="0 0 24 24">
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="m19 9-7 7-7-7"></path>
-                  </svg>
-                </button>
-                <div
-                  id="dropdownOrderModal12"
-                  className="z-10 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700"
-                  data-popper-reference-hidden=""
-                  data-popper-escaped=""
-                  data-popper-placement="bottom">
-                  <ul
-                    className="p-2 text-left text-sm font-medium text-gray-500 dark:text-gray-400"
-                    aria-labelledby="actionsMenuDropdown12">
-                    <li>
-                      <a
-                        href="#"
-                        className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                        <svg
-                          className="me-1.5 h-4 w-4 text-gray-400 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          fill="none"
-                          viewBox="0 0 24 24">
-                          <path
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"></path>
-                        </svg>
-                        <span>Order again</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                        <svg
-                          className="me-1.5 h-4 w-4 text-gray-400 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          fill="none"
-                          viewBox="0 0 24 24">
-                          <path
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"></path>
-                          <path
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
-                        </svg>
-                        Order details
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-wrap items-center gap-y-4 pt-4 md:pt-5">
-              <dl className="w-1/2 sm:w-48">
-                <dt className="text-base font-medium text-gray-500 dark:text-gray-400">
-                  Order ID:
-                </dt>
-                <dd className="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-                  <a href="#" className="hover:underline">
-                    #FWB12546212
-                  </a>
-                </dd>
-              </dl>
-
-              <dl className="w-1/2 sm:w-1/4 md:flex-1 lg:w-auto">
-                <dt className="text-base font-medium text-gray-500 dark:text-gray-400">
-                  Date:
-                </dt>
-                <dd className="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-                  18.10.2024
-                </dd>
-              </dl>
-
-              <dl className="w-1/2 sm:w-1/5 md:flex-1 lg:w-auto">
-                <dt className="text-base font-medium text-gray-500 dark:text-gray-400">
-                  Price:
-                </dt>
-                <dd className="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-                  $756
-                </dd>
-              </dl>
-
-              <dl className="w-1/2 sm:w-1/4 sm:flex-1 lg:w-auto">
-                <dt className="text-base font-medium text-gray-500 dark:text-gray-400">
-                  Status:
-                </dt>
-                <dd className="mt-1.5 inline-flex items-center rounded bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-300">
-                  <svg
-                    className="me-1 h-3 w-3"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="none"
-                    viewBox="0 0 24 24">
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 11.917 9.724 16.5 19 7.5"></path>
-                  </svg>
-                  Completed
-                </dd>
-              </dl>
-
-              <div className="w-full sm:flex sm:w-32 sm:items-center sm:justify-end sm:gap-4">
-                <button
-                  id="actionsMenuDropdownModal13"
-                  data-dropdown-toggle="dropdownOrderModal13"
-                  type="button"
-                  className="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 md:w-auto">
-                  Actions
-                  <svg
-                    className="-me-0.5 ms-1.5 h-4 w-4"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="none"
-                    viewBox="0 0 24 24">
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="m19 9-7 7-7-7"></path>
-                  </svg>
-                </button>
-                <div
-                  id="dropdownOrderModal13"
-                  className="z-10 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700"
-                  data-popper-reference-hidden=""
-                  data-popper-escaped=""
-                  data-popper-placement="bottom">
-                  <ul
-                    className="p-2 text-left text-sm font-medium text-gray-500 dark:text-gray-400"
-                    aria-labelledby="actionsMenuDropdown13">
-                    <li>
-                      <a
-                        href="#"
-                        className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                        <svg
-                          className="me-1.5 h-4 w-4 text-gray-400 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          fill="none"
-                          viewBox="0 0 24 24">
-                          <path
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"></path>
-                        </svg>
-                        <span>Order again</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                        <svg
-                          className="me-1.5 h-4 w-4 text-gray-400 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          fill="none"
-                          viewBox="0 0 24 24">
-                          <path
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"></path>
-                          <path
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
-                        </svg>
-                        Order details
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
           </div>
-        </div> */}
+        </div>
+        </div>
 
 
 
 
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         {/* <!-- Account Information Modal --> */}
+
+        {userEditProfileModal && 
         <div
           id="accountInformationModal2"
           tabIndex="-1"
           aria-hidden="true"
-          className="max-h-auto fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden antialiased md:inset-0">
+          className="max-h-auto fixed left-0 right-0 top-0 z-50 h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden antialiased md:inset-0">
           <div className="max-h-auto relative max-h-full w-full max-w-lg p-4">
             {/* <!-- Modal content --> */}
             <div className="relative rounded-lg bg-white shadow dark:bg-gray-800">
@@ -1125,7 +780,7 @@ const UserDashboard = ({handleLogout}) => {
                     <input
                       type="text"
                       id="pick-up-point-input"
-                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                       placeholder="Enter the pick-up point name"
                       required
                     />
@@ -1141,7 +796,7 @@ const UserDashboard = ({handleLogout}) => {
                     <input
                       type="text"
                       id="full_name_info_modal"
-                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                       placeholder="Enter your first name"
                       required
                     />
@@ -1157,7 +812,7 @@ const UserDashboard = ({handleLogout}) => {
                     <input
                       type="text"
                       id="email_info_modal"
-                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                       placeholder="Enter your email here"
                       required
                     />
@@ -1840,7 +1495,7 @@ const UserDashboard = ({handleLogout}) => {
                         <input
                           type="text"
                           id="phone-input"
-                          className="z-20 block w-full rounded-e-lg border border-s-0 border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:border-s-gray-700  dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500"
+                          className="z-20 block w-full rounded-e-lg border border-s-0 border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:border-s-gray-700  dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500"
                           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                           placeholder="123-456-7890"
                           required
@@ -1860,7 +1515,7 @@ const UserDashboard = ({handleLogout}) => {
                     </div>
                     <select
                       id="select_country_input_billing_modal"
-                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500">
+                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500">
                       <option selected>United States</option>
                       <option value="AS">Australia</option>
                       <option value="FR">France</option>
@@ -1880,7 +1535,7 @@ const UserDashboard = ({handleLogout}) => {
                     </div>
                     <select
                       id="select_city_input_billing_modal"
-                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500">
+                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500">
                       <option selected>San Francisco</option>
                       <option value="NY">New York</option>
                       <option value="LA">Los Angeles</option>
@@ -1899,7 +1554,7 @@ const UserDashboard = ({handleLogout}) => {
                     <textarea
                       id="address_billing_modal"
                       rows="4"
-                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                       placeholder="Enter here your address"></textarea>
                   </div>
                   <div className="col-span-2 sm:col-span-1">
@@ -1912,7 +1567,7 @@ const UserDashboard = ({handleLogout}) => {
                     <input
                       type="text"
                       id="company_name"
-                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                       placeholder="Flowbite LLC"
                     />
                   </div>
@@ -1927,7 +1582,7 @@ const UserDashboard = ({handleLogout}) => {
                     <input
                       type="text"
                       id="vat_number"
-                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
+                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                       placeholder="DE42313253"
                     />
                   </div>
@@ -1935,13 +1590,14 @@ const UserDashboard = ({handleLogout}) => {
                 <div className="border-t border-gray-200 pt-4 dark:border-gray-700 md:pt-5">
                   <button
                     type="submit"
-                    className="me-2 inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                    className="me-2 inline-flex items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     Save information
                   </button>
                   <button
+                    onClick={() => setUserEditProfileModal(false)}
                     type="button"
                     data-modal-toggle="accountInformationModal2"
-                    className="me-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">
+                    className="me-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">
                     Cancel
                   </button>
                 </div>
@@ -1949,6 +1605,7 @@ const UserDashboard = ({handleLogout}) => {
             </div>
           </div>
         </div>
+}
 
         <div
           id="deleteOrderModal"
@@ -1997,7 +1654,7 @@ const UserDashboard = ({handleLogout}) => {
               <p className="mb-3.5 text-gray-900 dark:text-white">
                 <a
                   href="#"
-                  className="font-medium text-primary-700 hover:underline dark:text-primary-500">
+                  className="font-medium text-blue-700 hover:underline dark:text-blue-500">
                   @heleneeng
                 </a>
                 , are you sure you want to delete this order from your account?
@@ -2009,7 +1666,7 @@ const UserDashboard = ({handleLogout}) => {
                 <button
                   data-modal-toggle="deleteOrderModal"
                   type="button"
-                  className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600">
+                  className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600">
                   No, cancel
                 </button>
                 <button
@@ -2022,6 +1679,7 @@ const UserDashboard = ({handleLogout}) => {
           </div>
         </div>
       </section>
+)}
 
       <UserDashboardFooter />
     </>
