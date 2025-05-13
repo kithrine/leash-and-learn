@@ -385,11 +385,19 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                     {user.email}
                   </dd>
                 </dl>
+                <dl className="">
+                  <dt className="font-semibold text-gray-900 dark:text-white">
+                    Username
+                  </dt>
+                  <dd className="text-gray-500 dark:text-gray-400">
+                    {user.username}
+                  </dd>
+                </dl>
                 <dl>
                   <dt className="font-semibold text-gray-900 dark:text-white">
                     Home Address
                   </dt>
-                  <dd className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
+                  <dd className="flex gap-1 text-gray-500 dark:text-gray-400">
                     <svg
                       className="hidden h-5 w-5 shrink-0 text-gray-400 dark:text-gray-500 lg:inline"
                       aria-hidden="true"
@@ -406,10 +414,10 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                         d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"
                       />
                     </svg>
-                    {user.address || "N/A"}
+                    {user.address || "N/A"}<br/>{user.city}, {user.state} {user.zipCode}
                   </dd>
                 </dl>
-                <dl>
+                {/* <dl>
                   <dt className="font-semibold text-gray-900 dark:text-white">
                     Delivery Address
                   </dt>
@@ -432,7 +440,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                     </svg>
                     9th St. PATH Station, New York, United States of America
                   </dd>
-                </dl>
+                </dl> */}
               </div>
               <div className="space-y-4">
                 <dl>
@@ -440,10 +448,10 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                     Phone Number
                   </dt>
                   <dd className="text-gray-500 dark:text-gray-400">
-                    +1234 567 890 / +12 345 678
+                    {user.phoneNumber}
                   </dd>
                 </dl>
-                <dl>
+                {/* <dl>
                   <dt className="font-semibold text-gray-900 dark:text-white">
                     Favorite pick-up point
                   </dt>
@@ -466,7 +474,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                     </svg>
                     Herald Square, 2, New York, United States of America
                   </dd>
-                </dl>
+                </dl> */}
                 <dl>
                   <dt className="font-semibold text-gray-900 dark:text-white">
                     My Companies

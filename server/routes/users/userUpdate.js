@@ -2,9 +2,9 @@ import userModel from "./userModel.js";
 
 const userUpdate = async (req, res) => {
   const { id } = req.params;
-  const { firstName, lastName, avatar, phoneNumber, address, city, state, zipCode } = req.body
+  const { firstName, lastName, avatar, email, username, phoneNumber, address, city, state, zipCode } = req.body
 
-  console.log("userUpdate", userId, userType, trainer, userame, userDescription, startDate, endDate)
+  console.log("userUpdate", firstName, lastName, email, username, avatar, phoneNumber, address, city, state, zipCode)
   
   // const { userEditForm } = req.body;
 
@@ -18,7 +18,7 @@ const userUpdate = async (req, res) => {
   ) {
     res.status(500).json({ message: "User information not valid." });
   } else {
-    const updatedUser = await userModel.findOneAndUpdate({ _id: id } , { firstName, lastName, avatar, phoneNumber, address, city, state, zipCode }, { new: true })
+    const updatedUser = await userModel.findOneAndUpdate({ _id: id }, { firstName, lastName, email, username, avatar, phoneNumber, address, city, state, zipCode }, { new: true })
 
     console.log("updatedUser", updatedUser);
     res.status(200).json({ success: true, message: "User information updated.", user: updatedUser });

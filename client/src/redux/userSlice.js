@@ -52,8 +52,8 @@ export const userCreate = createAsyncThunk("user/create", async (userForm) => {
 })
 
 // User Update
-export const userUpdate = createAsyncThunk("user/update", async ({userEditProfileForm, email}) => {
-  const response = await userService.userUpdate(userEditProfileForm, email)
+export const userUpdate = createAsyncThunk("user/update", async ({userEditProfileForm, id}) => {
+  const response = await userService.userUpdate(userEditProfileForm, id)
   // console.log(response)
   return response.data
 })
@@ -131,7 +131,7 @@ export const userSlice = createSlice({
       .addCase(userUpdate.fulfilled, (state, action) => {
         console.log("userSlice userUpdate.fulfilled", action.payload)
         state.loading = false
-        state.users = action.payload.users
+        state.user = action.payload.user
       })
       .addCase(userUpdate.rejected, (state, action) => {
         console.log("userSlice userUpdate.rejected", action.payload)

@@ -21,12 +21,21 @@ const userService = {
       `${import.meta.env.VITE_NODE_SERVER_URL}/users`, userForm
     )
   },
-  userUpdate: async (userEditProfileForm, email) => {
+  userUpdate: async (userEditProfileForm, id) => {
     return await axios.put(
-      `${import.meta.env.VITE_NODE_SERVER_URL}/users/${email}`, userEditProfileForm
+      `${import.meta.env.VITE_NODE_SERVER_URL}/users/${id}`, userEditProfileForm
     )
   },
   
 }
 
 export default userService
+
+// // HELP WITH TROUBLESHOOTING
+// userUpdate: async (userEditProfileForm, id) => {
+// const response = await axios.put(
+//   `${import.meta.env.VITE_NODE_SERVER_URL}/users/${id}`, userEditProfileForm
+// ) 
+// console.log("service response", response.data)
+// return response.data
+// }
