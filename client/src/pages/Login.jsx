@@ -5,7 +5,7 @@ import { authLogin } from "../redux/authSlice";
 import Footer from "../components/footers/Footer";
 
 const Login = () => {
-  const [loginForm, setLoginForm] = useState({ username: "", password: "" });
+  const [loginForm, setLoginForm] = useState({ email: "", password: "" });
   const [ spinner, setSpinner ] = useState(true)
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -81,11 +81,11 @@ const Login = () => {
                             email: e.target.value, 
                           })
                         }
-                        type="text"
-                        name="username"
-                        id="username"
+                        type="email"
+                        name="email"
+                        id="email"
                         className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="username"
+                        placeholder="Email"
                         required
                       />
                     </div>

@@ -1,15 +1,38 @@
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router"
+import { userGetOne } from "../../redux/userSlice";
 
 
-const UserSideNav = ({handleLogout}) => {
+const UserSideNav = ({ handleLogout, loggedInEmail }) => {
+  const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.users);
+  // console.log("user.email", user.email)
+  // const loggedInEmail = user.email
+  const [ loading, setLoading ] = useState(true)
+
+  useEffect(() => {
+    dispatch(userGetOne(loggedInEmail))
+  }, [])
+  console.log("user", user)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
+  
+
   return (
     <>
+    {!loading && (
+      <div className="md:px-[13vw]">
       <aside
-      className="fixed z-40 w-64 h-[60vh] pt-14 transition-transform -translate-x-full bg-white border rounded-xl border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+      className=" md:py-8 mt-16 fixed z-40 w-80 h-[60vh] py-3 transition-transform -translate-x-full bg-white border rounded-xl border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
       aria-label="Sidenav"
       id="drawer-navigation"
     >
-      <div className="overflow-y-auto py-5 px-3 h-[full] bg-white dark:bg-gray-800">
+      <div className="overflow-y-auto py-5 px-3 min-h-full bg-white dark:bg-gray-800">
         <form action="#" method="GET" className="md:hidden mb-2">
           <label htmlFor="sidebar-search" className="sr-only">Search</label>
           <div className="relative">
@@ -33,12 +56,31 @@ const UserSideNav = ({handleLogout}) => {
               type="text"
               name="search"
               id="sidebar-search"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              className="bg-teal-400 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Search"
             />
           </div>
         </form>
+
+        <div className="flex space-x-4 px-2 pb-5">
+                  <img
+                    className="h-16 w-16 rounded-lg"
+                    src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png"
+                    alt="Helene avatar"
+                  />
+                  <div>
+                    <span className="mb-2 inline-block rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
+                      {" "}
+                      PRO Account{" "}
+                    </span>
+                    <h2 className="flex items-center text-xl font-bold leading-none text-gray-900 dark:text-white sm:text-2xl">
+                      {user.firstName}{" "}{user.lastName}
+                    </h2>
+                  </div>
+                </div>
+        
         <ul className="space-y-2">
+          
           <li>
             <Link
               to="/dashboard"
@@ -363,6 +405,8 @@ const UserSideNav = ({handleLogout}) => {
         </div>
       </div>
     </aside>
+    </div>
+    )}
     </>
   )
 }

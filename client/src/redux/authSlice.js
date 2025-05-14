@@ -9,7 +9,6 @@ const initialState = {
     lastName: "",
     email: "", // **** Added this
     username: "",
-    avatar: "",
     role: [],
     token: ""
   }

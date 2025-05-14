@@ -29,7 +29,7 @@ const userMe =  async (req, res) => {
         username: loggedInUser.username,
         email: loggedInUser.email,
         role: loggedInUser.role,
-        firstName: loggedInUser.firstName, 
+        // firstName: loggedInUser.firstName, 
       }, token })
     } else {
       // User not logged in

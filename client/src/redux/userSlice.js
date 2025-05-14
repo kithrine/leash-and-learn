@@ -8,18 +8,27 @@ const initialState = {
     lastName: "",
     email: "", // **** Added this
     username: "",
+    avatar: "",
+    phoneNumber: "",
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
     role: [],
-    token: ""
+    dogs: [],
+    token: "",
   },
   users: []
 }
 
+// User Get All
 export const userGetAll = createAsyncThunk("user/getAll", async () => {
   const response = await userService.userGetAll()
   // console.log(response)
   return response.data
 })
 
+// User Get Many
 export const userGetMany = createAsyncThunk("user/getMany", async (type) => {
   const { userType } = type
   // console.log("userType", userType)
@@ -28,14 +37,23 @@ export const userGetMany = createAsyncThunk("user/getMany", async (type) => {
   return response.data
 })
 
+// User Get One
+export const userGetOne = createAsyncThunk("user/getOne", async (email) => {
+  const response = await userService.userGetOne(email)
+  console.log(response)
+  return response.data
+})
+
+// User Create
 export const userCreate = createAsyncThunk("user/create", async (userForm) => {
   const response = await userService.userCreate(userForm)
   // console.log(response)
   return response.data
 })
 
-export const userUpdate = createAsyncThunk("user/update", async ({userForm, email}) => {
-  const response = await userService.userUpdate(userForm, email)
+// User Update
+export const userUpdate = createAsyncThunk("user/update", async ({userEditProfileForm, id}) => {
+  const response = await userService.userUpdate(userEditProfileForm, id)
   // console.log(response)
   return response.data
 })
@@ -76,6 +94,21 @@ export const userSlice = createSlice({
         state.loading = false
       })
 
+      // User Get One
+      .addCase(userGetOne.pending, (state, action) => {
+        console.log("userSlice userGetOne.pending", action.payload)
+        state.loading = true
+      })
+      .addCase(userGetOne.fulfilled, (state, action) => {
+        console.log("userSlice userGetOne.fulfilled", action.payload)
+        state.loading = false
+        state.user = action.payload
+      })
+      .addCase(userGetOne.rejected, (state, action) => {
+        console.log("userSlice userGetOne.rejected", action.payload)
+        state.loading = false
+      })
+
       // User Create
       .addCase(userCreate.pending, (state, action) => {
         // console.log("userSlice userCreate.pending", action.payload)
@@ -92,16 +125,16 @@ export const userSlice = createSlice({
 
       // User Update
       .addCase(userUpdate.pending, (state, action) => {
-        // console.log("userSlice userUpdate.pending", action.payload)
+        console.log("userSlice userUpdate.pending", action.payload)
         state.loading = true
       })
       .addCase(userUpdate.fulfilled, (state, action) => {
-        // console.log("userSlice userUpdate.fulfilled", action.payload)
+        console.log("userSlice userUpdate.fulfilled", action.payload)
         state.loading = false
-        state.users = action.payload.users
+        state.user = action.payload.user
       })
       .addCase(userUpdate.rejected, (state, action) => {
-        // console.log("userSlice userUpdate.rejected", action.payload)
+        console.log("userSlice userUpdate.rejected", action.payload)
         state.loading = false
       })
   }
