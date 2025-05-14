@@ -118,6 +118,7 @@
 ##### Profile
 - [x] Abilitly to edit basic profile information
   - [ ] Fix refresh on edit profile page from clearing the form
+  - [ ] Make sure that if user changes username that new username does not already exist in database
 - [ ] Ability to upload an avatar
 - [ ] Add dog(s)
 - [ ] Edit dog(s)
