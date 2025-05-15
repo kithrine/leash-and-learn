@@ -25,14 +25,14 @@ const trainingClassService = {
   },
   trainingClassUpdate: async (trainingClassId, trainingClassEditForm) => {
     // console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/training-classes`)
-    console.log("trainingClassId", trainingClassId, "trainingClassEditForm", trainingClassEditForm)
+    // console.log("trainingClassId", trainingClassId, "trainingClassEditForm", trainingClassEditForm)
     return await axios.put(
       `${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/${trainingClassId}`,
       trainingClassEditForm
     ) 
   },
   trainingClassSessionCreate: async (trainingClassId, sessionAddForm) => {
-    console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/sessions`)
+    // console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/sessions`)
     return await axios.post(
       `${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/${trainingClassId}/sessions`,
       sessionAddForm
@@ -46,7 +46,7 @@ const trainingClassService = {
     )
   },
   trainingClassSessionDelete: async (trainingClassId, sessionId) => {
-    console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/sessions`)
+    // console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/sessions`)
     return await axios.delete(
       `${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/${trainingClassId}/sessions/${sessionId}`
     )

@@ -58,6 +58,8 @@ const userSchema = new Schema({
     weight: String,
     photo: String,
     size: String,
+    birthday: Date,
+    spayedNeutered: String,
     behavioralIssues: String,
     medicalConditions: String,
     trainingGoals: String,

@@ -28,9 +28,9 @@ const SessionAddModal = ({setShowSessionAddModal, handleDatepickerFormat}) => {
     dispatch(trainingClassGetOne(trainingClassId));
   }, []);
 
-  useEffect(() => {
-    console.log("sessionAddForm", sessionAddForm)
-  }, [sessionAddForm])
+  // useEffect(() => {
+  //   console.log("sessionAddForm", sessionAddForm)
+  // }, [sessionAddForm])
 
   const handleSessionCreate = () => {
     // console.log("trainingClassId:", trainingClassId, "session:", sessionEditForm);
@@ -44,7 +44,7 @@ const SessionAddModal = ({setShowSessionAddModal, handleDatepickerFormat}) => {
   return (
     <>
       <div
-          id="updateProductModal"
+          id="addSessionModal"
           tabIndex="-1"
           aria-hidden="true"
           className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center justify-self-center ml-96 w-full md:inset-0 h-modal md:h-full"
@@ -63,7 +63,7 @@ const SessionAddModal = ({setShowSessionAddModal, handleDatepickerFormat}) => {
                   }}
                   type="button"
                   className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                  data-modal-toggle="updateProductModal"
+                  data-modal-toggle="addSessionModal"
                 >
                   <svg
                     aria-hidden="true"

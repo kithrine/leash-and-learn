@@ -120,10 +120,12 @@
   - [ ] Fix refresh on edit profile page from clearing the form
   - [ ] Make sure that if user changes username that new username does not already exist in database
 - [ ] Ability to upload an avatar
+- [ ] Liked/Favorited blog posts appear on user's profile page
+##### Dogs
 - [ ] Add dog(s)
 - [ ] Edit dog(s)
 - [ ] Delete dog(s)
-- [ ] Liked/Favorited blog posts appear on user's profile page
+- [ ] Show Happy Birthday picture on Dog Card when it is the dog's birthday
 ##### Enroll
 - [ ] Ability for user to enroll in a Training Class
 
