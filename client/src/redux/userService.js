@@ -1,14 +1,14 @@
 import axios from 'axios'
 
 const userService = {
-  userList: async (userType) => {
-    return await axios.get(
-      `${import.meta.env.VITE_NODE_SERVER_URL}/users/list/${userType}`
-    )
-  },
   userGetAll: async () => {
     return await axios.get(
       `${import.meta.env.VITE_NODE_SERVER_URL}/users/list`
+    )
+  },
+  userList: async (userType) => {
+    return await axios.get(
+      `${import.meta.env.VITE_NODE_SERVER_URL}/users/list/${userType}`
     )
   },
   userGetOne: async (email) => {
@@ -26,6 +26,15 @@ const userService = {
       `${import.meta.env.VITE_NODE_SERVER_URL}/users/${id}`, userEditProfileForm
     )
   },
+  createDog: async (userId, addDogForm) => {
+    console.log("createDog Service", userId)
+    console.log("addDogForm", addDogForm)
+    const createDogInfo = { userId, addDogForm}
+    return await axios.post(
+      `${import.meta.env.VITE_NODE_SERVER_URL}/users/${userId}/dogs`,
+      createDogInfo
+    )
+  }
   
 }
 

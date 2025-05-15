@@ -102,22 +102,14 @@ export const trainingClassUpdate = createAsyncThunk(
 export const trainingClassSessionCreate = createAsyncThunk(
   "trainingClass/sessionCreate",
   async (trainingClassInfo) => {
-    console.log(
-      "redux trainingClassSessionCreate trainingClass session",
-      trainingClassInfo
-    );
+    // console.log("redux trainingClassSessionCreate trainingClass session", trainingClassInfo);
     const { trainingClassId, sessionAddForm } = trainingClassInfo;
-    console.log(
-      "trainingClassSessionCreate, sessionAddForm",
-      
-      sessionAddForm
-    );
+    // console.log("trainingClassSessionCreate, sessionAddForm", sessionAddForm);
     const response = await trainingClassService.trainingClassSessionCreate(
       trainingClassId,
       sessionAddForm
     );
-    console.log("redux trainingClassSessionCreate trainingClass response", response
-    );
+    // console.log("redux trainingClassSessionCreate trainingClass response", response);
     return response.data;
   }
 );

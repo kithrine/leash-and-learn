@@ -4,6 +4,7 @@ import userService from './userService'
 const initialState = {
   loading: false,
   user: {
+    id: "",
     firstName: "",
     lastName: "",
     email: "", // **** Added this
@@ -55,6 +56,13 @@ export const userCreate = createAsyncThunk("user/create", async (userForm) => {
 export const userUpdate = createAsyncThunk("user/update", async ({userEditProfileForm, id}) => {
   const response = await userService.userUpdate(userEditProfileForm, id)
   // console.log(response)
+  return response.data
+})
+
+// Dog Create
+export const createDog = createAsyncThunk("user/createDog", async ({userId, addDogForm}) => {
+  const response = await userService.createDog(userId, addDogForm)
+  console.log(response)
   return response.data
 })
 
@@ -125,16 +133,31 @@ export const userSlice = createSlice({
 
       // User Update
       .addCase(userUpdate.pending, (state, action) => {
-        console.log("userSlice userUpdate.pending", action.payload)
+        // console.log("userSlice userUpdate.pending", action.payload)
         state.loading = true
       })
       .addCase(userUpdate.fulfilled, (state, action) => {
-        console.log("userSlice userUpdate.fulfilled", action.payload)
+        // console.log("userSlice userUpdate.fulfilled", action.payload)
         state.loading = false
         state.user = action.payload.user
       })
       .addCase(userUpdate.rejected, (state, action) => {
-        console.log("userSlice userUpdate.rejected", action.payload)
+        // console.log("userSlice userUpdate.rejected", action.payload)
+        state.loading = false
+      })
+
+      // Create a Dog
+      .addCase(createDog.pending, (state, action) => {
+        console.log("userSlice createDog.pending", action.payload)
+        state.loading = true
+      })
+      .addCase(createDog.fulfilled, (state, action) => {
+        console.log("userSlice createDog.fulfilled", action.payload)
+        state.loading = false
+        state.user = action.payload.user
+      })
+      .addCase(createDog.rejected, (state, action) => {
+        console.log("userSlice createDog.rejected", action.payload)
         state.loading = false
       })
   }

@@ -16,6 +16,14 @@ const DashboardSideNavLayout = () => {
   const { user } = useSelector((state) => state.auth);
   // const { contact } = useSelector((state) => state.contact)
   const loggedInEmail = user.email
+  const userId = user.id
+
+  
+  useEffect(() => {
+    console.log("$$$$$$$$$$ testing userID", userId)
+
+  }, [])
+  
 
   useEffect(() => {
     // console.log("user", user)
@@ -54,7 +62,7 @@ const DashboardSideNavLayout = () => {
         </>
       )}
 
-      {user.role.includes("User") && <UserSideNav loggedInEmail={loggedInEmail} />}
+      {user.role.includes("User") && <UserSideNav loggedInEmail={loggedInEmail} userId={userId} />}
 
       <Outlet />
     </>
