@@ -9,6 +9,7 @@ import userCreate from "./userCreate.js"
 import userUpdate from "./userUpdate.js"
 import dogCreate from "./DogCreate.js"
 import dogUpdate from "./DogUpdate.js"
+import dogDelete from "./dogDelete.js"
 
 const userIndex = express.Router()
 
@@ -22,6 +23,8 @@ userIndex.post("/", userCreate)
 userIndex.put("/:id", userUpdate)
 userIndex.post("/:userId/dogs", dogCreate)
 userIndex.put("/:userId/dogs/:dogId", dogUpdate)
+userIndex.delete("/:userId/dogs/:dogId", dogDelete)
+
 
 
 export default userIndex

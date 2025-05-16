@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from "react-redux"
 import { Link, useNavigate, useParams } from "react-router"
 import UserDashboardFooter from "../footers/UserDashboardFooter"
 import UserSideNav from "../navigation/UserSideNav"
-import { userGetOne } from "../../redux/userSlice"
+import { deleteDog, userGetOne } from "../../redux/userSlice"
 import DogAddModal from "../modals/DogAddModal"
 import DogEditModal from "../modals/DogEditModal"
+import DogDeleteModal from "../modals/DogDeleteModal"
 
 const UserDashboard = ({ handleLogout, loggedInEmail }) => {
   const navigate = useNavigate()
@@ -18,7 +19,9 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
 
   const [showAddDogModal, setShowAddDogModal] = useState(false)
   const [showEditDogModal, setShowEditDogModal] = useState(false)
-  const [dogEditForm, setDogEditForm] = useState()
+  const [showDeleteDogModal, setShowDeleteDogModal] = useState(false)
+  // const [testDeleteModal, setTestDeleteModal] = useState(true)
+  const [dogEditForm, setDogEditForm] = useState({})
   const [dogById, setDogById] = useState({})
   const [showDogActions, setShowDogActions] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -36,7 +39,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
   }, [])
 
   const handleDogEditModal = (dog, id) => {
-    console.log("dog.id", dog, id)
+    // console.log("dog.id", dog, id)
     // setDogEditForm()
     if (dog._id === id) {
       console.log(
@@ -48,6 +51,21 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
       setDogEditForm(dog)
     }
     console.log("dog edit form", dogEditForm)
+  }
+
+  const handleDogDeleteModal = (dog, id) => {
+    console.log("dog.id handleDogDeleteModal", dog, id)
+    if (dog._id === id) {
+      console.log(
+        "IMPORTANT INFORMATION DAWG dogDelete in handleDogDeleteModal",
+        dog,
+        id
+      )
+      setShowDeleteDogModal(true)
+      setDogEditForm(dog)
+    }
+    console.log("dog delete dogById", dogById)
+
   }
 
   return (
@@ -634,8 +652,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                             </svg>
                           </button>
 
-                          {showDogActions && 
-                          dogById._id === dog._id && (
+                          {showDogActions && dogById._id === dog._id && (
                             <div
                               id="dropdown"
                               class="z-10 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
@@ -658,7 +675,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                                 </li> */}
                                 <li>
                                   <a
-                                    href="#"
+                                    onClick={() => handleDogDeleteModal(dog, dog._id)}
                                     class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                     Delete
                                   </a>
@@ -672,15 +689,6 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                                 </li>
                               </ul>
                             </div>
-                          )}
-
-                          {showEditDogModal && (
-                            <DogEditModal
-                              setShowEditDogModal={setShowEditDogModal}
-                              loggedInEmail={loggedInEmail}
-                              userId={userId}
-                              dog={dog}
-                            />
                           )}
                         </div>
                         <div class="flex flex-col items-center pb-10">
@@ -891,11 +899,13 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
             </div>
           </div>
 
+          {/* {testDeleteModal && ( */}
+
           <div
             id="deleteOrderModal"
             tabIndex="-1"
             aria-hidden="true"
-            className="fixed left-0 right-0 top-0 z-50 hidden h-modal w-full items-center justify-center overflow-y-auto overflow-x-hidden md:inset-0 md:h-full">
+            className="hidden fixed left-0 right-0 top-0 z-50 h-modal w-full items-center justify-center overflow-y-auto overflow-x-hidden md:inset-0 md:h-full">
             <div className="relative h-full w-full max-w-md p-4 md:h-auto">
               {/* <!-- Modal content --> */}
               <div className="relative rounded-lg bg-white p-4 text-center shadow dark:bg-gray-800 sm:p-5">
@@ -963,7 +973,25 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
               </div>
             </div>
           </div>
+          {/* )} */}
         </section>
+      )}
+
+      {showEditDogModal && (
+        <DogEditModal
+          setShowEditDogModal={setShowEditDogModal}
+          loggedInEmail={loggedInEmail}
+          userId={userId}
+          dog={dogEditForm}
+        />
+      )}
+
+      {showDeleteDogModal && (
+        <DogDeleteModal
+          setShowDeleteDogModal={setShowDeleteDogModal}
+          dogById={dogById}
+          userId={userId}
+        />
       )}
 
       {showAddDogModal && (

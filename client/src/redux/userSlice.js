@@ -74,6 +74,14 @@ export const updateDog = createAsyncThunk("user/updateDog", async ({userId, dogI
   return response.data
 })
 
+// Dog Delete
+export const deleteDog = createAsyncThunk("user/deleteDog", async ({ userId, dogId }) => {
+  console.log("*************deleteDog Slice w/ userId and dogId", userId, dogId)
+  const response = await userService.deleteDog(userId, dogId)
+  console.log("service response", response)
+  return response.data
+})
+
 export const userSlice = createSlice({
   name: "users",
   initialState,
@@ -181,6 +189,22 @@ export const userSlice = createSlice({
       })
       .addCase(updateDog.rejected, (state, action) => {
         console.log("userSlice updateDog.rejected", action.payload)
+        state.loading = false
+      })
+
+      // Delete a Dog
+      .addCase(deleteDog.pending, (state, action) => {
+        console.log("userSlice deleteDog.pending", action.payload)
+        state.loading = true
+      })
+      .addCase(deleteDog.fulfilled, (state, action) => {
+        console.log("userSlice deleteDog.fulfilled", action.payload)
+        state.loading = false
+        state.user = action.payload.user
+        state.success = true
+      })
+      .addCase(deleteDog.rejected, (state, action) => {
+        console.log("userSlice deleteDog.rejected", action.payload)
         state.loading = false
       })
   }
