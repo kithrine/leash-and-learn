@@ -7,7 +7,8 @@ import userGetMany from "./userGetMany.js"
 import userGetOne from "./userGetOne.js"
 import userCreate from "./userCreate.js"
 import userUpdate from "./userUpdate.js"
-import userDogCreate from "./userDogCreate.js"
+import dogCreate from "./DogCreate.js"
+import dogUpdate from "./DogUpdate.js"
 
 const userIndex = express.Router()
 
@@ -19,7 +20,8 @@ userIndex.get("/list/:userType", userGetMany)
 userIndex.get("/user/:email", userGetOne)
 userIndex.post("/", userCreate)
 userIndex.put("/:id", userUpdate)
-userIndex.post("/:userId/dogs", userDogCreate)
+userIndex.post("/:userId/dogs", dogCreate)
+userIndex.put("/:userId/dogs/:dogId", dogUpdate)
 
 
 export default userIndex

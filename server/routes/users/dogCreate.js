@@ -1,13 +1,13 @@
 import userModel from "./userModel.js"
 
-const userDogCreate =  async (req, res) => {
+const dogCreate =  async (req, res) => {
   // const { userId } = req.params
   const { userId, addDogForm } = req.body;
-  console.log("backend req.body", userId, addDogForm)
-  console.log("!!!!!!!!!!!!!!!!!!!!!!!!req.body", req.body)
+  // console.log("backend req.body", userId, addDogForm)
+  // console.log("!!!!!!!!!!!!!!!!!!!!!!!!req.body", req.body)
   
   const frontendDog = addDogForm
-  console.log("frontendDog", frontendDog)
+  // console.log("frontendDog", frontendDog)
   
   
   
@@ -43,7 +43,7 @@ const userDogCreate =  async (req, res) => {
   }
 }
 
-export default userDogCreate
+export default dogCreate
 
 // dogs: [{
 //   name: String,

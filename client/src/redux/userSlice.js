@@ -66,6 +66,14 @@ export const createDog = createAsyncThunk("user/createDog", async ({userId, addD
   return response.data
 })
 
+// Dog Update
+export const updateDog = createAsyncThunk("user/updateDog", async ({userId, dogId, editDogForm}) => {
+  console.log("*************updateDog Slice", userId, dogId, editDogForm)
+  const response = await userService.updateDog(userId, dogId, editDogForm)
+  console.log(response)
+  return response.data
+})
+
 export const userSlice = createSlice({
   name: "users",
   initialState,
@@ -158,6 +166,21 @@ export const userSlice = createSlice({
       })
       .addCase(createDog.rejected, (state, action) => {
         console.log("userSlice createDog.rejected", action.payload)
+        state.loading = false
+      })
+
+      // Update a Dog
+      .addCase(updateDog.pending, (state, action) => {
+        console.log("userSlice updateDog.pending", action.payload)
+        state.loading = true
+      })
+      .addCase(updateDog.fulfilled, (state, action) => {
+        console.log("userSlice updateDog.fulfilled", action.payload)
+        state.loading = false
+        state.user = action.payload.user
+      })
+      .addCase(updateDog.rejected, (state, action) => {
+        console.log("userSlice updateDog.rejected", action.payload)
         state.loading = false
       })
   }

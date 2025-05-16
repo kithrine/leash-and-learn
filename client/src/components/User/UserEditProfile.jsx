@@ -13,6 +13,9 @@ const UserEditProfile = () => {
   // const { email } = useParams()
   const { id } = useParams()
   const { user } = useSelector((state) => state.users)
+  let loggedInUserInfo = JSON.parse(sessionStorage.getItem("userData"))
+
+  console.log("loggedInUserInfo", loggedInUserInfo)
 
   const [userEditProfileForm, setUserEditProfileForm] = useState({
     firstName: user.firstName,
@@ -86,7 +89,7 @@ const UserEditProfile = () => {
   // const loggedInEmail = user.email
   const [loading, setLoading] = useState(true)
 
-  console.log("user", user)
+  // console.log("user", user)
 
   useEffect(() => {
     setTimeout(() => {
@@ -94,10 +97,16 @@ const UserEditProfile = () => {
     }, 3000)
   }, [])
 
-
-  useEffect(() => {
-    console.log("userEditProfileForm", userEditProfileForm)
-  }, [userEditProfileForm])
+  // useEffect(() => {
+  //   if (user) {
+  //     sessionStorage.setItem("userData", JSON.stringify(user))
+  //   }
+  // }, [loggedInUserInfo])
+  
+ 
+  // useEffect(() => {
+  //   console.log("userEditProfileForm", userEditProfileForm)
+  // }, [userEditProfileForm])
 
   const handleUserEdit = (e) => {
     console.log("handleUserEdit")
@@ -156,6 +165,7 @@ const UserEditProfile = () => {
                       />
                     </svg>
                     <input
+                      // value={userEditProfileForm.avatar != "" ? userEditProfileForm.avatar : loggedInUserInfo.avatar}
                       value={userEditProfileForm.avatar}
                       onChange={(e) =>
                         setUserEditProfileForm({
@@ -180,6 +190,7 @@ const UserEditProfile = () => {
                   </label>
                   <div className="mt-2.5">
                     <input
+                      // value={userEditProfileForm.email != "" ? userEditProfileForm.email : loggedInUserInfo.email}
                       value={userEditProfileForm.email}
                       onChange={(e) =>
                         setUserEditProfileForm({
@@ -205,6 +216,7 @@ const UserEditProfile = () => {
                   </label>
                   <div className="mt-2.5">
                     <input
+                      // value={userEditProfileForm.firstName != "" ? userEditProfileForm.firstName : loggedInUserInfo.firstName}
                       value={userEditProfileForm.firstName}
                       onChange={(e) =>
                         setUserEditProfileForm({
@@ -230,6 +242,7 @@ const UserEditProfile = () => {
                   </label>
                   <div className="mt-2.5">
                     <input
+                      // value={userEditProfileForm.lastName != "" ? userEditProfileForm.lastName : loggedInUserInfo.lastName}
                       value={userEditProfileForm.lastName}
                       onChange={(e) =>
                         setUserEditProfileForm({
@@ -255,6 +268,7 @@ const UserEditProfile = () => {
                   </label>
                   <div className="mt-2.5">
                     <input
+                      // value={userEditProfileForm.username != "" ? userEditProfileForm.username : loggedInUserInfo.username}
                       value={userEditProfileForm.username}
                       onChange={(e) =>
                         setUserEditProfileForm({
@@ -304,6 +318,7 @@ const UserEditProfile = () => {
                         </svg>
                       </div>
                       <input
+                        // value={userEditProfileForm.phoneNumber != "" ? userEditProfileForm.phoneNumber : loggedInUserInfo.phoneNumber}
                         value={userEditProfileForm.phoneNumber}
                         onChange={(e) =>
                           setUserEditProfileForm({
@@ -330,6 +345,7 @@ const UserEditProfile = () => {
                   </label>
                   <div className="mt-2.5">
                     <input
+                      // value={userEditProfileForm.address != "" ? userEditProfileForm.address : loggedInUserInfo.address}
                       value={userEditProfileForm.address}
                       onChange={(e) =>
                         setUserEditProfileForm({
@@ -355,6 +371,7 @@ const UserEditProfile = () => {
                   </label>
                   <div className="mt-2.5">
                     <input
+                      // value={userEditProfileForm.city != "" ? userEditProfileForm.city : loggedInUserInfo.city}
                       value={userEditProfileForm.city}
                       onChange={(e) =>
                         setUserEditProfileForm({
@@ -379,6 +396,7 @@ const UserEditProfile = () => {
                   </label>
                   <div className="mt-2.5">
                     <select
+                      // value={userEditProfileForm.state != "" ? userEditProfileForm.state : loggedInUserInfo.state}
                       value={userEditProfileForm.state}
                       onChange={(e) =>
                         setUserEditProfileForm({
@@ -409,6 +427,7 @@ const UserEditProfile = () => {
                   </label>
                   <div className="mt-2.5">
                     <input
+                      // value={userEditProfileForm.zipCode != "" ? userEditProfileForm.zipCode : loggedInUserInfo.zipCode}
                       value={userEditProfileForm.zipCode}
                       onChange={(e) =>
                         setUserEditProfileForm({
