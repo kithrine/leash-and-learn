@@ -37,9 +37,9 @@ const DogAddModal = ({setShowAddDogModal, loggedInEmail}) => {
 
   }, [user])
   
-  useEffect(() => {
-    console.log("addDogForm", addDogForm)
-  }, [addDogForm])
+  // useEffect(() => {
+  //   console.log("addDogForm", addDogForm)
+  // }, [addDogForm])
 
   useEffect(() => {
     console.log("DogAddModal useEffect ", loggedInEmail)

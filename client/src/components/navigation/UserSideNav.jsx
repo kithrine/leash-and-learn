@@ -11,7 +11,7 @@ const UserSideNav = ({ handleLogout, loggedInEmail }) => {
   // const loggedInEmail = user.email
   const [ loading, setLoading ] = useState(true)
   const userId = user.id
-  console.log("userId in UserSideNav", userId)
+  // console.log("userId in UserSideNav", userId)
 
   useEffect(() => {
     dispatch(userGetOne(loggedInEmail))

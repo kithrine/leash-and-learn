@@ -34,6 +34,14 @@ const userService = {
       `${import.meta.env.VITE_NODE_SERVER_URL}/users/${userId}/dogs`,
       createDogInfo
     )
+  },
+  updateDog: async (userId, dogId, editDogForm) => {
+    const updateDogInfo = { userId, dogId, editDogForm}
+    console.log("all 3 things in userService for updating Dog", updateDogInfo)
+    return await axios.put(
+      `${import.meta.env.VITE_NODE_SERVER_URL}/users/${userId}/dogs/${dogId}`,
+      updateDogInfo
+    )
   }
   
 }
