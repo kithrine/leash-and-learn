@@ -4,16 +4,17 @@ import cors from "cors"
 import mongoose from "mongoose"
 import userIndex from "./routes/users/userIndex.js"
 import trainingClassIndex from "./routes/trainingClasses/trainingClassIndex.js"
-import builderIndex from "./routes/builders/builderIndex.js"
-import contactIndex from "./routes/contactUs/contactIndex.js"
-import blogIndex from "./routes/blog/blogIndex.js"
+import builderIndex from "./builders/builderIndex.js"
+import contactIndex from "./contactUs/contactIndex.js"
+import blogIndex from "./blog/blogIndex.js"
+import promptIndex from "./prompt/promptIndex.js"
 
 console.log(process.env.MONGODB_URL)
 
 const app = express()
 app.use(express.json())
 app.use(cors())
-const port = 8888
+const port = process.env.EXPRESS_PORT || 8888
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -24,6 +25,7 @@ app.use("/training-classes", trainingClassIndex)
 app.use("/builders", builderIndex)
 app.use("/contact", contactIndex)
 app.use("/blog", blogIndex)
+app.use("/prompt", promptIndex)
 
 app.all("*", (req, res) => {
   res.status(404).json({
