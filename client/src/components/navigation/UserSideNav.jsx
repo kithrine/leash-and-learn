@@ -10,7 +10,7 @@ const UserSideNav = ({ handleLogout, loggedInEmail }) => {
   // console.log("user.email", user.email)
   // const loggedInEmail = user.email
   const [ loading, setLoading ] = useState(true)
-  const userId = user.id
+  // const userId = user.id
   // console.log("userId in UserSideNav", userId)
 
   useEffect(() => {

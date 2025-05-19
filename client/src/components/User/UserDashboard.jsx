@@ -25,6 +25,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
   const [dogToDelete, setDogToDelete] = useState({})
   const [showDogActions, setShowDogActions] = useState(false)
   const [loading, setLoading] = useState(true)
+  
   useEffect(() => {
     dispatch(userGetOne(loggedInEmail))
   }, [])
@@ -726,15 +727,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                           <div>Additional Notes: {dog.additionalNotes}</div>
                         </div>
                       </div>
-                      {showDeleteDogModal && dogToDelete._id === dog._id && (
-        <DogDeleteModal
-          setShowDeleteDogModal={setShowDeleteDogModal}
-          dogToDelete={dogToDelete}
-          userId={userId}
-        />
-      )}
                     </div>
-                    
                   ))}
                 </div>
               </div>
@@ -994,7 +987,13 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
         />
       )}
 
-      
+      {showDeleteDogModal && (
+        <DogDeleteModal
+          setShowDeleteDogModal={setShowDeleteDogModal}
+          dogToDelete={dogToDelete}
+          userId={userId}
+        />
+      )}
 
       {showAddDogModal && (
         <DogAddModal

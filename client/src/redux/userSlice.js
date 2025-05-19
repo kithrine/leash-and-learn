@@ -120,16 +120,16 @@ export const userSlice = createSlice({
 
       // User Get One
       .addCase(userGetOne.pending, (state, action) => {
-        console.log("userSlice userGetOne.pending", action.payload)
+        // console.log("userSlice userGetOne.pending", action.payload)
         state.loading = true
       })
       .addCase(userGetOne.fulfilled, (state, action) => {
-        console.log("userSlice userGetOne.fulfilled", action.payload)
+        // console.log("userSlice userGetOne.fulfilled", action.payload)
         state.loading = false
         state.user = action.payload
       })
       .addCase(userGetOne.rejected, (state, action) => {
-        console.log("userSlice userGetOne.rejected", action.payload)
+        // console.log("userSlice userGetOne.rejected", action.payload)
         state.loading = false
       })
 

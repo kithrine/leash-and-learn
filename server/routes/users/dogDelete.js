@@ -11,9 +11,9 @@ const dogDelete = async (req, res) => {
     res.status(500).json({ message: "Dog information not valid." });
   } else {
     const deleteDog = await userModel.updateOne({ _id: userId }, { $pull: { dogs: { _id: dogId } }});
-    const getDog = await userModel.findOne({ userId })
+    const getDog = await userModel.findOne({  _id: userId })
     console.log("deleteDog", deleteDog);
-    console.log("getDog", getDog);
+    console.log("!!!!!!!!!!!!!!!!!!getDog", getDog);
 
     res.status(200).json({ success: true, message: "Dog deleted.", user: getDog });
   }
