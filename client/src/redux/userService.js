@@ -42,6 +42,12 @@ const userService = {
       `${import.meta.env.VITE_NODE_SERVER_URL}/users/${userId}/dogs/${dogId}`,
       updateDogInfo
     )
+  },
+  deleteDog: async (userId, dogId) => {
+    console.log("Delete Dog Redux Service, userId, dogId", userId, dogId)
+    return await axios.delete(
+      `${import.meta.env.VITE_NODE_SERVER_URL}/users/${userId}/dogs/${dogId}`
+    )
   }
   
 }
