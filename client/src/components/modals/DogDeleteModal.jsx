@@ -2,12 +2,12 @@ import { useDispatch } from "react-redux"
 import { deleteDog } from "../../redux/userSlice"
 
 
-const DogDeleteModal = ({ setShowDeleteDogModal, dogById, userId, dog}) => {
+const DogDeleteModal = ({ setShowDeleteDogModal, dogToDelete, userId, dog}) => {
   const dispatch = useDispatch()
 
-  const handleDogDelete = (dogbyId) => {
-    console.log("handleDogDelete", userId, dogbyId)
-    dispatch(deleteDog({ userId: userId, dogId: dog._id }))
+  const handleDogDelete = (dogToDelete) => {
+    console.log("handleDogDelete", userId, dogToDelete)
+    dispatch(deleteDog({ userId: userId, dogId: dogToDelete._id }))
     console.log("is DogDelete working?")
   }
   return (
@@ -36,7 +36,7 @@ const DogDeleteModal = ({ setShowDeleteDogModal, dogById, userId, dog}) => {
         </div>
         <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
           <button 
-          onClick={() => handleDogDelete(dogbyId)}
+          onClick={() => handleDogDelete(dogToDelete)}
           type="button" className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Delete</button>
           <button 
           onClick={() => setShowDeleteDogModal(false)}

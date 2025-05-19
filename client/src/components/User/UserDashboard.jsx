@@ -22,7 +22,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
   const [showDeleteDogModal, setShowDeleteDogModal] = useState(false)
   // const [testDeleteModal, setTestDeleteModal] = useState(true)
   const [dogEditForm, setDogEditForm] = useState({})
-  const [dogById, setDogById] = useState({})
+  const [dogToDelete, setDogToDelete] = useState({})
   const [showDogActions, setShowDogActions] = useState(false)
   const [loading, setLoading] = useState(true)
   useEffect(() => {
@@ -64,7 +64,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
       setShowDeleteDogModal(true)
       setDogEditForm(dog)
     }
-    console.log("dog delete dogById", dogById)
+    console.log("dog delete dogToDelete", dogToDelete)
 
   }
 
@@ -635,7 +635,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                           <button
                             onClick={() => {
                               setShowDogActions(true)
-                              setDogById(dog)
+                              setDogToDelete(dog)
                             }}
                             id="dropdownButton"
                             data-dropdown-toggle="dropdown"
@@ -652,7 +652,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                             </svg>
                           </button>
 
-                          {showDogActions && dogById._id === dog._id && (
+                          {showDogActions && dogToDelete._id === dog._id && (
                             <div
                               id="dropdown"
                               class="z-10 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
@@ -726,7 +726,15 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                           <div>Additional Notes: {dog.additionalNotes}</div>
                         </div>
                       </div>
+                      {showDeleteDogModal && dogToDelete._id === dog._id && (
+        <DogDeleteModal
+          setShowDeleteDogModal={setShowDeleteDogModal}
+          dogToDelete={dogToDelete}
+          userId={userId}
+        />
+      )}
                     </div>
+                    
                   ))}
                 </div>
               </div>
@@ -986,13 +994,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
         />
       )}
 
-      {showDeleteDogModal && (
-        <DogDeleteModal
-          setShowDeleteDogModal={setShowDeleteDogModal}
-          dogById={dogById}
-          userId={userId}
-        />
-      )}
+      
 
       {showAddDogModal && (
         <DogAddModal
