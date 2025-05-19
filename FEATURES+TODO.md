@@ -31,9 +31,9 @@
 ##### Blog Comments
 - [ ] * Must have an account to post a comment
 - [ ] Put a reminder by the start of the blog comments that you MUST have an account in order to post a comment
-- [ ] Add blog comment
-- [ ] Edit blog comment
-- [ ] Delete blog comment
+- [x] Add blog comment
+- [x] Edit blog comment
+- [x] Delete blog comment
 - [ ] * Make sure that ONLY the user that posted the blog comment can edit or delete it
 - [ ] * Make sure the BM and Trainers also have access to deleting comments
 - [ ] Ability to "like" a comment
@@ -98,6 +98,7 @@
 - [ ] Archive Training Class
 - [ ] Create a placeholder caption under the name in the Training Class create for example syntax of the naming convention
 - [ ] Update the trainingClassGetMany by using email instead of username
+- [ ] Need to change Training Class Schema because the customer's array is not proper (maybe move customer's array to under training classes instead of under sessions)
 ##### Sessions
 - [x] Add new Session
 - [x] Update Session
@@ -112,7 +113,7 @@
 
 #### TRAINER DASHBOARD
 ##### Profile
-- [ ] Ability to edit profile
+- [x] Ability to edit profile
 
 #### USER DASHBOARD
 ##### Profile
@@ -122,9 +123,9 @@
 - [ ] Ability to upload an avatar
 - [ ] Liked/Favorited blog posts appear on user's profile page
 ##### Dogs
-- [ ] Add dog(s)
-- [ ] Edit dog(s)
-- [ ] Delete dog(s)
+- [x] Add dog(s)
+- [x] Edit dog(s)
+- [x] Delete dog(s)
 - [ ] Show Happy Birthday picture on Dog Card when it is the dog's birthday
 ##### Enroll
 - [ ] Ability for user to enroll in a Training Class

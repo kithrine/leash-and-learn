@@ -2,17 +2,17 @@ import promptModel from "./promptModel.js"
 import axios from "axios"
 
 const promptCreate =  async (req, res) => {
-  const { prompt, model } = req.body
-  console.log("prompt,model", prompt, model)
+  const { question, model } = req.body
+  console.log("question, model", question, model)
   // Validation
   if (
-    (!prompt || prompt == "")
+    (!question || question == "")
   ) {
     res.status(500).json({ "message": "Prompt input not valid."})
   } 
   else {
     
-    const response = await axios.post(`${process.env.OLLAMA_API_URL}`, { prompt, model })
+    const response = await axios.post(`${process.env.OLLAMA_API_URL}`, { question, model })
     console.log("response", response)
 
     let responseText = ""
@@ -28,7 +28,7 @@ const promptCreate =  async (req, res) => {
     }
     console.log("responseText", responseText)
 
-    const promptResponse = await promptModel.create({ prompt, model, answer: responseText })
+    const promptResponse = await promptModel.create({ question, model, answer: responseText })
     console.log("promptResponse", promptResponse)
 
     res.status(200).json({ "success": true, "message": "Prompt created.", prompt: promptResponse })

@@ -1,5 +1,5 @@
 import trainingClassModel from "./trainingClassModel.js"
-import builderModel from "../../builders/builderModel.js"
+import builderModel from "../builders/builderModel.js"
 import userModel from "../users/userModel.js"
 
 const trainingClassCreate =  async (req, res) => {
