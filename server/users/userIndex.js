@@ -7,7 +7,7 @@ import userGetMany from "./userGetMany.js"
 import userGetOne from "./userGetOne.js"
 import userCreate from "./userCreate.js"
 import userUpdate from "./userUpdate.js"
-import dogCreate from "./DogCreate.js"
+import dogCreate from "./dogCreate.js"
 import dogUpdate from "./DogUpdate.js"
 import dogDelete from "./dogDelete.js"
 

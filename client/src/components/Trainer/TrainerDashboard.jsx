@@ -8,7 +8,7 @@ import LineChartTrainer from "../charts/LineChartTrainer"
 // import BarChartTotalNumberOfDogsPerService from "./BarChartTotalNumberOfDogsPerService";
 // import LineChartTotalDogsEnrolledPerServicePastYear from "./LineChartTotalDogsEnrolledPerServicePastYear"
 
-const TrainerDashboard = () => {
+const TrainerDashboard = ({loggedInEmail}) => {
   const navigate = useDispatch();
   const dispatch = useDispatch();
 
@@ -19,6 +19,12 @@ const TrainerDashboard = () => {
   useEffect(() => {
     dispatch(trainingClassGetMany(user.username));
   }, []);
+
+  useEffect(() => {
+    dispatch(userGetOne(loggedInEmail))
+  }, [])
+
+
   return (
     <>
       <TrainerSideNav />

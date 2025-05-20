@@ -15,6 +15,7 @@ const TrainerSideNav= () => {
       const logoutToken = token.split(",")[0];
       dispatch(logout(logoutToken));
     }
+    dispatch(chatLogout())
     // Make service call to logout
   };
 

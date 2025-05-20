@@ -37,10 +37,10 @@ const Dashboard = () => {
   return (
     <>
     {user.role.includes("Business Manager") &&
-    (<><BMDashboard /></>) }
+    (<><BMDashboard loggedInEmail={loggedInEmail} /></>) }
 
     {user.role.includes("Trainer") &&
-    (<TrainerDashboard />) }
+    (<TrainerDashboard loggedInEmail={loggedInEmail} />) }
 
     {user.role.includes("User") &&
     (<UserDashboard loggedInEmail={loggedInEmail} userId={userId} />) }

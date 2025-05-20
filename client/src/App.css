@@ -74,3 +74,30 @@
   background-color: #35c0ae;
   height: 250px;
 }
+
+.arrow { /* This will be our arrow */
+  width: 0;
+  height: 0;
+  /* Left border for the shape of the arrow head */
+  border-left: 5px solid transparent;  
+  border-right: 5px solid transparent;
+  /* Bottom border to connect with the popover */
+  border-bottom: 10px solid #333; 
+}
+
+/* Loading Dots CSS stuff */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #35c0ad;
+  /* background: linear-gradient(to right, orange, hotpink, yellow); */
+  will-change: transform;
+}
