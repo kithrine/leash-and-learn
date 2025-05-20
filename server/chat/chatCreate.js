@@ -3,17 +3,17 @@ import axios from "axios"
 
 const chatCreate =  async (req, res) => {
   // const { prompt } = req.body
-  const { model, prompt } = req.body
-  console.log("prompt, model", model, prompt)
+  const {  email, prompt, model } = req.body
+  console.log("prompt, model", email, prompt, model)
   // Validation
   if (
     (!prompt || prompt == "")
   ) {
-    res.status(500).json({ "message": "Prompt input not valid."})
+    res.status(500).json({ "message": "Chat input not valid."})
   } 
   else {
     
-    const response = await axios.post(`${process.env.OLLAMA_API_URL}`, { model: "gemma2", prompt })
+    const response = await axios.post(`${process.env.OLLAMA_API_URL}`, { prompt, model: "gemma2" })
     console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!response", response)
 
 
@@ -31,7 +31,7 @@ const chatCreate =  async (req, res) => {
     }
     console.log("responseText", responseText)
 
-    const chatResponse = await chatModel.create({ prompt, model, answer: responseText })
+    const chatResponse = await chatModel.create({ email, prompt, model, answer: responseText })
     console.log("chatResponse", chatResponse)
 
     res.status(200).json({ "success": true, "message": "Chat created.", chat: chatResponse })

@@ -7,8 +7,12 @@ import Markdown from "react-markdown"
 
 const ChatInterface = ({ setShowChatInterface }) => {
   const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.users)
   const { chat, loading } = useSelector((state) => state.chat)
+  const token = sessionStorage.getItem("token");
+
   const [chatForm, setChatForm] = useState({
+    email: token ? user.email : "",
     prompt: "",
     model: "gemma2",
     date: new Date()
