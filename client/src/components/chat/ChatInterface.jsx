@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addChat } from '../../redux/chatSlice'
+import { addChat, getChatsByEmail } from '../../redux/chatSlice'
 import LoadingThreeDotsJumping from '../reactbits+framer-motion/LoadingDots'
 import Markdown from "react-markdown"
 
@@ -18,6 +18,10 @@ const ChatInterface = ({ setShowChatInterface }) => {
     date: new Date()
   })
   const [ finalResponse, setFinalResponse ] = useState("")
+
+  useEffect(() => {
+    dispatch(getChatsByEmail(user.email));
+  }, []);
 
   const handleAIQuestion = async (e) => {
     e.preventDefault()

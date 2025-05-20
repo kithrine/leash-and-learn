@@ -83,6 +83,7 @@
 
 ### TRAINING CLASSES/SESSIONS
 - [x] Builders for 8-week Training Class Sessions automatically build once a new class is created by the BM, depending on the type of class
+- [ ] Change grabbing the training classes from using the user.username to using the user.email accross the entire app
 
 ### DASHBOARDS  
 - [x] Dashboards protected in a Private Route

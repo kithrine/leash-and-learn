@@ -10,7 +10,7 @@ const chatGetMany =  async (req, res) => {
   } 
   else {
     // const getChats = await chatModel.find({ $or: [{"users.email": email}, {"trainer.email": email }] })
-    const getChats = await chatModel.find({"users.email": email})
+    const getChats = await chatModel.find({email})
     console.log("getChats", getChats)
     res.status(200).json({ "success": true, "chats": getChats })
   }
