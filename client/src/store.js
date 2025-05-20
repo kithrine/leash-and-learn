@@ -6,7 +6,7 @@ import builderReducer from "./redux/builderSlice";
 import userReducer from './redux/userSlice'
 import contactReducer from "./redux/contactSlice"
 import blogReducer from "./redux/blogSlice"
-import promptReducer from "./redux/promptSlice"
+import chatReducer from "./redux/chatSlice"
 
 const preloadedState = () => {
   if (sessionStorage.getItem("token") !== null)
@@ -35,7 +35,7 @@ export const store = configureStore({
     users: userReducer,
     contact: contactReducer,
     blog: blogReducer,
-    prompt: promptReducer
+    chat: chatReducer
   },
   preloadedState: preloadedState(),
   middleware: (getDefaultMiddleware) =>

@@ -27,6 +27,7 @@ import BlogList from "./pages/blog/BlogList";
 import AddBlog from "./pages/blog/AddBlog";
 import BlogDetail from "./pages/blog/BlogDetail";
 import UserEditProfile from "./components/User/UserEditProfile";
+import ChatButton from "./components/chat/chatButton";
 
 function App() {
   const dispatch = useDispatch();
@@ -81,6 +82,7 @@ function App() {
     <>
       <ToastContainer />
       <NavBar />
+      <ChatButton />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
