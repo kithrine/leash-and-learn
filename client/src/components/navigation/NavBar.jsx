@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/authSlice";
+import { chatLogout } from "../../redux/chatSlice";
 
 const NavBar = () => {
   const location = useLocation();
@@ -18,6 +19,7 @@ const NavBar = () => {
       const logoutToken = token.split(",")[0];
       dispatch(logout(logoutToken));
     }
+    dispatch(chatLogout())
     // Make service call to logout
   };
 

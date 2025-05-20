@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router"
 import { useSelector, useDispatch } from "react-redux"
 import { logout } from "../../redux/authSlice"
 
-const BMSideNav = () => {
+const BMSideNav = ({loggedInEmail}) => {
   const dispatch = useDispatch()
   const { trainingClasses } = useSelector((state) => state.trainingClass)
   const { contacts } = useSelector((state) => state.contact)
@@ -15,6 +15,7 @@ const BMSideNav = () => {
       const logoutToken = token.split(",")[0];
       dispatch(logout(logoutToken));
     }
+    dispatch(chatLogout())
     // Make service call to logout
   };
 

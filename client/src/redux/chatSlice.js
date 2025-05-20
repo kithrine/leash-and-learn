@@ -5,19 +5,13 @@ const initialState = {
   loading: false,
   success: false,
   chat: {
+    email: "",
     prompt: "",
     answer: "",
     model: "",
     date: ""
   },
-  chats: [
-    {
-      prompt: "",
-      answer: "",
-      model: "",
-      date: ""
-    },
-  ],
+  chats: [],
 };
 
 export const addChat = createAsyncThunk("chat/add", async (chatForm) => {
@@ -40,7 +34,12 @@ export const chatSlice = createSlice({
     chatSearched(state, action) {
         console.log("chatSearched searchText", action.payload)
         state.searchText = action.payload
+    },
+    chatLogout: (state) => {
+      console.log("chatLogout refreshChats")
+      state.chats = []
     }
+
   },
   extraReducers: (builder) => {
     builder
@@ -84,6 +83,6 @@ export const chatSlice = createSlice({
   },
 });
 
-export const { chatSearched } = chatSlice.actions;
+export const { chatSearched, chatLogout } = chatSlice.actions;
 
 export default chatSlice.reducer;

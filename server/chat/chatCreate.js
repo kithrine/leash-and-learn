@@ -34,8 +34,13 @@ const chatCreate =  async (req, res) => {
     const chatResponse = await chatModel.create({ email, prompt, model, answer: responseText })
     console.log("chatResponse", chatResponse)
 
+    // const chats = await chatModel.find({email})
+
     res.status(200).json({ "success": true, "message": "Chat created.", chat: chatResponse })
+    // res.status(200).json({ "success": true, "message": "Chat created.", chat: chats })
   }
 }
 
 export default chatCreate
+
+// const getChats = await chatModel.find({ $or: [{"users.email": email}, {"trainer.email": email }] })

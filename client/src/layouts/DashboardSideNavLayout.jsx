@@ -51,14 +51,14 @@ const DashboardSideNavLayout = () => {
       {user.role.includes("Business Manager") && (
         <>
           {/* <BMDashboard /> */}
-          <BMSideNav />
+          <BMSideNav loggedInEmail={loggedInEmail} />
         </>
       )}
 
       {user.role.includes("Trainer") && (
         <>
           {/* <TrainerDashboard /> */}
-          <TrainerSideNav />
+          <TrainerSideNav loggedInEmail={loggedInEmail} />
         </>
       )}
 

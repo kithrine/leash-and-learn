@@ -2,18 +2,23 @@ import { useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { trainingClassGetAll } from "../../redux/trainingClassSlice";
+import { userGetOne } from "../../redux/userSlice";
 import BMSideNav from "../navigation/BMSideNav";
 import DashboardFooter from "../footers/DashboardFooter";
 import PieChartMaleToFemaleDogs from "../charts/PieChartMaleToFemaleDogs";
 import BarChartTotalNumberOfDogsPerService from "../charts/BarChartTotalNumberOfDogsPerService";
 import LineChartTotalDogsEnrolledPerServicePastYear from "../charts/LineChartTotalDogsEnrolledPerServicePastYear"
 
-const BMDashboard = () => {
+const BMDashboard = ({ loggedInEmail }) => {
   const navigate = useDispatch();
   const dispatch = useDispatch();
 
   const { trainingClasses } = useSelector((state) => state.trainingClass);
   // console.log("BMTrainingClassesDashboard trainingClasses", trainingClasses);
+
+  useEffect(() => {
+    dispatch(userGetOne(loggedInEmail))
+  }, [])
 
   useEffect(() => {
     dispatch(trainingClassGetAll());

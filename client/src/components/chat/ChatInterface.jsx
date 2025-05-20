@@ -1,15 +1,14 @@
-import { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { addChat, getChatsByEmail } from '../../redux/chatSlice'
-import LoadingThreeDotsJumping from '../reactbits+framer-motion/LoadingDots'
+import { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { addChat, getChatsByEmail } from "../../redux/chatSlice"
+import LoadingThreeDotsJumping from "../reactbits+framer-motion/LoadingDots"
 import Markdown from "react-markdown"
-
 
 const ChatInterface = ({ setShowChatInterface }) => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.users)
-  const { chat, loading } = useSelector((state) => state.chat)
-  const token = sessionStorage.getItem("token");
+  const { chats, chat, loading } = useSelector((state) => state.chat)
+  const token = sessionStorage.getItem("token")
 
   const [chatForm, setChatForm] = useState({
     email: token ? user.email : "",
@@ -17,11 +16,20 @@ const ChatInterface = ({ setShowChatInterface }) => {
     model: "gemma2",
     date: new Date()
   })
-  const [ finalResponse, setFinalResponse ] = useState("")
+  const [finalResponse, setFinalResponse] = useState("")
 
   useEffect(() => {
-    dispatch(getChatsByEmail(user.email));
-  }, []);
+    if (token) {
+      dispatch(getChatsByEmail(user.email))
+    }
+  }, [user])
+
+  useEffect(() => {
+    const historyEnd = document.getElementById("historyEnd")
+    if (historyEnd) {
+      historyEnd.scrollIntoView({ behavior: "smooth" })
+    }
+  }, [chats])
 
   const handleAIQuestion = async (e) => {
     e.preventDefault()
@@ -71,31 +79,106 @@ const ChatInterface = ({ setShowChatInterface }) => {
             {/* <!-- Modal body --> */}
             <form onSubmit={handleAIQuestion} className="p-4 md:p-5">
               <div className="mb-5 flex flex-col">
-                <div className="w-full h-[50vh] bg-gray-50 overflow-y-auto rounded-lg border-gray-300 border">
-                {loading ? (
-            <div className="mt-70 ml-24">
-              <LoadingThreeDotsJumping />
-            </div>
-          ) : (
-            <>
-          
-                <p className="font-bold font-palanquin tracking-wider text-lg">
-                  {chat.prompt}
-                </p>
-            
-              <div className={`px-3 py-1`}>
-                <p className="font-instrument text-lg">
-                  {chat.answer.length > 0 && (
-                    <Markdown>{chat.answer}</Markdown>
-                  )}
-                </p>
-              </div>
-            </>
-          )}
-                </div>
-                
+                <div className="w-full h-[50vh] bg-gray-50 overflow-y-auto rounded-lg border-gray-300 border pb-4">
+                  {chats.map((chat, index) => (
+                    <div className="flex flex-col space-y-3 px-2">
+                      <div class="flex flex-row-reverse gap-2.5 mt-8">
+                        {chat.prompt !== "" && (
+                          <>
+                            <img
+                              class="w-8 h-8 rounded-full"
+                              src="/docs/images/people/profile-picture-3.jpg"
+                              alt="Jese image"
+                            />
+                            <div class="flex flex-col gap-1 w-full max-w-[320px]">
+                              <div class="flex flex-row-reverse items-center gap-x-2 rtl:space-x-reverse">
+                                <span class="text-sm font-semibold text-gray-900 dark:text-white">
+                                  You
+                                </span>
+                                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                                  {new Date(chat.date).toLocaleString("en-US", {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                    hour: "numeric",
+                                    minute: "numeric"
+                                  })}
+                                </span>
+                              </div>
+                              <div class="flex flex-col leading-1.5 p-4 border-blue-200 bg-blue-100 rounded-es-xl rounded-ee-xl rounded-ss-xl dark:bg-gray-700 drop-shadow-xs">
+                                <p class="text-sm font-normal text-gray-900 dark:text-white">
+                                  {" "}
+                                  {chat.prompt}
+                                </p>
+                              </div>
+                            </div>
+                          </>
+                        )}
+                      </div>
 
-                <div className="w-full">
+                      <div class="flex items-start gap-2.5">
+                        {chat.answer !== "" && (
+                          <>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="currentColor"
+                              className="bi bi-robot w-8 h-8"
+                              viewBox="0 0 16 16">
+                              <path d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5M3 8.062C3 6.76 4.235 5.765 5.53 5.886a26.6 26.6 0 0 0 4.94 0C11.765 5.765 13 6.76 13 8.062v1.157a.93.93 0 0 1-.765.935c-.845.147-2.34.346-4.235.346s-3.39-.2-4.235-.346A.93.93 0 0 1 3 9.219zm4.542-.827a.25.25 0 0 0-.217.068l-.92.9a25 25 0 0 1-1.871-.183.25.25 0 0 0-.068.495c.55.076 1.232.149 2.02.193a.25.25 0 0 0 .189-.071l.754-.736.847 1.71a.25.25 0 0 0 .404.062l.932-.97a25 25 0 0 0 1.922-.188.25.25 0 0 0-.068-.495c-.538.074-1.207.145-1.98.189a.25.25 0 0 0-.166.076l-.754.785-.842-1.7a.25.25 0 0 0-.182-.135" />
+                              <path d="M8.5 1.866a1 1 0 1 0-1 0V3h-2A4.5 4.5 0 0 0 1 7.5V8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1v-.5A4.5 4.5 0 0 0 10.5 3h-2zM14 7.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.5A3.5 3.5 0 0 1 5.5 4h5A3.5 3.5 0 0 1 14 7.5" />
+                            </svg>
+                            <div class="flex flex-col gap-1 w-full max-w-[320px]">
+                              <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                                <span class="text-sm font-semibold text-gray-900 dark:text-white">
+                                  Chatbot
+                                </span>
+                                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                                  {new Date(chat.date).toLocaleString("en-US", {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                    hour: "numeric",
+                                    minute: "numeric"
+                                  })}
+                                </span>
+                              </div>
+                              <div class="flex flex-col leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700 drop-shadow-sm">
+                                <p class="text-sm font-normal text-gray-900 dark:text-white">
+                                  {" "}
+                                  {chat.answer.length > 0 && (
+                                    <Markdown>{chat.answer}</Markdown>
+                                  )}
+                                </p>
+                              </div>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                  <div id="historyEnd" />
+
+
+                  {/* <p className="font-bold font-palanquin tracking-wider text-lg">
+                              {chat.prompt}
+                            </p>
+                        
+                          <div className={`px-3 py-1`}>
+                            <p className="font-instrument text-lg">
+                              {chat.answer.length > 0 && (
+                                <Markdown>{chat.answer}</Markdown>
+                              )}
+                            </p>
+                          </div> */}
+                </div>
+
+                {loading && (
+                  <div className="mt-22">
+                    <LoadingThreeDotsJumping />
+                  </div>
+                )}
+
+                <div className="w-full pt-3">
                   <label
                     htmlFor="question"
                     className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
@@ -110,9 +193,9 @@ const ChatInterface = ({ setShowChatInterface }) => {
                     id="question"
                     rows="4"
                     className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                    placeholder="Ask me about dogs!" />
+                    placeholder="Ask me about dogs!"
+                  />
                 </div>
-              
               </div>
               <div className="border-t border-gray-200 pt-4 dark:border-gray-700 md:pt-5">
                 <button
