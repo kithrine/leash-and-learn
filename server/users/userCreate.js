@@ -21,7 +21,7 @@ const userCreate =  async (req, res) => {
     // console.log("hashedPassword", hashedPassword)
     const newUser = await userModel.create({ firstName, lastName, email, username, password: hashedPassword, role: [ role ] })
     console.log("newUser", newUser)
-    res.status(200).json({ "success": true, "message": "User created."})
+    res.status(200).json({ "success": true, "message": "User created." })
   }
 }
 

@@ -7,6 +7,8 @@ import BlogNavigation from "../../components/navigation/BlogNavigation"
 import CommunityGuidelinesModal from "../../components/modals/CommunityGuidelinesModal"
 
 const AddBlog = () => {
+  const { user } = useSelector((state) => state.users)
+
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSubCategory, setSelectedSubCategory] = useState('');
   const [showCommGuideModal, setShowCommGuideModal] = useState(false)
@@ -14,7 +16,7 @@ const AddBlog = () => {
     title: "",
     authorFullName: "",
     authorTitle: "",
-    avatar: "",
+    avatar: user.avatar,
     category: "",
     subCategory: "",
     readTime: "",
@@ -43,6 +45,37 @@ const AddBlog = () => {
   useEffect(() => {
     console.log("blogForm", blogForm)
   }, [blogForm])
+
+  const [avatarFile, setAvatarFile] = useState(null)
+  const [coverPhotoFile, setCoverPhotoFile] = useState(null)
+
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = reject
+    })
+
+  const handleUserAvatarUpload = async (e) => {
+    console.log("handleFileUpload", e)
+    if (e.target.files) {
+      const testString64 = await toBase64(e.target.files[0])
+      setBlogForm({ ...blogForm, avatar: testString64})
+      console.log("This is the testString in handleFileUpload function", testString64)
+      setAvatarFile(e.target.files[0]) // Only works for one file upload
+    }
+  }
+
+  const handleCoverPhotoUpload = async (e) => {
+    console.log("handleFileUpload", e)
+    if (e.target.files) {
+      const testString64 = await toBase64(e.target.files[0])
+      setBlogForm({ ...blogForm, coverPhoto: testString64})
+      console.log("This is the testString in handleFileUpload function", testString64)
+      setCoverPhotoFile(e.target.files[0]) // Only works for one file upload
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -239,10 +272,8 @@ const AddBlog = () => {
                       </svg>
 
                       <input
-                      value={blogForm.avatar}
-                      onChange={(e) =>
-                        setBlogForm({ ...blogForm, avatar: e.target.value })
-                      }
+                      // value={blogForm.avatar}
+                      onChange={handleUserAvatarUpload}
                         type="file"
                         name="avatar"
                         id="avatar"
@@ -324,10 +355,8 @@ const AddBlog = () => {
                           </p>
                         </div>
                         <input 
-                        value={blogForm.coverPhoto}
-                        onChange={(e) =>
-                          setBlogForm({ ...blogForm, coverPhoto: e.target.value })
-                        }
+                        // value={blogForm.coverPhoto}
+                        onChange={handleCoverPhotoUpload}
                         id="dropzone-file" type="file" class="hidden" />
                       </label>
                     </div>
