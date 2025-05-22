@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router"
 import { useSelector, useDispatch } from "react-redux"
-import { addBlog } from "../../redux/blogSlice"
+import { addBlog, updateCoverPhoto } from "../../redux/blogSlice"
 import { toast } from "react-toastify"
 import BlogNavigation from "../../components/navigation/BlogNavigation"
 import CommunityGuidelinesModal from "../../components/modals/CommunityGuidelinesModal"
 
 const AddBlog = () => {
   const { user } = useSelector((state) => state.users)
+  const { blog } = useSelector((state) => state.blog)
 
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSubCategory, setSelectedSubCategory] = useState('');
@@ -49,6 +50,11 @@ const AddBlog = () => {
     console.log("addBlogForm", addBlogForm)
   }, [addBlogForm])
 
+  useEffect(() => {
+    console.log("addBlogForm COVER PHOTO", addBlogForm.coverPhoto)
+    // dispatch(updateCoverPhoto(testString64))
+  }, [addBlogForm.coverPhoto])
+
   const [avatarFile, setAvatarFile] = useState(null)
   const [coverPhotoFile, setCoverPhotoFile] = useState(null)
 
@@ -77,6 +83,7 @@ const AddBlog = () => {
       setAddBlogForm({ ...addBlogForm, coverPhoto: testString64})
       console.log("This is the testString in handleFileUpload function", testString64)
       setCoverPhotoFile(e.target.files[0]) // Only works for one file upload
+      dispatch(updateCoverPhoto(testString64))
     }
   }
 
@@ -98,7 +105,6 @@ const AddBlog = () => {
     // })
 
     dispatch(addBlog(addBlogForm))
-    //Redirect to BlogList (All posts page)
     toast.dark = true
     toast.success("Post added successfully.", {
       position: "top-right",
@@ -107,6 +113,7 @@ const AddBlog = () => {
       className: "dark-toast",
       theme: "dark"
     })
+    //Redirect to BlogList (All posts page)
     navigate("/blog-list")
   }
 
@@ -353,6 +360,44 @@ const AddBlog = () => {
                       Cover Photo
                     </label>
                     <div class="flex items-center justify-center w-full">
+{/* 
+                    {blog.coverPhoto ? (
+                    <img
+                      src={`${blog.coverPhoto}`}
+                      className="size-15 rounded-full"
+                    />
+                  ) : (
+                  //   <svg
+                  //   className="size-16 me-3 text-gray-200 dark:text-gray-700"
+                  //   aria-hidden="true"
+                  //   xmlns="http://www.w3.org/2000/svg"
+                  //   fill="currentColor"
+                  //   viewBox="0 0 20 20">
+                  //   <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                  // </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="40"
+                      height="40"
+                      fill="#708090"
+                      class="bi bi-person-circle"
+                      viewBox="0 0 16 16">
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                      <path
+                        fill-rule="evenodd"
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+                      />
+                    </svg>
+                  )} */}
+
+
+
+
+
+
+
+
+
                       <label
                         for="dropzone-file"
                         class="flex flex-col items-center justify-center w-full h-36 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100">

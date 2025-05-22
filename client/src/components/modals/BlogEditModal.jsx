@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { blogGetOne } from '../../redux/blogSlice'
+import { blogGetOne, updateCoverPhoto } from '../../redux/blogSlice'
 import { useParams } from 'react-router'
 
 const BlogEditModal = ({ handleBlogEdit, setShowBlogEditModal, blogEditForm, setBlogEditForm }) => {
@@ -18,6 +18,38 @@ const BlogEditModal = ({ handleBlogEdit, setShowBlogEditModal, blogEditForm, set
       setBlogEditForm(blog)
     }
   }, [blog])
+
+  const [avatarFile, setAvatarFile] = useState(null)
+  const [coverPhotoFile, setCoverPhotoFile] = useState(null)
+
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = reject
+    })
+
+  const handleUserAvatarUpload = async (e) => {
+    console.log("handleFileUpload", e)
+    if (e.target.files) {
+      const testString64 = await toBase64(e.target.files[0])
+      setAddBlogForm({ ...addBlogForm, avatar: testString64})
+      console.log("This is the testString in handleFileUpload function", testString64)
+      setAvatarFile(e.target.files[0]) // Only works for one file upload
+    }
+  }
+
+  const handleCoverPhotoUpload = async (e) => {
+    console.log("handleFileUpload", e)
+    if (e.target.files) {
+      const testString64 = await toBase64(e.target.files[0])
+      setAddBlogForm({ ...addBlogForm, coverPhoto: testString64})
+      console.log("This is the testString in handleFileUpload function", testString64)
+      setCoverPhotoFile(e.target.files[0]) // Only works for one file upload
+      dispatch(updateCoverPhoto(testString64))
+    }
+  }
   
   return (
     <>
@@ -79,23 +111,42 @@ const BlogEditModal = ({ handleBlogEdit, setShowBlogEditModal, blogEditForm, set
                       required=""
                     />
                   </div>
-                  <div class="w-full">
+                  <div class="w-full hidden">
                     <label
-                      for="authorName"
+                      for="authorFirstName"
                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                      Author Full Name
+                      Author First Name
                     </label>
                     <input
-                    value={blogEditForm.authorFullName}
+                    value={blogEditForm.authorFirstName}
                     onChange={(e) =>
-                      setBlogEditForm({ ...blogEditForm, authorFullName: e.target.value })
+                      setBlogEditForm({ ...blogEditForm, authorFirstName: e.target.value })
                     }
                       type="text"
-                      name="authorName"
-                      id="authorName"
+                      name="authorFirstName"
+                      id="authorFirstName"
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      placeholder="First and last name"
-                      required=""
+                      placeholder="First name"
+                      disabled={true}
+                    />
+                  </div>
+                  <div class="w-full hidden">
+                    <label
+                      for="authorLastName"
+                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      Author Last Name
+                    </label>
+                    <input
+                    value={blogEditForm.authorLastName}
+                    onChange={(e) =>
+                      setBlogEditForm({ ...blogEditForm, authorLastName: e.target.value })
+                    }
+                      type="text"
+                      name="authorLastName"
+                      id="authorLastName"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      placeholder="Last name"
+                      disabled={true}
                     />
                   </div>
                   <div class="w-full">
@@ -115,6 +166,29 @@ const BlogEditModal = ({ handleBlogEdit, setShowBlogEditModal, blogEditForm, set
                       placeholder="ex) Job title, 'Dog Lover', etc."
                       required=""
                     />
+                  </div>
+
+                  <div>
+                    <label
+                      for="readTime"
+                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      Read Time
+                    </label>
+                    <div className="flex space-x-2">
+                    <input
+                    value={blogEditForm.readTime}
+                    onChange={(e) =>
+                      setBlogEditForm({ ...blogEditForm, readTime: e.target.value })
+                    }
+                      type="number"
+                      name="readTime"
+                      id="readTime"
+                      class="w-[80%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      placeholder="0"
+                      required
+                    />
+                    <p className="items-center justify-center content-end font-thin">minute(s)</p>
+                    </div>
                   </div>
 
                   <div>
@@ -157,7 +231,7 @@ const BlogEditModal = ({ handleBlogEdit, setShowBlogEditModal, blogEditForm, set
                       <option value="PH">Phones</option>
                     </select>
                   </div>
-                  <div className="">
+                  <div className="hidden">
                     <label htmlFor="avatar" className="block mb-2 text-sm">
                       Avatar
                     </label>
@@ -177,10 +251,8 @@ const BlogEditModal = ({ handleBlogEdit, setShowBlogEditModal, blogEditForm, set
                       </svg>
 
                       <input
-                      value={blogEditForm.avatar}
-                      onChange={(e) =>
-                        setBlogEditForm({ ...blogEditForm, avatar: e.target.value })
-                      }
+                      // value={blogEditForm.avatar}
+                        onChange={handleUserAvatarUpload}
                         type="file"
                         name="avatar"
                         id="avatar"
@@ -189,28 +261,7 @@ const BlogEditModal = ({ handleBlogEdit, setShowBlogEditModal, blogEditForm, set
                       />
                     </div>
                   </div>
-                  <div>
-                    <label
-                      for="readTime"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                      Read Time
-                    </label>
-                    <div className="flex space-x-2">
-                    <input
-                    value={blogEditForm.readTime}
-                    onChange={(e) =>
-                      setBlogEditForm({ ...blogEditForm, readTime: e.target.value })
-                    }
-                      type="number"
-                      name="readTime"
-                      id="readTime"
-                      class="w-[80%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      placeholder="0"
-                      required
-                    />
-                    <p className="items-center justify-center content-end">minute(s)</p>
-                    </div>
-                  </div>
+                  
                   <div class="sm:col-span-2">
                     <label
                       for="body"
@@ -228,7 +279,7 @@ const BlogEditModal = ({ handleBlogEdit, setShowBlogEditModal, blogEditForm, set
                       placeholder="Write about dogs here!"></textarea>
                   </div>
 
-                  {/* <div class="sm:col-span-2">
+                  <div class="sm:col-span-2">
                     <label
                       for="coverPhoto"
                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -237,7 +288,7 @@ const BlogEditModal = ({ handleBlogEdit, setShowBlogEditModal, blogEditForm, set
                     <div class="flex items-center justify-center w-full">
                       <label
                         for="dropzone-file"
-                        class="flex flex-col items-center justify-center w-full h-36 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        class="flex flex-col items-center justify-center w-full h-36 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
                         <div class="flex flex-col items-center justify-center pt-5 pb-6">
                           <svg
                             class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
@@ -262,14 +313,14 @@ const BlogEditModal = ({ handleBlogEdit, setShowBlogEditModal, blogEditForm, set
                           </p>
                         </div>
                         <input 
-                        value={blogEditForm.coverPhoto}
-                        onChange={(e) =>
-                          setBlogEditForm({ ...blogEditForm, coverPhoto: e.target.value })
-                        }
+                        // value={blogEditForm.coverPhoto}
+                        onChange={handleCoverPhotoUpload}
                         id="dropzone-file" type="file" class="hidden" />
                       </label>
                     </div>
-                  </div> */}
+                  </div>
+
+
                 </div>
               <div className="flex items-center space-x-4">
                 <button

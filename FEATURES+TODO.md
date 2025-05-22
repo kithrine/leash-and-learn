@@ -22,7 +22,9 @@
 ##### Blog Posts
 - [x] Blog is public
 - [x] Add new blog
+  - [ ] Make it so it shows the Cover Photo as it changes
 - [x] Edit blog
+  - [ ] Make it so it shows the Cover Photo as it changes
 - [x] Blog Delete
 - [ ] Blog Archive
 - [x] * Make sure that ONLY the user that posted the blog can edit or delete/archive it (added userId to the schema)
@@ -54,6 +56,13 @@
 
 
 ### AI CHAT
+- [x] Has chat communicate with the backend for ollama
+- [x] Floating button in the bottom righthand corner for the user to click on to open it
+- [x] On hover popover with information 
+- [x] Makes sure that it grabs the user's avatar for the chat next to the chat bubble
+- [x] Grabs the chat history according to the user's email
+- [x] Automatically goes to the bottom/most recent chats when opened
+- [ ] Has to fix the chat for users that are not logged in, and showing the most recently asked question and answer for both logged in users and users that are not logged in
 
 
 ### USER LOGIN/LOGOUT

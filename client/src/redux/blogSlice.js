@@ -117,10 +117,14 @@ export const blogSlice = createSlice({
   name: "blog",
   initialState,
   reducers: {
-    blogSearched(state, action) {
+    blogSearched: ((state, action) => {
         console.log("blogSearched searchText", action.payload)
         state.searchText = action.payload
-    }
+    }),
+    updateCoverPhoto: ((state, action) => {
+      console.log("updateCoverPhoto in blogSlice", action.payload)
+      state.blog.coverPhoto
+    })
   },
   extraReducers: (builder) => {
     builder
@@ -295,7 +299,7 @@ export const blogSlice = createSlice({
   },
 });
 
-export const { blogSearched } = blogSlice.actions;
+export const { blogSearched, updateCoverPhoto } = blogSlice.actions;
 
 export default blogSlice.reducer;
 
