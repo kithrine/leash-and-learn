@@ -4,7 +4,8 @@ const blogUpdate = async (req, res) => {
   const { id } = req.params
   const {
     title,
-    authorFullName,
+    authorFirstName,
+    authorLastName,
     authorTitle,
     avatar,
     category,
@@ -20,7 +21,8 @@ const blogUpdate = async (req, res) => {
     { _id: id },
     {
       title,
-      authorFullName,
+      authorFirstName,
+      authorLastName,
       authorTitle,
       avatar,
       category,

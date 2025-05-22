@@ -12,9 +12,10 @@ const AddBlog = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSubCategory, setSelectedSubCategory] = useState('');
   const [showCommGuideModal, setShowCommGuideModal] = useState(false)
-  const [blogForm, setBlogForm] = useState({
+  const [addBlogForm, setAddBlogForm] = useState({
     title: "",
-    authorFullName: "",
+    authorFirstName: user.firstName,
+    authorLastName: user.lastName,
     authorTitle: "",
     avatar: user.avatar,
     category: "",
@@ -27,7 +28,8 @@ const AddBlog = () => {
   })
 
   //   title,
-  //   authorFullName,
+  //   authorFirstName,
+  //   authorLastName,
   //   authorTitle,
   //   avatar,
   //   category,
@@ -43,8 +45,8 @@ const AddBlog = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log("blogForm", blogForm)
-  }, [blogForm])
+    console.log("addBlogForm", addBlogForm)
+  }, [addBlogForm])
 
   const [avatarFile, setAvatarFile] = useState(null)
   const [coverPhotoFile, setCoverPhotoFile] = useState(null)
@@ -61,7 +63,7 @@ const AddBlog = () => {
     console.log("handleFileUpload", e)
     if (e.target.files) {
       const testString64 = await toBase64(e.target.files[0])
-      setBlogForm({ ...blogForm, avatar: testString64})
+      setAddBlogForm({ ...addBlogForm, avatar: testString64})
       console.log("This is the testString in handleFileUpload function", testString64)
       setAvatarFile(e.target.files[0]) // Only works for one file upload
     }
@@ -71,7 +73,7 @@ const AddBlog = () => {
     console.log("handleFileUpload", e)
     if (e.target.files) {
       const testString64 = await toBase64(e.target.files[0])
-      setBlogForm({ ...blogForm, coverPhoto: testString64})
+      setAddBlogForm({ ...addBlogForm, coverPhoto: testString64})
       console.log("This is the testString in handleFileUpload function", testString64)
       setCoverPhotoFile(e.target.files[0]) // Only works for one file upload
     }
@@ -81,20 +83,20 @@ const AddBlog = () => {
     e.preventDefault()
 
     // DO NOT NEED THIS! SETTING STATE ABOVE - NO IDEA WHY THIS IS HERE
-    // setBlogForm({
-    //   title: blogForm.title,
-    //   authorFullName: blogForm.authorFullName,
-    //   authorTitle: blogForm.authorTitle,
-    //   avatar: blogForm.avatar,
-    //   category: blogForm.category,
-    //   subCategory: blogForm.subCategory,
-    //   readTime: blogForm.readTime,
-    //   coverPhoto: blogForm.coverPhoto,
-    //   body: blogForm.body,
+    // setAddBlogForm({
+    //   title: addBlogForm.title,
+    //   authorFullName: addBlogForm.authorFullName,
+    //   authorTitle: addBlogForm.authorTitle,
+    //   avatar: addBlogForm.avatar,
+    //   category: addBlogForm.category,
+    //   subCategory: addBlogForm.subCategory,
+    //   readTime: addBlogForm.readTime,
+    //   coverPhoto: addBlogForm.coverPhoto,
+    //   body: addBlogForm.body,
     //   date: new Date()
     // })
 
-    dispatch(addBlog({ ...blogForm }))
+    dispatch(addBlog(addBlogForm))
     //Redirect to BlogList (All posts page)
     toast.dark = true
     toast.success("Post added successfully.", {
@@ -162,9 +164,9 @@ const AddBlog = () => {
                       Blog Title
                     </label>
                     <input
-                      value={blogForm.title}
+                      value={addBlogForm.title}
                       onChange={(e) =>
-                        setBlogForm({ ...blogForm, title: e.target.value })
+                        setAddBlogForm({ ...addBlogForm, title: e.target.value })
                       }
                       type="text"
                       name="blogTitle"
@@ -174,22 +176,41 @@ const AddBlog = () => {
                       required=""
                     />
                   </div>
-                  <div class="w-full">
+                  <div class="w-full hidden">
                     <label
-                      for="authorName"
+                      for="authorFirstName"
                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                      Author Full Name
+                      Author First Name
                     </label>
                     <input
-                    value={blogForm.authorFullName}
+                    value={addBlogForm.authorFirstName}
                     onChange={(e) =>
-                      setBlogForm({ ...blogForm, authorFullName: e.target.value })
+                      setAddBlogForm({ ...addBlogForm, authorFirstName: e.target.value })
                     }
                       type="text"
-                      name="authorName"
-                      id="authorName"
+                      name="authorFirstName"
+                      id="authorFirstName"
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      placeholder="First and last name"
+                      placeholder="First name"
+                      required=""
+                    />
+                  </div>
+                  <div class="w-full hidden">
+                    <label
+                      for="authorFirstName"
+                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      Author Last Name
+                    </label>
+                    <input
+                    value={addBlogForm.authorLastName}
+                    onChange={(e) =>
+                      setAddBlogForm({ ...addBlogForm, authorLastName: e.target.value })
+                    }
+                      type="text"
+                      name="authorLastName"
+                      id="authorLastName"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      placeholder="Last name"
                       required=""
                     />
                   </div>
@@ -200,9 +221,9 @@ const AddBlog = () => {
                       Author Title
                     </label>
                     <input
-                    value={blogForm.authorTitle}
+                    value={addBlogForm.authorTitle}
                     onChange={(e) =>
-                      setBlogForm({ ...blogForm, authorTitle: e.target.value })
+                      setAddBlogForm({ ...addBlogForm, authorTitle: e.target.value })
                     }
                       name="authorTitle"
                       id="authorTitle"
@@ -214,14 +235,37 @@ const AddBlog = () => {
 
                   <div>
                     <label
+                      for="readTime"
+                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      Read Time
+                    </label>
+                    <div className="flex space-x-2">
+                    <input
+                    value={addBlogForm.readTime}
+                    onChange={(e) =>
+                      setAddBlogForm({ ...addBlogForm, readTime: e.target.value })
+                    }
+                      type="number"
+                      name="readTime"
+                      id="readTime"
+                      class="w-[80%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      placeholder="0"
+                      required
+                    />
+                    <p className="items-center justify-center content-end">minute(s)</p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
                       for="category"
                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                       Category
                     </label>
                     <select
-                    value={blogForm.category}
+                    value={addBlogForm.category}
                     onChange={(e) =>
-                      setBlogForm({ ...blogForm, category: e.target.value })
+                      setAddBlogForm({ ...addBlogForm, category: e.target.value })
                     }
                       id="category"
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
@@ -239,9 +283,9 @@ const AddBlog = () => {
                       Subcategory
                     </label>
                     <select
-                    value={blogForm.subCategory}
+                    value={addBlogForm.subCategory}
                     onChange={(e) =>
-                      setBlogForm({ ...blogForm, subCategory: e.target.value })
+                      setAddBlogForm({ ...addBlogForm, subCategory: e.target.value })
                     }
                       id="subCategory"
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
@@ -252,7 +296,7 @@ const AddBlog = () => {
                       <option value="PH">Phones</option>
                     </select>
                   </div>
-                  <div className="">
+                  <div className="hidden">
                     <label htmlFor="avatar" className="block mb-2 text-sm">
                       Avatar
                     </label>
@@ -272,7 +316,7 @@ const AddBlog = () => {
                       </svg>
 
                       <input
-                      // value={blogForm.avatar}
+                      // value={addBlogForm.avatar}
                       onChange={handleUserAvatarUpload}
                         type="file"
                         name="avatar"
@@ -282,28 +326,7 @@ const AddBlog = () => {
                       />
                     </div>
                   </div>
-                  <div>
-                    <label
-                      for="readTime"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                      Read Time
-                    </label>
-                    <div className="flex space-x-2">
-                    <input
-                    value={blogForm.readTime}
-                    onChange={(e) =>
-                      setBlogForm({ ...blogForm, readTime: e.target.value })
-                    }
-                      type="number"
-                      name="readTime"
-                      id="readTime"
-                      class="w-[80%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      placeholder="0"
-                      required
-                    />
-                    <p className="items-center justify-center content-end">minute(s)</p>
-                    </div>
-                  </div>
+                  
                   <div class="sm:col-span-2">
                     <label
                       for="body"
@@ -311,9 +334,9 @@ const AddBlog = () => {
                       Body
                     </label>
                     <textarea
-                    value={blogForm.body}
+                    value={addBlogForm.body}
                     onChange={(e) =>
-                      setBlogForm({ ...blogForm, body: e.target.value })
+                      setAddBlogForm({ ...addBlogForm, body: e.target.value })
                     }
                       id="body"
                       rows="20"
@@ -330,7 +353,7 @@ const AddBlog = () => {
                     <div class="flex items-center justify-center w-full">
                       <label
                         for="dropzone-file"
-                        class="flex flex-col items-center justify-center w-full h-36 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        class="flex flex-col items-center justify-center w-full h-36 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100">
                         <div class="flex flex-col items-center justify-center pt-5 pb-6">
                           <svg
                             class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
@@ -355,7 +378,7 @@ const AddBlog = () => {
                           </p>
                         </div>
                         <input 
-                        // value={blogForm.coverPhoto}
+                        // value={addBlogForm.coverPhoto}
                         onChange={handleCoverPhotoUpload}
                         id="dropzone-file" type="file" class="hidden" />
                       </label>

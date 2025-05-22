@@ -68,7 +68,7 @@ const BlogList = () => {
                       src={`${blog.coverPhoto}`}
                     />
                     <Link to={`/blog/${blog.id}`}>
-                      <h3 className="pt-7 text-2xl text-white group-hover:text-gray-600">
+                      <h3 className="pt-7 text-2xl text-black group-hover:text-gray-600">
                         <div dangerouslySetInnerHTML={{ __html: blog.title }} />
                       </h3>
                     </Link>
@@ -98,9 +98,10 @@ const BlogList = () => {
                           ).href
                         }
                       /> */}
-                      <div className="text-white">{blog.authorFullName}</div>
-                      {/* <p className="text-white">{blog.authorTitle}</p> */}
-                      <time className=" text-white">
+                      <div className="text-black">{blog.authorFirstName}</div>
+                      <div className="text-black">{blog.authorLastName}</div>
+                      {/* <p className="text-black">{blog.authorTitle}</p> */}
+                      <time className=" text-black">
                         {new Date(blog.date).toLocaleString("en-US", {
                           year: "numeric",
                           month: "long",
@@ -109,15 +110,15 @@ const BlogList = () => {
                       </time>
                       <a
                         href="#"
-                        className="relative z-10 rounded-full px-3 py-1.5 font-medium text-white ">
+                        className="relative z-10 rounded-full px-3 py-1.5 font-medium text-black ">
                         #{blog.category}
                       </a>
-                      <span className="flex items-end text-white">
+                      <span className="flex items-end text-black">
                         {blog.readTime} min read
                       </span>
                     </div>
                     <div className="group relative mb-none">
-                      <div className="mt-5 line-clamp-3 text-md text-white">
+                      <div className="mt-5 line-clamp-3 text-md text-black">
                         <div
                           className="line-clamp-3"
                           dangerouslySetInnerHTML={{ __html: blog.body }}

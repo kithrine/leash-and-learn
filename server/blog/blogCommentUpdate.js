@@ -2,8 +2,8 @@ import blogModel from "./blogModel.js";
 
 const blogCommentUpdate = async (req, res) => {
   const { blogId, commentId } = req.params 
-  const { _id, firstName, lastName, username, comment, timestamp } = req.body;
-  console.log(commentId, firstName, lastName, username, comment, timestamp)
+  const { _id, firstName, lastName, username, avatar, comment, timestamp } = req.body;
+  console.log(commentId, firstName, lastName, username, avatar, comment, timestamp)
 
   // Validation
   if (
@@ -18,7 +18,7 @@ const blogCommentUpdate = async (req, res) => {
     const updateComment = await blogModel.findOneAndUpdate(
       // { "comments._id": _id },
       { _id: blogId, "comments._id": _id },
-      { "$set": { "comments.$": { firstName, lastName, username, comment, timestamp } } },
+      { "$set": { "comments.$": { firstName, lastName, username, avatar, comment, timestamp } } },
       { new: true }
     );
     console.log("updateComment", updateComment);
