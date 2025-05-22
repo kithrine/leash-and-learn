@@ -402,11 +402,21 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                 <div className="mb-4 grid gap-4 sm:grid-cols-2 sm:gap-8 lg:gap-16">
                   <div className="space-y-4">
                     <div className="flex space-x-4">
-                      <img
-                        className="h-16 w-16 rounded-lg"
-                        src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png"
-                        alt="Helene avatar"
-                      />
+                    {user.avatar ? (
+                    <img
+                      src={`${user.avatar}`}
+                      className="size-16 rounded-full"
+                    />
+                  ) : (
+                    <svg
+                    className="size-16 me-3 text-gray-200 dark:text-gray-700"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                  </svg>
+                  )}
                       <div>
                         <span className="mb-2 inline-block rounded bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300">
                           {" "}
@@ -693,11 +703,20 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                           )}
                         </div>
                         <div class="flex flex-col items-center pb-10">
-                          <img
-                            class="w-24 h-24 mb-3 rounded-full shadow-lg"
-                            src="/docs/images/people/profile-picture-3.jpg"
-                            alt="Bonnie image"
-                          />
+
+                        {dog.photo ? (
+                    <img
+                      src={`${dog.photo}`}
+                      className="size-75 mb-3 rounded-full shadow-lg"
+                    />
+                  ) : (
+                    <div className="rounded-full size-75 shadow-lg p-4 flex flex-col items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="78" viewBox="0 -960 960 960" width="78" fill="#666666"><path d="M194-80v-416h60v356h320v-223l102-102q30-30 46-68.5t16-80.5q0-42-16.5-80.5T676-762l-32-33-131 131H333l-53 53-43-42 71-71h180l156-156 75 75q38 38 58 87.5T798-614q-1 54-21 103.5T719-423l-85 85v258H194Zm187-215L180-496q-10-10-15-22.5t-5-26.5q0-14 5-27t15-23l77-78 117 116q27 27 41.5 61.5T430-423q0 35-12.5 68.5T381-295Z"/></svg>
+                     <p className="uppercase text-xs">upload an image of your dog!</p>
+                    </div>
+                
+                  )}
+                          
                           <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
                             {dog.name}
                           </h5>

@@ -46,6 +46,26 @@ const DogAddModal = ({setShowAddDogModal, loggedInEmail}) => {
     dispatch(userGetOne(loggedInEmail))
   }, [])
 
+  const [dogPhoto, setDogPhoto] = useState(null)
+
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = reject
+    })
+
+  const handleFileUpload = async (e) => {
+    console.log("handleFileUpload", e)
+    if (e.target.files) {
+      const testString64 = await toBase64(e.target.files[0])
+      setAddDogForm({ ...addDogForm, photo: testString64})
+      console.log("This is the testString in handleFileUpload function", testString64)
+      setDogPhoto(e.target.files[0]) // Only works for one file upload
+    }
+  }
+
   const handleAddDog = (e) => {
     e.preventDefault()
     console.log("userId:", userId, "dog:", addDogForm);
@@ -1035,10 +1055,8 @@ const DogAddModal = ({setShowAddDogModal, loggedInEmail}) => {
                     Photo{" "}
                   </label>
                   <input
-                    value={addDogForm.photo}
-                    onChange={(e) =>
-                      setAddDogForm({ ...addDogForm, photo: e.target.value})
-                    }
+                    // value={addDogForm.photo}
+                    onChange={handleFileUpload}
                     type="file"
                     id="dogPhoto"
                     className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"

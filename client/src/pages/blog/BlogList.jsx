@@ -65,20 +65,30 @@ const BlogList = () => {
                     className="border rounded-md border-neutral-800 p-10 flex flex-col items-start justify-between">
                     <img
                       className="m-auto rounded-md h-50 w-100"
-                      src={
-                        new URL(
-                          `../../assets/images/${blog.coverPhoto.slice(12)}`,
-                          import.meta.url
-                        ).href
-                      }
+                      src={`${blog.coverPhoto}`}
                     />
                     <Link to={`/blog/${blog.id}`}>
-                      <h3 className="pt-7 text-2xl text-white group-hover:text-gray-600">
+                      <h3 className="pt-7 text-2xl text-black group-hover:text-gray-600">
                         <div dangerouslySetInnerHTML={{ __html: blog.title }} />
                       </h3>
                     </Link>
 
                     <div className="flex items-center gap-x-4 text-xs pt-4">
+                    {blog.avatar ? (
+                    <img
+                      src={`${blog.avatar}`}
+                      className="size-16 rounded-full"
+                    />
+                  ) : (
+                    <svg
+                    className="size-16 me-3 text-gray-200 dark:text-gray-700"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                  </svg>
+                  )}
                       {/* <img
                         className="rounded-full size-12"
                         src={
@@ -88,9 +98,10 @@ const BlogList = () => {
                           ).href
                         }
                       /> */}
-                      <div className="text-white">{blog.authorFullName}</div>
-                      {/* <p className="text-white">{blog.authorTitle}</p> */}
-                      <time className=" text-white">
+                      <div className="text-black">{blog.authorFirstName}</div>
+                      <div className="text-black">{blog.authorLastName}</div>
+                      {/* <p className="text-black">{blog.authorTitle}</p> */}
+                      <time className=" text-black">
                         {new Date(blog.date).toLocaleString("en-US", {
                           year: "numeric",
                           month: "long",
@@ -99,15 +110,15 @@ const BlogList = () => {
                       </time>
                       <a
                         href="#"
-                        className="relative z-10 rounded-full px-3 py-1.5 font-medium text-white ">
+                        className="relative z-10 rounded-full px-3 py-1.5 font-medium text-black ">
                         #{blog.category}
                       </a>
-                      <span className="flex items-end text-white">
+                      <span className="flex items-end text-black">
                         {blog.readTime} min read
                       </span>
                     </div>
                     <div className="group relative mb-none">
-                      <div className="mt-5 line-clamp-3 text-md text-white">
+                      <div className="mt-5 line-clamp-3 text-md text-black">
                         <div
                           className="line-clamp-3"
                           dangerouslySetInnerHTML={{ __html: blog.body }}

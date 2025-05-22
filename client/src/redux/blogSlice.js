@@ -6,7 +6,8 @@ const initialState = {
   success: false,
   blog: {
     title: "",
-    authorFullName: "",
+    authorFirstName: "",
+    authorLastName: "",
     authorTitle: "",
     avatar: "",
     category: "",
@@ -19,6 +20,7 @@ const initialState = {
       firstName: "",
       lastName: "",
       username: "",
+      avatar: "",
       comment: "",
       timestamp: ""
     }]
@@ -26,7 +28,8 @@ const initialState = {
   blogs: [
     {
       title: "",
-      authorFullName: "",
+      authorFirstName: "",
+      authorLastName: "",
       authorTitle: "",
       avatar: "",
       category: "",
@@ -39,6 +42,7 @@ const initialState = {
         firstName: "",
         lastName: "",
         username: "",
+        avatar: "",
         comment: "",
         timestamp: ""
       }]
@@ -46,9 +50,9 @@ const initialState = {
   ],
 };
 
-export const addBlog = createAsyncThunk("blog/add", async (data) => {
-  const { title, authorFullName, authorTitle, avatar, category, subCategory, readTime, body,  coverPhoto, comments } = data;
-  const response = await blogService.addBlog(title, authorFullName, authorTitle, avatar, category, subCategory, readTime, body, coverPhoto, comments);
+export const addBlog = createAsyncThunk("blog/add", async (addBlogForm) => {
+  const { title, authorFirstName, authorLastName, authorTitle, avatar, category, subCategory, readTime, body,  coverPhoto, comments } = addBlogForm;
+  const response = await blogService.addBlog(title, authorFirstName, authorLastName, authorTitle, avatar, category, subCategory, readTime, body, coverPhoto, comments);
   return response.data;
 });
 

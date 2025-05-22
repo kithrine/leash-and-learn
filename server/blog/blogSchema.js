@@ -3,7 +3,8 @@ import { Schema } from "mongoose";
 
 const blogSchema = new Schema({
   title: String,
-  authorFullName: String,
+  authorFirstName: String,
+  authorLastName: String,
   authorTitle: String,
   avatar: String,
   category: String,
@@ -16,6 +17,7 @@ const blogSchema = new Schema({
     firstName: String,
     lastName: String,
     username: String,
+    avatar: String,
     comment: String,
     timestamp: { type: Date, default: Date.now}
   }]

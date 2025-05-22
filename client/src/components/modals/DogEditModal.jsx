@@ -50,6 +50,26 @@ const DogEditModal = ({setShowEditDogModal, loggedInEmail, userId, dog}) => {
     return new Date(dateMinus7).toLocaleDateString("en-CA");
   };
 
+  const [dogPhoto, setDogPhoto] = useState(null)
+
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = reject
+    })
+
+  const handleFileUpload = async (e) => {
+    console.log("handleFileUpload", e)
+    if (e.target.files) {
+      const testString64 = await toBase64(e.target.files[0])
+      setEditDogForm({ ...editDogForm, photo: testString64})
+      console.log("This is the testString in handleFileUpload function", testString64)
+      setDogPhoto(e.target.files[0]) // Only works for one file upload
+    }
+  }
+
   const handleEditDog = (e) => {
     e.preventDefault()
     console.log("handleEditDog")
@@ -364,10 +384,8 @@ const DogEditModal = ({setShowEditDogModal, loggedInEmail, userId, dog}) => {
                     Photo{" "}
                   </label>
                   <input
-                    value={editDogForm.photo}
-                    onChange={(e) =>
-                      setEditDogForm({ ...addDogForm, photo: e.target.value})
-                    }
+                    // value={editDogForm.photo}
+                    onChange={handleFileUpload}
                     type="file"
                     id="dogPhoto"
                     className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"

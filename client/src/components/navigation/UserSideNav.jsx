@@ -65,11 +65,27 @@ const UserSideNav = ({ handleLogout, loggedInEmail }) => {
         </form>
 
         <div className="flex space-x-4 px-2 pb-5">
-                  <img
+        {user.avatar ? (
+                    <img
+                      src={`${user.avatar}`}
+                      className="h-16 w-16 rounded-lg"
+                    />
+                  ) : (
+                    <svg
+                    className="h-16 w-16 me-3 text-gray-200 dark:text-gray-700"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                  </svg>
+                  )}
+
+                  {/* <img
                     className="h-16 w-16 rounded-lg"
-                    src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/helene-engels.png"
+                    src={`${user.avatar}`}
                     alt="Helene avatar"
-                  />
+                  /> */}
                   <div>
                     <span className="mb-2 inline-block rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
                       {" "}
