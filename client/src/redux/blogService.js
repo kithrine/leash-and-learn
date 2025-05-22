@@ -10,10 +10,10 @@ const blogService = {
     `${import.meta.env.VITE_NODE_SERVER_URL}/blog/${id}`
     )
   },
-  addBlog: async (title, authorFirstName, authorLastName, authorTitle, avatar, category, subCategory, readTime, body, coverPhoto, comments) => {
+  addBlog: async (userId, title, authorFirstName, authorLastName, authorTitle, avatar, category, subCategory, readTime, body, coverPhoto, comments) => {
     return await axios.post(
       `${import.meta.env.VITE_NODE_SERVER_URL}/blog`,
-      { title, authorFirstName, authorLastName, authorTitle, avatar, category, subCategory, readTime, body, coverPhoto, comments},
+      { userId, title, authorFirstName, authorLastName, authorTitle, avatar, category, subCategory, readTime, body, coverPhoto, comments},
       { headers: { "Content-Type": "application/json" } }
     );
   },

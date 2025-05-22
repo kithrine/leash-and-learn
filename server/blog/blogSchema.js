@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
 import { Schema } from "mongoose";
 
 const blogSchema = new Schema({
+  userId: String,
   title: String,
   authorFirstName: String,
   authorLastName: String,
@@ -14,6 +14,7 @@ const blogSchema = new Schema({
   coverPhoto: String,
   date: { type: Date, default: Date.now },
   comments: [{
+    userId: String,
     firstName: String,
     lastName: String,
     username: String,

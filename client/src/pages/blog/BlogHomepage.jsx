@@ -31,7 +31,7 @@ const BlogHomepage = () => {
           <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
             <span className="font-leash text-8xl">Leash</span>{" "}
             <span className="font-and">&</span>{" "}
-            <span className="font-learn">Learn</span>:{" "}
+            <span className="font-learn uppercase">Learn</span>:{" "}
             <span className="font-lexend">BLOG</span>
           </h1>
           <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">

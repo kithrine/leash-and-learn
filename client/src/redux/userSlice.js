@@ -85,7 +85,12 @@ export const deleteDog = createAsyncThunk("user/deleteDog", async ({ userId, dog
 export const userSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {},
+  reducers: {
+    updateAvatar: ((state, action) => {
+      console.log("updateAvatar", action.payload)
+      state.user.avatar = action.payload
+    })
+  },
   extraReducers: builder => {
     builder
       // User Get All
@@ -209,5 +214,7 @@ export const userSlice = createSlice({
       })
   }
 })
+
+export const { updateAvatar} = userSlice.actions;
 
 export default userSlice.reducer

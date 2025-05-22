@@ -41,6 +41,7 @@ const BlogDetail = () => {
   const [showBlogDeleteModal, setShowBlogDeleteModal] = useState(false)
   const [commentToDelete, setCommentToDelete] = useState({})
   const [addComment, setAddComment] = useState({
+    userId: user.id,
     firstName: user.firstName,
     lastName: user.lastName,
     username: user.username,

@@ -25,11 +25,11 @@
 - [x] Edit blog
 - [x] Blog Delete
 - [ ] Blog Archive
-- [ ] * Make sure that ONLY the user that posted the blog can edit or delete/archive it
+- [ ] * Make sure that ONLY the user that posted the blog can edit or delete/archive it (added userId to the schema)
 - [ ] * Make sure the BM and Trainers also have access to deleting/archiving blogs
 - [ ] Ability to "like" and/or "favorite" a post
 ##### Blog Comments
-- [ ] * Must have an account to post a comment
+- [ ] * Must have an account to post a comment - (needs to add logic to check for if the user is logged in SHOW the comment textarea, but if not, the textarea is disabled and text shows on top of it that "You must be logged in to be able to post a comment!")
 - [ ] Put a reminder by the start of the blog comments that you MUST have an account in order to post a comment
 - [x] Add blog comment
 - [x] Edit blog comment

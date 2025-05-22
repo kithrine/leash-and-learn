@@ -98,8 +98,8 @@ const BlogList = () => {
                           ).href
                         }
                       /> */}
-                      <div className="text-black">{blog.authorFirstName}</div>
-                      <div className="text-black">{blog.authorLastName}</div>
+                      <div className="text-black">{blog.authorFirstName}{" "}{blog.authorLastName}</div>
+                      
                       {/* <p className="text-black">{blog.authorTitle}</p> */}
                       <time className=" text-black">
                         {new Date(blog.date).toLocaleString("en-US", {

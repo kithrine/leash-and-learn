@@ -6,6 +6,7 @@ import { toast } from "react-toastify"
 import UserDashboardFooter from "../footers/UserDashboardFooter"
 import UserSideNav from "../navigation/UserSideNav"
 import { userGetOne, userUpdate } from "../../redux/userSlice"
+import { updateAvatar } from "../../redux/userSlice"
 
 const UserEditProfile = () => {
   const dispatch = useDispatch()
@@ -97,11 +98,11 @@ const UserEditProfile = () => {
     }, 3000)
   }, [])
 
-  useEffect(() => {
-    if (user) {
-      sessionStorage.setItem("userData", JSON.stringify(user))
-    }
-  }, [loggedInUserInfo])
+  // useEffect(() => {
+  //   if (user) {
+  //     sessionStorage.setItem("userData", JSON.stringify(user))
+  //   }
+  // }, [loggedInUserInfo])
   
  
   useEffect(() => {
@@ -125,6 +126,7 @@ const UserEditProfile = () => {
       setUserEditProfileForm({ ...userEditProfileForm, avatar: testString64})
       console.log("This is the testString in handleFileUpload function", testString64)
       setAvatarFile(e.target.files[0]) // Only works for one file upload
+      dispatch(updateAvatar(testString64))
     }
   }
 
