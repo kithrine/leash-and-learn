@@ -25,8 +25,8 @@
 - [x] Edit blog
 - [x] Blog Delete
 - [ ] Blog Archive
-- [ ] * Make sure that ONLY the user that posted the blog can edit or delete/archive it (added userId to the schema)
-- [ ] * Make sure the BM and Trainers also have access to deleting/archiving blogs
+- [x] * Make sure that ONLY the user that posted the blog can edit or delete/archive it (added userId to the schema)
+- [x] * Make sure the BM and Trainers also have access to editing/deleting/archiving blogs
 - [ ] Ability to "like" and/or "favorite" a post
 ##### Blog Comments
 - [ ] * Must have an account to post a comment - (needs to add logic to check for if the user is logged in SHOW the comment textarea, but if not, the textarea is disabled and text shows on top of it that "You must be logged in to be able to post a comment!")
@@ -34,8 +34,8 @@
 - [x] Add blog comment
 - [x] Edit blog comment
 - [x] Delete blog comment
-- [ ] * Make sure that ONLY the user that posted the blog comment can edit or delete it
-- [ ] * Make sure the BM and Trainers also have access to deleting comments
+- [x] * Make sure that ONLY the user that posted the blog comment can edit or delete it
+- [x] * Make sure the BM and Trainers also have access to editing/deleting comments
 - [ ] Ability to "like" a comment
 ##### Additional Community Blog Features
 - [ ] Pagination?
@@ -108,7 +108,9 @@
 - [ ] Sort Session Add by name of class, like alphabetically ordered so if I add a new class called "Week 9" it goes to the end of the array, but if I delete "Week 3", then add a new session starting with the name "Week 3", it goes it the correct spot
 ##### Inbox
 - [ ] Need to fix auto-refresh of Inbox once a message is deleted
-- [ ] Redo the style of the Inbox and have an Inbox Detail page
+- [ ] Redo the style of the Inbox and have an 
+- [ ] Create Inbox Detail page
+- [ ] Make ability to archive messages (one or multiple at a time)
 - [ ] Clamp the Message on the Inbox List page using "line-clamp-[20]" for example
 
 

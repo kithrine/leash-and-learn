@@ -1,9 +1,10 @@
 import blogModel from "./blogModel.js";
 
 const blogCreate = async (req, res) => {
-  const { title, authorFirstName, authorLastName, authorTitle, avatar, category, subCategory, readTime, body, coverPhoto, comments } = req.body;
+  const { userId, title, authorFirstName, authorLastName, authorTitle, avatar, category, subCategory, readTime, body, coverPhoto, comments } = req.body;
   // Validation goes here
   const blog = await blogModel.create({
+    userId,
     title,
     authorFirstName,
     authorLastName,

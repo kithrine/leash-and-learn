@@ -21,6 +21,8 @@ const BlogDetail = () => {
   const { id } = useParams()
   const { blog } = useSelector((state) => state.blog)
   const { user } = useSelector((state) => state.users)
+  // const { authUser } = useSelector(state => state.auth)
+
   let blogId = location.pathname.split("/")[2]
   const [showBlogEditModal, setShowBlogEditModal] = useState(false)
   const [showCommentActions, setShowCommentActions] = useState(false)
@@ -61,6 +63,10 @@ const BlogDetail = () => {
     timestamp: Date.now
   }
 )
+
+
+  console.log("USER.ID VS BLOG.ID", user.id, blog.userId)
+  console.log("Testing user.role", user.role)
 
   useEffect(() => {
     console.log("BlogDetail")
@@ -177,7 +183,11 @@ const BlogDetail = () => {
             </div>
 
             {/* Edit button on specific blog post */}
-            <div className="flex justify-center gap-x-8 add-page-buttons font-semibold">
+
+            {user.id === blog.userId 
+            || user.role.includes("Business Manager") || user.role.includes("Trainer")
+            ?
+            (<div className="flex justify-center gap-x-8 add-page-buttons font-semibold">
               <button onClick={() => setShowBlogEditModal(true)} className="">
                 Edit
               </button>
@@ -210,7 +220,9 @@ const BlogDetail = () => {
                   setShowBlogDeleteModal={setShowBlogDeleteModal}
                 />
               )}
-            </div>
+            </div>) : 
+            null
+            }
           </article>
         </div>
       </div>
@@ -357,6 +369,9 @@ URL: https://flowbite.com/docs/components/typography/
                         </time>
                       </p>
                     </div>
+
+                    {user.id === comment.userId || user.role.includes("Business Manager") || user.role.includes("Trainer") ? (
+
                     <button
                       onClick={() => {
                         setShowCommentActions(true)
@@ -376,6 +391,10 @@ URL: https://flowbite.com/docs/components/typography/
                       </svg>
                       <span class="sr-only">Comment settings</span>
                     </button>
+                    )
+                  :
+                  null}
+
 
                     {/* <!-- Dropdown menu --> */}
 

@@ -19,7 +19,7 @@ const blogCommentCreate =  async (req, res) => {
     const newComment = await blogModel.find({_id: id})
     console.log("new comment", newComment)
     console.log("new comment.comments", newComment[0].comments)
-    const tempComment = {userId, firstName, lastName, username, avatar, comment, timestamp}
+    const tempComment = { userId, firstName, lastName, username, avatar, comment, timestamp }
 
     newComment[0].comments.push(tempComment)
     console.log("newComment", newComment)
