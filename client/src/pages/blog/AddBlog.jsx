@@ -13,6 +13,7 @@ const AddBlog = () => {
   const [selectedSubCategory, setSelectedSubCategory] = useState('');
   const [showCommGuideModal, setShowCommGuideModal] = useState(false)
   const [addBlogForm, setAddBlogForm] = useState({
+    userId: user.id,
     title: "",
     authorFirstName: user.firstName,
     authorLastName: user.lastName,
@@ -195,6 +196,7 @@ const AddBlog = () => {
                       required=""
                     />
                   </div>
+                
                   <div class="w-full hidden">
                     <label
                       for="authorFirstName"
