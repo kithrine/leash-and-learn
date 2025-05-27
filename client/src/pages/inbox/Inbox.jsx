@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { contactDelete, contactGetAll } from "../redux/contactSlice";
-import BMSideNav from "../components/navigation/BMSideNav";
-import DashboardFooter from "../components/footers/DashboardFooter";
-import { useParams } from "react-router";
-import ContactDeleteModal from "../components/modals/ContactDeleteModal";
+import { contactDelete, contactGetAll } from "../../redux/contactSlice";
+import BMSideNav from "../../components/navigation/BMSideNav";
+import DashboardFooter from "../../components/footers/DashboardFooter";
+import { Link, useNavigate, useParams } from "react-router";
+import ContactDeleteModal from "../../components/modals/ContactDeleteModal";
+import DashboardSideNavLayout from "../../layouts/DashboardSideNavLayout";
 
 const Inbox = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const {id} = useParams()
   const { contacts } = useSelector((state) => state.contact);
   const [contactToDelete, setContactToDelete ] = useState({})
@@ -27,7 +29,7 @@ const Inbox = () => {
 
   return (
     <>
-      <BMSideNav />
+      <DashboardSideNavLayout />
       <div className="antialiased dark:bg-gray-900 min-h-[89.5vh]">
         <main className="p-4 md:ml-64 h-auto pt-20">
           <h3 className="learn text-center text-4xl font-bold">
@@ -50,25 +52,40 @@ const Inbox = () => {
                     <th scope="col" className="px-6 py-3">
                       Phone Number
                     </th>
-                    {/* <th scope="col" className="px-6 py-3">
-                    End Date
-                  </th> */}
+                    <th scope="col" className="px-6 py-3">
+                      Subject
+                    </th>
                     <th scope="col" className="px-6 py-3">
                       Message
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Date
+                    </th>
+                    <th scope="col" className="px-6 py-3 min-w-[6vw]">
+                      
                     </th>
                   </tr>
                 </thead>
                 <tbody>
+                {/* <Link to={`/blog/${blog.id}`}> */}
+
                   {contacts &&
                     contacts.map((contact, index) => (
                       <>
-                      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <td className="px-6 py-4">{contact.firstName}</td>
-                        <td className="px-6 py-4">{contact.lastName}</td>
-                        <td className="px-6 py-4">{contact.email}</td>
-                        <td className="px-6 py-4">{contact.phone}</td>
-                        <td className="px-6 py-4">{contact.message}</td>
-                        <td className="px-4 py-3 flex items-center justify-end">
+                      <tr onClick={() => navigate(`/inbox/${contact.id}`)} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 cursor-pointer">
+                        <td className="px-4 py-4">{contact.firstName}</td>
+                        <td className="px-4 py-4">{contact.lastName}</td>
+                        <td className="px-4 py-4">{contact.email}</td>
+                        <td className="px-4 py-4">{contact.phone}</td>
+                        <td className="px-4 py-4">{contact.subject}</td>
+                        <td className="px-4 my-4 line-clamp-1 max-w-[30vw]">{contact.message}</td>
+                        <td className="px-4 py-4">{new Date(contact.date).toLocaleString("en-US", {
+                                    year: "numeric",
+                                    month: "numeric",
+                                    day: "numeric",
+                                   
+                                  })}</td>
+                        <td className="px-4 py-3 items-center justify-end">
                             <button
                               onClick={() => {setContactToDelete(contact); setShowContactDeleteModal(true)}}
                               id="delete-contact-message"

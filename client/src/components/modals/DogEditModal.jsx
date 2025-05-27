@@ -60,12 +60,12 @@ const DogEditModal = ({setShowEditDogModal, loggedInEmail, userId, dog}) => {
       reader.onerror = reject
     })
 
-  const handleFileUpload = async (e) => {
-    console.log("handleFileUpload", e)
+  const handleDogPhotoUpload = async (e) => {
+    console.log("handleDogPhotoUpload", e)
     if (e.target.files) {
       const testString64 = await toBase64(e.target.files[0])
       setEditDogForm({ ...editDogForm, photo: testString64})
-      console.log("This is the testString in handleFileUpload function", testString64)
+      console.log("This is the testString in handleDogPhotoUpload function", testString64)
       setDogPhoto(e.target.files[0]) // Only works for one file upload
     }
   }
@@ -385,7 +385,7 @@ const DogEditModal = ({setShowEditDogModal, loggedInEmail, userId, dog}) => {
                   </label>
                   <input
                     // value={editDogForm.photo}
-                    onChange={handleFileUpload}
+                    onChange={handleDogPhotoUpload}
                     type="file"
                     id="dogPhoto"
                     className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"

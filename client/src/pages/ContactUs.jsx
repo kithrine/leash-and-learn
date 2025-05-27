@@ -15,6 +15,8 @@ const ContactUs = () => {
     lastName: "",
     email: "",
     phone: "",
+    date: new Date(),
+    subject: "",
     message: "",
   });
 
@@ -146,6 +148,7 @@ const ContactUs = () => {
                   />
                 </div>
               </div>
+
               <div className="sm:col-span-2">
                 <label
                   htmlFor="phone-number"
@@ -196,6 +199,30 @@ const ContactUs = () => {
                   </div>
                 </div>
               </div>
+
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="subject"
+                  className="block text-sm/6 font-semibold text-gray-900"
+                >
+                  Subject
+                </label>
+                <div className="mt-2.5">
+                  <input
+                    value={contactForm.subject}
+                    onChange={(e) =>
+                      setContactForm({ ...contactForm, subject: e.target.value })
+                    }
+                    type="text"
+                    name="subject"
+                    id="subject"
+                    autoComplete="subject"
+                    className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                    required
+                  />
+                </div>
+              </div>
+
               <div className="sm:col-span-2">
                 <label
                   htmlFor="message"

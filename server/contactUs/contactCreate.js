@@ -6,6 +6,7 @@ const contactCreate = async (req, res) => {
     lastName,
     email,
     phone,
+    subject,
     message
    } = req.body
   // Validation goes here
@@ -14,6 +15,7 @@ const contactCreate = async (req, res) => {
     lastName,
     email,
     phone,
+    subject,
     message
   })
   // console.log("contact", contact)
