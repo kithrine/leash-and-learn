@@ -27,15 +27,16 @@ const BlogDetail = () => {
   const [showBlogEditModal, setShowBlogEditModal] = useState(false)
   const [showCommentActions, setShowCommentActions] = useState(false)
   const [blogEditForm, setBlogEditForm] = useState({
-    title: "",
-    authorFullName: "",
-    authorTitle: "",
-    avatar: "",
-    category: "",
-    subCategory: "",
-    readTime: "",
-    body: "",
-    coverPhoto: "",
+    title: blog.title,
+    authorFirstName: user.firstName,
+    authorLastName: user.lastName,
+    authorTitle: blog.authorTitle,
+    avatar: user.avatar,
+    category: blog.category,
+    subCategory: blog.subCategory,
+    readTime: blog.readTime,
+    body: blog.body,
+    coverPhoto: blog.coverPhoto,
     // date: new Date(),
     comments: []
   })
