@@ -22,7 +22,8 @@
 ##### Blog Posts
 - [x] Blog is public
 - [x] Add new blog
-  - [ ] Make it so it shows the Cover Photo as it changes
+  - [x] Make it so it shows the Cover Photo as it changes
+  - [ ] *Still have to fix it so if the user decides not to submit the changes of the blog post, it goes back to the original photo it was
 - [x] Edit blog
   - [ ] Make it so it shows the Cover Photo as it changes
 - [x] Blog Delete

@@ -123,7 +123,7 @@ export const blogSlice = createSlice({
     }),
     updateCoverPhoto: ((state, action) => {
       console.log("updateCoverPhoto in blogSlice", action.payload)
-      state.blog.coverPhoto
+      state.blog.coverPhoto = action.payload
     })
   },
   extraReducers: (builder) => {

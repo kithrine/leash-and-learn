@@ -34,7 +34,7 @@ const BlogEditModal = ({ handleBlogEdit, setShowBlogEditModal, blogEditForm, set
     console.log("handleFileUpload", e)
     if (e.target.files) {
       const testString64 = await toBase64(e.target.files[0])
-      setAddBlogForm({ ...addBlogForm, avatar: testString64})
+      setBlogEditForm({ ...blogEditForm, avatar: testString64})
       console.log("This is the testString in handleFileUpload function", testString64)
       setAvatarFile(e.target.files[0]) // Only works for one file upload
     }
@@ -44,7 +44,7 @@ const BlogEditModal = ({ handleBlogEdit, setShowBlogEditModal, blogEditForm, set
     console.log("handleFileUpload", e)
     if (e.target.files) {
       const testString64 = await toBase64(e.target.files[0])
-      setAddBlogForm({ ...addBlogForm, coverPhoto: testString64})
+      setBlogEditForm({ ...blogEditForm, coverPhoto: testString64})
       console.log("This is the testString in handleFileUpload function", testString64)
       setCoverPhotoFile(e.target.files[0]) // Only works for one file upload
       dispatch(updateCoverPhoto(testString64))
@@ -286,7 +286,20 @@ const BlogEditModal = ({ handleBlogEdit, setShowBlogEditModal, blogEditForm, set
                       Cover Photo
                     </label>
                     <div class="flex items-center justify-center w-full">
-                      <label
+
+                    {blog.coverPhoto ? (
+                    <img
+                      src={`${blog.coverPhoto}`}
+                      className="rounded-xl mb-3 w-[60%]"
+                    />
+                  ) : (
+                  null
+                  )}
+
+                  
+
+
+                      {/* <label
                         for="dropzone-file"
                         class="flex flex-col items-center justify-center w-full h-36 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
                         <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -316,8 +329,12 @@ const BlogEditModal = ({ handleBlogEdit, setShowBlogEditModal, blogEditForm, set
                         // value={blogEditForm.coverPhoto}
                         onChange={handleCoverPhotoUpload}
                         id="dropzone-file" type="file" class="hidden" />
-                      </label>
+                      </label> */}
                     </div>
+
+<input 
+onChange={handleCoverPhotoUpload}
+class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" />
                   </div>
 
 
