@@ -31,7 +31,7 @@ const ChatButton = () => {
 
       <button
         type="button"
-        class="fixed right-20 bottom-8 bg-gray-100 p-3 rounded-full border-2 border-gray-400"
+        class="fixed z-49 right-20 bottom-8 bg-gray-100 p-3 rounded-full border-2 border-gray-400"
         onMouseEnter={() => setShowPopover(true)} // Show popover on hover
         onMouseLeave={() => setShowPopover(false)} // Hide popover on leave
         onClick={() => setShowChatInterface(true)}>

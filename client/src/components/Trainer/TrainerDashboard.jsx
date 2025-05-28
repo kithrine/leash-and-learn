@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { trainingClassGetMany } from "../../redux/trainingClassSlice";
+import { userGetOne } from "../../redux/userSlice";
 import TrainerSideNav from "../navigation/TrainerSideNav"
 import DashboardFooter from "../footers/DashboardFooter"
 import LineChartTrainer from "../charts/LineChartTrainer"

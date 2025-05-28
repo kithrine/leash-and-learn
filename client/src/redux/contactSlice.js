@@ -9,6 +9,8 @@ const initialState = {
       lastName: "",
       email: "",
       phone: "",
+      date: "",
+      subject: "",
       message: ""
     },
   contacts: []
@@ -19,6 +21,11 @@ export const contactGetAll = createAsyncThunk("contact/getAll", async () => {
   const response = await contactService.contactGetAll()
   // console.log("redux contactGetAll contact response", response)
   return response.data
+})
+
+export const getOneContact = createAsyncThunk("contact/getOne", async (id) => {
+  const response = await contactService.getOneContact(id)
+  return response.data;
 })
 
 export const contactAdd = createAsyncThunk("contact/add", async (contactForm) => {
@@ -50,6 +57,21 @@ export const contactSlice = createSlice({
       })
       .addCase(contactGetAll.rejected, (state, action) => {
         // console.log("contactSlice contactGetAll.rejected", action.payload)
+        state.loading = false
+      })
+
+      // Contact (Get One)
+      .addCase(getOneContact.pending, (state, action) => {
+        // console.log("contactSlice getOneContact.pending", action.payload)
+        state.loading = true
+      })
+      .addCase(getOneContact.fulfilled, (state, action) => {
+        // console.log("contactSlice getOneContact.fulfilled", action.payload)
+        state.loading = false
+        state.contact = action.payload
+      })
+      .addCase(getOneContact.rejected, (state, action) => {
+        // console.log("contactSlice getOneContact.rejected", action.payload)
         state.loading = false
       })
 

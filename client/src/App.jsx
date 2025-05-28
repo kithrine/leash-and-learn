@@ -14,7 +14,7 @@ import Dashboard from "./pages/Dashboard";
 import TrainingClasses from "./pages/TrainingClasses";
 import TrainingClassDetail from "./pages/TrainingClassDetail"
 import CreateForm from "./pages/CreateForm";
-import Inbox from "./pages/Inbox"
+import Inbox from "./pages/inbox/Inbox";
 import PageNotFound from "./pages/PageNotFound";
 import { checkLogin } from "./redux/authSlice";
 import authService from "./redux/authService";
@@ -28,6 +28,7 @@ import AddBlog from "./pages/blog/AddBlog";
 import BlogDetail from "./pages/blog/BlogDetail";
 import UserEditProfile from "./components/User/UserEditProfile";
 import ChatButton from "./components/chat/chatButton";
+import InboxDetail from "./pages/inbox/InboxDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -101,6 +102,7 @@ function App() {
           <Route path="/training-classes/:id" element={<TrainingClassDetail />} />
           <Route path="/create-training-class" element={<CreateForm />} />
           <Route path="/inbox" element={<Inbox />} />
+          <Route path="/inbox/:id" element={<InboxDetail />} />
           </Route>
         <Route path="/create-blog" element={<AddBlog />} />
         </Route>

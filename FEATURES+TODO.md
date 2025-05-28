@@ -118,10 +118,11 @@
 - [ ] Sort Session Add by name of class, like alphabetically ordered so if I add a new class called "Week 9" it goes to the end of the array, but if I delete "Week 3", then add a new session starting with the name "Week 3", it goes it the correct spot
 ##### Inbox
 - [ ] Need to fix auto-refresh of Inbox once a message is deleted
-- [ ] Redo the style of the Inbox and have an 
-- [ ] Create Inbox Detail page
+- [ ] Redo the style of the Inbox and have an Archive checkbox and pagination
+- [x] Create Inbox Detail page
 - [ ] Make ability to archive messages (one or multiple at a time)
-- [ ] Clamp the Message on the Inbox List page using "line-clamp-[20]" for example
+- [x] Clamp the Message on the Inbox List page using "line-clamp-[20]" for example
+- [ ] Add a status field to the messages so that the BM and other Trainers know which messages have been replied to/are finished, are actively working on, or cancelled/unable to respond
 
 
 #### TRAINER DASHBOARD

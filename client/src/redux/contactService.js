@@ -7,6 +7,12 @@ const contactService = {
     )
   },
 
+  getOneContact: async (id) => {
+    return await axios.get(
+    `${import.meta.env.VITE_NODE_SERVER_URL}/contact/${id}`
+    )
+  },
+
   contactAdd: async (contactForm) => {
     return await axios.post(
       `${import.meta.env.VITE_NODE_SERVER_URL}/contact`,
