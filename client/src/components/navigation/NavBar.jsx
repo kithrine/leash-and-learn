@@ -3,8 +3,9 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/authSlice";
 import { chatLogout } from "../../redux/chatSlice";
+import { SunIcon, MoonIcon } from "@heroicons/react/24/outline"
 
-const NavBar = () => {
+const NavBar = ({ theme, setTheme, toggleTheme}) => {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -51,7 +52,7 @@ const NavBar = () => {
                   <span className="and text-sm relative text-white">&</span>{" "}
                   <span className="learn ml-1"> learn</span>
                 </span>
-                <span className="dog-training text-center text-xs font-bold -mt-2">
+                <span className="dog-training text-center text-xs font-bold -mt-2 dark:text-gray-400">
                   DOG TRAINING
                 </span>
               </div>
@@ -296,6 +297,34 @@ const NavBar = () => {
                 )}
               </li>
             </ul>
+            {/* DARK/LIGHT MODE BUTTON */}
+            {/* <button
+                onClick={toggleTheme}
+                className={`p-2 transition-colors duration-500 rounded-full ${
+                  darkMode
+                    ? "hover:bg-gray-700"
+                    : "bg-gray-200 hover:bg-gray-300"
+                } hover:bg-gray-200 dark:hover:bg-gray-700`}>
+                {darkMode ? (
+                  <SunIcon className="w-6 h-6" />
+                ) : (
+                  <MoonIcon className="w-6 h-6" />
+                )}
+              </button> */}
+              <button 
+                onClick={toggleTheme}
+                className={`p-2 transition-colors duration-500 rounded-full 
+               bg-gray-200 hover:bg-gray-300
+             dark:bg-gray-500 dark:hover:bg-gray-700`}>
+              {theme === "dark" ? (
+                <SunIcon className="w-6 h-6" />
+              )
+                :
+                (
+                  <MoonIcon className="w-6 h-6" />
+                )
+              }
+              </button>
           </div>
         </div>
       </nav>
