@@ -79,7 +79,8 @@
 - [ ] If user signed up for newsletter (validating by checking with user email), have indicator on profile showing that they are currently signed up for it
 
 ### ADDITIONAL FEATURES
-- [ ] Light/Dark Mode Toggle
+- [x] Light/Dark Mode Toggle
+  - [ ] Go through every. single. page. AND form/modal and make sure that there are "dark:" theme utility classes when in dark mode and that everything looks right
 - [ ] Responsive Design
 - [ ] "Enroll Now" ability for a customer to enroll in a class
 - [ ] ARCHIVE Training Class, Blogs, Contact Us Messages, etc
@@ -98,6 +99,7 @@
 ### DASHBOARDS  
 - [x] Dashboards protected in a Private Route
 - [x] 3 Different Dashboard depending on the role of the user: Business Manager, Trainer, User
+- [ ] Make sure that the page the user is on currently on the dashboard sidenav is highlighted when they are actively on that page/component FOR ALL DASHBOARDS!!!
 
 #### BUSINESS MANAGER DASHBOARD
 ##### Profile
@@ -143,5 +145,9 @@
 - [ ] Show Happy Birthday picture on Dog Card when it is the dog's birthday
 ##### Enroll
 - [ ] Ability for user to enroll in a Training Class
+
+#### OVERALL STYLING
+- [ ] Make sure that there is "dark:" utility classes throughout the entire website so dark mode looks good, remeber to check all the modals and forms as well
+- [ ] Put back buttons on almost every page, form and modal as well so a user can easily access the previous page
 
 ## Technology Used
