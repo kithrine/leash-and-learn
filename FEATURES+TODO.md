@@ -63,7 +63,8 @@
 - [x] Makes sure that it grabs the user's avatar for the chat next to the chat bubble
 - [x] Grabs the chat history according to the user's email
 - [x] Automatically goes to the bottom/most recent chats when opened
-- [ ] Has to fix the chat for users that are not logged in, and showing the most recently asked question and answer for both logged in users and users that are not logged in
+- [x] Has to fix the chat for users that are not logged in, and showing the most recently asked question and answer for both logged in users and users that are not logged in
+- [ ] Create an initial chat with the robot explaining a little bit about it
 
 
 ### USER LOGIN/LOGOUT
@@ -94,7 +95,7 @@
 
 ### TRAINING CLASSES/SESSIONS
 - [x] Builders for 8-week Training Class Sessions automatically build once a new class is created by the BM, depending on the type of class
-- [ ] Change grabbing the training classes from using the user.username to using the user.email accross the entire app
+- [ ] ***Change grabbing the training classes from using the user.username to using the user.email accross the entire app
 
 ### DASHBOARDS  
 - [x] Dashboards protected in a Private Route

@@ -70,10 +70,10 @@ export const chatSlice = createSlice({
       })
       .addCase(addChat.fulfilled, (state, action) => {
         console.log("chatSlice addChat.fulfilled", action.payload);
-        console.log(action.payload.chat);
+        console.log(action.payload.chats);
         state.loading = false;
         state.success = true;
-        state.chat = action.payload.chat
+        state.chats = action.payload.chats
       })
       .addCase(addChat.rejected, (state, action) => {
         console.log("chatSlice addChat.rejected", action.payload);

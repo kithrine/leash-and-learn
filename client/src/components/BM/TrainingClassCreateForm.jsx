@@ -4,13 +4,13 @@ import { useNavigate } from "react-router";
 import { trainingClassCreate } from "../../redux/trainingClassSlice";
 import { builderGetMany } from "../../redux/builderSlice";
 import BMSideNav from "../navigation/BMSideNav";
-import BMCreateFormConfirmationModal from "../modals/BMCreateFormConfirmationModal";
+import TrainingClassCreateConfirmationModal from "../modals/TrainingClassCreateConfirmationModal";
 import DashboardFooter from "../footers/DashboardFooter";
 // import { DatePicker } from "react-datepicker"
 // import 'react-datepicker/dist/react-datepicker.css';
 
 
-const BMCreateForm = () => {
+const TrainingClassCreateForm = () => {
   const [trainingClass, setTrainingClass] = useState({
     trainingClassType: "",
     trainer: "",
@@ -261,13 +261,13 @@ const BMCreateForm = () => {
           </form>
         </div>
       </section>
-      {showModal && <BMCreateFormConfirmationModal />}
+      {showModal && <TrainingClassCreateConfirmationModal />}
       <DashboardFooter />
     </>
   );
 };
 
-export default BMCreateForm;
+export default TrainingClassCreateForm;
 
 // {
 /* <div

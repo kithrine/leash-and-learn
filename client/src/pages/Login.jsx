@@ -62,6 +62,7 @@ const Login = () => {
                   <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                     Sign in to your account
                   </h1>
+                  <p>You must have an account in order to enroll in a training class, post a blog, or leave comments on a blog.</p>
                   <form
                     onSubmit={handleSubmit}
                     className="space-y-4 md:space-y-6"

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 
-const BMCreateFormConfirmationModal = () => {
+const TrainingClassCreateConfirmationModal = () => {
   const navigate = useNavigate();
 
   return (
@@ -45,4 +45,4 @@ const BMCreateFormConfirmationModal = () => {
   );
 };
 
-export default BMCreateFormConfirmationModal;
+export default TrainingClassCreateConfirmationModal;

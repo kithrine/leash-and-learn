@@ -34,10 +34,11 @@ const chatCreate =  async (req, res) => {
     const chatResponse = await chatModel.create({ email, prompt, model, answer: responseText })
     console.log("chatResponse", chatResponse)
 
-    // const chats = await chatModel.find({email})
+    const chats = await chatModel.find({email})
+    console.log("&&&&&&&&&chats", chats)
 
-    res.status(200).json({ "success": true, "message": "Chat created.", chat: chatResponse })
-    // res.status(200).json({ "success": true, "message": "Chat created.", chat: chats })
+    // res.status(200).json({ "success": true, "message": "Chat created.", chat: chatResponse })
+    res.status(200).json({ "success": true, "message": "Chat created.", chats: chats })
   }
 }
 
