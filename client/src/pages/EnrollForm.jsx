@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { builderGetMany } from "../redux/builderSlice"
+import { trainingClassGetManyByType } from "../redux/trainingClassSlice";
 
 
 
@@ -11,6 +12,9 @@ const EnrollForm = () => {
   const { trainingClasses } = useSelector((state) => state.trainingClass);
   const [submitDisabled, setSubmitDisabled] = useState(false);
   const { builders } = useSelector((state) => state.builder);
+  // const [selectedType, setSelectedType] = useState('');  // State to store selected type
+  // const [selectedDog, setSelectedDog] = useState(null); // Handle dog selection (if needed)
+
 
   useEffect(() => {
     dispatch(builderGetMany())
@@ -33,17 +37,50 @@ const EnrollForm = () => {
   });
 
   const getClassesByType = (type) => {
-    let typeOfTrainingClass = trainingClasses.filter(trainingClass => trainingClass.trainingClassType === type)[0]
-
+    let typeOfTrainingClass = trainingClasses.filter(trainingClass => trainingClass.trainingClassType === type)
+    console.log("typeOfTrainingClass", typeOfTrainingClass)
+    dispatch(trainingClassGetManyByType(type))
+    console.log("", )
   }
+  
+
+  // const getClassesByType = (type) => {
+  //   let typeOfTrainingClass = trainingClasses.filter(trainingClass => trainingClass.trainingClassType === type)
+  //   console.log("typeOfTrainingClass", typeOfTrainingClass)
+  //   dispatch(trainingClassGetManyByType())
+  // }
+
+  // const handleTrainingTypeChange = (event) => { 
+  //   setSelectedType(event.target.value); // Update selected training type 
+  //   dispatch(trainingClassGetManyByType(event.target.value));  // Fetch classes based on the selected type
+  //   console.log("trainingClassType", trainingClasses.trainingClassType)
+  // };
 
 
-  const handleEnroll = () => {
+  const handleEnroll = (e) => {
+    e.preventDefault()
     console.log("Enroll")
   }
 
   return (
     <>
+
+{/* <form>
+      <div className="mt-54 ml-54">
+        <label htmlFor="training-type">Select Training Type:</label> 
+        <select id="training-type" value={selectedType} onChange={handleTrainingTypeChange}>  
+          {builders.map((type) => ( // Dynamically generate options from an array of your training types
+            <option key={type.trainingClassType} value={type}>{type.trainingClassType}</option> 
+          ))}   
+        </select>      
+      </div>
+
+
+      <button type="submit">Enroll Dog</button>     
+    </form>  */}
+
+
+
       <section className="bg-white dark:bg-gray-900 min-h-[100vh] mt-16">
         <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
           <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
@@ -64,8 +101,7 @@ const EnrollForm = () => {
                   onChange={(e) =>
                     setEnrollForm({
                       ...enrollForm,
-                      trainingClassType: e.target.value,
-                      // trainer: getTrainer(e.target.value)
+                      trainingClassType: getClassesByType(e.target.value)
                     })
                   }
                   id="service-type"
@@ -137,7 +173,7 @@ const EnrollForm = () => {
                       )}
                     </td>
 
-                    {/* DETIAL BUTTON */}
+                    {/* DETAIL BUTTON */}
                     <td className="px-6 py-4 justify-self-center">
                       <button
                         onClick={() =>
@@ -298,13 +334,13 @@ const EnrollForm = () => {
               </div>
             </div> */}
 
-            {/* ADD CLASS BUTTON */}
+            {/* ENROLL BUTTON */}
             <button
               disabled={submitDisabled}
               type="submit"
               className="rounded-lg inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-gradient-to-br from-purple-400 to-fuchsia-300 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-purple-300"
             >
-              Add Class
+              Enroll
             </button>
           </form>
         </div>

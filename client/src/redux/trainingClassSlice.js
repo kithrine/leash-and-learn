@@ -13,17 +13,7 @@ const initialState = {
     customers: [],
     sessions: [],
   },
-  trainingClasses: [
-    // {
-    //   trainingClassType: "",
-    //   trainer: "",
-    //   trainingClassName: "",
-    //   trainingClassDescription: "",
-    //   startDate: "",
-    //   endDate: "",
-    //   customers: []
-    // }
-  ],
+  trainingClasses: [],
 };
 
 // Training Class (Get All)
@@ -43,6 +33,17 @@ export const trainingClassGetMany = createAsyncThunk(
     // console.log("redux trainingClassGetMany username", username);
     const response = await trainingClassService.trainingClassGetMany(username);
     // console.log("redux trainingClassGetMany username", response);
+    return response.data;
+  }
+);
+
+// Training Class (Get Many by Type)
+export const trainingClassGetManyByType = createAsyncThunk(
+  "trainingClass/getManyByType",
+  async (type = "") => {
+    console.log("redux trainingClassGetManyByType type", type);
+    const response = await trainingClassService.getTrainingClassesByType(type);
+    console.log("redux trainingClassGetManyByType type response", response);
     return response.data;
   }
 );
@@ -212,6 +213,30 @@ export const trainingClassSlice = createSlice({
         //   "trainingClassSlice trainingClassGetMany.rejected",
         //   action.payload
         // );
+        state.loading = false;
+      })
+
+      // Training Classes (Get Many by Type)
+      .addCase(trainingClassGetManyByType.pending, (state, action) => {
+        console.log(
+          "trainingClassSlice trainingClassGetManyByType.pending",
+          action.payload
+        );
+        state.loading = true;
+      })
+      .addCase(trainingClassGetManyByType.fulfilled, (state, action) => {
+        console.log(
+          "trainingClassSlice trainingClassGetManyByType.fulfilled",
+          action.payload
+        );
+        state.loading = false;
+        state.trainingClasses = action.payload.trainingClasses;
+      })
+      .addCase(trainingClassGetManyByType.rejected, (state, action) => {
+        console.log(
+          "trainingClassSlice trainingClassGetManyByType.rejected",
+          action.payload
+        );
         state.loading = false;
       })
 
