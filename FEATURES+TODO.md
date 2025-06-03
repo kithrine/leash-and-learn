@@ -146,6 +146,7 @@
 - [ ] Show Happy Birthday picture on Dog Card when it is the dog's birthday
 ##### Enroll
 - [ ] Ability for user to enroll in a Training Class
+- [x] Makes sure that every time the type of class is changed, it sets the selectedClass to null
 
 #### OVERALL STYLING
 - [ ] Make sure that there is "dark:" utility classes throughout the entire website so dark mode looks good, remeber to check all the modals and forms as well
