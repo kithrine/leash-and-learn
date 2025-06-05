@@ -83,7 +83,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
       </div> */}
 
             <div className="mx-auto max-w-screen-lg px-4 2xl:px-0 md:ml-[20vw]">
-              <nav className="mb-4 flex" aria-label="Breadcrumb">
+              {/* <nav className="mb-4 flex" aria-label="Breadcrumb">
                 <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                   <li className="inline-flex items-center">
                     <a
@@ -157,11 +157,11 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                     </div>
                   </li>
                 </ol>
-              </nav>
+              </nav> */}
               <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl md:mb-6">
                 General overview
               </h2>
-              <div className="grid grid-cols-2 gap-6 border-b border-t border-gray-200 py-4 dark:border-gray-700 md:py-8 lg:grid-cols-4 xl:gap-16">
+              {/* <div className="grid grid-cols-2 gap-6 border-b border-t border-gray-200 py-4 dark:border-gray-700 md:py-8 lg:grid-cols-4 xl:gap-16">
                 <div>
                   <svg
                     className="mb-2 h-8 w-8 text-gray-400 dark:text-gray-500"
@@ -396,7 +396,27 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                     vs 1 last 3 months
                   </p>
                 </div>
-              </div>
+              </div> */}
+
+              <section class="bg-white dark:bg-gray-900 border-t border-b border-gray-200 dark:border-gray-700">
+                <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+                  <div class="mx-auto max-w-screen-sm text-center">
+                    <h2 class="mb-4 text-4xl tracking-tight font-extrabold leading-tight text-gray-900 dark:text-white">
+                      Start your free trial today
+                    </h2>
+                    <p class="mb-6 font-light text-gray-500 dark:text-gray-400 md:text-lg">
+                      Try Flowbite Platform for 30 days. No credit card
+                      required.
+                    </p>
+                    <a
+                      href="#"
+                      class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                      Free trial for 30 days
+                    </a>
+                  </div>
+                </div>
+              </section>
+
               <div className="py-4 md:py-8">
                 <div className="mb-4 grid gap-4 sm:grid-cols-2 sm:gap-8 lg:gap-16">
                   <div className="space-y-4">
@@ -640,7 +660,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                 <div className="mt-6 space-y-12 lg:grid lg:grid-cols-2 lg:space-y-6 lg:gap-x-6">
                   {user.dogs.map((dog, index) => (
                     <div className="group relative min-w-full">
-                      <div class="w-full bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                      <div class="w-full bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-700 dark:border-gray-700">
                         <div class="flex justify-end px-4 pt-4">
                           <button
                             onClick={() => {

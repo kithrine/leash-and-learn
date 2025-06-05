@@ -169,3 +169,5 @@
   - [ ] Need to reseed my BM and Trainer accts so all the proper fields are there and so they can edit them
   - [ ] Add a title field to the user too, so that I can have it for the Trainers/BM
 - [ ] Make sure that I make a route to a "profile"/detail page for the users, so people can click on ppl's avatars on the blog, or wherever, and it sends them to a public-facing profile page of that user
+- [ ] "Require" all applicable fields when a user is editing their profile or creating a dog. Make sure that they fill out things that are important
+- [ ] Have a modal on Enroll Page when the user successfully joins a training class or when they unsuccessfully join a training class have it so it shows an error message and lets them try to decide what they want to do- if they want to retry or not 

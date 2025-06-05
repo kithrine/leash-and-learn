@@ -3,6 +3,7 @@
 const DashboardFooter = () => {
   return (
     <>
+    <div className="dark:bg-gray-800">
       <footer className="footer bottom-0 object-bottom bg-white rounded-lg shadow sm:flex sm:items-center sm:justify-between p-4 sm:p-6 xl:p-8 dark:bg-gray-800 antialiased">
   <p className="mb-4 text-sm text-center text-gray-500 dark:text-gray-400 sm:mb-0">
       &copy; 2021-2025 <a href="https://flowbite.com/" className="hover:underline" target="_blank">Leash & Learn™</a>. All rights reserved.
@@ -51,7 +52,7 @@ const DashboardFooter = () => {
 </div>
 </footer>
 
-
+</div>
 
 {/* <footer className="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
     <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
