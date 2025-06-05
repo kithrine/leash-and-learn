@@ -10,20 +10,38 @@ const initialState = {
     trainingClassDescription: "",
     startDate: "",
     endDate: "",
-    customers: [],
+    customers: [
+      // {
+      //   firstName: String,
+      //   lastName: String,
+      //   email: String,
+      //   username: String,
+      //   avatar: String,
+      //   phoneNumber: String,
+      //   address: String,
+      //   city: String,
+      //   state: String,
+      //   zipCode: String,
+      //   dog: {
+      //     name: String,
+      //     age: String,
+      //     breed: String,
+      //     gender: String,
+      //     weight: String,
+      //     photo: String,
+      //     size: String,
+      //     birthday: Date,
+      //     spayedNeutered: String,
+      //     behavioralIssues: String,
+      //     medicalConditions: String,
+      //     trainingGoals: String,
+      //     additionalNotes: String
+      //   },
+      // },
+    ],
     sessions: [],
   },
-  trainingClasses: [
-    // {
-    //   trainingClassType: "",
-    //   trainer: "",
-    //   trainingClassName: "",
-    //   trainingClassDescription: "",
-    //   startDate: "",
-    //   endDate: "",
-    //   customers: []
-    // }
-  ],
+  trainingClasses: [],
 };
 
 // Training Class (Get All)
@@ -43,6 +61,17 @@ export const trainingClassGetMany = createAsyncThunk(
     // console.log("redux trainingClassGetMany username", username);
     const response = await trainingClassService.trainingClassGetMany(username);
     // console.log("redux trainingClassGetMany username", response);
+    return response.data;
+  }
+);
+
+// Training Class (Get Many by Type)
+export const trainingClassGetManyByType = createAsyncThunk(
+  "trainingClass/getManyByType",
+  async (type = "") => {
+    console.log("redux trainingClassGetManyByType type", type);
+    const response = await trainingClassService.getTrainingClassesByType(type);
+    console.log("redux trainingClassGetManyByType type response", response);
     return response.data;
   }
 );
@@ -158,6 +187,22 @@ export const trainingClassSessionDelete = createAsyncThunk(
   }
 );
 
+// Enroll in Training Class
+export const trainingClassEnroll = createAsyncThunk(
+  "trainingClass/enroll",
+  async (enrollmentInfo) => {
+    const {selectedClass, selectedDog, userId} = enrollmentInfo
+    console.log(
+      "Redux Slice: trainingClassEnroll, enrollmentInfo-selectedClass, enrollForm",
+      enrollmentInfo
+    );
+    console.log("Slice: Seperate trainingClassEnroll selectedClass, enrollForm", selectedClass);
+    const response = await trainingClassService.enrollUserInClass(selectedClass, selectedDog, userId);
+    console.log("redux trainingClassEnroll response", response);
+    return response.data;
+  }
+);
+
 
 // Builders
 export const trainingClassSlice = createSlice({
@@ -212,6 +257,30 @@ export const trainingClassSlice = createSlice({
         //   "trainingClassSlice trainingClassGetMany.rejected",
         //   action.payload
         // );
+        state.loading = false;
+      })
+
+      // Training Classes (Get Many by Type)
+      .addCase(trainingClassGetManyByType.pending, (state, action) => {
+        console.log(
+          "trainingClassSlice trainingClassGetManyByType.pending",
+          action.payload
+        );
+        state.loading = true;
+      })
+      .addCase(trainingClassGetManyByType.fulfilled, (state, action) => {
+        console.log(
+          "trainingClassSlice trainingClassGetManyByType.fulfilled",
+          action.payload
+        );
+        state.loading = false;
+        state.trainingClasses = action.payload.trainingClasses;
+      })
+      .addCase(trainingClassGetManyByType.rejected, (state, action) => {
+        console.log(
+          "trainingClassSlice trainingClassGetManyByType.rejected",
+          action.payload
+        );
         state.loading = false;
       })
 
@@ -356,7 +425,31 @@ export const trainingClassSlice = createSlice({
         //   action.payload
         // );
         state.loading = false;
-      });
+      })
+
+      // Enroll in Training Class
+      .addCase(trainingClassEnroll.pending, (state, action) => {
+        console.log(
+          "trainingClassSlice trainingClassEnroll.pending",
+          action.payload
+        );
+        state.loading = true;
+      })
+      .addCase(trainingClassEnroll.fulfilled, (state, action) => {
+        console.log(
+          "trainingClassSlice trainingClassEnroll.fulfilled",
+          action.payload
+        );
+        state.loading = false;
+        state.trainingClass = action.payload.trainingClass;
+      })
+      .addCase(trainingClassEnroll.rejected, (state, action) => {
+        console.log(
+          "trainingClassSlice trainingClassEnroll.rejected",
+          action.payload
+        );
+        state.loading = false;
+      })
   },
 });
 

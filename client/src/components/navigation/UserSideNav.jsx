@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router"
 import { userGetOne } from "../../redux/userSlice";
+import { MdAssignmentAdd } from "react-icons/md";
 
 
 const UserSideNav = ({ handleLogout, loggedInEmail }) => {
@@ -134,15 +135,19 @@ const UserSideNav = ({ handleLogout, loggedInEmail }) => {
           </li>
           <li>
             <Link
-              to="/create-training-class"
+              to="/enroll"
               className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
             >
               
 
-              <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><path fill="#beb09d" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344l0-64-64 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l64 0 0-64c0-13.3 10.7-24 24-24s24 10.7 24 24l0 64 64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0 0 64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
-              <span className="ml-3">Create New Class</span>
+              {/* <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><path fill="#beb09d" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344l0-64-64 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l64 0 0-64c0-13.3 10.7-24 24-24s24 10.7 24 24l0 64 64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0 0 64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg> */}
+              <div className="">
+              <MdAssignmentAdd size={25} color={"#beb09d"} />
+              </div>
+              <span className="ml-3">Enroll In A Class</span>
             </Link>
           </li>
+
           <li>
             <Link
               to="/inbox"

@@ -3,7 +3,7 @@ import builderModel from "../builders/builderModel.js"
 import userModel from "../users/userModel.js"
 
 const trainingClassCreate =  async (req, res) => {
-  const { trainingClassName, trainingClassDescription, trainingClassType, startDate, endDate, trainer } = req.body
+  const { trainingClassName, trainingClassDescription, trainingClassType, startDate, endDate, trainer, customers } = req.body
  
   // Validation
   if (
@@ -30,7 +30,7 @@ const trainingClassCreate =  async (req, res) => {
     const newTrainingClassTemplate = { ...template, trainingClassName, trainingClassDescription, trainingClassType, startDate, endDate}
     // console.log("newTrainingClassTemplate", newTrainingClassTemplate)
 
-    const newTrainingClass = await trainingClassModel.create({ sessions, trainer: template.trainer, sessionType: template.sessionType, trainingClassName, trainingClassDescription, trainingClassType, startDate, endDate })
+    const newTrainingClass = await trainingClassModel.create({ sessions, trainer: template.trainer, sessionType: template.sessionType, trainingClassName, trainingClassDescription, trainingClassType, startDate, endDate, customers: [] })
     // console.log("newTrainingClass", newTrainingClass)
 
     // const trainingClassUsers = await userModel.find({ trainer: trainingClassTemplate.trainer }) 

@@ -9,15 +9,30 @@ const ChatInterface = ({ setShowChatInterface }) => {
   const { user } = useSelector((state) => state.users)
   const { chats, chat, loading } = useSelector((state) => state.chat)
   const token = sessionStorage.getItem("token")
+  
+  
+  if (!token && !sessionStorage.getItem("anonymousEmail")) {
+    const anonymousEmail = window.crypto.randomUUID()
+    console.log("anonymousEmail", anonymousEmail)
+    sessionStorage.setItem("anonymousEmail", anonymousEmail)
+  }
 
+  
+  
   const [chatForm, setChatForm] = useState({
-    email: token ? user.email : "",
+    email: token ? user.email : sessionStorage.getItem("anonymousEmail"),
     prompt: "",
     model: "gemma2",
     date: new Date()
   })
+  
+  useEffect(() => {
+    console.log("chatForm useEffect", chatForm)
+  }, [chatForm])
+ 
   const [finalResponse, setFinalResponse] = useState("")
-
+  
+  
   useEffect(() => {
     if (token) {
       dispatch(getChatsByEmail(user.email))
@@ -30,12 +45,16 @@ const ChatInterface = ({ setShowChatInterface }) => {
       historyEnd.scrollIntoView({ behavior: "smooth" })
     }
   }, [chats])
-
+  
   const handleAIQuestion = async (e) => {
     e.preventDefault()
     console.log("chatForm", chatForm)
+    // // If not logged in(no token)
+    // if (!user.email && !token) {
+    //   sessionStorage.setItem("anonymousEmail", anonymousEmail)
+    // } 
     dispatch(addChat(chatForm))
-    setChatForm({ prompt: "" })
+    setChatForm({ ...chatForm, prompt: "" })
     setFinalResponse(chat.answer)
   }
 

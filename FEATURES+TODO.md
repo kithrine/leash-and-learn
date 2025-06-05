@@ -63,7 +63,8 @@
 - [x] Makes sure that it grabs the user's avatar for the chat next to the chat bubble
 - [x] Grabs the chat history according to the user's email
 - [x] Automatically goes to the bottom/most recent chats when opened
-- [ ] Has to fix the chat for users that are not logged in, and showing the most recently asked question and answer for both logged in users and users that are not logged in
+- [x] Has to fix the chat for users that are not logged in, and showing the most recently asked question and answer for both logged in users and users that are not logged in
+- [ ] Create an initial chat with the robot explaining a little bit about it
 
 
 ### USER LOGIN/LOGOUT
@@ -72,6 +73,14 @@
 ### USER SIGNUP FOR NEW USERS
 - [x] New user create
 
+### ENROLLMENT IN CLASS
+- [x] Makes sure that every time the type of class is changed, it sets the selectedClass to null
+- [x] Get Many By Type on backend: to dynamically grab the classes based on type when a user selects the different services in the dropdown
+- [ ] Detail modal for what the customer can expect for that class when enrolling. (AKA show the sessions and overall detail of the training class- GetOne)
+- [ ] Make sure when the user clicks on a class, if they click the same one again it unselects it
+- [ ] Make the styling of selecting a class and a dog visually appealing
+  - [ ] Make the whole row highlight for the class
+  - [ ] Make a thick border appear around the dog card
 
 ### NEWSLETTER
 - [ ] Create for user signing up for the Newsletter
@@ -94,7 +103,7 @@
 
 ### TRAINING CLASSES/SESSIONS
 - [x] Builders for 8-week Training Class Sessions automatically build once a new class is created by the BM, depending on the type of class
-- [ ] Change grabbing the training classes from using the user.username to using the user.email accross the entire app
+- [ ] ***Change grabbing the training classes from using the user.username to using the user.email accross the entire app
 
 ### DASHBOARDS  
 - [x] Dashboards protected in a Private Route
@@ -144,10 +153,21 @@
 - [x] Delete dog(s)
 - [ ] Show Happy Birthday picture on Dog Card when it is the dog's birthday
 ##### Enroll
-- [ ] Ability for user to enroll in a Training Class
+- [ ] Link/CTA for enrolling on the user dashboard
+
 
 #### OVERALL STYLING
 - [ ] Make sure that there is "dark:" utility classes throughout the entire website so dark mode looks good, remeber to check all the modals and forms as well
 - [ ] Put back buttons on almost every page, form and modal as well so a user can easily access the previous page
 
 ## Technology Used
+
+## SIDE NOTES TO INCLUDE IN THE PROPER SPOT IN HERE WHEN TIME:
+- [ ] Schema Updates!
+  - [ ] Add a bio field to user (for a description of them on their profile)
+  - [ ] Maybe a bio field for the dogs too??
+  - [ ] Need to reseed my BM and Trainer accts so all the proper fields are there and so they can edit them
+  - [ ] Add a title field to the user too, so that I can have it for the Trainers/BM
+- [ ] Make sure that I make a route to a "profile"/detail page for the users, so people can click on ppl's avatars on the blog, or wherever, and it sends them to a public-facing profile page of that user
+- [ ] "Require" all applicable fields when a user is editing their profile or creating a dog. Make sure that they fill out things that are important
+- [ ] Have a modal on Enroll Page when the user successfully joins a training class or when they unsuccessfully join a training class have it so it shows an error message and lets them try to decide what they want to do- if they want to retry or not 

@@ -326,7 +326,7 @@ const AddBlog = () => {
 
                       <input
                       // value={addBlogForm.avatar}
-                      onChange={handleUserAvatarUpload}
+                        onChange={handleUserAvatarUpload}
                         type="file"
                         name="avatar"
                         id="avatar"

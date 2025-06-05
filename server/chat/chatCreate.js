@@ -5,6 +5,10 @@ const chatCreate =  async (req, res) => {
   // const { prompt } = req.body
   const {  email, prompt, model } = req.body
   console.log("prompt, model", email, prompt, model)
+
+  const modelInstructions = "type stuff here"
+
+
   // Validation
   if (
     (!prompt || prompt == "")
@@ -13,7 +17,7 @@ const chatCreate =  async (req, res) => {
   } 
   else {
     
-    const response = await axios.post(`${process.env.OLLAMA_API_URL}`, { prompt, model: "gemma2" })
+    const response = await axios.post(`${process.env.OLLAMA_API_URL}`, { prompt: modelInstructions + prompt, model: "gemma2" })
     console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!response", response)
 
 
@@ -34,10 +38,11 @@ const chatCreate =  async (req, res) => {
     const chatResponse = await chatModel.create({ email, prompt, model, answer: responseText })
     console.log("chatResponse", chatResponse)
 
-    // const chats = await chatModel.find({email})
+    const chats = await chatModel.find({email})
+    console.log("&&&&&&&&&chats", chats)
 
-    res.status(200).json({ "success": true, "message": "Chat created.", chat: chatResponse })
-    // res.status(200).json({ "success": true, "message": "Chat created.", chat: chats })
+    // res.status(200).json({ "success": true, "message": "Chat created.", chat: chatResponse })
+    res.status(200).json({ "success": true, "message": "Chat created.", chats: chats })
   }
 }
 

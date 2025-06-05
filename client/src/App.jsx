@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { Routes, Route } from "react-router"
+import { checkLogin } from "./redux/authSlice"
+import { userGetAll } from "./redux/userSlice"
+import { ToastContainer } from "react-toastify"
 import NavBar from "./components/navigation/NavBar"
 import PrivateRoute from "./components/PrivateRoute"
 import HomePage from "./pages/HomePage"
@@ -10,18 +13,13 @@ import About from "./pages/About"
 import ContactUs from "./pages/ContactUs"
 import FAQ from "./pages/FAQ"
 import DashboardSideNavLayout from "./layouts/DashboardSideNavLayout"
-import Dashboard from "./pages/Dashboard"
-import TrainingClasses from "./pages/TrainingClasses"
-import TrainingClassDetail from "./pages/TrainingClassDetail"
-import CreateForm from "./pages/CreateForm"
+import DashboardLayout from "./layouts/DashboardLayout"
+import TrainingClasses from "./layouts/TrainingClasses"
+import TrainingClassDetail from "./layouts/TrainingClassDetail"
+import CreateForm from "./layouts/CreateForm"
 import Inbox from "./pages/inbox/Inbox"
 import PageNotFound from "./pages/PageNotFound"
-import { checkLogin } from "./redux/authSlice"
 import authService from "./redux/authService"
-import { ToastContainer } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
-import "./App.css"
-import { userGetAll } from "./redux/userSlice"
 import BlogHomepage from "./pages/blog/BlogHomepage"
 import BlogList from "./pages/blog/BlogList"
 import AddBlog from "./pages/blog/AddBlog"
@@ -29,6 +27,9 @@ import BlogDetail from "./pages/blog/BlogDetail"
 import UserEditProfile from "./components/User/UserEditProfile"
 import ChatButton from "./components/chat/chatButton"
 import InboxDetail from "./pages/inbox/InboxDetail"
+import EnrollForm from "./pages/EnrollForm"
+import "react-toastify/dist/ReactToastify.css"
+import "./App.css"
 
 function App() {
   const dispatch = useDispatch()
@@ -96,16 +97,14 @@ function App() {
         <Route path="/blog/:id" element={<BlogDetail />} />
         <Route element={<PrivateRoute />}>
           <Route element={<DashboardSideNavLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<DashboardLayout />} />
             <Route path="/user/:id" element={<UserEditProfile />} />
             <Route path="/training-classes" element={<TrainingClasses />} />
-            <Route
-              path="/training-classes/:id"
-              element={<TrainingClassDetail />}
-            />
+            <Route path="/training-classes/:id" element={<TrainingClassDetail />} />
             <Route path="/create-training-class" element={<CreateForm />} />
             <Route path="/inbox" element={<Inbox />} />
             <Route path="/inbox/:id" element={<InboxDetail />} />
+            <Route path="/enroll" element={<EnrollForm />} />
           </Route>
           <Route path="/create-blog" element={<AddBlog />} />
         </Route>

@@ -8,7 +8,7 @@ import DashboardFooter from '../components/footers/DashboardFooter';
 import BMSideNav from '../components/navigation/BMSideNav';
 
 
-const Dashboard = () => {
+const DashboardLayout = () => {
 
   const dispatch = useDispatch()
   const { trainingClasses } = useSelector((state) => state.trainingClass);
@@ -50,4 +50,4 @@ const Dashboard = () => {
   
 };
 
-export default Dashboard;
+export default DashboardLayout;
