@@ -8,7 +8,7 @@ import userGetOne from "./userGetOne.js"
 import userCreate from "./userCreate.js"
 import userUpdate from "./userUpdate.js"
 import dogCreate from "./dogCreate.js"
-import dogUpdate from "./DogUpdate.js"
+import dogUpdate from "./dogUpdate.js"
 import dogDelete from "./dogDelete.js"
 
 const userIndex = express.Router()

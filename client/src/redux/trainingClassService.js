@@ -11,13 +11,6 @@ const trainingClassService = {
       `${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/${username}`
     )
   },
-  // getTrainingClassesByType: async (trainingClassType) => {
-  //   console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/list/type/${trainingClassType}`)
-  //   console.log("trainingClassType redux Service", trainingClassType)
-  //   return await axios.get(
-  //     `${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/list/type/${trainingClassType}`
-  //   )
-  // },
   getTrainingClassesByType: async (type) => {
     console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/list/type/${type}`)
     console.log("type redux Service", type)
@@ -25,13 +18,6 @@ const trainingClassService = {
       `${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/list/type/${type}`
     )
   },
-  // getTrainingClassesByType: async (trainingClassType) => {
-  //   console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/training-classes`)
-  //   console.log("trainingClassType redux Service", trainingClassType)
-  //   return await axios.get(
-  //     `${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/`
-  //   )
-  // },
   trainingClassGetOne: async (id) => {
      return await axios.get(
       `${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/detail/${id}`
@@ -70,6 +56,13 @@ const trainingClassService = {
     // console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/sessions`)
     return await axios.delete(
       `${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/${trainingClassId}/sessions/${sessionId}`
+    )
+  },
+  enrollUserInClass: async (selectedClass, selectedDog, userId) => {
+    console.log(`${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/detail/${selectedClass}/customers`, selectedDog, userId)
+    return await axios.post(
+      `${import.meta.env.VITE_NODE_SERVER_URL}/training-classes/detail/${selectedClass}/customers`,
+      {selectedClass, selectedDog, userId}
     )
   },
   

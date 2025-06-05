@@ -10,7 +10,35 @@ const initialState = {
     trainingClassDescription: "",
     startDate: "",
     endDate: "",
-    customers: [],
+    customers: [
+      // {
+      //   firstName: String,
+      //   lastName: String,
+      //   email: String,
+      //   username: String,
+      //   avatar: String,
+      //   phoneNumber: String,
+      //   address: String,
+      //   city: String,
+      //   state: String,
+      //   zipCode: String,
+      //   dog: {
+      //     name: String,
+      //     age: String,
+      //     breed: String,
+      //     gender: String,
+      //     weight: String,
+      //     photo: String,
+      //     size: String,
+      //     birthday: Date,
+      //     spayedNeutered: String,
+      //     behavioralIssues: String,
+      //     medicalConditions: String,
+      //     trainingGoals: String,
+      //     additionalNotes: String
+      //   },
+      // },
+    ],
     sessions: [],
   },
   trainingClasses: [],
@@ -155,6 +183,22 @@ export const trainingClassSessionDelete = createAsyncThunk(
     //   "redux trainingClassSessionDelete trainingClass response",
     //   response
     // );
+    return response.data;
+  }
+);
+
+// Enroll in Training Class
+export const trainingClassEnroll = createAsyncThunk(
+  "trainingClass/enroll",
+  async (enrollmentInfo) => {
+    const {selectedClass, selectedDog, userId} = enrollmentInfo
+    console.log(
+      "Redux Slice: trainingClassEnroll, enrollmentInfo-selectedClass, enrollForm",
+      enrollmentInfo
+    );
+    console.log("Slice: Seperate trainingClassEnroll selectedClass, enrollForm", selectedClass);
+    const response = await trainingClassService.enrollUserInClass(selectedClass, selectedDog, userId);
+    console.log("redux trainingClassEnroll response", response);
     return response.data;
   }
 );
@@ -381,7 +425,31 @@ export const trainingClassSlice = createSlice({
         //   action.payload
         // );
         state.loading = false;
-      });
+      })
+
+      // Enroll in Training Class
+      .addCase(trainingClassEnroll.pending, (state, action) => {
+        console.log(
+          "trainingClassSlice trainingClassEnroll.pending",
+          action.payload
+        );
+        state.loading = true;
+      })
+      .addCase(trainingClassEnroll.fulfilled, (state, action) => {
+        console.log(
+          "trainingClassSlice trainingClassEnroll.fulfilled",
+          action.payload
+        );
+        state.loading = false;
+        state.trainingClass = action.payload.trainingClass;
+      })
+      .addCase(trainingClassEnroll.rejected, (state, action) => {
+        console.log(
+          "trainingClassSlice trainingClassEnroll.rejected",
+          action.payload
+        );
+        state.loading = false;
+      })
   },
 });
 

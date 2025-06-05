@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { builderGetMany } from "../redux/builderSlice"
-import { trainingClassGetManyByType } from "../redux/trainingClassSlice"
+import {
+  trainingClassEnroll,
+  trainingClassGetManyByType
+} from "../redux/trainingClassSlice"
 
 const EnrollForm = () => {
   const dispatch = useDispatch()
@@ -10,27 +13,29 @@ const EnrollForm = () => {
   const { trainingClasses } = useSelector((state) => state.trainingClass)
   const [submitDisabled, setSubmitDisabled] = useState(false)
   const { builders } = useSelector((state) => state.builder)
-  const [selectedClass, setSelectedClass] = useState(null) 
-  const [selectedDog, setSelectedDog] = useState(null) 
+  const [selectedClass, setSelectedClass] = useState(null)
+  const [selectedDog, setSelectedDog] = useState(null)
 
+  const [enrollForm, setEnrollForm] = useState({
+    // trainingClassType: "",
+    userId: user.id
+    // firstName: user.firstName,
+    // lastName: user.lastName,
+    // email: user.email,
+    // username: user.username,
+    // avatar: user.avatar,
+    // phoneNumber: user.phoneNumber,
+    // address: user.address,
+    // city: user.city,
+    // state: user.state,
+    // zipCode: user.zipCode,
+    // dog: {}
+  })
+
+  
   useEffect(() => {
     dispatch(builderGetMany())
   }, [])
-
-  const [enrollForm, setEnrollForm] = useState({
-    trainingClassType: "",
-    firstName: user.firstName,
-    lastName: user.lastName,
-    email: user.email,
-    username: user.username,
-    avatar: user.avatar,
-    phoneNumber: user.phoneNumber,
-    address: user.address,
-    city: user.city,
-    state: user.state,
-    zipCode: user.zipCode,
-    dog: {}
-  })
 
   const getClassesByType = (type) => {
     let typeOfTrainingClass = trainingClasses.filter(
@@ -54,15 +59,36 @@ const EnrollForm = () => {
   // };
 
   // Assuming your trainingClass data is fetched asynchronously...
-  
-  
-  // useEffect(() => { 
+
+  // useEffect(() => {
   //   console.log("selectedClass in useEffect", selectedClass)
-  //  }, [selectedClass]); 
-   
-  const handleRowClick = (classId) => {
-    setSelectedClass(classId)
+  //  }, [selectedClass]);
+  
+  const [avatarFile, setAvatarFile] = useState(null)
+  // const [coverPhotoFile, setCoverPhotoFile] = useState(null)
+
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = reject
+    })
+
+  const handleUserAvatarUpload = async (e) => {
+    console.log("handleUserAvatarUpload", e)
+    if (e.target.files) {
+      const testString64 = await toBase64(e.target.files[0])
+      setEnrollForm({ ...enrollForm, avatar: testString64})
+      console.log("This is the testString in handleUserAvatarUpload function on EnrollForm", testString64)
+      setAvatarFile(e.target.files[0]) // Only works for one file upload
+    }
   }
+  
+  const handleRowClick = (trainingClassId) => {
+    setSelectedClass(trainingClassId)
+  }
+
   console.log("Selected Class:", selectedClass)
 
   const handleDogClick = (dogId) => {
@@ -72,21 +98,327 @@ const EnrollForm = () => {
 
   const handleEnroll = (e) => {
     e.preventDefault()
-    console.log("Enroll")
+    console.log("handleEnroll selectedClass", selectedClass)
+    const enrollmentInfo = {selectedClass, selectedDog, userId: user.id}
+    dispatch(trainingClassEnroll(enrollmentInfo))
     // Log the single selected ID
   }
 
+
+  // const handleCoverPhotoUpload = async (e) => {
+  //   console.log("handleFileUpload", e)
+  //   if (e.target.files) {
+  //     const testString64 = await toBase64(e.target.files[0])
+  //     setAddBlogForm({ ...addBlogForm, coverPhoto: testString64})
+  //     console.log("This is the testString in handleFileUpload function", testString64)
+  //     setCoverPhotoFile(e.target.files[0]) // Only works for one file upload
+  //     dispatch(updateCoverPhoto(testString64))
+  //   }
+  // }
+
   // console.log("user.dogs", user.dogs)
+  // console.log("user", user)
 
   return (
     <>
-      <section className="bg-white dark:bg-gray-900 min-h-[100vh] mt-16">
-        <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+      <section className="bg-white dark:bg-gray-900 min-h-[100vh] md:px-[13vw] mt-16">
+        <div className="py-8 px-4 mx-auto max-w-6xl lg:py-16  md:ml-[20vw]">
           <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
             Enroll Today!
           </h2>
           <form onSubmit={handleEnroll}>
-            <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
+            <div className="hidden">
+            <div className="hidden">
+              <label htmlFor="avatar" className="block mb-2 text-sm">
+                Avatar
+              </label>
+              <div className="flex items-center gap-x-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  fill="currentColor"
+                  class="bi bi-person-circle"
+                  viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                  <path
+                    fill-rule="evenodd"
+                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+                  />
+                </svg>
+
+                <input
+                  onChange={handleUserAvatarUpload}
+                  type="file"
+                  name="avatar"
+                  id="avatar"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  placeholder="Upload an avatar image"
+                />
+              </div>
+            </div>
+
+            <div className="hidden">
+              <label
+                htmlFor="first-name"
+                className="block text-sm/6 font-semibold text-gray-900">
+                First Name
+              </label>
+              <div className="mt-2.5">
+                <input
+                  // value={enrollForm.firstName != "" ? enrollForm.firstName : loggedInUserInfo.firstName}
+                  value={enrollForm.firstName}
+                  onChange={(e) =>
+                    setEnrollForm({
+                      ...enrollForm,
+                      firstName: e.target.value
+                    })
+                  }
+                  type="text"
+                  name="first-name"
+                  id="first-name"
+                  autoComplete="given-name"
+                  className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            
+                />
+              </div>
+            </div>
+
+            <div className="hidden">
+              <label
+                htmlFor="last-name"
+                className="block text-sm/6 font-semibold text-gray-900">
+                Last Name
+              </label>
+              <div className="mt-2.5">
+                <input
+                  // value={enrollForm.lastName != "" ? enrollForm.lastName : loggedInUserInfo.lastName}
+                  value={enrollForm.lastName}
+                  onChange={(e) =>
+                    setEnrollForm({
+                      ...enrollForm,
+                      lastName: e.target.value
+                    })
+                  }
+                  type="text"
+                  name="last-name"
+                  id="last-name"
+                  autoComplete="family-name"
+                  className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+      
+                />
+              </div>
+            </div>
+
+            <div className="hidden sm:col-span-2 md:col-span-1">
+              <label
+                htmlFor="email"
+                className="block text-sm/6 font-semibold text-gray-900">
+                Email
+              </label>
+              <div className="mt-2.5">
+                <input
+                  // value={enrollForm.email != "" ? enrollForm.email : loggedInUserInfo.email}
+                  value={enrollForm.email}
+                  onChange={(e) =>
+                    setEnrollForm({
+                      ...enrollForm,
+                      email: e.target.value
+                    })
+                  }
+                  type="email"
+                  name="email"
+                  id="email"
+                  autoComplete="email"
+                  className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 disabled:bg-gray-100 disabled:text-gray-500"
+                  disabled={true}
+                />
+              </div>
+            </div>
+
+            <div className="sm:col-span-2 md:col-span-1">
+              <label
+                htmlFor="username"
+                className="block text-sm/6 font-semibold text-gray-900">
+                Username
+              </label>
+              <div className="mt-2.5">
+                <input
+                  // value={enrollForm.username != "" ? enrollForm.username : loggedInUserInfo.username}
+                  value={enrollForm.username}
+                  onChange={(e) =>
+                    setEnrollForm({
+                      ...enrollForm,
+                      username: e.target.value
+                    })
+                  }
+                  type="text"
+                  name="username"
+                  id="username"
+                  autoComplete="username"
+                  className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 disabled:bg-gray-100 disabled:text-gray-500"
+                />
+              </div>
+            </div>
+
+            <div className="sm:col-span-2 md:col-span-2">
+              <label
+                htmlFor="phone-number"
+                className="block text-sm/6 font-semibold text-gray-900">
+                Phone Number
+              </label>
+              <div className="mt-2.5">
+                <div className="flex rounded-md bg-white outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+                  <div className="grid shrink-0 grid-cols-1 focus-within:relative">
+                    <select
+                      id="country"
+                      name="country"
+                      autoComplete="country"
+                      aria-label="Country"
+                      className="col-start-1 row-start-1 w-full appearance-none rounded-md py-2 pl-3.5 pr-7 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                      <option>US</option>
+                      <option>CA</option>
+                      <option>EU</option>
+                    </select>
+                    <svg
+                      className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      data-slot="icon">
+                      <path
+                        fillRule="evenodd"
+                        d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <input
+                    // value={enrollForm.phoneNumber != "" ? enrollForm.phoneNumber : loggedInUserInfo.phoneNumber}
+                    value={enrollForm.phoneNumber}
+                    onChange={(e) =>
+                      setEnrollForm({
+                        ...enrollForm,
+                        phoneNumber: e.target.value
+                      })
+                    }
+                    type="text"
+                    name="phone-number"
+                    id="phone-number"
+                    className="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline-0 sm:text-sm/6"
+                    placeholder="123-456-7890"
+        
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="sm:col-span-2 md:col-span-2">
+              <label
+                htmlFor="address"
+                className="block text-sm/6 font-semibold text-gray-900">
+                Address
+              </label>
+              <div className="mt-2.5">
+                <input
+                  // value={enrollForm.address != "" ? enrollForm.address : loggedInUserInfo.address}
+                  value={enrollForm.address}
+                  onChange={(e) =>
+                    setEnrollForm({
+                      ...enrollForm,
+                      address: e.target.value
+                    })
+                  }
+                  type="text"
+                  name="address"
+                  id="address"
+                  autoComplete="address"
+                  className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 disabled:bg-gray-100 disabled:text-gray-500"
+                />
+              </div>
+            </div>
+            <div className="sm:col-span-3 md:col-span-1">
+              <label
+                htmlFor="city"
+                className="block text-sm/6 font-semibold text-gray-900">
+                City
+              </label>
+              <div className="mt-2.5">
+                <input
+                  // value={enrollForm.city != "" ? enrollForm.city : loggedInUserInfo.city}
+                  value={enrollForm.city}
+                  onChange={(e) =>
+                    setEnrollForm({
+                      ...enrollForm,
+                      city: e.target.value
+                    })
+                  }
+                  type="text"
+                  name="city"
+                  id="city"
+                  autoComplete="city"
+                  className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 disabled:bg-gray-100 disabled:text-gray-500"
+                />
+              </div>
+            </div>
+
+            <div className="sm:col-span-3 md:col-span-1">
+              <label
+                htmlFor="state"
+                className="block text-sm/6 font-semibold text-gray-900">
+                State
+              </label>
+              <div className="mt-2.5">
+                <select
+                  // value={enrollForm.state != "" ? enrollForm.state : loggedInUserInfo.state}
+                  value={enrollForm.state}
+                  onChange={(e) =>
+                    setEnrollForm({
+                      ...enrollForm,
+                      state: e.target.value
+                    })
+                  }
+                  type="text"
+                  name="state"
+                  id="state"
+                  autoComplete="state"
+                  className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 disabled:bg-gray-100 disabled:text-gray-500">
+                  <option defaultValue="">Select a State</option>{" "}
+                  {/* {stateOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))} */}
+                </select>
+              </div>
+            </div>
+            <div className="sm:col-span-3 md:col-span-1">
+              <label
+                htmlFor="zipCode"
+                className="block text-sm/6 font-semibold text-gray-900">
+                Zip Code
+              </label>
+              <div className="mt-2.5">
+                <input
+                  // value={enrollForm.zipCode != "" ? enrollForm.zipCode : loggedInUserInfo.zipCode}
+                  value={enrollForm.zipCode}
+                  onChange={(e) =>
+                    setEnrollForm({
+                      ...enrollForm,
+                      zipCode: e.target.value
+                    })
+                  }
+                  type="text"
+                  name="zipCode"
+                  id="zipCode"
+                  autoComplete="zip code"
+                  className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 disabled:bg-gray-100 disabled:text-gray-500"
+                />
+              </div>
+            </div>
+            </div>
+
+            <div className="">
               {/* TYPE OF TRAINING/SERVICE */}
               <div>
                 <label
@@ -215,8 +547,8 @@ const EnrollForm = () => {
               </div>
             </div>
 
-            <div className="mt-6 space-y-12 lg:grid lg:grid-cols-2 lg:space-y-6 lg:gap-x-6">
-              <div className="group relative min-w-full">
+            <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:space-y-6 lg:gap-x-6">
+              {/* <div className="group flex relative min-w-full"> */}
                 {user.dogs.map((dog) => (
                   <div
                     key={dog._id}
@@ -341,7 +673,7 @@ const EnrollForm = () => {
                     </div>
                   </div>
                 ))}
-              </div>
+              {/* </div> */}
             </div>
 
             {/* ENROLL BUTTON */}

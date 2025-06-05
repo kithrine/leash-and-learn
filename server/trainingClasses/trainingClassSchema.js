@@ -35,7 +35,7 @@ const trainingClassSchema = new Schema({
       city: String,
       state: String,
       zipCode: String,
-      dog: {
+      dogs: [{
         name: String,
         age: String,
         breed: String,
@@ -49,7 +49,7 @@ const trainingClassSchema = new Schema({
         medicalConditions: String,
         trainingGoals: String,
         additionalNotes: String
-      },
+      }],
     },
   ],
   trainer: {

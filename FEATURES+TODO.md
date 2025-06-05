@@ -73,6 +73,14 @@
 ### USER SIGNUP FOR NEW USERS
 - [x] New user create
 
+### ENROLLMENT IN CLASS
+- [x] Makes sure that every time the type of class is changed, it sets the selectedClass to null
+- [x] Get Many By Type on backend: to dynamically grab the classes based on type when a user selects the different services in the dropdown
+- [ ] Detail modal for what the customer can expect for that class when enrolling. (AKA show the sessions and overall detail of the training class- GetOne)
+- [ ] Make sure when the user clicks on a class, if they click the same one again it unselects it
+- [ ] Make the styling of selecting a class and a dog visually appealing
+  - [ ] Make the whole row highlight for the class
+  - [ ] Make a thick border appear around the dog card
 
 ### NEWSLETTER
 - [ ] Create for user signing up for the Newsletter
@@ -145,11 +153,19 @@
 - [x] Delete dog(s)
 - [ ] Show Happy Birthday picture on Dog Card when it is the dog's birthday
 ##### Enroll
-- [ ] Ability for user to enroll in a Training Class
-- [x] Makes sure that every time the type of class is changed, it sets the selectedClass to null
+- [ ] Link/CTA for enrolling on the user dashboard
+
 
 #### OVERALL STYLING
 - [ ] Make sure that there is "dark:" utility classes throughout the entire website so dark mode looks good, remeber to check all the modals and forms as well
 - [ ] Put back buttons on almost every page, form and modal as well so a user can easily access the previous page
 
 ## Technology Used
+
+## SIDE NOTES TO INCLUDE IN THE PROPER SPOT IN HERE WHEN TIME:
+- [ ] Schema Updates!
+  - [ ] Add a bio field to user (for a description of them on their profile)
+  - [ ] Maybe a bio field for the dogs too??
+  - [ ] Need to reseed my BM and Trainer accts so all the proper fields are there and so they can edit them
+  - [ ] Add a title field to the user too, so that I can have it for the Trainers/BM
+- [ ] Make sure that I make a route to a "profile"/detail page for the users, so people can click on ppl's avatars on the blog, or wherever, and it sends them to a public-facing profile page of that user
