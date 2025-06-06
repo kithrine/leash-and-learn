@@ -171,3 +171,20 @@
 - [ ] Make sure that I make a route to a "profile"/detail page for the users, so people can click on ppl's avatars on the blog, or wherever, and it sends them to a public-facing profile page of that user
 - [ ] "Require" all applicable fields when a user is editing their profile or creating a dog. Make sure that they fill out things that are important
 - [ ] Have a modal on Enroll Page when the user successfully joins a training class or when they unsuccessfully join a training class have it so it shows an error message and lets them try to decide what they want to do- if they want to retry or not 
+
+
+## WALKTHROUGH NOTES
+- [ ] Enroll Form
+  - [x] Headers like "Step 1:", "Step 2:"
+  - [ ] Have logic so the user cannot enroll in a training class without selecting a class and a dog (Disable the button and have a warning toast)
+  - [ ] Detail Modal for when a user clicks on the detail button
+  - [ ] Fix the on hovers maybe?
+  - [ ] Show when no dog is on the profile, a link to the dashboard to add a dog? (See if the modal will work on that page)
+- [ ] Training Class Detail page
+  - [ ] Logic for showing the buttons depending on role
+  - [ ] Move the file into a different folder, get rid of the Trainer Training Class Detail page, since there will just be one with different logic for showing the buttons or not
+- [ ] Navbar
+  - [ ] add Enroll Link at the top
+- [ ] Under Construction page for the Company Blog
+- [ ] User Dashboard
+  - [ ] make the table disappear for enrolled Training Classes when the user is not currently enrolled in any training classes

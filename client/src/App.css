@@ -101,3 +101,7 @@
   /* background: linear-gradient(to right, orange, hotpink, yellow); */
   will-change: transform;
 }
+
+.conic-gradient {
+  background: conic-gradient(#84cc16, #4ade80, #5eead4, #38bdf8, #84cc16 );
+}

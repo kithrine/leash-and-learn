@@ -7,10 +7,11 @@ import { createDog, userGetOne } from "../../redux/userSlice"
 
 const DogAddModal = ({setShowAddDogModal, loggedInEmail}) => {
 
+  const dispatch = useDispatch()
   const { user } = useSelector((state) => state.users)
   const userId = user.id
+  const storedTheme = localStorage.getItem('theme'); 
 
-  const dispatch = useDispatch()
 
   // let userId = location.pathname.split("/")[2];
 
@@ -71,7 +72,14 @@ const DogAddModal = ({setShowAddDogModal, loggedInEmail}) => {
     console.log("userId:", userId, "dog:", addDogForm);
     dispatch(createDog({ userId, addDogForm }))
     setShowAddDogModal(false)
-    toast.success("Dog added successfully!");
+
+    if (storedTheme === "dark") {
+      toast.success("Dog added successfully!", {
+        theme: "dark"
+      })
+    } else {
+      toast.success("Dog added successfully!")
+    }
   }
   
 

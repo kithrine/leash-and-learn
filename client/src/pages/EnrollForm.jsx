@@ -7,6 +7,7 @@ import {
   trainingClassGetManyByType
 } from "../redux/trainingClassSlice"
 import { toast } from "react-toastify"
+import DogAddModal from "../components/modals/DogAddModal"
 
 const EnrollForm = () => {
   const dispatch = useDispatch()
@@ -18,6 +19,9 @@ const EnrollForm = () => {
   const { builders } = useSelector((state) => state.builder)
   const [selectedClass, setSelectedClass] = useState(null)
   const [selectedDog, setSelectedDog] = useState(null)
+  const [showAddDogModal, setShowAddDogModal] = useState(false)
+
+  const loggedInEmail = user.email
 
   const [enrollForm, setEnrollForm] = useState({
     // trainingClassType: "",
@@ -48,6 +52,8 @@ const EnrollForm = () => {
     setSelectedClass(null)
     console.log("")
   }
+
+  console.log("user.dogs", user.dogs)
 
   // const [selectedClass, setSelectedClass] = useState([]);
 
@@ -90,6 +96,8 @@ const EnrollForm = () => {
   //   }
   // }
 
+  const storedTheme = localStorage.getItem('theme'); 
+
   const handleRowClick = (trainingClassId) => {
     setSelectedClass(trainingClassId)
   }
@@ -105,14 +113,47 @@ const EnrollForm = () => {
     e.preventDefault()
     console.log("handleEnroll selectedClass", selectedClass)
     const enrollmentInfo = { selectedClass, selectedDog, userId: user.id }
-    dispatch(trainingClassEnroll(enrollmentInfo))
     // if (success === true) {
-    //   toast.success("Successfully Enrolled!")
-    // } else {
-    //   toast.error("An error occured. Please try again.")
-    // }
-    toast.success("Successfully Enrolled!")
-    navigate("/dashboard")
+      //   toast.success("Successfully Enrolled!")
+      // } else {
+        //   toast.error("An error occured. Please try again.")
+        // }
+        
+    if (selectedClass !== null && selectedDog !== null) {
+      dispatch(trainingClassEnroll(enrollmentInfo))
+      if (storedTheme === "dark") {
+        toast.success("Successfully Enrolled!", {
+          theme: "dark"
+        })
+      } else {
+        toast.success("Successfully Enrolled!")
+      }
+      navigate("/dashboard")
+    } else if (selectedClass === null && selectedDog !== null) {
+      if (storedTheme === "dark") {
+        toast.warning("You must select a class in order to enroll!", {
+          theme: "dark"
+        })
+      } else {
+        toast.warning("You must select a class in order to enroll!")
+      }
+    } else if (selectedClass !== null && selectedDog === null) {
+      if (storedTheme === "dark") {
+        toast.warning("You must select a dog in order to enroll!", {
+          theme: "dark"
+        })
+      } else {
+        toast.warning("You must select a dog in order to enroll!")
+      }
+    } else {
+      if (storedTheme === "dark") {
+        toast.error("You must select a class and a dog in order to enroll", {
+          theme: "dark"
+        })
+      } else {
+        toast.error("You must select a class and a dog in order to enroll")
+      }
+    }
   }
 
   // const handleCoverPhotoUpload = async (e) => {
@@ -133,11 +174,14 @@ const EnrollForm = () => {
     <>
       <section className="bg-white dark:bg-gray-900 min-h-[100vh] md:px-[13vw] mt-16">
         <div className="py-8 px-4 mx-auto max-w-6xl lg:py-16  md:ml-[20vw]">
-          <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
-            Enroll Today!
+          <h2 className="font-learn mb-4 text-6xl font-bold text-gray-900 dark:text-white tracking-wide">
+            Training Class Enrollment Form
           </h2>
           <form onSubmit={handleEnroll}>
             <div className="">
+              <div className="">
+                <h1 className="text-4xl font-palanquin-dark font-bold text-gray-800 dark:text-gray-100 underline underline-offset-4 pb-4 pt-10">Step 1: Choose a Class</h1>
+              </div>
               {/* TYPE OF TRAINING/SERVICE */}
               <div>
                 <label
@@ -196,7 +240,7 @@ const EnrollForm = () => {
                       <tr
                         key={trainingClass.id}
                         onClick={() => handleRowClick(trainingClass.id)}
-                        className={`border-b dark:border-gray-700 ${selectedClass === trainingClass.id ? "bg-gray-200 dark:bg-slate-600" : "bg-white dark:bg-gray-800"}`}>
+                        className={`border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 ${selectedClass === trainingClass.id ? "bg-gray-200 dark:bg-slate-600" : "bg-white dark:bg-gray-800"}`}>
                            {/* {selectedClass === trainingClass.id ? (
                             <span>Selected</span>
                           ) : (
@@ -250,13 +294,19 @@ const EnrollForm = () => {
               </div>
             </div>
 
+            <div className="">
+                <h1 className="text-4xl font-palanquin-dark font-bold text-gray-800 dark:text-gray-100 underline underline-offset-4 pb-4 pt-10">Step 2: Select a Dog</h1>
+              </div>
+
+
+              {user.dogs.length > 0 ? 
+              <>
             <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:space-y-6 lg:gap-x-6">
-              {/* <div className="group flex relative min-w-full"> */}
               {user.dogs.map((dog) => (
                 <div
                   key={dog._id}
                   onClick={() => handleDogClick(dog._id)}
-                  class={`w-full max-h-[44vh] border rounded-lg shadow-sm p-2 ${selectedDog === dog._id ? "bg-gray-200 dark:bg-slate-600 border-2 border-gray-600 dark:border-gray-400" : "bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-700"}`}>
+                  class={`w-full max-h-[44vh] border rounded-lg shadow-sm p-2 hover:bg-gray-50 dark:hover:bg-gray-700 ${selectedDog === dog._id ? "bg-gray-200 dark:bg-slate-600 border-2 border-gray-600 dark:border-gray-400" : "bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-700"}`}>
 
                   {/* <button
                     type="button"
@@ -317,8 +367,23 @@ const EnrollForm = () => {
                   </div>
                 </div>
               ))}
-              {/* </div> */}
             </div>
+              </>
+               : 
+               <div className="">
+                
+                <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert">
+                  <p class="font-learn uppercase font-bold tracking-wider text-xl">** You have no dogs! **</p>
+                  <p>You currently have no dogs added to your profile. Please add a dog to your profile by clicking the button below, or by going to your dashboard and clicking the "Add Dog" button under the Dogs section.</p>
+                  <button
+                  onClick={() => setShowAddDogModal(true)}
+                  type="button"
+                  class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 my-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  Add Dog
+                </button>
+                </div>
+              </div>
+               }
 
             {/* ENROLL BUTTON */}
             <button
@@ -330,6 +395,13 @@ const EnrollForm = () => {
           </form>
         </div>
       </section>
+
+      {showAddDogModal && (
+        <DogAddModal
+          setShowAddDogModal={setShowAddDogModal}
+          loggedInEmail={loggedInEmail}
+        />
+      )}
     </>
   )
 }

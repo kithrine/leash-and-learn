@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router"
+import * as motion from "motion/react-client"
+
 
 const EnrollBanner = () => {
   const [showEnrollBanner, setShowEnrollBanner] = useState(true)
@@ -12,7 +14,7 @@ const EnrollBanner = () => {
     <> 
     {showEnrollBanner && (
 
-      <div className="fixed left-0 top-18 right-0 z-50 isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+      <div className="fixed left-0 top-18 right-0 z-49 isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
         <div
           className="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
           aria-hidden="true"
@@ -49,18 +51,22 @@ const EnrollBanner = () => {
             </svg>
             Enroll in classes today!
           </p>
+          <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}>
           <Link
             to="/enroll"
             className="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
           >
             Enroll now <span aria-hidden="true">&rarr;</span>
           </Link>
+          </motion.button>
         </div>
         <div className="flex flex-1 justify-end">
           <button
           onClick={() => setShowEnrollBanner(false)}
             type="button"
-            className="-m-3 p-3 focus-visible:outline-offset-[-4px]"
+            className="cursor-pointer -m-3 p-3 focus-visible:outline-offset-[-4px]"
           >
             <span className="sr-only">Dismiss</span>
             <svg

@@ -140,7 +140,7 @@ const BlogDetail = () => {
   return (
     <>
       <BlogNavigation />
-      <div className="mx-autoborder-t sm:pt-16">
+      <div className="mx-autoborder-t sm:pt-16 mt-8">
         <div className="pt-12">
           <article className="items-start justify-between">
             <div className="time-blog-detail">

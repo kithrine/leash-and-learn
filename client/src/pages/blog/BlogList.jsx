@@ -22,7 +22,7 @@ const BlogList = () => {
   return (
     <>
       <BlogNavigation />
-      <div className="bg-black h-[100vh] pt-28">
+      <div className="bg-black h-[100vh] pt-28 mt-8">
         <div className="text-center font-numans text-5xl">
           <span className="text-fur">FUR </span>
           <span className="text-the">THE </span>

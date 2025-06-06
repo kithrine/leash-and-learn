@@ -208,7 +208,12 @@ export const trainingClassEnroll = createAsyncThunk(
 export const trainingClassSlice = createSlice({
   name: "trainingClass",
   initialState,
-  reducers: {},
+  reducers: {
+    emptyTrainingClasses(state, action) {
+      console.log("emptyTrainingClasses", action.payload)
+      state.trainingClass = []
+  },
+  },
   extraReducers: (builder) => {
     builder
 
@@ -452,5 +457,8 @@ export const trainingClassSlice = createSlice({
       })
   },
 });
+
+// export const { emptyTrainingClasses } = trainingClass.actions;
+
 
 export default trainingClassSlice.reducer;

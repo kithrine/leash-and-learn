@@ -142,7 +142,7 @@ const AddBlog = () => {
   return (
     <>
       <BlogNavigation />
-      <div className="pt-36 mx-auto max-w-screen-xl px-4 lg:px-12 font-instrument relative">
+      <div className="pt-36 mt-8 mx-auto max-w-screen-xl px-4 lg:px-12 font-instrument relative">
         <div className="bg-white dark:bg-gray-800 relative drop-shadow-lg sm:rounded-lg overflow-hidden p-8">
           <h1><span className="font-leash text-7xl font-bold">Leash</span> <span className="font-and text-3xl font-bold">&</span> <span className="font-learn text-5xl font-bold">Learn:</span> <span className="font-lexend uppercase text-3xl font-bold">Community Blog</span></h1>
           <h2>
