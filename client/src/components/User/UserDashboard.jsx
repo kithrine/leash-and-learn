@@ -7,12 +7,14 @@ import { deleteDog, userGetOne } from "../../redux/userSlice"
 import DogAddModal from "../modals/DogAddModal"
 import DogEditModal from "../modals/DogEditModal"
 import DogDeleteModal from "../modals/DogDeleteModal"
+import { trainingClassGetAll } from "../../redux/trainingClassSlice"
 
 const UserDashboard = ({ handleLogout, loggedInEmail }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   // const { id } = useParams()
   const { user } = useSelector((state) => state.users)
+  const { trainingClasses } = useSelector((state) => state.trainingClass)
   // const { user } = useSelector((state) => state.users)
   const userId = user.id
   // console.log("loggedInEmail", loggedInEmail)
@@ -28,7 +30,35 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
 
   useEffect(() => {
     dispatch(userGetOne(loggedInEmail))
+    dispatch(trainingClassGetAll())
   }, [])
+
+  // const enrolledArray = trainingClasses.map((trainingClass) =>
+  //   trainingClass.customers.filter(
+  //     (customer) => customer.email === loggedInEmail
+  //   )
+  // )
+  // const enrolledCustomer = enrolledArray.flat(Infinity)[0].email
+
+  // if loggoedInemail ==  trainingclasses.customer
+  const enrolledTrainingClasses = trainingClasses.map((trainingClass) =>
+    trainingClass.customers.length > 0 ? trainingClass : null
+  )
+
+  // trainingClasses.map((trainingClass) =>
+  //   trainingClass.customers.filter((c)=>c.email==enrolledCustomer))
+  // If you have a bunch of levels of an array, .flat(Infinity) puts it as one level of an array
+
+  // useEffect(() => {
+  //   console.log("user.id", user.id)
+  //   // console.log("enrolledCustomer", enrolledCustomer)
+  //   // console.log("enrolledArray", enrolledArray)
+  //   console.log("enrolledTrainingClasses", enrolledTrainingClasses)
+  //   // console.log("enrolledCustomer map", enrolledCustomer.map(class => (class.length > 0 )))
+  //   // console.log("TEST",TEST)
+  //   // console.log("trainingClasses", trainingClasses)
+  // }, [trainingClasses])
+  //  trainingClasses.map(trainingClass =>  trainingClass.customers.length>0 ?trainingClass:null
 
   // console.log("user & loading", user)
   // console.log("userId from Dashboard routes userId", userId)
@@ -70,7 +100,10 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
 
   return (
     <>
-      {!loading && (
+      {loading ? 
+      <div className="min-h-[100vh] mt-16 bg-white dark:bg-gray-900">
+
+      </div> : (
         <section className="mt-16 bg-white py-8 antialiased dark:bg-gray-900 md:py-8">
           <div className="md:px-[13vw]">
             {/* <div className="flex p-8 px-[9vw]"> */}
@@ -779,11 +812,114 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                 </div>
               </div>
 
-              <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800 md:p-8">
+              <div className="my-8 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800 md:p-8">
+                <div className="flex justify-between">
                 <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
-                  Latest orders
+                  Enrolled Training Classes
                 </h3>
-                <div className="flex flex-wrap items-center gap-y-4 border-b border-gray-200 pb-4 dark:border-gray-700 md:pb-5">
+                <button
+                  onClick={() => navigate("/enroll")}
+                  type="button"
+                  class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  Enroll Now
+                </button>
+                </div>
+                {/* {enrolledTrainingClasses.map((trainingClass) =>
+                  trainingClass == null ? <div>Test</div> : null
+                )} */}
+
+                <div className="min-h-96 max-h-96 w-full my-8 relative overflow-x-auto shadow-md sm:rounded-lg">
+                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                      <tr>
+                        <th scope="col" className="px-6 py-3">
+                          Training Class Name
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Type
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Trainer
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Start Date
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          End Date
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Detail
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="overflow-y-auto">
+                      {enrolledTrainingClasses.map(
+                        (trainingClass) =>
+                          trainingClass != null &&
+                          trainingClass.customers.map((customer) =>
+                            customer.email == loggedInEmail ? (
+                              <tr
+                                key={trainingClass.id}
+                                // onClick={() => handleRowClick(trainingClass.id)}
+                                className={`border-b bg-white dark:bg-gray-800`}>
+                                {/* className={`border-b dark:border-gray-700 ${selectedClass === trainingClass.id ? "bg-gray-200 dark:bg-slate-600" : "bg-white dark:bg-gray-800"}`}> */}
+                                {/* {selectedClass === trainingClass.id ? (
+                            <span>Selected</span>
+                          ) : (
+                            <span>Not selected</span>
+                          )} */}
+                                <th
+                                  scope="row"
+                                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                  {trainingClass.trainingClassName}
+                                </th>
+                                <td className="px-6 py-4">
+                                  {trainingClass.trainingClassType}
+                                </td>
+                                <td className="px-6 py-4">
+                                  {trainingClass.trainer.firstName}{" "}
+                                  {trainingClass.trainer.lastName}
+                                </td>
+                                <td className="px-6 py-4">
+                                  {new Intl.DateTimeFormat("en-US").format(
+                                    new Date(trainingClass.startDate)
+                                  )}
+                                </td>
+                                <td className="px-6 py-4">
+                                  {new Intl.DateTimeFormat("en-US").format(
+                                    new Date(trainingClass.endDate)
+                                  )}
+                                </td>
+
+                                {/* DETAIL BUTTON */}
+                                <td className="px-6 py-4 justify-self-center">
+                                  <button
+                                    onClick={() =>
+                                      navigate(
+                                        `/training-classes/${trainingClass.id}`
+                                      )
+                                    }>
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      height="25"
+                                      width="25"
+                                      viewBox="0 0 512 512">
+                                      <path
+                                        fill="#d0c5f2"
+                                        d="M0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM297 385c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l71-71L120 280c-13.3 0-24-10.7-24-24s10.7-24 24-24l214.1 0-71-71c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L409 239c9.4 9.4 9.4 24.6 0 33.9L297 385z"
+                                      />
+                                    </svg>
+                                  </button>
+                                </td>
+                              </tr>
+                            ) : null
+                          )
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* <div className="flex flex-wrap items-center gap-y-4 border-b border-gray-200 pb-4 dark:border-gray-700 md:pb-5">
                   <dl className="w-1/2 sm:w-48">
                     <dt className="text-base font-medium text-gray-500 dark:text-gray-400">
                       Order ID:
@@ -942,7 +1078,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                       </ul>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

@@ -536,7 +536,10 @@ const HomePage = () => {
     </section>
      
 
-     
+    <button class="bg-gradient-to-r from-[#F0932B] to-[#E64A19] hover:from-[#D85C27] hover:to-[#CF3F13] px-6 py-2 rounded text-white font-medium">
+  Click Me! 
+</button>
+
      
      
      
