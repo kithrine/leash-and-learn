@@ -188,3 +188,7 @@
 - [ ] Under Construction page for the Company Blog
 - [ ] User Dashboard
   - [ ] make the table disappear for enrolled Training Classes when the user is not currently enrolled in any training classes
+- [ ] BM/Trainer SideNav
+  - [ ] Make it show their avatar and their title
+  - [ ] Edit Profile link and/or dashboard edit profile stuff
+    - [ ] **will first have to drop and re-seed the BM and Trainers b/c their schema does not match!!

@@ -3,10 +3,10 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { trainingClassGetOne, trainingClassSessionDelete } from "../../redux/trainingClassSlice";
 import { ToastContainer } from "react-toastify";
-import BMTrainingClassEditModal from "../modals/BMTrainingClassEditModal"
+import BMTrainingClassEditModal from "../modals/TrainingClassEditModal"
 import SessionEditModal from "../modals/SessionEditModal";
 import SessionDeleteModal from "../modals/SessionDeleteModal";
-import DetailPageLoadingSkeleton from "../skeletons/DetailPageLoadingSkeleton";
+import TrainingClassDetailSkeleton from "../skeletons/TrainingClassDetailSkeleton";
 import SessionAddModal from "../modals/SessionAddModal";
 
 const BMDetail = () => {
@@ -72,7 +72,7 @@ const BMDetail = () => {
       {/* If page is loading... */}
       {loading ? (
         // LOADING SKELETON
-        <DetailPageLoadingSkeleton />
+        <TrainingClassDetailSkeleton />
       ) : (
         // If not loading, show the page:
         // BUSINESS MANAGER DETAIL PAGE

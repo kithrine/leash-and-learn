@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { trainingClassGetOne } from "../../redux/trainingClassSlice";
 import { ToastContainer } from "react-toastify";
-import DetailPageLoadingSkeleton from "../skeletons/DetailPageLoadingSkeleton";
+import TrainingClassDetailSkeleton from "../skeletons/TrainingClassDetailSkeleton";
 import SessionEditModal from "../modals/SessionEditModal";
 import SessionDeleteModal from "../modals/SessionDeleteModal";
 
@@ -34,7 +34,7 @@ const TrainerDetail = () => {
       {/* If page is loading... */}
       {loading ? (
         // LOADING SKELETON
-        <DetailPageLoadingSkeleton />
+        <TrainingClassDetailSkeleton />
       ) : (
         // If not loading, show the page:
         // TRAINER DETAIL PAGE
