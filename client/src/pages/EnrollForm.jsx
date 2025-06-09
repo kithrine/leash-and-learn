@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router"
 import { builderGetMany } from "../redux/builderSlice"
 import {
+  emptyTrainingClasses,
   trainingClassEnroll,
   trainingClassGetManyByType
 } from "../redux/trainingClassSlice"
@@ -41,6 +42,7 @@ const EnrollForm = () => {
 
   useEffect(() => {
     dispatch(builderGetMany())
+    dispatch(emptyTrainingClasses())
   }, [])
 
   const getClassesByType = (type) => {
@@ -274,7 +276,9 @@ const EnrollForm = () => {
                           <button
                             onClick={() =>
                               navigate(`/training-classes/${trainingClass.id}`)
-                            }>
+                            }
+                            className="cursor-pointer"
+                            >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               height="25"

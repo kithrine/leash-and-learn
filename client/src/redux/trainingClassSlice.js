@@ -211,7 +211,7 @@ export const trainingClassSlice = createSlice({
   reducers: {
     emptyTrainingClasses(state, action) {
       console.log("emptyTrainingClasses", action.payload)
-      state.trainingClass = []
+      state.trainingClasses = []
   },
   },
   extraReducers: (builder) => {
@@ -458,7 +458,7 @@ export const trainingClassSlice = createSlice({
   },
 });
 
-// export const { emptyTrainingClasses } = trainingClass.actions;
+export const { emptyTrainingClasses } = trainingClassSlice.actions;
 
 
 export default trainingClassSlice.reducer;

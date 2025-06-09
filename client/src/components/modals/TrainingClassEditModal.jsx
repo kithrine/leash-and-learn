@@ -30,7 +30,7 @@ const TrainingClassEditModal = () => {
 
   useEffect(() => {
     if (trainingClass.trainingClassName !== "") {
-      console.log("trainingClass.trainingClassName", trainingClass.trainingClassName)
+      // console.log("trainingClass.trainingClassName", trainingClass.trainingClassName)
       setTrainingClassEditForm(trainingClass)
     }
   }, [trainingClass])
@@ -44,9 +44,9 @@ const TrainingClassEditModal = () => {
     setShowModal(false);
   };
 
-  useEffect(() => {
-    console.log("trainingClassEditForm but really we're just looking for trainer", trainingClassEditForm)
-  }, [trainingClassEditForm])
+  // useEffect(() => {
+  //   console.log("trainingClassEditForm but really we're just looking for trainer", trainingClassEditForm)
+  // }, [trainingClassEditForm])
   
 
   const findTrainer = (trainer) => {
