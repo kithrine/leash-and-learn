@@ -12,7 +12,7 @@ import chatIndex from "./chat/chatIndex.js"
 console.log(process.env.MONGODB_URL)
 
 const app = express()
-app.use(express.json({ limit: "5gb" }))
+app.use(express.json({ limit: "10gb" }))
 app.use(cors())
 const port = process.env.EXPRESS_PORT || 8888
 

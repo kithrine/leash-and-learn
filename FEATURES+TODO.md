@@ -175,16 +175,26 @@
 
 ## WALKTHROUGH NOTES
 - [ ] Enroll Form
-  - [x] Headers like "Step 1:", "Step 2:"
-  - [ ] Have logic so the user cannot enroll in a training class without selecting a class and a dog (Disable the button and have a warning toast)
-  - [ ] Detail Modal for when a user clicks on the detail button
-  - [ ] Fix the on hovers maybe?
-  - [ ] Show when no dog is on the profile, a link to the dashboard to add a dog? (See if the modal will work on that page)
+  - [x] headers like "Step 1:", "Step 2:"
+  - [ ] have logic so the user cannot enroll in a training class without selecting a class and a dog (Disable the button and have a warning toast)
+  - [ ] detail Modal for when a user clicks on the detail button
+  - [ ] fix the on hovers maybe?
+  - [ ] show when no dog is on the profile, a link to the dashboard to add a dog? (See if the modal will work on that page)
 - [ ] Training Class Detail page
-  - [ ] Logic for showing the buttons depending on role
-  - [ ] Move the file into a different folder, get rid of the Trainer Training Class Detail page, since there will just be one with different logic for showing the buttons or not
+  - [ ] logic for showing the buttons depending on role
+  - [ ] move the file into a different folder, get rid of the Trainer Training Class Detail page, since there will just be one with different logic for showing the buttons or not
 - [ ] Navbar
   - [ ] add Enroll Link at the top
 - [ ] Under Construction page for the Company Blog
 - [ ] User Dashboard
   - [ ] make the table disappear for enrolled Training Classes when the user is not currently enrolled in any training classes
+- [ ] BM/Trainer SideNav
+  - [ ] make it show their avatar and their title
+  - [ ] edit Profile link and/or dashboard edit profile stuff
+    - [ ] **will first have to drop and re-seed the BM and Trainers b/c their schema does not match!!
+- [ ] ALL SideNavs
+  - [ ] make it so the active tab stays highlighted when on that page from the sidenav
+- [ ] BUTTONS.... EVERYWHERE!
+  - [ ] Enroll Form
+  - [ ] Add TC Form
+  - [ ] Login

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { trainingClassGetOne, trainingClassUpdate } from "../../redux/trainingClassSlice";
 import { userGetMany } from "../../redux/userSlice";
 
-const BMTrainingClassEditModal = () => {
+const TrainingClassEditModal = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   let trainingClassId = location.pathname.split("/")[2];
@@ -23,14 +23,14 @@ const BMTrainingClassEditModal = () => {
 
   useEffect(() => {
     let id = location.pathname.split("/")[2]
-    // console.log("BMTrainingClassEditModal useEffect location", location, id)
+    // console.log("TrainingClassEditModal useEffect location", location, id)
     dispatch(trainingClassGetOne(id));
     dispatch(userGetMany({userType: "Trainer"}))
   }, []);
 
   useEffect(() => {
     if (trainingClass.trainingClassName !== "") {
-      console.log("trainingClass.trainingClassName", trainingClass.trainingClassName)
+      // console.log("trainingClass.trainingClassName", trainingClass.trainingClassName)
       setTrainingClassEditForm(trainingClass)
     }
   }, [trainingClass])
@@ -44,9 +44,9 @@ const BMTrainingClassEditModal = () => {
     setShowModal(false);
   };
 
-  useEffect(() => {
-    console.log("trainingClassEditForm but really we're just looking for trainer", trainingClassEditForm)
-  }, [trainingClassEditForm])
+  // useEffect(() => {
+  //   console.log("trainingClassEditForm but really we're just looking for trainer", trainingClassEditForm)
+  // }, [trainingClassEditForm])
   
 
   const findTrainer = (trainer) => {
@@ -83,7 +83,7 @@ const BMTrainingClassEditModal = () => {
         id="updateProductModal"
         tabIndex="-1"
         aria-hidden="true"
-        className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full"
+        className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full drop-shadow-gray-700 drop-shadow-xl"
       >
         <div className="relative p-4 w-full max-w-2xl h-full md:h-auto justify-self-center mt-28 md:ml-64">
           {/* <!-- Modal content --> */}
@@ -296,4 +296,4 @@ const BMTrainingClassEditModal = () => {
   );
 };
 
-export default BMTrainingClassEditModal;
+export default TrainingClassEditModal;

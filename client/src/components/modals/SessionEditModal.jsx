@@ -44,11 +44,11 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
   // console.log("testing edit text: ", sessionEditForm);
 
   useEffect(() => {
-    console.log(
-      "trainingClassSessions useEffect location",
-      location,
-      trainingClassId
-    );
+    // console.log(
+    //   "trainingClassSessions useEffect location",
+    //   location,
+    //   trainingClassId
+    // );
     dispatch(trainingClassGetOne(trainingClassId));
   }, []);
 
@@ -64,9 +64,9 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
     // console.log("sessionEditForm", sessionEditForm)
   }, []);
 
-  useEffect(() => {
-    console.log("sessionEditForm", sessionEditForm)
-  }, [sessionEditForm])
+  // useEffect(() => {
+  //   console.log("sessionEditForm", sessionEditForm)
+  // }, [sessionEditForm])
   
   // const handleDatepickerFormat = (classDate) => {
   //   // convert string to date

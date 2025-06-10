@@ -1,5 +1,5 @@
 
-const DetailPageLoadingSkeleton = () => {
+const TrainingClassDetailSkeleton = () => {
   return (
     <>
       <div>
@@ -49,4 +49,4 @@ const DetailPageLoadingSkeleton = () => {
   )
 }
 
-export default DetailPageLoadingSkeleton
+export default TrainingClassDetailSkeleton
