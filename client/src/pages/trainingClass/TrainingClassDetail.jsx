@@ -94,7 +94,10 @@ const TrainingClassDetail = () => {
                 Training Class Overview
               </h2>
               {/* Training Class Details */}
-              <div className={`justify-self-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ${user.role.includes("User") ? "w-11/12" : "w-10/12"}`}>
+              <div
+                className={`justify-self-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ${
+                  user.role.includes("User") ? "w-11/12" : "w-10/12"
+                }`}>
                 <ul
                   className="text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400 rtl:divide-x-reverse"
                   id="fullWidthTab"
@@ -168,9 +171,9 @@ const TrainingClassDetail = () => {
                       </dl>
                       {/* Button to Edit the Overview Details */}
                       {user.role.includes("Business Manager") && (
-                      <div className="justify-self-center">
-                        <TrainingClassEditModal />
-                      </div>
+                        <div className="justify-self-center">
+                          <TrainingClassEditModal />
+                        </div>
                       )}
                     </div>
                   </div>
@@ -180,23 +183,26 @@ const TrainingClassDetail = () => {
 
             {/* CUSTOMERS */}
             <section className="bg-white dark:bg-gray-900">
-              <div className={`py-8 px-4 mx-auto lg:py-16 ${user.role.includes("User") ? "" : "lg:px-6"}`}>
+              <div
+                className={`py-8 px-4 mx-auto lg:py-16 ${
+                  user.role.includes("User") ? "" : "lg:px-6"
+                }`}>
                 <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
                   <h2 className="mb-4 text-4xl font-extrabold text-gray-900 dark:text-white">
                     {user.role.includes("User") ? "Dogs Enrolled" : "Customers"}
                   </h2>
                 </div>
+                  {/* THE INPUT BOX I'D LIKE TO PUT WHEN EDITING THE FIELDS */}
+                  {/* <input className="px-2 py-1 text-base  rounded-lg border focus:outline focus:outline-1 focus:outline-offset-2 bg-[#ffffff] text-[#444444] focus:outline-[#aaaaaa] border-[#cccccc]" placeholder="Type your name.." autocomplete="off"></input> */}
+
+                  {trainingClass.customers.length > 0 ? (
+                    <>
                 <div
                   className={`${
                     user.role.includes("User")
                       ? "lg:grid-cols-4"
                       : "lg:grid-cols-5 px-30"
                   } space-y-8 lg:grid sm:gap-6 xl:gap-3 lg:space-y-2 `}>
-                  {/* THE INPUT BOX I'D LIKE TO PUT WHEN EDITING THE FIELDS */}
-                  {/* <input className="px-2 py-1 text-base  rounded-lg border focus:outline focus:outline-1 focus:outline-offset-2 bg-[#ffffff] text-[#444444] focus:outline-[#aaaaaa] border-[#cccccc]" placeholder="Type your name.." autocomplete="off"></input> */}
-
-                  {trainingClass.customers.length > 0 ? (
-                    <>
                       {/* <!-- Training Class 8 Week Cards --> */}
                       {trainingClass.customers.map((customer, index) => (
                         <div
@@ -285,39 +291,67 @@ const TrainingClassDetail = () => {
                           </ul>
 
                           {/* <div className="flex flex-row mx-auto space-x-40">
-      <SessionEditModal
-        handleDatepickerFormat={handleDatepickerFormat}
-        session={session}
-      />
-      <button
-        onClick={() => {
-          setShowDeleteModal(true)
-          setSessionToDelete(session)
-        }}
-        type="button"
-        className="text-white bg-gradient-to-r from-rose-700 to-red-500 hover:bg-gradient-to-l hover:from-rose-700 hover:to-red-500 focus:ring-4 focus:outline-none focus:ring-red-600 dark:focus:ring-red-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[10vw]">
-        Delete
-      </button>
-      {showDeleteModal &&
-        sessionToDelete._id === session._id && (
-          <SessionDeleteModal
-            setShowDeleteModal={setShowDeleteModal}
-            handleDelete={handleDelete}
-            session={session}
-          />
-        )}
-    </div> */}
+                            <SessionEditModal
+                              handleDatepickerFormat={handleDatepickerFormat}
+                              session={session}
+                            />
+                            <button
+                              onClick={() => {
+                                setShowDeleteModal(true)
+                                setSessionToDelete(session)
+                              }}
+                              type="button"
+                              className="text-white bg-gradient-to-r from-rose-700 to-red-500 hover:bg-gradient-to-l hover:from-rose-700 hover:to-red-500 focus:ring-4 focus:outline-none focus:ring-red-600 dark:focus:ring-red-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[10vw]">
+                              Delete
+                            </button>
+                            {showDeleteModal &&
+                              sessionToDelete._id === session._id && (
+                                <SessionDeleteModal
+                                  setShowDeleteModal={setShowDeleteModal}
+                                  handleDelete={handleDelete}
+                                  session={session}
+                                />
+                              )}
+                          </div> */}
                         </div>
                       ))}
+                      </div>
                     </>
                   ) : (
                     <>
-                      <div>
-                        <p>No dogs are currently enrolled!</p>
-                      </div>
+                    {user.role.includes("User") ? (
+                      <div className="">
+                        <div
+                          class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4"
+                          role="alert">
+                          <p class="font-learn uppercase font-bold tracking-wider text-xl">
+                            ** No Dogs Currently Enrolled! **
+                          </p>
+                          <p>
+                          This class is currently full of open spots! Due to high demand, these classes tend to fill quickly. Enroll today and secure your pup's place for a rewarding learning experience. 
+                          </p>
+                        </div>
+                      </div> )
+                      :
+                      (
+                        <div className="px-40">
+                      <div
+                          class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4"
+                          role="alert">
+                          <p class="font-learn uppercase font-bold tracking-wider text-xl">
+                            ** No Dogs Currently Enrolled! **
+                          </p>
+                          <p>
+                          There are currently no dogs enrolled in this training class. 
+                          </p>
+                        </div>
+                        </div>
+                        )
+
+                    }
                     </>
                   )}
-                </div>
+                
               </div>
             </section>
             {/* ${user.role.includes("User") ? "" : ""} */}
@@ -359,7 +393,6 @@ const TrainingClassDetail = () => {
                       handleDatepickerFormat={handleDatepickerFormat}
                     />
                   )}
-
                 </div>
                 <div className="space-y-8 lg:grid lg:grid-cols-2 sm:gap-6 xl:gap-10 lg:space-y-0">
                   {/* THE INPUT BOX I'D LIKE TO PUT WHEN EDITING THE FIELDS */}
@@ -368,7 +401,9 @@ const TrainingClassDetail = () => {
                   {/* <!-- Training Class 8 Week Cards --> */}
                   {trainingClass.sessions.map((session, index) => (
                     <div
-                      className={`flex flex-col justify-between p-6 mx-auto max-w-2xl text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white ${user.role.includes("User") ? "" : "min-w-[35vw] "}`}
+                      className={`flex flex-col justify-between p-6 mx-auto max-w-2xl text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white ${
+                        user.role.includes("User") ? "" : "min-w-[35vw] "
+                      }`}
                       key={index}>
                       <h3 className="mb-4 text-3xl font-semibold">
                         {session.sessionName}
@@ -428,24 +463,24 @@ const TrainingClassDetail = () => {
                       </ul>
 
                       <div className="flex flex-row mx-auto space-x-40">
-                        {user.role.includes("Business Manager") || user.role.includes("Trainer") ? (
+                        {user.role.includes("Business Manager") ||
+                        user.role.includes("Trainer") ? (
                           <>
-                        <SessionEditModal
-                          handleDatepickerFormat={handleDatepickerFormat}
-                          session={session}
-                        />
-                        <button
-                          onClick={() => {
-                            setShowDeleteModal(true)
-                            setSessionToDelete(session)
-                          }}
-                          type="button"
-                          className="text-white bg-gradient-to-r from-rose-700 to-red-500 hover:bg-gradient-to-l hover:from-rose-700 hover:to-red-500 focus:ring-4 focus:outline-none focus:ring-red-600 dark:focus:ring-red-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[10vw]">
-                          Delete
-                        </button>
-                        </>
-                        ) :
-                        null}
+                            <SessionEditModal
+                              handleDatepickerFormat={handleDatepickerFormat}
+                              session={session}
+                            />
+                            <button
+                              onClick={() => {
+                                setShowDeleteModal(true)
+                                setSessionToDelete(session)
+                              }}
+                              type="button"
+                              className="text-white bg-gradient-to-r from-rose-700 to-red-500 hover:bg-gradient-to-l hover:from-rose-700 hover:to-red-500 focus:ring-4 focus:outline-none focus:ring-red-600 dark:focus:ring-red-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[10vw]">
+                              Delete
+                            </button>
+                          </>
+                        ) : null}
                         {showDeleteModal &&
                           sessionToDelete._id === session._id && (
                             <SessionDeleteModal

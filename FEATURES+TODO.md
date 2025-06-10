@@ -194,3 +194,7 @@
     - [ ] **will first have to drop and re-seed the BM and Trainers b/c their schema does not match!!
 - [ ] ALL SideNavs
   - [ ] make it so the active tab stays highlighted when on that page from the sidenav
+- [ ] BUTTONS.... EVERYWHERE!
+  - [ ] Enroll Form
+  - [ ] Add TC Form
+  - [ ] Login

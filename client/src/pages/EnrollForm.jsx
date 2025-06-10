@@ -9,6 +9,7 @@ import {
 } from "../redux/trainingClassSlice"
 import { toast } from "react-toastify"
 import DogAddModal from "../components/modals/DogAddModal"
+import StarBorder from "../components/reactbits+framer-motion/StarBorder"
 
 const EnrollForm = () => {
   const dispatch = useDispatch()
@@ -274,6 +275,7 @@ const EnrollForm = () => {
                         {/* DETAIL BUTTON */}
                         <td className="px-6 py-4 justify-self-center">
                           <button
+                            type="button"
                             onClick={() =>
                               navigate(`/training-classes/${trainingClass.id}`)
                             }
@@ -390,8 +392,17 @@ const EnrollForm = () => {
                }
 
             {/* ENROLL BUTTON */}
+
+            <StarBorder
+              as="button"
+              className="cursor-pointer"
+              color="cyan"
+              speed="5s"
+            >
+              Enroll
+            </StarBorder>
             <button
-              disabled={submitDisabled}
+              // disabled={submitDisabled}
               type="submit"
               className="rounded-lg inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-gradient-to-br from-purple-400 to-fuchsia-300 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-purple-300">
               Enroll
