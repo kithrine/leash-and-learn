@@ -1,3 +1,4 @@
+import { Link } from "react-router"
 import Footer from "../components/footers/Footer"
 import EnrollBanner from "../components/EnrollBanner"
 import HomepageCarousel from "../components/HomepageCarousel"
@@ -10,6 +11,7 @@ import SplitText from "../components/reactbits+framer-motion/SplitText"
 import InfiniteScroll from "../components/reactbits+framer-motion/InfiniteScroll"
 import ChromaGrid from "../components/reactbits+framer-motion/ChromaGrid"
 import SpotlightCard from "../components/reactbits+framer-motion/SpotlightCard"
+import RollingGallery from "../components/reactbits+framer-motion/RollingGallery"
 
 const HomePage = () => {
   // const items = [
@@ -96,9 +98,9 @@ const HomePage = () => {
           </span>
           </div> */}
         {/* <div className="pt-42 mb-20"> */}
-        <div className="mb-20">
+        <div className="mb-0">
           <section class="bg-no-repeat bg-[url('./assets/images/giant-dog2-cropped.jpg')] bg-gray-600 bg-blend-multiply bg-[50%] min-h-[110vh]">
-            <div class="mt-8 px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-50">
+            <div class="pt-8 px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-45">
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -158,78 +160,55 @@ const HomePage = () => {
             </div>
           </section>
 
-          {/* <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.5 }}
-            className="text-center">
-            <div>
-              <h2 className=" justify-self-center mr-24 text-5xl tracking-tight font-extrabold text-gray-900 dark:text-gray-200">
-                Welcome to{" "}
-              </h2>
-            </div>
-            <div className="mx-auto max-w-screen-xl text-center">
-              <div className="flex justify-center items-center text-7xl font-semibold text-black dark:text-white space-x-3 rtl:space-x-reverse">
-                <div className="absolute mt-36">
-                  <svg
-                    className="homepage-paw animate-pulse absolute mt-9 ml-"
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="95"
-                    width="95"
-                    viewBox="0 0 512 512">
-                    <path
-                      fill="#725f4f"
-                      d="M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5s.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5zM100.4 198.6c18.9 32.4 14.3 70.1-10.2 84.1s-59.7-.9-78.5-33.3S-2.7 179.3 21.8 165.3s59.7 .9 78.5 33.3zM69.2 401.2C121.6 259.9 214.7 224 256 224s134.4 35.9 186.8 177.2c3.6 9.7 5.2 20.1 5.2 30.5l0 1.6c0 25.8-20.9 46.7-46.7 46.7c-11.5 0-22.9-1.4-34-4.2l-88-22c-15.3-3.8-31.3-3.8-46.6 0l-88 22c-11.1 2.8-22.5 4.2-34 4.2C84.9 480 64 459.1 64 433.3l0-1.6c0-10.4 1.6-20.8 5.2-30.5zM421.8 282.7c-24.5-14-29.1-51.7-10.2-84.1s54-47.3 78.5-33.3s29.1 51.7 10.2 84.1s-54 47.3-78.5 33.3zM310.1 189.7c-32.3-10.6-46.9-53.9-32.6-96.8s52.1-69.1 84.4-58.5s46.9 53.9 32.6 96.8s-52.1 69.1-84.4 58.5z"
-                    />
-                  </svg>
-                  <div className="flex flex-col">
-                    <span className="self-center text-9xl font-semibold whitespace-nowrap dark:text-white">
-                      <span className="leash mr-4">Leash </span>
-                      <span className="and text-5xl relative text-white mx-1 mr-5 -mt-4">
-                        &
-                      </span>{" "}
-                      <span className="learn pr-12"> learn</span>
-                    </span>
-                    <span className="dog-training text-center text-5xl font-bold mr-8 -mt-4 text-gray-800 dark:text-gray-400">
-                      DOG TRAINING
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <SplitText
-                text="Where every dog's full potential is unleashed™"
-                className="mr-12 mt-40 pb-4 text-3xl font-thin text-center tracking-widest font-stretch-extra-expanded text-black dark:text-white"
-                delay={50}
-                duration={0.6}
-                ease="power3.out"
-                splitType="chars"
-                from={{ opacity: 0, y: 40 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-                textAlign="center"
-              />
-            </div>
-          </motion.div> */}
+          
           {/* <FramerSplitText text="Where every dog's full potential is unleashed" /> */}
         </div>
 
-        <motion.div
+        <section class="bg-white dark:bg-neutral-900 pt-8">
+          <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+            <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+              <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-black bg-[#FFDD00] -skew-x-8 pl-4 pb-2 transition-colors ease-in-out duration-300">
+              Where Training is an Adventure!
+              </h2>
+              <p class="mb-4">
+              At Leash & Learn Dog Training, we believe in unlocking your dog's potential through positive reinforcement. Our experienced trainers guide both pups and owners with patience, clarity, and a whole lot of love. We celebrate each milestone, big or small, creating a fun and rewarding learning environment where dogs thrive and bonds deepen. 
+              </p>
+              <p>
+              Whether you’re tackling basic obedience or navigating complex behavioral challenges, we're here to empower you with the tools for a happier, more harmonious life together.
+              </p>
+            </div>
+            {/* <div class="grid grid-cols-2 gap-4 mt-8"> */}
+              {/* <img
+                class="w-full rounded-lg"
+                src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png"
+                alt="office content 1"
+              />
+              <img
+                class="mt-4 w-full lg:mt-10 rounded-lg"
+                src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-1.png"
+                alt="office content 2"
+              /> */}
+              <RollingGallery autoplay={true} pauseOnHover={true} />
+            {/* </div> */}
+          </div>
+        </section>
+
+        {/* <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
           className="text-center">
           <HomepageCarousel />
-        </motion.div>
+        </motion.div> */}
 
         {/* <FramerSplitText /> */}
         <section className="mt-8 bg-white dark:bg-neutral-900">
           <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-            <div className="max-w-screen-md mb-8 lg:mb-16">
-              <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+            <div className="max-w-screen-md mb-8 lg:mb-10">
+              <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white transition-colors ease-in-out duration-300">
                 Dog Training Services
               </h2>
-              <p className="text-gray-500 sm:text-xl dark:text-gray-400">
+              <p className="text-gray-500 sm:text-xl dark:text-gray-400  transition-colors ease-in-out duration-300">
                 Here is a glimpse of our diverse range of services:
               </p>
             </div>
@@ -246,10 +225,10 @@ const HomePage = () => {
 
             <div className="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
               <SpotlightCard
-                className="custom-spotlight-card"
+                className="custom-spotlight-card drop-shadow-xl drop-shadow-violet-200 dark:drop-shadow-lg dark:drop-shadow-emerald-600"
                 spotlightColor="rgba(0, 229, 255, 0.2)">
                 <div>
-                  <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-teal-300 dark:bg-lime-400 lg:h-12 lg:w-12">
+                  <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-teal-300 dark:bg-lime-400 lg:h-12 lg:w-12 transition-colors ease-in-out duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       height="24"
@@ -261,10 +240,10 @@ const HomePage = () => {
                       />
                     </svg>
                   </div>
-                  <h3 className="mb-2 text-xl font-bold dark:text-white">
+                  <h3 className="mb-2 text-xl font-bold text-black dark:text-white transition-colors ease-in-out duration-300">
                     Basic Obedience Training
                   </h3>
-                  <p className="text-gray-500 dark:text-gray-400">
+                  <p className="text-gray-500 dark:text-gray-400 transition-colors ease-in-out duration-300">
                     Embark on a journey of mutual respect and understanding with
                     our Basic Obedience Training. Our program covers essential
                     commands like sit, stay, come, and heel, ensuring your dog
@@ -274,10 +253,10 @@ const HomePage = () => {
               </SpotlightCard>
 
               <SpotlightCard
-                className="custom-spotlight-card"
+                className="custom-spotlight-card drop-shadow-xl drop-shadow-violet-200 dark:drop-shadow-lg dark:drop-shadow-emerald-600"
                 spotlightColor="rgba(0, 229, 255, 0.2)">
                 <div>
-                  <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-teal-300 dark:bg-lime-400 lg:h-12 lg:w-12 ">
+                  <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-teal-300 dark:bg-lime-400 lg:h-12 lg:w-12 transition-colors ease-in-out duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       height="24"
@@ -289,10 +268,10 @@ const HomePage = () => {
                       />
                     </svg>
                   </div>
-                  <h3 className="mb-2 text-xl font-bold dark:text-white">
+                  <h3 className="mb-2 text-xl font-bold text-black dark:text-white transition-colors ease-in-out duration-300">
                     Behavior Modification
                   </h3>
-                  <p className="text-gray-500 dark:text-gray-400">
+                  <p className="text-gray-500 dark:text-gray-400 transition-colors ease-in-out duration-300">
                     If your dog has a few quirks, our Behavior Modification
                     service is here to help. Tailored to address specific issues
                     such as barking, jumping, aggressiveness, or resource
@@ -303,10 +282,10 @@ const HomePage = () => {
               </SpotlightCard>
 
               <SpotlightCard
-                className="custom-spotlight-card"
+                className="custom-spotlight-card drop-shadow-xl drop-shadow-violet-200 dark:drop-shadow-lg dark:drop-shadow-emerald-600"
                 spotlightColor="rgba(0, 229, 255, 0.2)">
                 <div>
-                  <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-teal-300 dark:bg-lime-400 lg:h-12 lg:w-12 ">
+                  <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-teal-300 dark:bg-lime-400 lg:h-12 lg:w-12 transition-colors ease-in-out duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       height="20"
@@ -318,10 +297,10 @@ const HomePage = () => {
                       />
                     </svg>
                   </div>
-                  <h3 className="mb-2 text-xl font-bold dark:text-white">
+                  <h3 className="mb-2 text-xl font-bold dark:text-white transition-colors ease-in-out duration-300">
                     Puppy Socialization
                   </h3>
-                  <p className="text-gray-500 dark:text-gray-400">
+                  <p className="text-gray-500 dark:text-gray-400 transition-colors ease-in-out duration-300">
                     Introduce your puppy to the world with our Puppy
                     Socialization program. We guide them through positive
                     interactions with other dogs, people, and various
@@ -332,10 +311,10 @@ const HomePage = () => {
               </SpotlightCard>
 
               <SpotlightCard
-                className="custom-spotlight-card"
+                className="custom-spotlight-card drop-shadow-xl drop-shadow-violet-200 dark:drop-shadow-lg dark:drop-shadow-emerald-600"
                 spotlightColor="rgba(0, 229, 255, 0.2)">
                 <div>
-                  <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-teal-300 dark:bg-lime-400 lg:h-12 lg:w-12">
+                  <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-teal-300 dark:bg-lime-400 lg:h-12 lg:w-12 transition-colors ease-in-out duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       height="24"
@@ -347,10 +326,10 @@ const HomePage = () => {
                       />
                     </svg>
                   </div>
-                  <h3 className="mb-2 text-xl font-bold dark:text-white">
+                  <h3 className="mb-2 text-xl font-bold dark:text-white transition-colors ease-in-out duration-300">
                     Agility Training
                   </h3>
-                  <p className="text-gray-500 dark:text-gray-400">
+                  <p className="text-gray-500 dark:text-gray-400 transition-colors ease-in-out duration-300">
                     For the energetic and adventurous pup, Agility Training is
                     the perfect outlet. Our courses are designed to enhance your
                     dog's physical fitness, coordination, and mental agility,
@@ -360,10 +339,10 @@ const HomePage = () => {
               </SpotlightCard>
 
               <SpotlightCard
-                className="custom-spotlight-card"
+                className="custom-spotlight-card drop-shadow-xl drop-shadow-violet-200 dark:drop-shadow-lg dark:drop-shadow-emerald-600"
                 spotlightColor="rgba(0, 229, 255, 0.2)">
                 <div>
-                  <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-teal-300 dark:bg-lime-400 lg:h-12 lg:w-12">
+                  <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-teal-300 dark:bg-lime-400 lg:h-12 lg:w-12 transition-colors ease-in-out duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       height="20"
@@ -375,10 +354,10 @@ const HomePage = () => {
                       />
                     </svg>
                   </div>
-                  <h3 className="mb-2 text-xl font-bold dark:text-white">
+                  <h3 className="mb-2 text-xl font-bold dark:text-white transition-colors ease-in-out duration-300">
                     Advanced Obedience
                   </h3>
-                  <p className="text-gray-500 dark:text-gray-400">
+                  <p className="text-gray-500 dark:text-gray-400 transition-colors ease-in-out duration-300">
                     Take your dog's training to the next level with our Advanced
                     Obedience course. This program is ideal for dogs that have
                     mastered the basics and are ready for more challenging
@@ -388,10 +367,10 @@ const HomePage = () => {
               </SpotlightCard>
 
               <SpotlightCard
-                className="custom-spotlight-card"
+                className="custom-spotlight-card drop-shadow-xl drop-shadow-violet-200 dark:drop-shadow-lg dark:drop-shadow-emerald-600"
                 spotlightColor="rgba(0, 229, 255, 0.2)">
                 <div>
-                  <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-teal-300 dark:bg-lime-400 lg:h-12 lg:w-12">
+                  <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-teal-300 dark:bg-lime-400 lg:h-12 lg:w-12 transition-colors ease-in-out duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       height="25"
@@ -403,10 +382,10 @@ const HomePage = () => {
                       />
                     </svg>
                   </div>
-                  <h3 className="mb-2 text-xl font-bold dark:text-white">
+                  <h3 className="mb-2 text-xl font-bold dark:text-white transition-colors ease-in-out duration-300">
                     Service & Therapy Dog Training
                   </h3>
-                  <p className="text-gray-500 dark:text-gray-400">
+                  <p className="text-gray-500 dark:text-gray-400 transition-colors ease-in-out duration-300">
                     Our Service & Therapy Dog training is dedicated to preparing
                     dogs for roles that make a significant impact on people's
                     lives. We specialize in training dogs to assist individuals
@@ -431,16 +410,14 @@ const HomePage = () => {
   />
 </div> */}
 
-        <div className="bg-white py-24 sm:py-32">
+        <div className="bg-white dark:bg-neutral-900 py-24 sm:py-32">
           <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
             <div className="max-w-xl">
-              <h2 className="text-pretty text-4xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+              <h2 className="text-pretty text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl transition-colors ease-in-out duration-300">
                 Meet Our Trainers
               </h2>
-              <p className="mt-6 text-lg/8 text-gray-500 sm:text-xl">
-                We’re a dynamic group of individuals who are passionate about
-                what we do and dedicated to delivering the best results for our
-                clients.
+              <p className="mt-6 text-lg/8 text-gray-500 dark:text-gray-400 sm:text-xl transition-colors ease-in-out duration-300">
+              Our team of certified trainers brings years of experience and a deep understanding of canine behavior. We combine proven techniques with personalized attention, ensuring that every dog receives the guidance they need to excel. From puppyhood basics to advanced training solutions, we're committed to equipping you with the knowledge and skills for a well-behaved, happy dog who thrives at your side.
               </p>
             </div>
             <ul
@@ -457,10 +434,10 @@ const HomePage = () => {
                     />
                   </div>
                   <div>
-                    <h3 className="text-base/7 font-semibold tracking-tight text-gray-900">
+                    <h3 className="text-base/7 font-semibold tracking-tight text-gray-900 dark:text-gray-100">
                       Megan Alexander
                     </h3>
-                    <p className="text-sm/6 font-semibold text-indigo-600">
+                    <p className="text-sm/6 font-semibold text-violet-500 dark:text-lime-400">
                       Basic Obedience
                     </p>
                   </div>
@@ -483,10 +460,10 @@ const HomePage = () => {
                     />
                   </div>
                   <div>
-                    <h3 className="text-base/7 font-semibold tracking-tight text-gray-900">
+                    <h3 className="text-base/7 font-semibold tracking-tight text-gray-900 dark:text-gray-100">
                       Katherine Finch
                     </h3>
-                    <p className="text-sm/6 font-semibold text-indigo-600">
+                    <p className="text-sm/6 font-semibold text-violet-500 dark:text-lime-400">
                       Behavior Modification
                     </p>
                   </div>
@@ -509,10 +486,10 @@ const HomePage = () => {
                     />
                   </div>
                   <div>
-                    <h3 className="text-base/7 font-semibold tracking-tight text-gray-900">
+                    <h3 className="text-base/7 font-semibold tracking-tight text-gray-900 dark:text-gray-100">
                       Annie Baysinger
                     </h3>
-                    <p className="text-sm/6 font-semibold text-indigo-600">
+                    <p className="text-sm/6 font-semibold text-violet-500 dark:text-lime-400">
                       Puppy Socialization
                     </p>
                   </div>
@@ -535,10 +512,10 @@ const HomePage = () => {
                     />
                   </div>
                   <div>
-                    <h3 className="text-base/7 font-semibold tracking-tight text-gray-900">
+                    <h3 className="text-base/7 font-semibold tracking-tight text-gray-900 dark:text-gray-100">
                       Jesse Soliz
                     </h3>
-                    <p className="text-sm/6 font-semibold text-indigo-600">
+                    <p className="text-sm/6 font-semibold text-violet-500 dark:text-lime-400">
                       Agility
                     </p>
                   </div>
@@ -561,10 +538,10 @@ const HomePage = () => {
                     />
                   </div>
                   <div>
-                    <h3 className="text-base/7 font-semibold tracking-tight text-gray-900">
+                    <h3 className="text-base/7 font-semibold tracking-tight text-gray-900 dark:text-gray-100">
                       Audrey Radulovich
                     </h3>
-                    <p className="text-sm/6 font-semibold text-indigo-600">
+                    <p className="text-sm/6 font-semibold text-violet-500 dark:text-lime-400">
                       Advanced Obedience
                     </p>
                   </div>
@@ -581,10 +558,10 @@ const HomePage = () => {
                     />
                   </div>
                   <div>
-                    <h3 className="text-base/7 font-semibold tracking-tight text-gray-900">
+                    <h3 className="text-base/7 font-semibold tracking-tight text-gray-900 dark:text-gray-100">
                       Rashaun Marshall
                     </h3>
-                    <p className="text-sm/6 font-semibold text-indigo-600">
+                    <p className="text-sm/6 font-semibold text-violet-500 dark:text-lime-400">
                       Service & Therapy Dog Training
                     </p>
                   </div>
@@ -594,9 +571,9 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className="bg-white">
-          <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
-            <div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+        <div className="bg-white dark:bg-neutral-900">
+          <div className="mx-auto max-w-7xl py-14 sm:px-6 sm:pb-32 lg:px-8">
+            <div className="relative isolate overflow-hidden transition-colors ease-in-out duration-300 bg-teal-400 dark:bg-amber-400 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
               <svg
                 viewBox="0 0 1024 1024"
                 aria-hidden="true"
@@ -616,31 +593,38 @@ const HomePage = () => {
                 </defs>
               </svg>
               <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
-                <h2 className="text-3xl font-semibold tracking-tight text-balance text-white sm:text-4xl">
-                  Boost your productivity. Start using our app today.
+                <h2 className="text-3xl font-semibold tracking-tight text-balance text-white dark:text-black sm:text-4xl">
+                  Create an Account.
                 </h2>
-                <p className="mt-6 text-lg/8 text-pretty text-gray-300">
-                  Ac euismod vel sit maecenas id pellentesque eu sed
-                  consectetur. Malesuada adipiscing sagittis vel nulla.
+                <h2 className="text-3xl font-semibold tracking-tight text-white dark:text-black sm:text-4xl">
+                  Enroll in a class today.
+                </h2>
+                <p className="mt-6 text-lg/8 text-pretty text-neutral-100 dark:text-neutral-800">
+                Ready to see a happier, more obedient pup? Join the Leash & Learn community – create an account now and enroll in your perfect class!
                 </p>
                 <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
-                  <a
-                    href="#"
-                    className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
-                    Get started
-                  </a>
-                  <a href="#" className="text-sm/6 font-semibold text-white">
-                    Learn more <span aria-hidden="true">→</span>
-                  </a>
+                  <Link
+                    to="/sign-up"
+                    className="rounded-md bg-white dark:bg-neutral-950 dark:hover:bg-neutral-900 px-3.5 py-2.5 text-sm font-semibold text-gray-900 dark:text-white shadow-xs hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white transition duration-200 ease-in-out hover:-translate-y-1 hover:scale-105">
+                    Create Account
+                  </Link>
+                  <Link to="/enroll" className="text-sm/6 font-semibold text-white dark:text-black transition duration-200 ease-in-out hover:-translate-y-1 hover:scale-105">
+                    Enroll Now <span aria-hidden="true">→</span>
+                  </Link>
                 </div>
               </div>
               <div className="relative mt-16 h-80 lg:mt-8">
                 <img
-                  alt="App screenshot"
-                  src="https://tailwindcss.com/plus-assets/img/component-images/dark-project-app-screenshot.png"
-                  width={1824}
-                  height={1080}
-                  className="absolute top-0 left-0 w-228 max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
+                  alt="Trainer With Dogs"
+                  src={
+                    new URL(
+                      "../assets/images/dog-trainer.jpg",
+                      import.meta.url
+                    ).href
+                  }
+                  width={1000}
+                  height={500}
+                  className="absolute top-0 left-0 w-170 max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
                 />
               </div>
             </div>
