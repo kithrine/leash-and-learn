@@ -198,3 +198,5 @@
   - [ ] Enroll Form
   - [ ] Add TC Form
   - [ ] Login
+- [ ] BLOG
+  - [ ] Have a placeholder image for blogs that are posted without a photo... OR.. make sure that no placeholder is shown at all and it is just empty there if no image

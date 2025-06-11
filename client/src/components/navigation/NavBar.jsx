@@ -52,7 +52,7 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
                   <span className="and text-sm relative text-white">&</span>{" "}
                   <span className="learn ml-1"> learn</span>
                 </span>
-                <span className="dog-training text-center text-xs font-bold -mt-2 dark:text-gray-400">
+                <span className="dog-training text-center text-xs font-bold -mt-2 text-gray-800 dark:text-gray-400">
                   DOG TRAINING
                 </span>
               </div>
