@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { authLogin } from "../redux/authSlice";
+import * as motion from "motion/react-client"
 import Footer from "../components/footers/Footer";
 
 const Login = () => {
@@ -11,6 +12,8 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const { loading, isLoggedIn, user } = useSelector((state) => state.auth);
+
+  const storedTheme = localStorage.getItem('theme'); 
 
   useEffect(() => {
     setTimeout(() => {
@@ -52,17 +55,18 @@ const Login = () => {
   };
 
   return (
+    // ***** IF NOT LOADING
     <>
       {!loading ? (
         <>
-          <section className="bg-gradient-to-b from-white from-5% via-purple-50 via-pink-50 to-white dark:bg-gray-900">
+          <section className={`dark:bg-gray-900 pt-30 pb-15 ${storedTheme === "light" ? "light-gray-moroccan-bg" : "dark-gray-moroccan-bg"} transition-colors ease-in-out duration-200`}>
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[78vh] lg:py-0">
-              <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+              <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-neutral-800 dark:border-neutral-700 drop-shadow-2xl dark:drop-shadow-black transition-colors ease-in-out duration-200">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                  <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                  <h1 className="text-xl font-bold leading-tight tracking-tight text-neutral-900 md:text-2xl dark:text-white font-lexend uppercase text-center">
                     Sign in to your account
                   </h1>
-                  <p>You must have an account in order to enroll in a training class, post a blog, or leave comments on a blog.</p>
+                  <p className="text-lg text-neutral-700 dark:text-neutral-100 font-learn leading-tight font-bold tracking-wider">*NOTE: You must have an account in order to enroll in a training class, post a blog, or leave comments on a blog.</p>
                   <form
                     onSubmit={handleSubmit}
                     className="space-y-4 md:space-y-6"
@@ -70,7 +74,7 @@ const Login = () => {
                     <div>
                       <label
                         htmlFor="email"
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        className="block mb-2 text-sm font-medium text-neutral-900 dark:text-white"
                       >
                         Email
                       </label>
@@ -85,15 +89,15 @@ const Login = () => {
                         type="email"
                         name="email"
                         id="email"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Email"
+                        className="bg-neutral-50 border border-neutral-300 text-neutral-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-neutral-500 dark:focus:border-neutral-500"
+                        placeholder="name@email.com"
                         required
                       />
                     </div>
                     <div>
                       <label
                         htmlFor="password"
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        className="block mb-2 text-sm font-medium text-neutral-900 dark:text-white"
                       >
                         Password
                       </label>
@@ -109,7 +113,7 @@ const Login = () => {
                         name="password"
                         id="password"
                         placeholder="••••••••"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="bg-neutral-50 border border-neutral-300 text-neutral-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-neutral-500 dark:focus:border-neutral-500"
                         required
                       />
                     </div>
@@ -120,14 +124,14 @@ const Login = () => {
                             id="remember"
                             aria-describedby="remember"
                             type="checkbox"
-                            className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                            className="w-4 h-4 border border-neutral-300 rounded bg-neutral-50 focus:ring-3 focus:ring-primary-300 dark:bg-neutral-700 dark:border-neutral-600 dark:focus:ring-primary-600 dark:ring-offset-neutral-800"
                             required=""
                           />
                         </div>
                         <div className="ml-3 text-sm">
                           <label
                             htmlFor="remember"
-                            className="text-gray-500 dark:text-gray-300"
+                            className="text-neutral-500 dark:text-neutral-300"
                           >
                             Remember me
                           </label>
@@ -135,23 +139,25 @@ const Login = () => {
                       </div>
                       <a
                         href="#"
-                        className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                        className="text-sm font-medium text-gray-600 hover:underline dark:text-gray-300"
                       >
                         Forgot password?
                       </a>
                     </div>
-                    <button
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                       type="submit"
-                      className="w-full text-white bg-[#beb09d] hover:bg-stone-500 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#beb09d] dark:hover:bg-stone-700 dark:focus:ring-stone-800"
+                      className="w-full text-white bg-teal-400 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-500 dark:hover:bg-lime-600 dark:focus:ring-lime-400 transition-colors ease-in-out duration-200"
                       disabled={loading}
                     >
                       Sign in
-                    </button>
-                    <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                    </motion.button>
+                    <p className="text-sm font-light text-neutral-500 dark:text-neutral-400">
                       Don’t have an account yet?{" "}
                       <Link
                         to="/sign-up"
-                        className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                        className="font-medium text-violet-600 hover:underline dark:text-yellow-400"
                       >
                         Sign up
                       </Link>
@@ -163,14 +169,16 @@ const Login = () => {
           </section>
         </>
       ) : (
+        // ***** IF LOADING
         <>
-        <section className="bg-gradient-to-b from-white from-5% via-purple-50 via-pink-50 to-white dark:bg-gray-900">
-            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-              <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+        <section className={`dark:bg-gray-900 pt-30 pb-15 ${storedTheme === "light" ? "light-gray-moroccan-bg" : "dark-gray-moroccan-bg"} transition-colors ease-in-out duration-200`}>
+            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[78vh] lg:py-0">
+              <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-neutral-800 dark:border-neutral-700 drop-shadow-2xl dark:drop-shadow-black transition-colors ease-in-out duration-200">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                  <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                  <h1 className="text-xl font-bold leading-tight tracking-tight text-neutral-900 md:text-2xl dark:text-white font-lexend uppercase text-center">
                     Sign in to your account
                   </h1>
+                  <p className="text-lg text-neutral-700 dark:text-neutral-100 font-learn leading-tight font-bold tracking-wider">*NOTE: You must have an account in order to enroll in a training class, post a blog, or leave comments on a blog.</p>
                   <form
                     onSubmit={handleSubmit}
                     className="space-y-4 md:space-y-6"
@@ -178,7 +186,7 @@ const Login = () => {
                     <div>
                       <label
                         htmlFor="email"
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        className="block mb-2 text-sm font-medium text-neutral-900 dark:text-white"
                       >
                         Email
                       </label>
@@ -187,21 +195,21 @@ const Login = () => {
                         onChange={(e) =>
                           setLoginForm({
                             ...loginForm,
-                            email: e.target.value,
+                            email: e.target.value, 
                           })
                         }
-                        type="text"
-                        name="username"
-                        id="username"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="username"
+                        type="email"
+                        name="email"
+                        id="email"
+                        className="bg-neutral-50 border border-neutral-300 text-neutral-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-neutral-500 dark:focus:border-neutral-500"
+                        placeholder="name@email.com"
                         required
                       />
                     </div>
                     <div>
                       <label
                         htmlFor="password"
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        className="block mb-2 text-sm font-medium text-neutral-900 dark:text-white"
                       >
                         Password
                       </label>
@@ -217,7 +225,7 @@ const Login = () => {
                         name="password"
                         id="password"
                         placeholder="••••••••"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="bg-neutral-50 border border-neutral-300 text-neutral-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-neutral-500 dark:focus:border-neutral-500"
                         required
                       />
                     </div>
@@ -228,14 +236,14 @@ const Login = () => {
                             id="remember"
                             aria-describedby="remember"
                             type="checkbox"
-                            className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                            className="w-4 h-4 border border-neutral-300 rounded bg-neutral-50 focus:ring-3 focus:ring-primary-300 dark:bg-neutral-700 dark:border-neutral-600 dark:focus:ring-primary-600 dark:ring-offset-neutral-800"
                             required=""
                           />
                         </div>
                         <div className="ml-3 text-sm">
                           <label
                             htmlFor="remember"
-                            className="text-gray-500 dark:text-gray-300"
+                            className="text-neutral-500 dark:text-neutral-300"
                           >
                             Remember me
                           </label>
@@ -243,23 +251,25 @@ const Login = () => {
                       </div>
                       <a
                         href="#"
-                        className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                        className="text-sm font-medium text-gray-600 hover:underline dark:text-gray-300"
                       >
                         Forgot password?
                       </a>
                     </div>
-                    <button
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                       type="submit"
-                      className="w-full text-white bg-stone-600 hover:bg-stone-700 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-stone-600 dark:hover:bg-stone-700 dark:focus:ring-stone-800"
+                      className="w-full text-white bg-teal-400 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-500 dark:hover:bg-lime-600 dark:focus:ring-lime-400 transition-colors ease-in-out duration-200"
                       disabled={loading}
                     >
                       Sign in
-                    </button>
-                    <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                    </motion.button>
+                    <p className="text-sm font-light text-neutral-500 dark:text-neutral-400">
                       Don’t have an account yet?{" "}
                       <Link
                         to="/sign-up"
-                        className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                        className="font-medium text-violet-600 hover:underline dark:text-yellow-400"
                       >
                         Sign up
                       </Link>
@@ -270,7 +280,7 @@ const Login = () => {
             </div>
           </section>
            <div role="status" className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">
-           <svg aria-hidden="true" className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/></svg>
+           <svg aria-hidden="true" className="w-8 h-8 text-neutral-200 animate-spin dark:text-neutral-600 fill-teal-500 dark:fill-lime-500" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/></svg>
            <span className="sr-only">Loading...</span>
        </div>
        </>

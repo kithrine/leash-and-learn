@@ -211,6 +211,10 @@ BUTTONS.... EVERYWHERE!
 BLOG
 - [ ] Have a placeholder image for blogs that are posted without a photo... OR.. make sure that no placeholder is shown at all and it is just empty there if no image
 
+FOOTER
+- [ ] Main - Links
+- [ ] Dashboard - everything
+
 AT THE VERY VERY END
 - [ ] Delete the old BMDetail and TrainerDetail files and pages at the end
 - [ ] CLEAN UP CODE BOOIIIIIII
