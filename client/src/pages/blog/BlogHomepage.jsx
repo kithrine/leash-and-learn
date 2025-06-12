@@ -28,11 +28,11 @@ const BlogHomepage = () => {
     
       <section class="bg-no-repeat bg-[url('./assets/images/blog-hero-crop5.png')] bg-gray-600 bg-blend-multiply bg-cover">
         <div class="mt-8 px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-50">
-          <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
+          <h1 class="mb-4 text-4xl font-extrabold leading-none text-white md:text-5xl lg:text-6xl">
             <span className="font-leash text-8xl">Leash</span>{" "}
             <span className="font-and">&</span>{" "}
             <span className="font-learn uppercase">Learn</span>:{" "}
-            <span className="font-lexend">BLOG</span>
+            <span className="font-lexend tracking-tighter">BLOG</span>
           </h1>
           <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
             Discover how to train your dog like a pro with our easy-to-follow

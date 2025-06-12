@@ -5,7 +5,7 @@ import Logo from "../Logo";
 const Footer = () => {
   return (
     <>
-      <footer className="shadow p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800">
+      <footer className="shadow p-4 bg-white md:p-8 lg:p-10 dark:bg-neutral-800">
         <div className="mx-auto max-w-screen-xl text-center">
           <Link
             to="/"
@@ -39,7 +39,7 @@ const Footer = () => {
             </div>
           </Link>
 
-          <p className="mt-8 font-thin text-lg tracking-widest font-stretch-extra-expanded ">
+          <p className="mt-8 font-thin text-lg tracking-widest font-stretch-extra-expanded text-black dark:text-white">
             Where every dog's full potential is unleashed™
           </p>
           <ul className="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
