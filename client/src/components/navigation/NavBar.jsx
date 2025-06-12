@@ -26,7 +26,7 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
 
   return (
     <>
-      <nav className="shadow fixed left-0 right-0 top-0 z-50 bg-white border-gray-200 dark:bg-gray-900">
+      <nav className="shadow fixed left-0 right-0 top-0 z-50 bg-white border-gray-200 dark:bg-neutral-900">
         {/* Add this to the above navbar element to make it overlap/lay on top of the sidebar: fixed left-0 right-0 top-0 z-50 */}
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link
@@ -153,7 +153,7 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="navbar-user"
           >
-            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-neutral-800 md:dark:bg-neutral-900 dark:border-neutral-700">
               {/* <div className="flex flex-row space-between p-4"> */}
 
               {/* HOME */}
