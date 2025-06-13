@@ -215,6 +215,9 @@ FOOTER
 - [ ] Main - Links
 - [ ] Dashboard - everything
 
+DARK MODE TOASTS
+- [ ] ctrl+f globally for toast, and copy paste for dark mode toasts anywhere there is a toast
+
 AT THE VERY VERY END
 - [ ] Delete the old BMDetail and TrainerDetail files and pages at the end
 - [ ] CLEAN UP CODE BOOIIIIIII
