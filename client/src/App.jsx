@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { Routes, Route } from "react-router"
+import { Routes, Route, useLocation } from "react-router"
 import { checkLogin } from "./redux/authSlice"
 import { userGetAll } from "./redux/userSlice"
 import { ToastContainer } from "react-toastify"
@@ -51,6 +51,24 @@ function App() {
     }
   }, [])
 
+  const scrollToTop = () => {
+    // window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scrolling effect
+    window.scrollTo({ top: 0 });
+  };
+
+  useEffect(() => {
+    scrollToTop()
+  }, [useLocation()])
+
+  // useEffect(() => {
+  //   const topOfPage = document.getElementById("topOfPage")
+  //   if (topOfPage) {
+  //     // topOfPage.scrollIntoView({ top: 0, behavior: "smooth" })
+  //     window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scrolling effect
+
+  //   }
+  // }, [])
+
   const getInitialTheme = () => {
     const storedTheme = localStorage.getItem("theme")
     if (storedTheme) return storedTheme // Use stored theme if available
@@ -80,7 +98,7 @@ function App() {
   // }, []);
 
   return (
-    <>
+    <> 
       <div className={`${theme}`}>
       <ToastContainer />
       <NavBar theme={theme} setTheme={setTheme} toggleTheme={toggleTheme} />

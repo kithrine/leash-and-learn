@@ -187,6 +187,7 @@ Training Class Detail page
 
 Navbar
 - [ ] add Enroll Link at the top
+- [ ] Need to do light/dark mode active links and hover colors
 
 Under Construction page for the Company Blog
 - [ ] make one

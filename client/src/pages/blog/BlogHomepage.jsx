@@ -1,9 +1,12 @@
 import { useState } from "react"
 import { useNavigate } from "react-router"
 import BlogNavigation from "../../components/navigation/BlogNavigation"
+import FramerSplitText from "../../components/reactbits+framer-motion/FramerSplitText"
+import AnimatedListBlogCategories from "../../components/reactbits+framer-motion/AnimatedListBlogCategories"
 
 const BlogHomepage = () => {
   const navigate = useNavigate()
+  const storedTheme = localStorage.getItem("theme")
   const [posts, setPosts] = useState([
     {
       id: 1,
@@ -26,24 +29,25 @@ const BlogHomepage = () => {
     <>
     <BlogNavigation />
     
-      <section class="bg-no-repeat bg-[url('./assets/images/blog-hero-crop5.png')] bg-gray-600 bg-blend-multiply bg-cover">
-        <div class="mt-8 px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-50">
-          <h1 class="mb-4 text-4xl font-extrabold leading-none text-white md:text-5xl lg:text-6xl">
+      <section class="bg-no-repeat bg-[url('./assets/images/blog-hero-crop5.png')] dark:bg-gray-600 dark:bg-blend-multiply bg-gray-500 bg-blend-soft-light bg-cover animate__animated animate__fadeIn animate__slower">
+        <div class="mt-8 px-4 mx-auto max-w-screen-xl text-center py-24 lg:pt-50 lg:pb-30">
+          <h1 class="mb-4 text-4xl font-extrabold leading-none text-white md:text-5xl lg:text-6xl pt-4">
             <span className="font-leash text-8xl">Leash</span>{" "}
             <span className="font-and">&</span>{" "}
             <span className="font-learn uppercase">Learn</span>:{" "}
             <span className="font-lexend tracking-tighter">BLOG</span>
           </h1>
           <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
-            Discover how to train your dog like a pro with our easy-to-follow
+            {/* Discover how to train your dog like a pro with our easy-to-follow
             tips and tricks. We cover everything from basic commands to advanced
-            techniques in dog training. 🐾 Click here to start learning →
+            techniques in dog training. 🐾 Click here to start learning → */}
+            Get ready to unleash your inner dog lover! Our blog is bursting with fun articles about training techniques, adorable pup pics, product reviews, and more. Whether you're a seasoned dog owner or just starting your journey, we have something for you.
           </p>
           <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
             <a
               href="#"
               class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-              Get started
+              Explore
               <svg
                 class="w-3.5 h-3.5 ms-2 rtl:rotate-180"
                 aria-hidden="true"
@@ -62,11 +66,78 @@ const BlogHomepage = () => {
             <a
               href="#"
               class="inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400">
-              Learn more
+              Add Post
             </a>
           </div>
         </div>
       </section>
+      <div className={`${
+          storedTheme === "light"
+            ? "light-autumn-bg"
+            : "dark-autumn-bg"
+        }`}>
+      <section class="">
+    <div class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+
+
+        {/* <img class="w-[75%] justify-self-center rounded-4xl" src={
+                        new URL(
+                          "../../assets/images/shiba-inu.jpg",
+                          import.meta.url
+                        ).href
+                      } alt="Shiba Inu" /> */}
+
+<div class="grid grid-cols-2 gap-4 mt-8">
+            <img class="w-full rounded-lg" src={
+                        new URL(
+                          "../../assets/images/girl-dogs-field.jpg",
+                          import.meta.url
+                        ).href
+                      }  alt="office content 1" />
+            <img class="mt-4 w-full lg:mt-10 rounded-lg" src={
+                        new URL(
+                          "../../assets/images/shiba-inu.jpg",
+                          import.meta.url
+                        ).href
+                      } alt="office content 2" />
+        </div>
+
+        <div class="mt-4 md:mt-0">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white animate__animated animate__fadeIn animate__slow animate__delay-1s">Welcome to Our Dog-Loving Community!</h2>
+            {/* <FramerSplitText /> */}
+            <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400 animate__animated animate__fadeIn animate__slow animate__delay-2s">The Leash & Learn Community Blog is more than just a collection of articles – it's a vibrant space where dog lovers from all walks of life can connect, share their experiences, and learn together. We believe that every dog owner has something valuable to contribute, whether it's a heartwarming story, a helpful training tip, or simply a shared passion for our furry companions.
+            </p>
+            <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400 animate__animated animate__fadeIn animate__slow animate__delay-2s">
+            We encourage you to join the conversation! Leave comments on posts, start discussions in the forums, and connect with fellow dog enthusiasts who understand your love for these amazing animals. Here at Leash & Learn, we're building a community where knowledge is shared freely and every voice is heard.
+            </p>
+           
+            <a href="#" class="inline-flex items-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900">
+                Get started
+                <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="">
+    <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+        <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Browse Blog Categories</h2>
+            <p class="mb-4">We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick, but big enough to deliver the scope you want at the pace you need. Small enough to be simple and quick, but big enough to deliver the scope you want at the pace you need.</p>
+            <p>We are strategists, designers and developers. Innovators and problem solvers. Small enough to be simple and quick.</p>
+        </div>
+        <div className="w-full">
+          {/* <h1>Browse Categories</h1> */}
+        <AnimatedListBlogCategories
+  // items={items}
+  onItemSelect={(item, index) => console.log(item, index)}
+  showGradients={true}
+  enableArrowNavigation={true}
+  displayScrollbar={true}
+/>
+</div>
+    </div>
+</section>
       
       <div className="flex flex-col md:flex-row mt-12">
         <div className="md:w-[85vw] h-[50vh] bg-teal-400 mx-4">
@@ -379,6 +450,7 @@ rounded-full transition-all">
           © 2024 Leash & Learn - Dog Training Made Easy. All rights reserved.
         </div>
       </footer>
+      </div>
     </>
   )
 }
