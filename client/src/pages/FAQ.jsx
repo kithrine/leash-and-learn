@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { Link } from "react-router"
+import { motion } from "framer-motion"
 import Footer from "../components/footers/Footer"
+import EnrollBanner from "../components/EnrollBanner"
 
 const FAQ = () => {
   const [showAnswer1, setShowAnswer1] = useState(false)
@@ -9,17 +11,26 @@ const FAQ = () => {
   const storedTheme = localStorage.getItem("theme")
 
   return (
-    <div className="pt-16 dark-gray-diamond-bg">
+    <>
+    <EnrollBanner />
+    <div className="pt-20 dark-gray-diamond-bg">
       <section
         className={`bg-white dark:bg-gray-900 ${
           storedTheme === "light"
             ? "light-gray-diamond-bg"
             : "dark-gray-diamond-bg"
         } py-20`}>
-        <div className="bg-white dark:bg-neutral-800 py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6 rounded-4xl drop-shadow-2xl dark:drop-shadow-black transition-colors ease-in-out duration-200">
-          <h2 className="mb-8 text-4xl tracking-tighter font-extrabold text-gray-900 dark:text-white font-lexend uppercase text-center">
+        <motion.div 
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1.5 }} className="bg-white dark:bg-neutral-800 py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6 rounded-4xl drop-shadow-2xl dark:drop-shadow-black transition-colors ease-in-out duration-200">
+          <motion.h2 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.5 }}
+            className="mb-8 text-4xl tracking-tighter font-extrabold text-gray-900 dark:text-white font-lexend uppercase text-center">
             Frequently Asked Questions
-          </h2>
+          </motion.h2>
           <div className="grid pt-8 text-left border-t border-violet-200 md:gap-16 dark:border-gray-700 md:grid-cols-2">
             <div className="animate__animated animate__backInDown animate__slow">
               <div className="mb-10">
@@ -241,7 +252,7 @@ const FAQ = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
 
@@ -392,6 +403,7 @@ const FAQ = () => {
       </section> */}
       <Footer />
     </div>
+    </>
   )
 }
 

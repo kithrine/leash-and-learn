@@ -71,7 +71,7 @@ const SignUp = ({ users }) => {
           <Link
             to="/"
             className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-            <h1><span className="font-leash text-5xl">Leash</span> <span className="font-and">&</span> <span className="font-learn uppercase text-4xl">learn</span></h1>
+            <h1><span className="font-leash text-5xl text-shadow-teal-200 text-shadow-sm dark:text-shadow-lime-600">Leash</span> <span className="font-and text-shadow-teal-200 text-shadow-sm dark:text-shadow-lime-600">&</span> <span className="font-learn uppercase text-4xl text-shadow-teal-200 text-shadow-sm dark:text-shadow-lime-600">learn</span></h1>
           </Link>
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-neutral-800 dark:border-neutral-700 drop-shadow-2xl dark:drop-shadow-black transition-colors ease-in-out duration-200">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -243,7 +243,7 @@ const SignUp = ({ users }) => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   type="submit"
-                  className="w-full text-white bg-teal-400 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-500 dark:hover:bg-lime-600 dark:focus:ring-lime-400 transition-colors ease-in-out duration-200">
+                  className="w-full text-white bg-teal-400 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-500 transition-colors ease-in-out duration-200">
                   Create an account
                 </motion.button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
