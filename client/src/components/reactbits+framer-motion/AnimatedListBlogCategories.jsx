@@ -22,9 +22,9 @@ const AnimatedItem = ({ children, delay = 0, index, onMouseEnter, onClick }) => 
 
 const AnimatedListBlogCategories = ({
   items = [
-    'Health & Wellness', 'Foundational Training', 'Advanced Training', 'Item 4', 'Item 5',
-    'Item 6', 'Item 7', 'Item 8', 'Item 9', 'Item 10',
-    'Item 11', 'Item 12', 'Item 13', 'Item 14', 'Item 15'
+    'Foundational Training', 'Advanced Training', 'Training Tools & Techniques', 'Specific Breed Focus', 'Dog Behavior',
+    'Health & Wellness', 'Dog Care', 'Everything Puppies!', 'Community & Lifestyle', 'Fun & Entertainment',
+    'DIY', 'Heartwarming Stories', 'Products & Reviews'
   ],
   onItemSelect,
   showGradients = true,
@@ -102,14 +102,14 @@ const AnimatedListBlogCategories = ({
         ref={listRef}
         className={`max-h-[400px] overflow-y-auto p-4 ${
           displayScrollbar
-            ? "[&::-webkit-scrollbar]:w-[8px] [&::-webkit-scrollbar-track]:bg-[#060010] [&::-webkit-scrollbar-thumb]:bg-[#222] [&::-webkit-scrollbar-thumb]:rounded-[4px]"
+            ? "[&::-webkit-scrollbar]:w-[8px] [&::-webkit-scrollbar-track]:bg-[#e5e5e5] [&::-webkit-scrollbar-thumb]:bg-[#a3a3a3] dark:[&::-webkit-scrollbar-track]:bg-black dark:[&::-webkit-scrollbar-thumb]:bg-[#222] [&::-webkit-scrollbar-thumb]:rounded-[4px]"
             : "scrollbar-hide"
         }`}
         onScroll={handleScroll}
-        style={{
-          scrollbarWidth: displayScrollbar ? "thin" : "none",
-          scrollbarColor: "#222 #060010",
-        }}
+        // style={{
+        //   scrollbarWidth: displayScrollbar ? "thin" : "none",
+        //   scrollbarColor: "#222 #060010",
+        // }}
       >
         {items.map((item, index) => (
           <AnimatedItem
@@ -124,8 +124,8 @@ const AnimatedListBlogCategories = ({
               }
             }}
           >
-            <div className={`p-4 bg-[#111] rounded-lg ${selectedIndex === index ? 'bg-[#222]' : ''} ${itemClassName}`}>
-              <p className="text-white m-0">{item}</p>
+            <div className={`p-4 bg-gray-300 dark:bg-neutral-950 rounded-lg shadow-md shadow-neutral-400 dark:shadow-black ${selectedIndex === index ? 'bg-[#222]' : ''} ${itemClassName}`}>
+              <p className="text-neutral-900 dark:text-white font-learn uppercase font-bold tracking-widest text-xl m-0">{item}</p>
             </div>
           </AnimatedItem>
         ))}

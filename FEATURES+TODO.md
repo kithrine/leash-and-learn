@@ -211,6 +211,8 @@ BUTTONS.... EVERYWHERE!
 
 BLOG
 - [ ] Have a placeholder image for blogs that are posted without a photo... OR.. make sure that no placeholder is shown at all and it is just empty there if no image
+- [ ] HOMEPAGE: Blog Categories section on Animated List - ADD ICONS
+- [ ] HOMEPAGE: Call to Action (if time)
 
 FOOTER
 - [ ] Main - Links
