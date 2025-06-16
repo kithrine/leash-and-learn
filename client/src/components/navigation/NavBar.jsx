@@ -47,12 +47,12 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
                 />
               </svg>
               <div className="flex flex-col">
-                <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">
+                <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white transition-colors ease-in-out duration-200">
                   <span className="leash mr-1">Leash </span>{" "}
                   <span className="and text-sm relative text-white">&</span>{" "}
                   <span className="learn ml-1"> learn</span>
                 </span>
-                <span className="dog-training text-center text-xs font-bold -mt-2 text-gray-800 dark:text-gray-400">
+                <span className="dog-training text-center text-xs font-bold -mt-2 text-gray-800 dark:text-gray-400 transition-colors ease-in-out duration-200">
                   DOG TRAINING
                 </span>
               </div>
@@ -271,7 +271,7 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
               {/* </div> */}
 
               {/* LOGIN/LOGOUT */}
-              <li>
+              <li className="pr-8">
                 {!isLoggedIn ? (
                   <Link
                     to="/login"
@@ -298,24 +298,11 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
               </li>
             </ul>
             {/* DARK/LIGHT MODE BUTTON */}
-            {/* <button
-                onClick={toggleTheme}
-                className={`p-2 transition-colors duration-500 rounded-full ${
-                  darkMode
-                    ? "hover:bg-gray-700"
-                    : "bg-gray-200 hover:bg-gray-300"
-                } hover:bg-gray-200 dark:hover:bg-gray-700`}>
-                {darkMode ? (
-                  <SunIcon className="w-6 h-6" />
-                ) : (
-                  <MoonIcon className="w-6 h-6" />
-                )}
-              </button> */}
               <button 
                 onClick={toggleTheme}
                 className={`p-2 transition-colors duration-500 rounded-full 
-               bg-gray-200 hover:bg-gray-300
-             dark:bg-gray-500 dark:hover:bg-gray-700`}>
+               bg-neutral-200 hover:bg-neutral-300
+             dark:bg-neutral-500 dark:hover:bg-neutral-700`}>
               {theme === "dark" ? (
                 <SunIcon className="w-6 h-6" />
               )
