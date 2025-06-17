@@ -7,14 +7,14 @@
 ## TODO
 
 ### HOMEPAGE
-- [ ] Services Overview
+- [x] Services Overview
 - [ ] Blog Overview
 - [x] About Trainers
-- [ ] Rolling Gallery
-- [ ] Call to action/Enroll
+- [x] Rolling Gallery
+- [x] Call to action/Enroll
 
 ### FAQ PAGE
-- [ ] Change to an accordian-style dropdown
+- [x] Change entire style of page
 
 
 ### BLOG
@@ -31,6 +31,8 @@
 - [x] * Make sure that ONLY the user that posted the blog can edit or delete/archive it (added userId to the schema)
 - [x] * Make sure the BM and Trainers also have access to editing/deleting/archiving blogs
 - [ ] Ability to "like" and/or "favorite" a post
+##### Blog Detail Page
+- [x] Save logged in user info in session storage and then check against user.id and the blog userId
 ##### Blog Comments
 - [ ] * Must have an account to post a comment - (needs to add logic to check for if the user is logged in SHOW the comment textarea, but if not, the textarea is disabled and text shows on top of it that "You must be logged in to be able to post a comment!")
 - [ ] Put a reminder by the start of the blog comments that you MUST have an account in order to post a comment
@@ -50,7 +52,6 @@
 
 
 ### CONTACT US
-
 
 ### CHAT APPLICATION
 - [ ] The Trainers and Business Manager have a tag/title by their name that says "Leash & Learn Certified Trainer" or something like that

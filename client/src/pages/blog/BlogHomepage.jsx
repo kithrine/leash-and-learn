@@ -49,6 +49,9 @@ const BlogHomepage = () => {
           </p>
           <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
             <Link
+              // whileHover={{ scale: 1.05 }}
+              //     whileTap={{ scale: 0.95 }}
+              // onClick={() => navigate("/blog-list")}
               to="/blog-list"
               class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white dark:text-black rounded-lg bg-teal-400 hover:bg-teal-500 focus:ring-4 focus:ring-teal-300 dark:bg-yellow-400 dark:hover:bg-yellow-500 dark:focus:ring-yellow-600 transition duration-200 ease-in-out hover:-translate-y-1 hover:scale-105">
               Explore
