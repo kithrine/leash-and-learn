@@ -34,7 +34,7 @@ const ChatButton = () => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
         type="button"
-        class="fixed z-49 right-20 bottom-8 bg-gradient-to-r from-lime-500 via-emerald-400 to-teal-300 p-3 rounded-full border-2 border-teal-500 dark:border-white conic-gradient"
+        class="fixed z-49 right-20 bottom-8 bg-gradient-to-r from-lime-500 via-emerald-400 to-teal-300 p-3 rounded-full border-2 border-teal-500 dark:border-white conic-gradient cursor-pointer"
         onMouseEnter={() => setShowPopover(true)} // Show popover on hover
         onMouseLeave={() => setShowPopover(false)} // Hide popover on leave
         onClick={() => setShowChatInterface(true)}>

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { authLogin } from "../redux/authSlice";
 import * as motion from "motion/react-client"
 import Footer from "../components/footers/Footer";
+import { calcLength } from "framer-motion";
 
 const Login = () => {
   const [loginForm, setLoginForm] = useState({ email: "", password: "" });
@@ -13,6 +14,7 @@ const Login = () => {
 
   const { loading, isLoggedIn, user } = useSelector((state) => state.auth);
 
+  // console.log("user.id", user, user.email)
   const storedTheme = localStorage.getItem('theme'); 
 
   useEffect(() => {
@@ -38,6 +40,7 @@ const Login = () => {
       console.log("form error");
     } else {
       dispatch(authLogin({ ...loginForm }));
+      
       // const loginUser = await axios.post(`${import.meta.env.VITE_NODE_SERVER_URL}/users/login`, { ...loginForm })
       // console.log("loginUser:", loginUser)
       // // Destructure success and user for the "if" statement

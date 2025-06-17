@@ -115,6 +115,7 @@ const AddBlog = () => {
     })
     //Redirect to BlogList (All posts page)
     navigate("/blog-list")
+    // sessionStorage.setItem("checkUser", user.email)
   }
 
   // const handleCategorySelect = () => {

@@ -10,10 +10,13 @@ import {
   updateBlogComment
 } from "../../redux/blogSlice"
 import { toast } from "react-toastify"
+import * as motion from "motion/react-client"
+import Markdown from "react-markdown"
 import BlogDeleteModal from "../../components/modals/BlogDeleteModal"
 import BlogNavigation from "../../components/navigation/BlogNavigation"
 import BlogEditModal from "../../components/modals/BlogEditModal"
 import BlogCommentEditModal from "../../components/modals/BlogCommentEditModal"
+import Footer from "../../components/footers/Footer"
 
 const BlogDetail = () => {
   const dispatch = useDispatch()
@@ -26,6 +29,7 @@ const BlogDetail = () => {
   let blogId = location.pathname.split("/")[2]
   const [showBlogEditModal, setShowBlogEditModal] = useState(false)
   const [showCommentActions, setShowCommentActions] = useState(false)
+  const [showBlogActions, setShowBlogActions] = useState(false)
   const [blogEditForm, setBlogEditForm] = useState({
     title: blog.title,
     authorFirstName: user.firstName,
@@ -54,20 +58,24 @@ const BlogDetail = () => {
   })
   const [showCommentEditModal, setShowCommentEditModal] = useState(false)
   // const [commentEditForm, setCommentEditForm] = useState({})
-  const [commentEditForm, setCommentEditForm] = useState(
-    {
+  const [commentEditForm, setCommentEditForm] = useState({
+    userId: user.id,
     firstName: user.firstName,
     lastName: user.lastName,
     username: user.username,
     avatar: user.avatar,
     comment: "",
     timestamp: Date.now
-  }
-)
+  })
 
+  const storedTheme = localStorage.getItem("theme")
+  const token = sessionStorage.getItem("token");
 
-  console.log("USER.ID VS BLOG.ID", user.id, blog.userId)
-  console.log("Testing user.role", user.role)
+  // const userEmail = sessionStorage.getItem("checkUser")
+  // console.log("userEmail", userEmail)
+
+  // console.log("USER.ID VS BLOG.ID", user.id, blog.userId)
+  // console.log("Testing user.role", user.role)
 
   useEffect(() => {
     console.log("BlogDetail")
@@ -77,12 +85,14 @@ const BlogDetail = () => {
 
   useEffect(() => {
     console.log("blog", blog)
+
   }, [blog])
 
   const handleBlogEdit = (e) => {
     e.preventDefault()
     dispatch(updateBlog({ id, blogEditForm: { ...blogEditForm } }))
     setShowBlogEditModal(false)
+    setShowBlogActions(false)
   }
 
   const handleBlogDelete = async () => {
@@ -101,6 +111,10 @@ const BlogDetail = () => {
       comment: ""
       //   timestamp: ""
     })
+    const commentsEnd = document.getElementById("commentsEnd")
+    if (commentsEnd) {
+      commentsEnd.scrollIntoView({ behavior: "smooth" })
+    }
     // !!! COME BACK TO THIS
     // if (addBlogComment.status === 200) {
     //   setAddComment("")
@@ -127,6 +141,7 @@ const BlogDetail = () => {
         commentEditForm
       })
     ) // maybe it is comment._id???
+    // dispatch(blogGetOne(id))
     setShowCommentEditModal(false)
     toast.success("Comment updated successfully!")
   }
@@ -140,42 +155,34 @@ const BlogDetail = () => {
   return (
     <>
       <BlogNavigation />
-      <div className="mx-autoborder-t sm:pt-16 mt-8">
+      {/* <div className="mx-auto border-t sm:pt-16 mt-8">
         <div className="pt-12">
           <article className="items-start justify-between">
             <div className="time-blog-detail">
               <time>
-                {/* {blog.date ? new Date(blog.date).toLocaleString("en-US") : ""} */}
               </time>
             </div>
             <div className="group relative">
               <div>{blog.title}</div>
-              {/* <div>{blog.author}</div>
-              <div>{blog.city}</div>
-              <div>{blog.category}</div>
-              <div>{blog.readTime}</div>
-              <div>{blog.body}</div> */}
+            
 
               <div className="body-blog-detail">
                 <div dangerouslySetInnerHTML={{ __html: blog.body }} />
               </div>
             </div>
             <div className="relative mt-8 flex items-center gap-x-4">
-            {blog.avatar ? (
-                    <img
-                      src={`${blog.avatar}`}
-                      className="size-16 rounded-full"
-                    />
-                  ) : (
-                    <svg
-                    className="size-16 me-3 text-gray-200 dark:text-gray-700"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 20 20">
-                    <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
-                  </svg>
-                  )}
+              {blog.avatar ? (
+                <img src={`${blog.avatar}`} className="size-16 rounded-full" />
+              ) : (
+                <svg
+                  className="size-16 me-3 text-neutral-200 dark:text-neutral-700"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20">
+                  <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                </svg>
+              )}
               <div className="text-sm/6">
                 <span className="author-blog-detail">
                   <div dangerouslySetInnerHTML={{ __html: blog.author }} />
@@ -183,92 +190,83 @@ const BlogDetail = () => {
               </div>
             </div>
 
-            {/* Edit button on specific blog post */}
 
-            {user.id === blog.userId 
-            || user.role.includes("Business Manager") || user.role.includes("Trainer")
-            ?
-            (<div className="flex justify-center gap-x-8 add-page-buttons font-semibold">
-              <button onClick={() => setShowBlogEditModal(true)} className="">
-                Edit
-              </button>
+            {user.id === blog.userId ||
+            user.role.includes("Business Manager") ||
+            user.role.includes("Trainer") ? (
+              <div className="flex justify-center gap-x-8 add-page-buttons font-semibold">
+                <button onClick={() => setShowBlogEditModal(true)} className="">
+                  Edit
+                </button>
 
-              {showBlogEditModal && (
-                <BlogEditModal
-                  handleBlogEdit={handleBlogEdit}
-                  setShowBlogEditModal={setShowBlogEditModal}
-                  blogEditForm={blogEditForm}
-                  setBlogEditForm={setBlogEditForm}
-                />
-              )}
+                {showBlogEditModal && (
+                  <BlogEditModal
+                    handleBlogEdit={handleBlogEdit}
+                    setShowBlogEditModal={setShowBlogEditModal}
+                    blogEditForm={blogEditForm}
+                    setBlogEditForm={setBlogEditForm}
+                  />
+                )}
 
-              {/* Delete button on specific blog post */}
-              <button
-                onClick={() => {
-                  setShowBlogDeleteModal(true)
-                  setBlogToDelete(id)
-                }}
-                data-modal-target="popup-modal"
-                data-modal-toggle="popup-modal"
-                className="delete-button-blog-detail rounded-sm bg-black text-lg/6 px-3 py-2 font-semibold shadow-sm hover:bg-rose-600 hover:text-black"
-                type="button">
-                Delete
-              </button>
-              {showBlogDeleteModal && (
-                <BlogDeleteModal
-                  handleBlogDelete={handleBlogDelete}
-                  blogToDelete={blogToDelete}
-                  setShowBlogDeleteModal={setShowBlogDeleteModal}
-                />
-              )}
-            </div>) : 
-            null
-            }
+                <button
+                  onClick={() => {
+                    setShowBlogDeleteModal(true)
+                    setBlogToDelete(id)
+                  }}
+                  data-modal-target="popup-modal"
+                  data-modal-toggle="popup-modal"
+                  className="delete-button-blog-detail rounded-sm bg-black text-lg/6 px-3 py-2 font-semibold shadow-sm hover:bg-rose-600 hover:text-black"
+                  type="button">
+                  Delete
+                </button>
+                {showBlogDeleteModal && (
+                  <BlogDeleteModal
+                    handleBlogDelete={handleBlogDelete}
+                    blogToDelete={blogToDelete}
+                    setShowBlogDeleteModal={setShowBlogDeleteModal}
+                  />
+                )}
+              </div>
+            ) : null}
           </article>
         </div>
-      </div>
+      </div> */}
 
-      {/* 
-        <!-- 
-Install the "flowbite-typography" NPM package to apply styles and format the article content: 
-
-URL: https://flowbite.com/docs/components/typography/ 
---> */}
-
-      <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
+      <main
+        class={`pt-8 pb-16 lg:pt-26 lg:pb-24 mt-8 ${
+          storedTheme === "light" ? "light-charlie-bg" : "dark-charlie-bg"
+        } antialiased transition duration-200 ease-in-out`}>
         <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
           <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
-            <header class="mb-4 lg:mb-6 not-format">
-              <address class="flex items-center mb-6 not-italic">
-                <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                {blog.avatar ? (
+            <header class="mb-4 lg:mb-1 not-format">
+              <address class="flex items-center mb-6 not-italic justify-between">
+                <div class="inline-flex items-center mr-3 text-sm text-neutral-900 dark:text-white animate__animated animate__fadeIn animate__slow">
+                  {blog.avatar ? (
                     <img
                       src={`${blog.avatar}`}
                       className="size-16 rounded-full mr-4"
                     />
                   ) : (
                     <svg
-                    className="size-16 me-3 mr-4 text-gray-200 dark:text-gray-700"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 20 20">
-                    <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
-                  </svg>
+                      className="size-16 me-3 mr-4 text-neutral-200 dark:text-neutral-700"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 20 20">
+                      <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                    </svg>
                   )}
-                  <div>
-                    <a
-                      href="#"
+                  <div className="leading-tight">
+                    <p
                       rel="author"
-                      class="text-xl font-bold text-gray-900 dark:text-white">
-                      {blog.authorFirstName}{" "}{blog.authorLastName}
-                    </a>
-                    <p class="text-base text-gray-500 dark:text-gray-400">
+                      class="text-xl font-bold text-neutral-900 dark:text-white">
+                      {blog.authorFirstName} {blog.authorLastName}
+                    </p>
+                    <p class="text-base text-violet-600 dark:text-lime-400 italic">
                       {blog.authorTitle}
                     </p>
-                    <p class="text-base text-gray-500 dark:text-gray-400">
-                      <time
-                        pubdate>
+                    <p class="text-sm text-neutral-600 dark:text-neutral-400">
+                      <time pubdate>
                         {new Date(blog.date).toLocaleString("en-US", {
                           year: "numeric",
                           month: "long",
@@ -280,29 +278,123 @@ URL: https://flowbite.com/docs/components/typography/
                     </p>
                   </div>
                 </div>
+                {user.id === blog.userId || 
+                user.role.includes("Business Manager") ||
+                user.role.includes("Trainer") ? (
+                  <button
+                    onClick={() => {
+                      setShowBlogActions(!showBlogActions)
+                    }}
+                    id="dropdownBlogButton"
+                    data-dropdown-toggle="dropdownBlog"
+                    class="inline-flex items-center p-2 text-sm font-medium text-center text-neutral-500 bg-white rounded-lg hover:bg-neutral-100 focus:ring-4 focus:outline-none focus:ring-neutral-50 dark:text-neutral-400 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:ring-neutral-600 rotate-90 border border-neutral-200 dark:border-neutral-800 drop-shadow-sm dark:drop-shadow-black drop-shadow-violet-100 hover:transition hover:duration-500 hover:ease-in-out cursor-pointer animate__animated animate__fadeIn animate__slow animate__delay-1s"
+                    type="button">
+                    <svg
+                      class="w-8 h-8"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 16 3">
+                      <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                    </svg>
+                    <span class="sr-only">Blog settings</span>
+                  </button>
+                ) : null}
+                {showBlogActions && (
+                  <div
+                    id="blogActions"
+                    class="absolute z-10 w-36 ml-[35%] mt-[6%] bg-white rounded divide-y divide-neutral-100 shadow dark:bg-neutral-700 dark:divide-neutral-600">
+                    <ul
+                      class="py-1 text-sm text-neutral-700 dark:text-neutral-200"
+                      aria-labelledby="dropdownMenuIconHorizontalButton">
+                      <li>
+                        <a
+                          onClick={() => setShowBlogEditModal(true)}
+                          class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
+                          Edit
+                        </a>
+                      </li>
+                      {showBlogEditModal && (
+                        <BlogEditModal
+                          handleBlogEdit={handleBlogEdit}
+                          setShowBlogEditModal={setShowBlogEditModal}
+                          blogEditForm={blogEditForm}
+                          setBlogEditForm={setBlogEditForm}
+                        />
+                      )}
+                      <li>
+                        <a
+                          onClick={() => {
+                            setShowBlogDeleteModal(true)
+                            setBlogToDelete(id)
+                          }}
+                          class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
+                          Remove
+                        </a>
+                      </li>
+                      {showBlogDeleteModal && (
+                        <BlogDeleteModal
+                          handleBlogDelete={handleBlogDelete}
+                          blogToDelete={blogToDelete}
+                          setShowBlogDeleteModal={setShowBlogDeleteModal}
+                        />
+                      )}
+                      <li>
+                        <a class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
+                          Report
+                        </a>
+                      </li>
+                      <li>
+                        <div
+                          onClick={() => setShowBlogActions(false)}
+                          class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
+                          Close
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                )}
               </address>
+
               <figure>
-                <img
-                  src={`${blog.coverPhoto}`}
-                  alt=""
-                />
-                {/* <figcaption>Digital art by Anonymous</figcaption> */}
+                {blog.coverPhoto ? (
+                  <img
+                    src={`${blog.coverPhoto}`}
+                    alt=""
+                    className="rounded-xl drop-shadow-md dark:drop-shadow-black animate__animated animate__fadeIn animate__slower"
+                  />
+                ) : null}
               </figure>
-              <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
+              <h1 class="pb-4 text-3xl font-extrabold leading-tight text-black lg:pb-2 lg:pt-3 lg:text-4xl dark:text-white font-phudu tracking-wider animate__animated animate__fadeInUp animate__slow">
                 {blog.title}
               </h1>
             </header>
 
-            <div>{blog.body}</div>
+            <div className="pb-12 text-neutral-900 dark:text-neutral-100 animate__animated animate__fadeInUp animate__slow">
+              <Markdown>{blog.body}</Markdown>
+            </div>
 
-            <section class="not-format">
+            <div className="border-t opacity-55 border-teal-300 dark:border-yellow-300 "></div>
+            <section class="not-format pt-6">
               <div class="flex justify-between items-center mb-6">
-                <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
+                <h2 class="text-lg lg:text-2xl font-bold text-neutral-900 dark:text-white">
                   Discussion ({blog.comments.length})
                 </h2>
               </div>
+
+              {!token ? (
+                <div className="pb-8 animate__animated animate__flash animate__slow">
+                  <div class="bg-violet-100 border-l-4 border-violet-500 text-violet-700 p-4" role="alert">
+                    <p class="font-bold font-">You must have an account to post a comment!</p>
+                    <p>Please <span className="underline cursor-pointer" onClick={() => navigate("/sign-up")}>create an account</span> or <span className="underline cursor-pointer" onClick={() => navigate("/login")}>log in</span>.</p>
+                  </div>
+                </div>
+              ) 
+              :
+              (
+
               <form onSubmit={handleAddComment} class="mb-6">
-                <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700">
                   <label for="comment" class="sr-only">
                     Your comment
                   </label>
@@ -316,24 +408,35 @@ URL: https://flowbite.com/docs/components/typography/
                     }
                     id="comment"
                     rows="6"
-                    class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                    class="p-1 w-full text-sm text-neutral-900 border-0 focus:ring-0 dark:text-white dark:placeholder-neutral-400 dark:bg-neutral-800"
                     placeholder="Write a comment..."
                     required></textarea>
                 </div>
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   type="submit"
-                  class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                  class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white dark:text-black bg-teal-400 dark:bg-lime-400 rounded-lg focus:ring-4 focus:ring-teal-200 dark:focus:ring-lime-300 hover:bg-teal-500 dark:hover:bg-lime-500 cursor-pointer">
                   Post comment
-                </button>
+                </motion.button>
               </form>
+              )}
 
+
+
+
+
+
+
+              {/* <div className={`${blog.comments.length > 4 ? "max-h-[100vh] overflow-y-auto" : ""}`}> */}
               {blog.comments.map((comment, index) => (
+                <>
                 <article
                   value={index}
-                  class="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900">
-                  <footer class="flex justify-between items-center mb-2">
+                  class="p-6 mb-6 text-base bg-white rounded-lg dark:bg-neutral-900 drop-shadow-md dark:drop-shadow-sm dark:drop-shadow-black animate__animated animate__fadeInRight animate__slow">
+                  <div class="flex justify-between items-center mb-2">
                     <div class="flex items-center">
-                      <p class="inline-flex items-center mr-3 font-semibold text-sm text-gray-900 dark:text-white">
+                      <p class="inline-flex items-center mr-3 font-semibold text-sm text-neutral-900 dark:text-white">
                         {/* <img
                           class="mr-2 w-6 h-6 rounded-full"
                           src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
@@ -346,22 +449,27 @@ URL: https://flowbite.com/docs/components/typography/
                           />
                         ) : (
                           <svg
-                          className="size-10 me-3 text-gray-200 dark:text-gray-700"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="currentColor"
-                          viewBox="0 0 20 20">
-                          <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
-                        </svg>
+                            className="size-10 me-3 text-neutral-200 dark:text-neutral-700"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                          </svg>
                         )}
 
                         <div className="flex flex-col text-center">
-                        <span>{comment.firstName}{" "}{comment.lastName}</span>
-                        
-                        <span className="font-thin -mt-2 text-xs">{comment.username}</span>
+                          <span>
+                            {comment.firstName} {comment.lastName}
+                          </span>
+
+                          {/* Show username underneath commenter's first and last name */}
+                          {/* <span className="font-thin -mt-2 text-xs">
+                            {comment.username}
+                          </span> */}
                         </div>
                       </p>
-                      <p class="text-sm text-gray-600 dark:text-gray-400">
+                      <p class="text-xs text-neutral-600 dark:text-neutral-400">
                         <time
                           pubdate
                           datetime="2022-02-08"
@@ -371,94 +479,80 @@ URL: https://flowbite.com/docs/components/typography/
                       </p>
                     </div>
 
-                    {user.id === comment.userId || user.role.includes("Business Manager") || user.role.includes("Trainer") ? (
+                    {user.id === comment.userId ||
+                    user.role.includes("Business Manager") ||
+                    user.role.includes("Trainer") ? (
+                      <button
+                        onClick={() => {
+                          setShowCommentActions(!showCommentActions)
+                          setCommentToDelete(comment)
+                        }}
+                        id="dropdownComment1Button"
+                        data-dropdown-toggle="dropdownComment1"
+                        class="inline-flex items-center p-2 text-sm font-medium text-center text-violet-500 bg-white rounded-lg hover:bg-neutral-100 focus:ring-4 focus:outline-none focus:ring-neutral-50 dark:text-lime-400 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:ring-neutral-600 hover:transition hover:duration-500 hover:ease-in-out cursor-pointer"
+                        type="button">
+                        <svg
+                          class="w-4 h-4"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="currentColor"
+                          viewBox="0 0 16 3">
+                          <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                        </svg>
+                        <span class="sr-only">Comment settings</span>
+                      </button>
+                    ) : null}
 
-                    <button
-                      onClick={() => {
-                        setShowCommentActions(true)
-                        setCommentToDelete(comment)
-                      }}
-                      id="dropdownComment1Button"
-                      data-dropdown-toggle="dropdownComment1"
-                      class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:text-gray-400 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                      type="button">
-                      <svg
-                        class="w-4 h-4"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 16 3">
-                        <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
-                      </svg>
-                      <span class="sr-only">Comment settings</span>
-                    </button>
-                    )
-                  :
-                  null}
-
-
-                    {/* <!-- Dropdown menu --> */}
+                    {/* <!-- Comments Dropdown menu --> */}
 
                     {showCommentActions &&
                       commentToDelete._id === comment._id && (
                         <div
                           id="dropdownComment1"
-                          class="absolute z-10 w-36 ml-[28vw] mt-28 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                          class={`absolute z-10 w-36 ml-[32.5vw] mt-28 bg-white rounded divide-y divide-neutral-100 shadow dark:bg-neutral-700 dark:divide-neutral-600`}>
                           <ul
-                            class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                            class="py-1 text-sm text-neutral-700 dark:text-neutral-200"
                             aria-labelledby="dropdownMenuIconHorizontalButton">
                             <li>
                               <a
                                 onClick={() =>
                                   handleCommentEditModal(comment, comment._id)
                                 }
-                                href="#"
-                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
                                 Edit
                               </a>
                             </li>
                             <li>
                               <a
-                                href="#"
                                 onClick={() => handleDeleteComment(comment)}
-                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
                                 Remove
                               </a>
                             </li>
                             <li>
-                              <a
-                                href="#"
-                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                              <a class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
                                 Report
                               </a>
                             </li>
                             <li>
                               <div
                                 onClick={() => setShowCommentActions(false)}
-                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer">
+                                class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
                                 Close
                               </div>
                             </li>
                           </ul>
                         </div>
                       )}
+                  </div>
 
-                    {showCommentEditModal && (
-                      <BlogCommentEditModal
-                        handleEditComment={handleEditComment}
-                        setShowCommentEditModal={setShowCommentEditModal}
-                        commentEditForm={commentEditForm}
-                        setCommentEditForm={setCommentEditForm}
-                        comment={comment}
-                        blogId={blogId}
-                      />
-                    )}
-                  </footer>
-                  <p className="">{comment.comment}</p>
+                  <p className="text-black dark:text-white animate__animated animate__fadeIn animate__slow">
+                    {comment.comment}
+                  </p>
                   <div class="flex items-center mt-4 space-x-4">
                     <button
                       type="button"
-                      class="flex items-center font-medium text-sm text-gray-500 hover:underline dark:text-gray-400">
+                      class="flex items-center font-medium text-sm text-neutral-500 hover:underline dark:text-neutral-400">
                       <svg
                         class="mr-1.5 w-3 h-3"
                         aria-hidden="true"
@@ -471,100 +565,114 @@ URL: https://flowbite.com/docs/components/typography/
                     </button>
                   </div>
                 </article>
+      {showCommentEditModal && (
+        <BlogCommentEditModal
+          handleEditComment={handleEditComment}
+          setShowCommentEditModal={setShowCommentEditModal}
+          commentEditForm={commentEditForm}
+          setCommentEditForm={setCommentEditForm}
+          comment={comment}
+          blogId={blogId}
+        />
+      )}
+      </>
               ))}
+              <div id="commentsEnd" />
+              {/* </div> */}
             </section>
           </article>
         </div>
       </main>
 
-      <aside
+
+      {/* <aside
         aria-label="Related articles"
-        class="py-8 lg:py-24 bg-gray-50 dark:bg-gray-800">
+        class="py-8 lg:py-24 bg-neutral-50 dark:bg-neutral-800">
         <div class="px-4 mx-auto max-w-screen-xl">
-          <h2 class="mb-8 text-2xl font-bold text-gray-900 dark:text-white">
+          <h2 class="mb-8 text-2xl font-bold text-neutral-900 dark:text-white">
             Related articles
           </h2>
           <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
             <article class="max-w-xs">
-              <a href="#">
+              <a >
                 <img
                   src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-1.png"
                   class="mb-5 rounded-lg"
                   alt="Image 1"
                 />
               </a>
-              <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
-                <a href="#">Our first office</a>
+              <h2 class="mb-2 text-xl font-bold leading-tight text-neutral-900 dark:text-white">
+                <a >Our first office</a>
               </h2>
-              <p class="mb-4 text-gray-500 dark:text-gray-400">
+              <p class="mb-4 text-neutral-500 dark:text-neutral-400">
                 Over the past year, Volosoft has undergone many changes! After
                 months of preparation.
               </p>
               <a
-                href="#"
+                
                 class="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline">
                 Read in 2 minutes
               </a>
             </article>
             <article class="max-w-xs">
-              <a href="#">
+              <a >
                 <img
                   src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-2.png"
                   class="mb-5 rounded-lg"
                   alt="Image 2"
                 />
               </a>
-              <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
-                <a href="#">Enterprise design tips</a>
+              <h2 class="mb-2 text-xl font-bold leading-tight text-neutral-900 dark:text-white">
+                <a >Enterprise design tips</a>
               </h2>
-              <p class="mb-4  text-gray-500 dark:text-gray-400">
+              <p class="mb-4  text-neutral-500 dark:text-neutral-400">
                 Over the past year, Volosoft has undergone many changes! After
                 months of preparation.
               </p>
               <a
-                href="#"
+                
                 class="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline">
                 Read in 12 minutes
               </a>
             </article>
             <article class="max-w-xs">
-              <a href="#">
+              <a >
                 <img
                   src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-3.png"
                   class="mb-5 rounded-lg"
                   alt="Image 3"
                 />
               </a>
-              <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
-                <a href="#">We partnered with Google</a>
+              <h2 class="mb-2 text-xl font-bold leading-tight text-neutral-900 dark:text-white">
+                <a >We partnered with Google</a>
               </h2>
-              <p class="mb-4  text-gray-500 dark:text-gray-400">
+              <p class="mb-4  text-neutral-500 dark:text-neutral-400">
                 Over the past year, Volosoft has undergone many changes! After
                 months of preparation.
               </p>
               <a
-                href="#"
+                
                 class="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline">
                 Read in 8 minutes
               </a>
             </article>
             <article class="max-w-xs">
-              <a href="#">
+              <a >
                 <img
                   src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-4.png"
                   class="mb-5 rounded-lg"
                   alt="Image 4"
                 />
               </a>
-              <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
-                <a href="#">Our first project with React</a>
+              <h2 class="mb-2 text-xl font-bold leading-tight text-neutral-900 dark:text-white">
+                <a >Our first project with React</a>
               </h2>
-              <p class="mb-4  text-gray-500 dark:text-gray-400">
+              <p class="mb-4  text-neutral-500 dark:text-neutral-400">
                 Over the past year, Volosoft has undergone many changes! After
                 months of preparation.
               </p>
               <a
-                href="#"
+                
                 class="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline">
                 Read in 4 minutes
               </a>
@@ -573,13 +681,13 @@ URL: https://flowbite.com/docs/components/typography/
         </div>
       </aside>
 
-      <section class="bg-white dark:bg-gray-900">
+      <section class="bg-white dark:bg-neutral-900">
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
           <div class="mx-auto max-w-screen-md sm:text-center">
-            <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl dark:text-white">
+            <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl dark:text-white">
               Sign up for our newsletter
             </h2>
-            <p class="mx-auto mb-8 max-w-2xl  text-gray-500 md:mb-12 sm:text-xl dark:text-gray-400">
+            <p class="mx-auto mb-8 max-w-2xl  text-neutral-500 md:mb-12 sm:text-xl dark:text-neutral-400">
               Stay up to date with the roadmap progress, announcements and
               exclusive discounts feel free to sign up with your email.
             </p>
@@ -588,12 +696,12 @@ URL: https://flowbite.com/docs/components/typography/
                 <div class="relative w-full">
                   <label
                     for="email"
-                    class="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                    class="hidden mb-2 text-sm font-medium text-neutral-900 dark:text-neutral-300">
                     Email address
                   </label>
                   <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                     <svg
-                      class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                      class="w-4 h-4 text-neutral-500 dark:text-neutral-400"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
@@ -603,7 +711,7 @@ URL: https://flowbite.com/docs/components/typography/
                     </svg>
                   </div>
                   <input
-                    class="block p-3 pl-9 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="block p-3 pl-9 w-full text-sm text-neutral-900 bg-white rounded-lg border border-neutral-300 sm:rounded-none sm:rounded-l-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Enter your email"
                     type="email"
                     id="email"
@@ -618,10 +726,10 @@ URL: https://flowbite.com/docs/components/typography/
                   </button>
                 </div>
               </div>
-              <div class="mx-auto max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300">
+              <div class="mx-auto max-w-screen-sm text-sm text-left text-neutral-500 newsletter-form-footer dark:text-neutral-300">
                 We care about the protection of your data.{" "}
                 <a
-                  href="#"
+                  
                   class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                   Read our Privacy Policy
                 </a>
@@ -632,145 +740,145 @@ URL: https://flowbite.com/docs/components/typography/
         </div>
       </section>
 
-      <footer class="bg-gray-50 dark:bg-gray-800 antialiased">
+      <footer class="bg-neutral-50 dark:bg-neutral-800 antialiased">
         <div class="p-4 py-6 mx-auto max-w-screen-xl md:p-8 lg:p-10">
           <div class="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
             <div>
-              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h2 class="mb-6 text-sm font-semibold text-neutral-900 uppercase dark:text-white">
                 Company
               </h2>
-              <ul class="text-gray-500 dark:text-gray-400">
+              <ul class="text-neutral-500 dark:text-neutral-400">
                 <li class="mb-4">
-                  <a href="#" class=" hover:underline">
+                  <a  class=" hover:underline">
                     About
                   </a>
                 </li>
                 <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                  <a  class="hover:underline">
                     Careers
                   </a>
                 </li>
                 <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                  <a  class="hover:underline">
                     Brand Center
                   </a>
                 </li>
                 <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                  <a  class="hover:underline">
                     Blog
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h2 class="mb-6 text-sm font-semibold text-neutral-900 uppercase dark:text-white">
                 Help center
               </h2>
-              <ul class="text-gray-500 dark:text-gray-400">
+              <ul class="text-neutral-500 dark:text-neutral-400">
                 <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                  <a  class="hover:underline">
                     Discord Server
                   </a>
                 </li>
                 <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                  <a  class="hover:underline">
                     Twitter
                   </a>
                 </li>
                 <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                  <a  class="hover:underline">
                     Facebook
                   </a>
                 </li>
                 <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                  <a  class="hover:underline">
                     Contact Us
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h2 class="mb-6 text-sm font-semibold text-neutral-900 uppercase dark:text-white">
                 Legal
               </h2>
-              <ul class="text-gray-500 dark:text-gray-400">
+              <ul class="text-neutral-500 dark:text-neutral-400">
                 <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                  <a  class="hover:underline">
                     Privacy Policy
                   </a>
                 </li>
                 <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                  <a  class="hover:underline">
                     Licensing
                   </a>
                 </li>
                 <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                  <a  class="hover:underline">
                     Terms
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h2 class="mb-6 text-sm font-semibold text-neutral-900 uppercase dark:text-white">
                 Company
               </h2>
-              <ul class="text-gray-500 dark:text-gray-400">
+              <ul class="text-neutral-500 dark:text-neutral-400">
                 <li class="mb-4">
-                  <a href="#" class=" hover:underline">
+                  <a  class=" hover:underline">
                     About
                   </a>
                 </li>
                 <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                  <a  class="hover:underline">
                     Careers
                   </a>
                 </li>
                 <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                  <a  class="hover:underline">
                     Brand Center
                   </a>
                 </li>
                 <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                  <a  class="hover:underline">
                     Blog
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h2 class="mb-6 text-sm font-semibold text-neutral-900 uppercase dark:text-white">
                 Download
               </h2>
-              <ul class="text-gray-500 dark:text-gray-400">
+              <ul class="text-neutral-500 dark:text-neutral-400">
                 <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                  <a  class="hover:underline">
                     iOS
                   </a>
                 </li>
                 <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                  <a  class="hover:underline">
                     Android
                   </a>
                 </li>
                 <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                  <a  class="hover:underline">
                     Windows
                   </a>
                 </li>
                 <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                  <a  class="hover:underline">
                     MacOS
                   </a>
                 </li>
               </ul>
             </div>
           </div>
-          <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+          <hr class="my-6 border-neutral-200 sm:mx-auto dark:border-neutral-700 lg:my-8" />
           <div class="text-center">
             <a
-              href="#"
-              class="flex justify-center items-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white">
+              
+              class="flex justify-center items-center mb-5 text-2xl font-semibold text-neutral-900 dark:text-white">
               <svg
                 class="mr-2 h-8"
                 viewBox="0 0 33 33"
@@ -907,9 +1015,9 @@ URL: https://flowbite.com/docs/components/typography/
               </svg>
               Flowbite
             </a>
-            <span class="block text-sm text-center text-gray-500 dark:text-gray-400">
+            <span class="block text-sm text-center text-neutral-500 dark:text-neutral-400">
               © 2021-2022{" "}
-              <a href="#" class="hover:underline">
+              <a  class="hover:underline">
                 Flowbite™
               </a>
               . All Rights Reserved.
@@ -917,8 +1025,8 @@ URL: https://flowbite.com/docs/components/typography/
             <ul class="flex justify-center mt-5 space-x-5">
               <li>
                 <a
-                  href="#"
-                  class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400">
+                  
+                  class="text-neutral-500 hover:text-neutral-900 dark:hover:text-white dark:text-neutral-400">
                   <svg
                     class="h-4 w-4"
                     aria-hidden="true"
@@ -935,8 +1043,8 @@ URL: https://flowbite.com/docs/components/typography/
               </li>
               <li>
                 <a
-                  href="#"
-                  class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400">
+                  
+                  class="text-neutral-500 hover:text-neutral-900 dark:hover:text-white dark:text-neutral-400">
                   <svg
                     class="w-4 h-4"
                     aria-hidden="true"
@@ -952,8 +1060,8 @@ URL: https://flowbite.com/docs/components/typography/
               </li>
               <li>
                 <a
-                  href="#"
-                  class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400">
+                  
+                  class="text-neutral-500 hover:text-neutral-900 dark:hover:text-white dark:text-neutral-400">
                   <svg
                     class="w-4 h-4"
                     aria-hidden="true"
@@ -970,8 +1078,8 @@ URL: https://flowbite.com/docs/components/typography/
               </li>
               <li>
                 <a
-                  href="#"
-                  class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400">
+                  
+                  class="text-neutral-500 hover:text-neutral-900 dark:hover:text-white dark:text-neutral-400">
                   <svg
                     class="w-4 h-4"
                     aria-hidden="true"
@@ -989,7 +1097,8 @@ URL: https://flowbite.com/docs/components/typography/
             </ul>
           </div>
         </div>
-      </footer>
+      </footer> */}
+      <Footer />
     </>
   )
 }

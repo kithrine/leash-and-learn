@@ -13,7 +13,7 @@ const DashboardLayout = () => {
   const dispatch = useDispatch()
   const { trainingClasses } = useSelector((state) => state.trainingClass);
   const { user } = useSelector(state => state.auth)
-  // console.log("Dashboard user:", user)
+  console.log("Dashboard user:", user)
 
   // console.log("user.email", user.email)
   const loggedInEmail = user.email
@@ -31,6 +31,7 @@ const DashboardLayout = () => {
     // console.log("user", user)
     // dispatch(trainingClassGetMany(user.username))
     // console.log("TRAINING CLASSES WITH KIT", trainingClasses)
+    // sessionStorage.setItem("checkUser", loggedInEmail)
   }, [])
   
 
