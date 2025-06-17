@@ -280,13 +280,22 @@ const AddBlog = () => {
                       id="category"
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                       <option selected="">Select category</option>
-                      <option value="TV">TV/Monitors</option>
-                      <option value="PC">PC</option>
-                      <option value="GA">Gaming/Console</option>
-                      <option value="PH">Phones</option>
+                      <option value="Foundational Training">Foundational Training</option>
+                      <option value="Advanced Training">Advanced Training</option>
+                      <option value="Training Tools & Techniques">Training Tools & Techniques</option>
+                      <option value="Specific Breed Focus">Specific Breed Focus</option>
+                      <option value="Dog Behavior">Dog Behavior</option>
+                      <option value="Health & Wellness">Health & Wellness</option>
+                      <option value="Dog Care">Dog Care</option>
+                      <option value="Everything Puppies!">Everything Puppies!</option>
+                      <option value="Community & Lifestyle">Community & Lifestyle</option>
+                      <option value="Fun & Entertainment">Fun & Entertainment</option>
+                      <option value="DIY">DIY</option>
+                      <option value="Products and Reviews">Products and Reviews</option>
+                      <option value="Heartwarming Stories">Heartwarming Stories</option>
                     </select>
                   </div>
-                  <div>
+                  {/* <div>
                     <label
                       for="subCategory"
                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -305,7 +314,7 @@ const AddBlog = () => {
                       <option value="GA">Gaming/Console</option>
                       <option value="PH">Phones</option>
                     </select>
-                  </div>
+                  </div> */}
                   <div className="hidden">
                     <label htmlFor="avatar" className="block mb-2 text-sm">
                       Avatar

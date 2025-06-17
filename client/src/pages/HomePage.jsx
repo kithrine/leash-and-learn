@@ -106,7 +106,7 @@ const HomePage = () => {
           </div> */}
         {/* <div className="pt-42 mb-20"> */}
         <div className="mb-0">
-          <section class="bg-no-repeat bg-[url('./assets/images/giant-dog2-cropped.jpg')] bg-gray-600 bg-blend-multiply bg-[50%] min-h-[110vh]">
+          <section class="bg-no-repeat bg-[url('./assets/images/giant-dog2-cropped.jpg')] dark:bg-gray-500 dark:bg-blend-multiply bg-gray-700 bg-blend-soft-light bg-[50%] min-h-[110vh]">
             <div class="pt-8 px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-45">
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
@@ -174,7 +174,7 @@ const HomePage = () => {
         <section class={`pt-8`}>
           <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
             <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-              <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-black bg-[#FFDD00] -skew-x-8 pl-4 pb-2 transition-colors ease-in-out duration-300">
+              <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-black bg-[#FFDD00] -skew-x-8 pl-4 pb-2 transition-colors ease-in-out duration-300 animate">
               Where Training is an Adventure!
               </h2>
               <p class="mb-4 text-black dark:text-white font-rubik">

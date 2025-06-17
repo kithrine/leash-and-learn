@@ -9,7 +9,7 @@ import {
   updateBlog,
   updateBlogComment
 } from "../../redux/blogSlice"
-import { toast } from "react-toastify"
+import { toast, ToastContainer } from "react-toastify"
 import * as motion from "motion/react-client"
 import Markdown from "react-markdown"
 import BlogDeleteModal from "../../components/modals/BlogDeleteModal"
@@ -69,7 +69,7 @@ const BlogDetail = () => {
   })
 
   const storedTheme = localStorage.getItem("theme")
-  const token = sessionStorage.getItem("token");
+  const token = sessionStorage.getItem("token")
 
   // const userEmail = sessionStorage.getItem("checkUser")
   // console.log("userEmail", userEmail)
@@ -85,18 +85,31 @@ const BlogDetail = () => {
 
   useEffect(() => {
     console.log("blog", blog)
-
   }, [blog])
 
   const handleBlogEdit = (e) => {
     e.preventDefault()
     dispatch(updateBlog({ id, blogEditForm: { ...blogEditForm } }))
+    if (storedTheme === "dark") {
+      toast.success("Blog updated successfully!", {
+        theme: "dark"
+      })
+    } else {
+      toast.success("Blog updated successfully!")
+    }
     setShowBlogEditModal(false)
     setShowBlogActions(false)
   }
 
   const handleBlogDelete = async () => {
     dispatch(deleteBlog(id))
+    if (storedTheme === "dark") {
+      toast.warning("Blog was deleted", {
+        theme: "dark"
+      })
+    } else {
+      toast.warning("Blog was deleted")
+    }
     setShowBlogDeleteModal(false)
     navigate("/blog-list")
   }
@@ -104,6 +117,13 @@ const BlogDetail = () => {
   const handleAddComment = (e) => {
     e.preventDefault()
     dispatch(addBlogComment({ id, addComment }))
+    if (storedTheme === "dark") {
+      toast.success("Comment added successfully!", {
+        theme: "dark"
+      })
+    } else {
+      toast.success("Comment added successfully!")
+    }
     setAddComment({
       // firstName: "",
       // lastName: "",
@@ -143,7 +163,13 @@ const BlogDetail = () => {
     ) // maybe it is comment._id???
     // dispatch(blogGetOne(id))
     setShowCommentEditModal(false)
-    toast.success("Comment updated successfully!")
+    if (storedTheme === "dark") {
+      toast.success("Comment updated successfully!", {
+        theme: "dark"
+      })
+    } else {
+      toast.success("Comment updated successfully!")
+    }
   }
 
   const handleDeleteComment = (comment) => {
@@ -154,6 +180,7 @@ const BlogDetail = () => {
 
   return (
     <>
+    <ToastContainer />
       <BlogNavigation />
       {/* <div className="mx-auto border-t sm:pt-16 mt-8">
         <div className="pt-12">
@@ -265,7 +292,7 @@ const BlogDetail = () => {
                     <p class="text-base text-violet-600 dark:text-lime-400 italic">
                       {blog.authorTitle}
                     </p>
-                    <p class="text-sm text-neutral-600 dark:text-neutral-400">
+                    <div class="text-sm text-neutral-600 dark:text-neutral-400">
                       <time pubdate>
                         {new Date(blog.date).toLocaleString("en-US", {
                           year: "numeric",
@@ -275,10 +302,10 @@ const BlogDetail = () => {
                           minute: "numeric"
                         })}
                       </time>
-                    </p>
+                    </div>
                   </div>
                 </div>
-                {user.id === blog.userId || 
+                {user.id === blog.userId ||
                 user.role.includes("Business Manager") ||
                 user.role.includes("Trainer") ? (
                   <button
@@ -310,7 +337,7 @@ const BlogDetail = () => {
                       <li>
                         <a
                           onClick={() => setShowBlogEditModal(true)}
-                          class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
+                          class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
                           Edit
                         </a>
                       </li>
@@ -320,6 +347,7 @@ const BlogDetail = () => {
                           setShowBlogEditModal={setShowBlogEditModal}
                           blogEditForm={blogEditForm}
                           setBlogEditForm={setBlogEditForm}
+                          setShowBlogActions={setShowBlogActions}
                         />
                       )}
                       <li>
@@ -328,7 +356,7 @@ const BlogDetail = () => {
                             setShowBlogDeleteModal(true)
                             setBlogToDelete(id)
                           }}
-                          class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
+                          class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
                           Remove
                         </a>
                       </li>
@@ -340,7 +368,7 @@ const BlogDetail = () => {
                         />
                       )}
                       <li>
-                        <a class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
+                        <a class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
                           Report
                         </a>
                       </li>
@@ -355,16 +383,23 @@ const BlogDetail = () => {
                   </div>
                 )}
               </address>
+              {/* <div>
+              <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">Yellow</span>
+
+              </div> */}
 
               <figure>
                 {blog.coverPhoto ? (
                   <img
                     src={`${blog.coverPhoto}`}
                     alt=""
-                    className="rounded-xl drop-shadow-md dark:drop-shadow-black animate__animated animate__fadeIn animate__slower"
+                    className="rounded-xl drop-shadow-md dark:drop-shadow-black animate__animated animate__fadeIn animate__slower pb-3"
                   />
                 ) : null}
               </figure>
+              <div className="inline-flex z-10 rounded-full bg-teal-300 dark:bg-yellow-400 px-3 py-1.5 font-medium text-neutral-900 hover:bg-teal-400 dark:hover:bg-yellow-500 text-xs">
+                {blog.category}
+              </div>
               <h1 class="pb-4 text-3xl font-extrabold leading-tight text-black lg:pb-2 lg:pt-3 lg:text-4xl dark:text-white font-phudu tracking-wider animate__animated animate__fadeInUp animate__slow">
                 {blog.title}
               </h1>
@@ -382,200 +417,213 @@ const BlogDetail = () => {
                 </h2>
               </div>
 
+              {/* Alert for if the user is not logged in and hiding the comments section Textarea */}
+              {/* animate__animated animate__flash animate__slow  */}
               {!token ? (
-                <div className="pb-8 animate__animated animate__flash animate__slow">
-                  <div class="bg-violet-100 border-l-4 border-violet-500 text-violet-700 p-4" role="alert">
-                    <p class="font-bold font-">You must have an account to post a comment!</p>
-                    <p>Please <span className="underline cursor-pointer" onClick={() => navigate("/sign-up")}>create an account</span> or <span className="underline cursor-pointer" onClick={() => navigate("/login")}>log in</span>.</p>
+                <div className="pt-5 pb-12 animate-wiggle drop-shadow-xl drop-shadow-gray-400 dark:drop-shadow-black">
+                  <div
+                    class="bg-violet-100 border-l-8 border-violet-500 text-violet-700 p-4 dark:bg-lime-300 dark:border-lime-600 dark:text-lime-700"
+                    role="alert">
+                    <p class="font-anton tracking-wider text-xl">
+                      You must have an account to post a comment!
+                    </p>
+                    <p>
+                      Please{" "}
+                      <span
+                        className="underline cursor-pointer hover:font-bold"
+                        onClick={() => navigate("/sign-up")}>
+                        create an account
+                      </span>{" "}
+                      or{" "}
+                      <span
+                        className="underline cursor-pointer hover:font-bold"
+                        onClick={() => navigate("/login")}>
+                        log in
+                      </span>
+                      .
+                    </p>
                   </div>
                 </div>
-              ) 
-              :
-              (
-
-              <form onSubmit={handleAddComment} class="mb-6">
-                <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700">
-                  <label for="comment" class="sr-only">
-                    Your comment
-                  </label>
-                  <textarea
-                    value={addComment.comment}
-                    onChange={(e) =>
-                      setAddComment({
-                        ...addComment,
-                        comment: e.target.value
-                      })
-                    }
-                    id="comment"
-                    rows="6"
-                    class="p-1 w-full text-sm text-neutral-900 border-0 focus:ring-0 dark:text-white dark:placeholder-neutral-400 dark:bg-neutral-800"
-                    placeholder="Write a comment..."
-                    required></textarea>
-                </div>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  type="submit"
-                  class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white dark:text-black bg-teal-400 dark:bg-lime-400 rounded-lg focus:ring-4 focus:ring-teal-200 dark:focus:ring-lime-300 hover:bg-teal-500 dark:hover:bg-lime-500 cursor-pointer">
-                  Post comment
-                </motion.button>
-              </form>
+              ) : (
+                <form onSubmit={handleAddComment} class="mb-6">
+                  <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700">
+                    <label for="comment" class="sr-only">
+                      Your comment
+                    </label>
+                    <textarea
+                      value={addComment.comment}
+                      onChange={(e) =>
+                        setAddComment({
+                          ...addComment,
+                          comment: e.target.value
+                        })
+                      }
+                      id="comment"
+                      rows="6"
+                      class="p-1 w-full text-sm text-neutral-900 border-0 focus:ring-0 dark:text-white dark:placeholder-neutral-400 dark:bg-neutral-800"
+                      placeholder="Write a comment..."
+                      required></textarea>
+                  </div>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    type="submit"
+                    class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white dark:text-black bg-teal-400 dark:bg-lime-400 rounded-lg focus:ring-4 focus:ring-teal-200 dark:focus:ring-lime-300 hover:bg-teal-500 dark:hover:bg-lime-500 cursor-pointer">
+                    Post comment
+                  </motion.button>
+                </form>
               )}
-
-
-
-
-
-
 
               {/* <div className={`${blog.comments.length > 4 ? "max-h-[100vh] overflow-y-auto" : ""}`}> */}
               {blog.comments.map((comment, index) => (
                 <>
-                <article
-                  value={index}
-                  class="p-6 mb-6 text-base bg-white rounded-lg dark:bg-neutral-900 drop-shadow-md dark:drop-shadow-sm dark:drop-shadow-black animate__animated animate__fadeInRight animate__slow">
-                  <div class="flex justify-between items-center mb-2">
-                    <div class="flex items-center">
-                      <p class="inline-flex items-center mr-3 font-semibold text-sm text-neutral-900 dark:text-white">
-                        {/* <img
+                  <article
+                    value={index}
+                    class="p-6 mb-6 text-base bg-white rounded-lg dark:bg-neutral-900 drop-shadow-md dark:drop-shadow-sm dark:drop-shadow-black animate__animated animate__fadeInRight animate__slow">
+                    <div class="flex justify-between items-center mb-2">
+                      <div class="flex items-center">
+                        <p class="inline-flex items-center mr-3 font-semibold text-sm text-neutral-900 dark:text-white">
+                          {/* <img
                           class="mr-2 w-6 h-6 rounded-full"
                           src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
                           alt="user avatar"
                         /> */}
-                        {comment.avatar ? (
-                          <img
-                            src={`${comment.avatar}`}
-                            className="size-10 rounded-full mr-2"
-                          />
-                        ) : (
+                          {comment.avatar ? (
+                            <img
+                              src={`${comment.avatar}`}
+                              className="size-10 rounded-full mr-2"
+                            />
+                          ) : (
+                            <svg
+                              className="size-10 me-3 text-neutral-200 dark:text-neutral-700"
+                              aria-hidden="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="currentColor"
+                              viewBox="0 0 20 20">
+                              <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                            </svg>
+                          )}
+
+                          <div className="flex flex-col text-center">
+                            <span>
+                              {comment.firstName} {comment.lastName}
+                            </span>
+
+                            {/* Show username underneath commenter's first and last name */}
+                            {/* <span className="font-thin -mt-2 text-xs">
+                            {comment.username}
+                          </span> */}
+                          </div>
+                        </p>
+                        <p class="text-xs text-neutral-600 dark:text-neutral-400">
+                          <time
+                            pubdate
+                            datetime="2022-02-08"
+                            title="February 8th, 2022">
+                            {new Date(comment.timestamp).toLocaleString(
+                              "en-US"
+                            )}
+                          </time>
+                        </p>
+                      </div>
+
+                      {user.id === comment.userId ||
+                      user.role.includes("Business Manager") ||
+                      user.role.includes("Trainer") ? (
+                        <button
+                          onClick={() => {
+                            setShowCommentActions(!showCommentActions)
+                            setCommentToDelete(comment)
+                          }}
+                          id="dropdownComment1Button"
+                          data-dropdown-toggle="dropdownComment1"
+                          class="inline-flex items-center p-2 text-sm font-medium text-center text-violet-500 bg-white rounded-lg hover:bg-neutral-100 focus:ring-4 focus:outline-none focus:ring-neutral-50 dark:text-lime-400 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:ring-neutral-600 hover:transition hover:duration-500 hover:ease-in-out cursor-pointer"
+                          type="button">
                           <svg
-                            className="size-10 me-3 text-neutral-200 dark:text-neutral-700"
+                            class="w-4 h-4"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor"
-                            viewBox="0 0 20 20">
-                            <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                            viewBox="0 0 16 3">
+                            <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
                           </svg>
+                          <span class="sr-only">Comment settings</span>
+                        </button>
+                      ) : null}
+
+                      {/* <!-- Comments Dropdown menu --> */}
+
+                      {showCommentActions &&
+                        commentToDelete._id === comment._id && (
+                          <div
+                            id="dropdownComment1"
+                            class={`absolute z-10 w-36 ml-[32.5vw] mt-28 bg-white rounded divide-y divide-neutral-100 shadow dark:bg-neutral-700 dark:divide-neutral-600`}>
+                            <ul
+                              class="py-1 text-sm text-neutral-700 dark:text-neutral-200"
+                              aria-labelledby="dropdownMenuIconHorizontalButton">
+                              <li>
+                                <a
+                                  onClick={() =>
+                                    handleCommentEditModal(comment, comment._id)
+                                  }
+                                  class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
+                                  Edit
+                                </a>
+                              </li>
+                              <li>
+                                <a
+                                  onClick={() => handleDeleteComment(comment)}
+                                  class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
+                                  Remove
+                                </a>
+                              </li>
+                              <li>
+                                <a class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
+                                  Report
+                                </a>
+                              </li>
+                              <li>
+                                <div
+                                  onClick={() => setShowCommentActions(false)}
+                                  class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
+                                  Close
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
                         )}
-
-                        <div className="flex flex-col text-center">
-                          <span>
-                            {comment.firstName} {comment.lastName}
-                          </span>
-
-                          {/* Show username underneath commenter's first and last name */}
-                          {/* <span className="font-thin -mt-2 text-xs">
-                            {comment.username}
-                          </span> */}
-                        </div>
-                      </p>
-                      <p class="text-xs text-neutral-600 dark:text-neutral-400">
-                        <time
-                          pubdate
-                          datetime="2022-02-08"
-                          title="February 8th, 2022">
-                          {new Date(comment.timestamp).toLocaleString("en-US")}
-                        </time>
-                      </p>
                     </div>
 
-                    {user.id === comment.userId ||
-                    user.role.includes("Business Manager") ||
-                    user.role.includes("Trainer") ? (
+                    <p className="text-black dark:text-white animate__animated animate__fadeIn animate__slow">
+                      {comment.comment}
+                    </p>
+                    <div class="flex items-center mt-4 space-x-4">
                       <button
-                        onClick={() => {
-                          setShowCommentActions(!showCommentActions)
-                          setCommentToDelete(comment)
-                        }}
-                        id="dropdownComment1Button"
-                        data-dropdown-toggle="dropdownComment1"
-                        class="inline-flex items-center p-2 text-sm font-medium text-center text-violet-500 bg-white rounded-lg hover:bg-neutral-100 focus:ring-4 focus:outline-none focus:ring-neutral-50 dark:text-lime-400 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:ring-neutral-600 hover:transition hover:duration-500 hover:ease-in-out cursor-pointer"
-                        type="button">
+                        type="button"
+                        class="flex items-center font-medium text-sm text-neutral-500 hover:underline dark:text-neutral-400">
                         <svg
-                          class="w-4 h-4"
+                          class="mr-1.5 w-3 h-3"
                           aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="currentColor"
-                          viewBox="0 0 16 3">
-                          <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                          viewBox="0 0 20 18">
+                          <path d="M18 0H2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2v4a1 1 0 0 0 1.707.707L10.414 13H18a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5 4h2a1 1 0 1 1 0 2h-2a1 1 0 1 1 0-2ZM5 4h5a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Zm2 5H5a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Zm9 0h-6a1 1 0 0 1 0-2h6a1 1 0 1 1 0 2Z" />
                         </svg>
-                        <span class="sr-only">Comment settings</span>
+                        Reply
                       </button>
-                    ) : null}
-
-                    {/* <!-- Comments Dropdown menu --> */}
-
-                    {showCommentActions &&
-                      commentToDelete._id === comment._id && (
-                        <div
-                          id="dropdownComment1"
-                          class={`absolute z-10 w-36 ml-[32.5vw] mt-28 bg-white rounded divide-y divide-neutral-100 shadow dark:bg-neutral-700 dark:divide-neutral-600`}>
-                          <ul
-                            class="py-1 text-sm text-neutral-700 dark:text-neutral-200"
-                            aria-labelledby="dropdownMenuIconHorizontalButton">
-                            <li>
-                              <a
-                                onClick={() =>
-                                  handleCommentEditModal(comment, comment._id)
-                                }
-                                class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
-                                Edit
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                onClick={() => handleDeleteComment(comment)}
-                                class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
-                                Remove
-                              </a>
-                            </li>
-                            <li>
-                              <a class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
-                                Report
-                              </a>
-                            </li>
-                            <li>
-                              <div
-                                onClick={() => setShowCommentActions(false)}
-                                class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
-                                Close
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      )}
-                  </div>
-
-                  <p className="text-black dark:text-white animate__animated animate__fadeIn animate__slow">
-                    {comment.comment}
-                  </p>
-                  <div class="flex items-center mt-4 space-x-4">
-                    <button
-                      type="button"
-                      class="flex items-center font-medium text-sm text-neutral-500 hover:underline dark:text-neutral-400">
-                      <svg
-                        class="mr-1.5 w-3 h-3"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 20 18">
-                        <path d="M18 0H2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2v4a1 1 0 0 0 1.707.707L10.414 13H18a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5 4h2a1 1 0 1 1 0 2h-2a1 1 0 1 1 0-2ZM5 4h5a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Zm2 5H5a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Zm9 0h-6a1 1 0 0 1 0-2h6a1 1 0 1 1 0 2Z" />
-                      </svg>
-                      Reply
-                    </button>
-                  </div>
-                </article>
-      {showCommentEditModal && (
-        <BlogCommentEditModal
-          handleEditComment={handleEditComment}
-          setShowCommentEditModal={setShowCommentEditModal}
-          commentEditForm={commentEditForm}
-          setCommentEditForm={setCommentEditForm}
-          comment={comment}
-          blogId={blogId}
-        />
-      )}
-      </>
+                    </div>
+                  </article>
+                  {showCommentEditModal && (
+                    <BlogCommentEditModal
+                      handleEditComment={handleEditComment}
+                      setShowCommentEditModal={setShowCommentEditModal}
+                      commentEditForm={commentEditForm}
+                      setCommentEditForm={setCommentEditForm}
+                      comment={comment}
+                      blogId={blogId}
+                    />
+                  )}
+                </>
               ))}
               <div id="commentsEnd" />
               {/* </div> */}
@@ -583,7 +631,6 @@ const BlogDetail = () => {
           </article>
         </div>
       </main>
-
 
       {/* <aside
         aria-label="Related articles"
