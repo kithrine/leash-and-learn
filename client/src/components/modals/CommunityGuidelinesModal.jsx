@@ -6,13 +6,14 @@ const CommunityGuidelinesModal = ({setShowCommGuideModal}) => {
       <div
         id="info-popup"
         tabindex="-1"
-        class=" overflow-y-auto overflow-x-hidden fixed top-0 mt-36 z-20 w-full md:inset-0 h-modal md:h-full">
-        <div class="relative p-4 w-full max-w-6xl h-full md:h-auto justify-self-center mb-12">
-          <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 md:p-8">
-            <div class="mb-4 text-sm font-light text-gray-500 dark:text-gray-400">
-              <h3 class="mb-3 text-2xl font-bold text-gray-900 dark:text-white">
+        class=" overflow-y-auto overflow-x-hidden fixed top-0 mt-26 z-20 w-full md:inset-0 h-modal md:h-full">
+        <div class="relative p-4 w-full max-w-7xl h-full md:h-auto justify-self-center mb-12 font-instrument">
+          <div class="relative p-4 bg-white rounded-lg shadow dark:bg-neutral-800 md:p-8 animate__animated animate__fadeIn">
+            <div class="mb-4 text-sm font-light text-neutral-500 dark:text-neutral-300">
+              <h3 class="mb-3 text-2xl font-bold text-neutral-900 dark:text-white">
                 Community Guidelines for Leash & Learn Blog
               </h3>
+              <div className='text-base'>
               <p>
                 <span className="font-semibold"> 1. Welcome to Leash & Learn: </span>We are thrilled to have you as part of our growing community at Leash & Learn! Our blog is dedicated to providing valuable insights, tips, and resources for dog training enthusiasts. Here are some guidelines to help us maintain a positive and engaging environment. 
               </p>
@@ -66,6 +67,7 @@ const CommunityGuidelinesModal = ({setShowCommGuideModal}) => {
               <p className='pt-4'>
               By adhering to these guidelines, we can create a welcoming environment where everyone feels valued and heard. Thank you for joining us at Leash & Learn! If you have any questions, feel free to reach out in our comment section or on our Contact Us page.
               </p>
+              </div>
             </div>
             <div class="flex items-center pt-0 space-y-4 sm:flex sm:space-y-0 justify-end">
               {/* <a
@@ -78,7 +80,7 @@ const CommunityGuidelinesModal = ({setShowCommGuideModal}) => {
                 onClick={() => setShowCommGuideModal(false)}
                   id="close-modal"
                   type="button"
-                  class="py-2 px-4 w-full text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 sm:w-auto hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                  class="py-2 px-4 w-full text-sm font-medium text-neutral-500 bg-white rounded-lg border border-neutral-200 sm:w-auto hover:bg-neutral-100 focus:ring-4 focus:outline-none focus:ring-blue-300 hover:text-neutral-900 focus:z-10 dark:bg-neutral-700 dark:text-neutral-300 dark:border-neutral-500 dark:hover:text-white dark:hover:bg-neutral-600 dark:focus:ring-neutral-600 cursor-pointer transition duration-200 ease-in-out hover:-translate-y-1 hover:scale-105">
                   Close
                 </button>
               </div>

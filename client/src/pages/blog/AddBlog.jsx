@@ -3,15 +3,17 @@ import { useNavigate } from "react-router"
 import { useSelector, useDispatch } from "react-redux"
 import { addBlog, updateCoverPhoto } from "../../redux/blogSlice"
 import { toast } from "react-toastify"
+import * as motion from "motion/react-client"
 import BlogNavigation from "../../components/navigation/BlogNavigation"
 import CommunityGuidelinesModal from "../../components/modals/CommunityGuidelinesModal"
+import Footer from "../../components/footers/Footer"
 
 const AddBlog = () => {
   const { user } = useSelector((state) => state.users)
   const { blog } = useSelector((state) => state.blog)
 
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedSubCategory, setSelectedSubCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState("")
+  const [selectedSubCategory, setSelectedSubCategory] = useState("")
   const [showCommGuideModal, setShowCommGuideModal] = useState(false)
   const [addBlogForm, setAddBlogForm] = useState({
     userId: user.id,
@@ -46,6 +48,8 @@ const AddBlog = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  const storedTheme = localStorage.getItem("theme")
+
   useEffect(() => {
     console.log("addBlogForm", addBlogForm)
   }, [addBlogForm])
@@ -70,8 +74,11 @@ const AddBlog = () => {
     console.log("handleFileUpload", e)
     if (e.target.files) {
       const testString64 = await toBase64(e.target.files[0])
-      setAddBlogForm({ ...addBlogForm, avatar: testString64})
-      console.log("This is the testString in handleFileUpload function", testString64)
+      setAddBlogForm({ ...addBlogForm, avatar: testString64 })
+      console.log(
+        "This is the testString in handleFileUpload function",
+        testString64
+      )
       setAvatarFile(e.target.files[0]) // Only works for one file upload
     }
   }
@@ -80,8 +87,11 @@ const AddBlog = () => {
     console.log("handleFileUpload", e)
     if (e.target.files) {
       const testString64 = await toBase64(e.target.files[0])
-      setAddBlogForm({ ...addBlogForm, coverPhoto: testString64})
-      console.log("This is the testString in handleFileUpload function", testString64)
+      setAddBlogForm({ ...addBlogForm, coverPhoto: testString64 })
+      console.log(
+        "This is the testString in handleFileUpload function",
+        testString64
+      )
       setCoverPhotoFile(e.target.files[0]) // Only works for one file upload
       dispatch(updateCoverPhoto(testString64))
     }
@@ -89,21 +99,6 @@ const AddBlog = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    // DO NOT NEED THIS! SETTING STATE ABOVE - NO IDEA WHY THIS IS HERE
-    // setAddBlogForm({
-    //   title: addBlogForm.title,
-    //   authorFullName: addBlogForm.authorFullName,
-    //   authorTitle: addBlogForm.authorTitle,
-    //   avatar: addBlogForm.avatar,
-    //   category: addBlogForm.category,
-    //   subCategory: addBlogForm.subCategory,
-    //   readTime: addBlogForm.readTime,
-    //   coverPhoto: addBlogForm.coverPhoto,
-    //   body: addBlogForm.body,
-    //   date: new Date()
-    // })
-
     dispatch(addBlog(addBlogForm))
     toast.dark = true
     toast.success("Post added successfully.", {
@@ -143,162 +138,231 @@ const AddBlog = () => {
   return (
     <>
       <BlogNavigation />
-      <div className="pt-36 mt-8 mx-auto max-w-screen-xl px-4 lg:px-12 font-instrument relative">
-        <div className="bg-white dark:bg-gray-800 relative drop-shadow-lg sm:rounded-lg overflow-hidden p-8">
-          <h1><span className="font-leash text-7xl font-bold">Leash</span> <span className="font-and text-3xl font-bold">&</span> <span className="font-learn text-5xl font-bold">Learn:</span> <span className="font-lexend uppercase text-3xl font-bold">Community Blog</span></h1>
-          <h2>
-            Add a new blog post or whatever to the community blog page! You must
-            have an account and be logged in to post!
-          </h2>
-          <p>
-            All posts are public. Please adhere to our{" "}
-            <span onClick={() => {setShowCommGuideModal(true)}} className="text-neutral-600 hover:underline hover:cursor-pointer">community guidelines.</span>
-          </p>
+      <div
+        className={`${
+          storedTheme === "light"
+            ? "light-rounded-plus-bg"
+            : "dark-rounded-plus-bg"
+        } transition duration-200 ease-in-out`}>
+        <div className="pt-20 mt-8 mx-auto max-w-screen-xl px-4 lg:px-12 font-instrument relative">
+          {/* <div className="bg-white dark:bg-neutral-800 relative drop-shadow-lg sm:rounded-lg overflow-hidden p-8"> */}
+          <div className="text-center dark:text-white text-shadow-md text-shadow-violet-200 dark:text-shadow-lg dark:text-shadow-black animate__animated animate__fadeIn animate__slow">
+            <h1 class="text-3xl font-extrabold leading-none md:text-5xl lg:text-5xl pt-4">
+              <span className="font-leash text-7xl">Leash</span>{" "}
+              <span className="font-and">&</span>{" "}
+              <span className="font-learn uppercase">Learn</span>{" "}
+            </h1>
+            <h1 class="mb-4 text-2xl font-extrabold leading-none md:text-4xl lg:text-3xl font-lexend tracking-tighter uppercase text-neutral-800 dark:text-neutral-200 -mt-2">
+              Community Blog
+            </h1>
+          </div>
+          {/* </div> */}
         </div>
-      </div>
 
-      <div className="pt-8 mx-auto max-w-screen-xl px-4 lg:px-12 font-instrument relative">
-        <div className="bg-white dark:bg-gray-800 relative drop-shadow-lg sm:rounded-lg overflow-hidden">
-          <section class="bg-white dark:bg-gray-900">
-            <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-              <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
-                Add a new blog post
-              </h2>
-              <form onSubmit={handleSubmit}>
-                <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                  <div class="sm:col-span-2">
-                    <label
-                      for="blogTitle"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                      Blog Title
-                    </label>
-                    <input
-                      value={addBlogForm.title}
-                      onChange={(e) =>
-                        setAddBlogForm({ ...addBlogForm, title: e.target.value })
-                      }
-                      type="text"
-                      name="blogTitle"
-                      id="blogTitle"
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      placeholder="Title of blog"
-                      required=""
-                    />
-                  </div>
-                  <div class="w-full hidden">
-                    <label
-                      for="authorFirstName"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                      Author First Name
-                    </label>
-                    <input
-                    value={addBlogForm.authorFirstName}
-                    onChange={(e) =>
-                      setAddBlogForm({ ...addBlogForm, authorFirstName: e.target.value })
-                    }
-                      type="text"
-                      name="authorFirstName"
-                      id="authorFirstName"
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      placeholder="First name"
-                      required=""
-                    />
-                  </div>
-                
-                  <div class="w-full hidden">
-                    <label
-                      for="authorFirstName"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                      Author Last Name
-                    </label>
-                    <input
-                    value={addBlogForm.authorLastName}
-                    onChange={(e) =>
-                      setAddBlogForm({ ...addBlogForm, authorLastName: e.target.value })
-                    }
-                      type="text"
-                      name="authorLastName"
-                      id="authorLastName"
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      placeholder="Last name"
-                      required=""
-                    />
-                  </div>
-                  <div class="w-full">
-                    <label
-                      for="authorTitle"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                      Author Title
-                    </label>
-                    <input
-                    value={addBlogForm.authorTitle}
-                    onChange={(e) =>
-                      setAddBlogForm({ ...addBlogForm, authorTitle: e.target.value })
-                    }
-                      name="authorTitle"
-                      id="authorTitle"
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      placeholder="ex) Job title, 'Dog Lover', etc."
-                      required=""
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      for="readTime"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                      Read Time
-                    </label>
-                    <div className="flex space-x-2">
-                    <input
-                    value={addBlogForm.readTime}
-                    onChange={(e) =>
-                      setAddBlogForm({ ...addBlogForm, readTime: e.target.value })
-                    }
-                      type="number"
-                      name="readTime"
-                      id="readTime"
-                      class="w-[80%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      placeholder="0"
-                      required
-                    />
-                    <p className="items-center justify-center content-end">minute(s)</p>
+        <div className="pt-4 pb-16 mx-auto max-w-screen-xl px-4 lg:px-12 font-instrument relative">
+          <motion.div 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.5 }}
+            className="bg-white dark:bg-neutral-800 relative drop-shadow-lg sm:rounded-lg overflow-hidden dark:drop-shadow-black">
+            <section class="bg-white dark:bg-neutral-900">
+              <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+                <div className="text-neutral-900 dark:text-white pb-4">
+                  <h2 class="text-2xl font-bold tracking-wide text-center">
+                    Add a new blog post!
+                  </h2>
+                  <h2 className="">
+                    Add a new blog post to the community blog page! All posts
+                    are public, be careful what you share. Please adhere to our{" "}
+                    <span
+                      onClick={() => {
+                        setShowCommGuideModal(true)
+                      }}
+                      className="text-teal-400 dark:text-lime-400 hover:underline hover:cursor-pointer">
+                      community guidelines{" "}
+                    </span>
+                     to ensure a positive & respectful experience for all.
+                  </h2>
+                </div>
+                <div className="border-t border-violet-200 dark:border-neutral-700"></div>
+                <form onSubmit={handleSubmit} className="pt-6">
+                  <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                    <div class="sm:col-span-2 lg:col-span-1">
+                      <label
+                        for="blogTitle"
+                        class="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
+                        Blog Title
+                      </label>
+                      <input
+                        value={addBlogForm.title}
+                        onChange={(e) =>
+                          setAddBlogForm({
+                            ...addBlogForm,
+                            title: e.target.value
+                          })
+                        }
+                        type="text"
+                        name="blogTitle"
+                        id="blogTitle"
+                        class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        placeholder="Title of blog"
+                        required=""
+                      />
                     </div>
-                  </div>
 
-                  <div>
-                    <label
-                      for="category"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                      Category
-                    </label>
-                    <select
-                    value={addBlogForm.category}
-                    onChange={(e) =>
-                      setAddBlogForm({ ...addBlogForm, category: e.target.value })
-                    }
-                      id="category"
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                      <option selected="">Select category</option>
-                      <option value="Foundational Training">Foundational Training</option>
-                      <option value="Advanced Training">Advanced Training</option>
-                      <option value="Training Tools & Techniques">Training Tools & Techniques</option>
-                      <option value="Specific Breed Focus">Specific Breed Focus</option>
-                      <option value="Dog Behavior">Dog Behavior</option>
-                      <option value="Health & Wellness">Health & Wellness</option>
-                      <option value="Dog Care">Dog Care</option>
-                      <option value="Everything Puppies!">Everything Puppies!</option>
-                      <option value="Community & Lifestyle">Community & Lifestyle</option>
-                      <option value="Fun & Entertainment">Fun & Entertainment</option>
-                      <option value="DIY">DIY</option>
-                      <option value="Products and Reviews">Products and Reviews</option>
-                      <option value="Heartwarming Stories">Heartwarming Stories</option>
-                    </select>
-                  </div>
-                  {/* <div>
+                    <div>
+                      <label
+                        for="category"
+                        class="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
+                        Category
+                      </label>
+                      <select
+                        value={addBlogForm.category}
+                        onChange={(e) =>
+                          setAddBlogForm({
+                            ...addBlogForm,
+                            category: e.target.value
+                          })
+                        }
+                        id="category"
+                        class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <option selected="">Select category</option>
+                        <option value="Foundational Training">
+                          Foundational Training
+                        </option>
+                        <option value="Advanced Training">
+                          Advanced Training
+                        </option>
+                        <option value="Training Tools & Techniques">
+                          Training Tools & Techniques
+                        </option>
+                        <option value="Specific Breed Focus">
+                          Specific Breed Focus
+                        </option>
+                        <option value="Dog Behavior">Dog Behavior</option>
+                        <option value="Health & Wellness">
+                          Health & Wellness
+                        </option>
+                        <option value="Dog Care">Dog Care</option>
+                        <option value="Everything Puppies!">
+                          Everything Puppies!
+                        </option>
+                        <option value="Community & Lifestyle">
+                          Community & Lifestyle
+                        </option>
+                        <option value="Fun & Entertainment">
+                          Fun & Entertainment
+                        </option>
+                        <option value="DIY">DIY</option>
+                        <option value="Products and Reviews">
+                          Products and Reviews
+                        </option>
+                        <option value="Heartwarming Stories">
+                          Heartwarming Stories
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="w-full hidden">
+                      <label
+                        for="authorFirstName"
+                        class="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
+                        Author First Name
+                      </label>
+                      <input
+                        value={addBlogForm.authorFirstName}
+                        onChange={(e) =>
+                          setAddBlogForm({
+                            ...addBlogForm,
+                            authorFirstName: e.target.value
+                          })
+                        }
+                        type="text"
+                        name="authorFirstName"
+                        id="authorFirstName"
+                        class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        placeholder="First name"
+                        required=""
+                      />
+                    </div>
+
+                    <div class="w-full hidden">
+                      <label
+                        for="authorFirstName"
+                        class="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
+                        Author Last Name
+                      </label>
+                      <input
+                        value={addBlogForm.authorLastName}
+                        onChange={(e) =>
+                          setAddBlogForm({
+                            ...addBlogForm,
+                            authorLastName: e.target.value
+                          })
+                        }
+                        type="text"
+                        name="authorLastName"
+                        id="authorLastName"
+                        class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        placeholder="Last name"
+                        required=""
+                      />
+                    </div>
+
+                    <div class="w-full">
+                      <label
+                        for="authorTitle"
+                        class="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
+                        Author Title
+                      </label>
+                      <input
+                        value={addBlogForm.authorTitle}
+                        onChange={(e) =>
+                          setAddBlogForm({
+                            ...addBlogForm,
+                            authorTitle: e.target.value
+                          })
+                        }
+                        name="authorTitle"
+                        id="authorTitle"
+                        class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        placeholder="ex) Job title, 'Dog Lover', etc."
+                        required=""
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        for="readTime"
+                        class="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
+                        Read Time
+                      </label>
+                      <div className="flex space-x-2">
+                        <input
+                          value={addBlogForm.readTime}
+                          onChange={(e) =>
+                            setAddBlogForm({
+                              ...addBlogForm,
+                              readTime: e.target.value
+                            })
+                          }
+                          type="number"
+                          name="readTime"
+                          id="readTime"
+                          class="w-[80%] bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                          placeholder="0"
+                          required
+                        />
+                        <p className="items-center justify-center content-end text-neutral-900 dark:text-white">
+                          minute(s)
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* <div>
                     <label
                       for="subCategory"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">
                       Subcategory
                     </label>
                     <select
@@ -307,7 +371,7 @@ const AddBlog = () => {
                       setAddBlogForm({ ...addBlogForm, subCategory: e.target.value })
                     }
                       id="subCategory"
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                      class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                       <option selected="">Select subcategory</option>
                       <option value="TV">TV/Monitors</option>
                       <option value="PC">PC</option>
@@ -315,62 +379,65 @@ const AddBlog = () => {
                       <option value="PH">Phones</option>
                     </select>
                   </div> */}
-                  <div className="hidden">
-                    <label htmlFor="avatar" className="block mb-2 text-sm">
-                      Avatar
-                    </label>
-                    <div className="flex items-center gap-x-1">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="40"
-                        height="40"
-                        fill="currentColor"
-                        class="bi bi-person-circle"
-                        viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                        <path
-                          fill-rule="evenodd"
-                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+                    <div className="hidden">
+                      <label htmlFor="avatar" className="block mb-2 tracking-wide">
+                        Avatar
+                      </label>
+                      <div className="flex items-center gap-x-1">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="40"
+                          height="40"
+                          fill="currentColor"
+                          class="bi bi-person-circle"
+                          viewBox="0 0 16 16">
+                          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                          <path
+                            fill-rule="evenodd"
+                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+                          />
+                        </svg>
+
+                        <input
+                          // value={addBlogForm.avatar}
+                          onChange={handleUserAvatarUpload}
+                          type="file"
+                          name="avatar"
+                          id="avatar"
+                          class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                          placeholder="Upload an avatar image"
                         />
-                      </svg>
-
-                      <input
-                      // value={addBlogForm.avatar}
-                        onChange={handleUserAvatarUpload}
-                        type="file"
-                        name="avatar"
-                        id="avatar"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Upload an avatar image"
-                      />
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div class="sm:col-span-2">
-                    <label
-                      for="body"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                      Body
-                    </label>
-                    <textarea
-                    value={addBlogForm.body}
-                    onChange={(e) =>
-                      setAddBlogForm({ ...addBlogForm, body: e.target.value })
-                    }
-                      id="body"
-                      rows="20"
-                      class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      placeholder="Write about dogs here!"></textarea>
-                  </div>
 
-                  <div class="sm:col-span-2">
-                    <label
-                      for="coverPhoto"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                      Cover Photo
-                    </label>
-                    <div class="flex items-center justify-center w-full">
-{/* 
+                    <div class="sm:col-span-2">
+                      <label
+                        for="body"
+                        class="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
+                        Body
+                      </label>
+                      <textarea
+                        value={addBlogForm.body}
+                        onChange={(e) =>
+                          setAddBlogForm({
+                            ...addBlogForm,
+                            body: e.target.value
+                          })
+                        }
+                        id="body"
+                        rows="20"
+                        class="block p-2.5 w-full text-sm text-neutral-900 bg-neutral-50 rounded-lg border border-neutral-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        placeholder="Write about dogs here!"></textarea>
+                    </div>
+
+                    <div class="sm:col-span-2">
+                      <label
+                        for="coverPhoto"
+                        class="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
+                        Cover Photo
+                      </label>
+                      <div class="flex items-center justify-center w-full">
+                        {/* 
                     {blog.coverPhoto ? (
                     <img
                       src={`${blog.coverPhoto}`}
@@ -378,7 +445,7 @@ const AddBlog = () => {
                     />
                   ) : (
                   //   <svg
-                  //   className="size-16 me-3 text-gray-200 dark:text-gray-700"
+                  //   className="size-16 me-3 text-neutral-200 dark:text-neutral-700"
                   //   aria-hidden="true"
                   //   xmlns="http://www.w3.org/2000/svg"
                   //   fill="currentColor"
@@ -400,60 +467,64 @@ const AddBlog = () => {
                     </svg>
                   )} */}
 
-
-
-
-
-
-
-
-
-                      <label
-                        for="dropzone-file"
-                        class="flex flex-col items-center justify-center w-full h-36 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100">
-                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                          <svg
-                            class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 20 16">
-                            <path
-                              stroke="currentColor"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                            />
-                          </svg>
-                          <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                            <span class="font-semibold">Click to upload</span>{" "}
-                            or drag and drop
-                          </p>
-                          <p class="text-xs text-gray-500 dark:text-gray-400">
-                            SVG, PNG, JPG or GIF (MAX. 800x400px)
-                          </p>
-                        </div>
-                        <input 
-                        // value={addBlogForm.coverPhoto}
-                        onChange={handleCoverPhotoUpload}
-                        id="dropzone-file" type="file" class="hidden" />
-                      </label>
+                        <label
+                          for="dropzone-file"
+                          class="flex flex-col items-center justify-center w-full h-36 border-2 border-neutral-300 border-dashed rounded-lg cursor-pointer bg-neutral-50 dark:hover:bg-neutral-800 dark:bg-neutral-700 hover:bg-neutral-100">
+                          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <svg
+                              class="w-8 h-8 mb-4 text-neutral-500 dark:text-neutral-400"
+                              aria-hidden="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 20 16">
+                              <path
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                              />
+                            </svg>
+                            <p class="mb-2 text-sm text-neutral-500 dark:text-neutral-400">
+                              <span class="font-semibold">Click to upload</span>{" "}
+                              or drag and drop
+                            </p>
+                            <p class="text-xs text-neutral-500 dark:text-neutral-400">
+                              SVG, PNG, JPG or GIF (MAX. 800x400px)
+                            </p>
+                          </div>
+                          <input
+                            // value={addBlogForm.coverPhoto}
+                            onChange={handleCoverPhotoUpload}
+                            id="dropzone-file"
+                            type="file"
+                            class="hidden"
+                          />
+                        </label>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <button
-                  type="submit"
-                  class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
-                  Add Blog
-                </button>
-              </form>
-            </div>
-          </section>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    type="submit"
+                    class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white dark:text-black bg-teal-400 rounded-lg focus:ring-4 hover:bg-teal-500 focus:ring-teal-200 dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-700 cursor-pointer">
+                    Add Blog
+                  </motion.button>
+                </form>
+              </div>
+            </section>
+          </motion.div>
         </div>
       </div>
 
-      {showCommGuideModal && <CommunityGuidelinesModal setShowCommGuideModal={setShowCommGuideModal} />}
+      <Footer />
+
+      {showCommGuideModal && (
+        <CommunityGuidelinesModal
+          setShowCommGuideModal={setShowCommGuideModal}
+        />
+      )}
     </>
   )
 }
