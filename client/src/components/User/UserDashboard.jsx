@@ -3,6 +3,10 @@ import { useSelector, useDispatch } from "react-redux"
 import { Link, useNavigate, useParams } from "react-router"
 import { trainingClassGetAll } from "../../redux/trainingClassSlice"
 import { deleteDog, userGetOne } from "../../redux/userSlice"
+import * as motion from "motion/react-client"
+import { SiDatadog } from "react-icons/si"
+import { LiaBirthdayCakeSolid } from "react-icons/lia"
+import { FaBirthdayCake } from "react-icons/fa"
 import DogAddModal from "../modals/DogAddModal"
 import DogEditModal from "../modals/DogEditModal"
 import DogDeleteModal from "../modals/DogDeleteModal"
@@ -29,7 +33,6 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
   const [loading, setLoading] = useState(true)
 
   const storedTheme = localStorage.getItem("theme")
-
 
   useEffect(() => {
     dispatch(userGetOne(loggedInEmail))
@@ -103,11 +106,16 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
 
   return (
     <>
-      {loading ? 
-      <div className={`min-h-[100vh] mt-16 ${storedTheme === "light" ? "light-marble-bg" : "dark-marble-bg"}`}>
-
-      </div> : (
-        <section className={`mt-16 py-8 antialiased md:py-8 ${storedTheme === "light" ? "light-marble-bg" : "dark-marble-bg"}`}>
+      {loading ? (
+        <div
+          className={`min-h-[100vh] mt-16 ${
+            storedTheme === "light" ? "light-marble-bg" : "dark-marble-bg"
+          }`}></div>
+      ) : (
+        <section
+          className={`mt-16 py-8 antialiased md:py-8 ${
+            storedTheme === "light" ? "light-marble-bg" : "dark-marble-bg"
+          }`}>
           <div className="md:px-[13vw] animate__animated animate__fadeIn">
             {/* <div className="flex p-8 px-[9vw]"> */}
             {/* <UserSideNav loggedInEmail={loggedInEmail}  /> */}
@@ -119,27 +127,36 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
       </div> */}
 
             <div className="mx-auto max-w-screen-lg px-4 2xl:px-0 md:ml-[20vw]">
-            {storedTheme === "light" ? (
-            <GradientText
-              colors={["#5eead4", "#8b5cf6", "#5eead4", "#4079ff", "#8b5cf6"]}
-              animationSpeed={3}
-              showBorder={false}
-              className="font-lexend uppercase tracking-wider text-6xl bg-transparent"
-            >
-              User Dashboard
-            </GradientText>
-            ) :
-            (
-              <GradientText
-              colors={["#facc15", "#a3e635", "#facc15", "#a3e635", "#22c55e"]}
-              animationSpeed={3}
-              showBorder={false}
-              className="font-lexend uppercase tracking-wider text-6xl bg-transparent"
-            >
-              User Dashboard
-            </GradientText>
-            )}
-              <h2 className="mb-4 text-xl font-semibold text-neutral-900 dark:text-white sm:text-2xl md:mb-6 pt-8">
+              {storedTheme === "light" ? (
+                <GradientText
+                  colors={[
+                    "#5eead4",
+                    "#8b5cf6",
+                    "#5eead4",
+                    "#4079ff",
+                    "#8b5cf6"
+                  ]}
+                  animationSpeed={3}
+                  showBorder={false}
+                  className="font-lexend uppercase tracking-wide text-6xl bg-transparent">
+                  User Dashboard
+                </GradientText>
+              ) : (
+                <GradientText
+                  colors={[
+                    "#facc15",
+                    "#a3e635",
+                    "#facc15",
+                    "#a3e635",
+                    "#22c55e"
+                  ]}
+                  animationSpeed={3}
+                  showBorder={false}
+                  className="font-lexend uppercase tracking-wide text-6xl bg-transparent">
+                  User Dashboard
+                </GradientText>
+              )}
+              <h2 className="mb-4 text-xl text-neutral-900 dark:text-white sm:text-3xl md:mb-6 pt-8 font-learn font-bold tracking-widest underline underline-offset-8">
                 Account Overview
               </h2>
 
@@ -149,20 +166,43 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                     <h2 class="mb-4 text-4xl tracking-tight font-extrabold leading-tight text-neutral-900 dark:text-white">
                       Enroll in a Training Class Today!
                     </h2>
-                    <p class="mb-6 font-light text-neutral-500 dark:text-neutral-400 md:text-lg">
-                      Try Flowbite Platform for 30 days. No credit card
-                      required.
+                    <p class="mb-4 leading-tight text-neutral-900 dark:text-white font-instrument tracking-wide">
+                      Join a fun and supportive learning environment where you
+                      and your dog can thrive together. Click below to find the
+                      perfect class for your needs!
                     </p>
-                    <a
-                      href="#"
-                      class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
-                      Free trial for 30 days
-                    </a>
+
+                    <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 font-instrument">
+                      <Link
+                        to="/enroll"
+                        class="inline-flex justify-center items-center py-2 px-3 text-base font-medium text-center text-white dark:text-black rounded-lg bg-violet-500 hover:bg-violet-600 focus:ring-4 focus:ring-violet-300 dark:bg-yellow-400 dark:hover:bg-yellow-500 dark:focus:ring-yellow-600 transition duration-200 ease-in-out hover:-translate-y-1 hover:scale-105">
+                        Enroll Now
+                        <svg
+                          class="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 14 10">
+                          <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9"
+                          />
+                        </svg>
+                      </Link>
+                      <button
+                        to=""
+                        class="inline-flex justify-center items-center py-2 px-3 sm:ms-4 text-base font-medium text-center text-neutral-800 dark:text-neutral-200 rounded-lg border border-neutral-800 hover:bg-neutral-800 hover:text-white dark:border-neutral-300 dark:hover:bg-gray-100 dark:hover:text-neutral-900 focus:ring-4 focus:ring-gray-400 transition duration-200 ease-in-out hover:-translate-y-1 hover:scale-105 cursor-pointer">
+                        Add Dog
+                      </button>
+                    </div>
                   </div>
                 </div>
               </section>
 
-              <div className="py-4 md:py-8">
+              <div className="py-4 md:py-12 md:mb-4 font-instrument">
                 <div className="mb-4 grid gap-4 sm:grid-cols-2 sm:gap-8 lg:gap-16">
                   <div className="space-y-4">
                     <div className="flex space-x-4">
@@ -182,7 +222,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                         </svg>
                       )}
                       <div>
-                        <span className="mb-2 inline-block rounded bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300">
+                        <span className="mb-2 inline-block rounded bg-teal-200 px-2.5 py-0.5 text-xs font-medium text-neutral-600 dark:bg-lime-300 dark:text-neutral-800 opacity-75">
                           {" "}
                           User Account{" "}
                         </span>
@@ -192,64 +232,29 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                       </div>
                     </div>
                     <dl className="">
-                      <dt className="font-semibold text-neutral-900 dark:text-white">
+                      <dt className="font-semibold text-neutral-900 dark:text-white tracking-wider">
                         Email Address
                       </dt>
-                      <dd className="text-neutral-500 dark:text-neutral-400">
+                      <dd className="text-neutral-500 dark:text-neutral-300">
                         {user.email}
                       </dd>
                     </dl>
                     <dl className="">
-                      <dt className="font-semibold text-neutral-900 dark:text-white">
+                      <dt className="font-semibold text-neutral-900 dark:text-white tracking-wider">
                         Username
                       </dt>
-                      <dd className="text-neutral-500 dark:text-neutral-400">
+                      <dd className="text-neutral-500 dark:text-neutral-300">
                         {user.username}
                       </dd>
                     </dl>
-                    <dl>
-                      <dt className="font-semibold text-neutral-900 dark:text-white">
-                        Home Address
-                      </dt>
-                      <dd className="flex gap-1 text-neutral-500 dark:text-neutral-400">
-                        <svg
-                          className="hidden h-5 w-5 shrink-0 text-neutral-400 dark:text-neutral-500 lg:inline"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          fill="none"
-                          viewBox="0 0 24 24">
-                          <path
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"
-                          />
-                        </svg>
-                        {user.address !== "" ? (
-                          <>
-                            {user.address}
-                            <br />
-                            {user.city}, {user.state} {user.zipCode}
-                          </>
-                        ) : (
-                          <>
-                            <p className="text-neutral-400 font-thin">
-                              Edit your profile details to add your address!
-                            </p>
-                          </>
-                        )}
-                      </dd>
-                    </dl>
+
                     {/* <dl>
                   <dt className="font-semibold text-neutral-900 dark:text-white">
                     Delivery Address
                   </dt>
-                  <dd className="flex items-center gap-1 text-neutral-500 dark:text-neutral-400">
+                  <dd className="flex items-center gap-1 text-neutral-500 dark:text-neutral-300">
                     <svg
-                      className="hidden h-5 w-5 shrink-0 text-neutral-400 dark:text-neutral-500 lg:inline"
+                      className="hidden h-5 w-5 shrink-0 text-neutral-300 dark:text-neutral-500 lg:inline"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -266,14 +271,66 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                     </svg>
                     9th St. PATH Station, New York, United States of America
                   </dd>
-                </dl> */}
+                  </dl> */}
                   </div>
                   <div className="space-y-4">
                     <dl>
-                      <dt className="font-semibold text-neutral-900 dark:text-white">
+                      <dt className="font-semibold text-neutral-900 dark:text-white flex items-center gap-x-1 tracking-wider">
+                        Home Address
+                        <svg
+                          className="hidden h-5 w-5 shrink-0 lg:inline"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          fill="none"
+                          viewBox="0 0 24 24">
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"
+                          />
+                        </svg>
+                      </dt>
+                      <dd className="flex gap-1 text-neutral-500 dark:text-neutral-300">
+                        {/* <svg
+                          className="hidden h-5 w-5 shrink-0 text-neutral-300 dark:text-neutral-500 lg:inline"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          fill="none"
+                          viewBox="0 0 24 24">
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"
+                          />
+                        </svg> */}
+                        {user.address !== "" ? (
+                          <>
+                            {user.address}
+                            <br />
+                            {user.city}, {user.state} {user.zipCode}
+                          </>
+                        ) : (
+                          <>
+                            <p className="text-neutral-500 dark:text-neutral-300 font-thin">
+                              Edit your profile details to add your address!
+                            </p>
+                          </>
+                        )}
+                      </dd>
+                    </dl>
+                    <dl>
+                      <dt className="font-semibold text-neutral-900 dark:text-white tracking-wider">
                         Phone Number
                       </dt>
-                      <dd className="text-neutral-500 dark:text-neutral-400">
+                      <dd className="text-neutral-500 dark:text-neutral-300">
                         {user.phoneNumber}
                       </dd>
                     </dl>
@@ -281,9 +338,9 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                   <dt className="font-semibold text-neutral-900 dark:text-white">
                     Favorite pick-up point
                   </dt>
-                  <dd className="flex items-center gap-1 text-neutral-500 dark:text-neutral-400">
+                  <dd className="flex items-center gap-1 text-neutral-500 dark:text-neutral-300">
                     <svg
-                      className="hidden h-5 w-5 shrink-0 text-neutral-400 dark:text-neutral-500 lg:inline"
+                      className="hidden h-5 w-5 shrink-0 text-neutral-300 dark:text-neutral-500 lg:inline"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -301,11 +358,11 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                     Herald Square, 2, New York, United States of America
                   </dd>
                 </dl> */}
-                    <dl>
+                    {/* <dl>
                       <dt className="font-semibold text-neutral-900 dark:text-white">
                         My Companies
                       </dt>
-                      <dd className="text-neutral-500 dark:text-neutral-400">
+                      <dd className="text-neutral-500 dark:text-neutral-300">
                         FLOWBITE LLC, Fiscal code: 18673557
                       </dd>
                     </dl>
@@ -313,7 +370,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                       <dt className="mb-1 font-semibold text-neutral-900 dark:text-white">
                         Payment Methods
                       </dt>
-                      <dd className="flex items-center space-x-4 text-neutral-500 dark:text-neutral-400">
+                      <dd className="flex items-center space-x-4 text-neutral-500 dark:text-neutral-300">
                         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-neutral-100 dark:bg-neutral-700">
                           <img
                             className="h-4 w-auto dark:hidden"
@@ -331,22 +388,24 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                             <p className="mb-0.5 font-medium text-neutral-900 dark:text-white">
                               Visa ending in 7658
                             </p>
-                            <p className="font-normal text-neutral-500 dark:text-neutral-400">
+                            <p className="font-normal text-neutral-500 dark:text-neutral-300">
                               Expiry 10/2024
                             </p>
                           </div>
                         </div>
                       </dd>
-                    </dl>
+                    </dl> */}
                   </div>
                 </div>
 
-                <button
+                <motion.button
                   onClick={() => navigate(`/user/${user.id}`)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   type="button"
                   data-modal-target="accountInformationModal"
                   data-modal-toggle="accountInformationModal"
-                  className="inline-flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:w-auto">
+                  className="inline-flex w-full items-center justify-center rounded-lg bg-teal-400 px-5 py-2.5 text-sm font-medium text-white dark:text-black hover:bg-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-300 dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 sm:w-auto cursor-pointer">
                   <svg
                     className="-ms-0.5 me-1.5 h-4 w-4"
                     aria-hidden="true"
@@ -363,22 +422,63 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                       d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"></path>
                   </svg>
                   Edit your data
-                </button>
+                </motion.button>
               </div>
 
-              <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800 md:p-8">
-                <h3 className="mb-4 text-xl font-semibold text-neutral-900 dark:text-white">
+              <div className="flex justify-between">
+                <h2 className="pb-4 text-xl text-neutral-900 dark:text-white sm:text-3xl md:pb-6 font-learn font-bold tracking-widest underline underline-offset-8">
                   Dogs
-                </h3>
-                <button
+                </h2>
+                <motion.button
                   onClick={() => setShowAddDogModal(true)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   type="button"
-                  class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  class="text-white dark:text-black bg-teal-400 hover:bg-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-300 font-medium rounded-full text-sm px-5 mb-4 mt-1 text-center dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 cursor-pointer">
                   Add Dog
-                </button>
+                </motion.button>
+              </div>
 
-                {/* PROB GET RID OF THIS ONE */}
-                {/* <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+              {/* IF USER HAS NO DOGS, SHOW ALERT, ELSE SHOW THE CONTAINER WITH THE DOGS */}
+              {user.dogs.length === 0 ? (
+                <div className="pt-5 pb-12 animate-wiggle-minimized drop-shadow-xl drop-shadow-gray-400 dark:drop-shadow-black">
+                  <div
+                    class="bg-violet-100 border-l-8 border-violet-500 text-violet-700 p-4 dark:bg-yellow-300 dark:border-yellow-600 dark:text-yellow-700"
+                    role="alert">
+                    <p class="font-anton tracking-wider text-xl">
+                      You have not added a dog yet!
+                    </p>
+                    {/* <p>
+                      Please{" "}
+                      <span
+                        className="underline cursor-pointer hover:font-bold"
+                        onClick={() => navigate("/sign-up")}>
+                        create an account
+                      </span>{" "}
+                      or{" "}
+                      <span
+                        className="underline cursor-pointer hover:font-bold"
+                        onClick={() => navigate("/login")}>
+                        log in
+                      </span>
+                      .
+                    </p> */}
+                    <p className="font-instrument">
+                      Please add a dog to your account! You must add a dog in
+                      order to enroll in a training class. Click{" "}
+                      <span
+                        onClick={() => setShowAddDogModal(true)}
+                        className="underline cursor-pointer hover:font-bold">
+                        here
+                      </span>
+                      , or click the "Add Dog" button above.
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800 md:p-8">
+                  {/* PROB GET RID OF THIS ONE */}
+                  {/* <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                       {user.dogs.map((dog, index) => (
                         <div key={index} className="group relative">
                           <img
@@ -402,139 +502,263 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                       ))}
                     </div> */}
 
-                <div className="mt-6 space-y-12 lg:grid lg:grid-cols-2 lg:space-y-6 lg:gap-x-6">
-                  {user.dogs.map((dog, index) => (
-                    <div className="group relative min-w-full">
-                      <div class="w-full bg-white border border-neutral-200 rounded-lg shadow-sm dark:bg-neutral-700 dark:border-neutral-700">
-                        <div class="flex justify-end px-4 pt-4">
-                          <button
-                            onClick={() => {
-                              setShowDogActions(true)
-                              setDogToDelete(dog)
-                            }}
-                            id="dropdownButton"
-                            data-dropdown-toggle="dropdown"
-                            class="inline-block text-neutral-500 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:ring-4 focus:outline-none focus:ring-neutral-200 dark:focus:ring-neutral-700 rounded-lg text-sm p-1.5"
-                            type="button">
-                            <span class="sr-only">Open dropdown</span>
-                            <svg
-                              class="w-5 h-5"
-                              aria-hidden="true"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="currentColor"
-                              viewBox="0 0 16 3">
-                              <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
-                            </svg>
-                          </button>
+                  <div className="mt-6 space-y-12 lg:grid lg:grid-cols-2 lg:space-y-6 lg:gap-x-6 justify-items-stretch justify-stretch justify-self-stretch content-stretch items-stretch self-stretch
 
-                          {showDogActions && dogToDelete._id === dog._id && (
-                            <div
-                              id="dropdown"
-                              class="z-10 text-base list-none bg-white divide-y divide-neutral-100 rounded-lg shadow-sm w-44 dark:bg-neutral-700">
-                              <ul class="py-2" aria-labelledby="dropdownButton">
-                                <li>
-                                  <div
-                                    onClick={() =>
-                                      handleDogEditModal(dog, dog._id)
-                                    }
-                                    class="cursor-pointer block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white">
-                                    Edit
-                                  </div>
-                                </li>
-                                {/* <li>
+
+">
+                    {user.dogs.map((dog, index) => (
+                      <div className="group relative min-w-full">
+                        <div class="w-full bg-white border border-neutral-200 rounded-lg shadow-sm dark:bg-neutral-700 dark:border-neutral-700">
+                          <div class="flex justify-end px-4 pt-4">
+                            <button
+                              onClick={() => {
+                                setShowDogActions(true)
+                                setDogToDelete(dog)
+                              }}
+                              id="dropdownButton"
+                              data-dropdown-toggle="dropdown"
+                              class="inline-block text-neutral-500 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:ring-4 focus:outline-none focus:ring-neutral-200 dark:focus:ring-neutral-700 rounded-lg text-sm p-1.5"
+                              type="button">
+                              <span class="sr-only">Open dropdown</span>
+                              <svg
+                                class="w-5 h-5"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor"
+                                viewBox="0 0 16 3">
+                                <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                              </svg>
+                            </button>
+
+                            {showDogActions && dogToDelete._id === dog._id && (
+                              <div
+                                id="dropdown"
+                                class="z-10 text-base list-none bg-white divide-y divide-neutral-100 rounded-lg shadow-sm w-44 dark:bg-neutral-700 absolute">
+                                <ul
+                                  class="py-2"
+                                  aria-labelledby="dropdownButton">
+                                  <li>
+                                    <div
+                                      onClick={() =>
+                                        handleDogEditModal(dog, dog._id)
+                                      }
+                                      class="cursor-pointer block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white">
+                                      Edit
+                                    </div>
+                                  </li>
+                                  {/* <li>
                                   <a
                                     href="#"
                                     class="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white">
                                     Export Data
                                   </a>
                                 </li> */}
-                                <li>
-                                  <a
-                                    onClick={() =>
-                                      handleDogDeleteModal(dog, dog._id)
-                                    }
-                                    class="block px-4 py-2 text-sm text-red-600 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white">
-                                    Delete
-                                  </a>
-                                </li>
-                                <li>
-                                  <div
-                                    onClick={() => setShowDogActions(false)}
-                                    class="cursor-pointer block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white">
-                                    Cancel
-                                  </div>
-                                </li>
-                              </ul>
-                            </div>
-                          )}
-                        </div>
-                        <div class="flex flex-col items-center pb-10">
-                          {dog.photo ? (
-                            <img
-                              src={`${dog.photo}`}
-                              className="size-75 mb-3 rounded-full shadow-lg"
-                            />
-                          ) : (
-                            <div className="rounded-full size-75 shadow-lg p-4 flex flex-col items-center justify-center">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                height="78"
-                                viewBox="0 -960 960 960"
-                                width="78"
-                                fill="#666666">
-                                <path d="M194-80v-416h60v356h320v-223l102-102q30-30 46-68.5t16-80.5q0-42-16.5-80.5T676-762l-32-33-131 131H333l-53 53-43-42 71-71h180l156-156 75 75q38 38 58 87.5T798-614q-1 54-21 103.5T719-423l-85 85v258H194Zm187-215L180-496q-10-10-15-22.5t-5-26.5q0-14 5-27t15-23l77-78 117 116q27 27 41.5 61.5T430-423q0 35-12.5 68.5T381-295Z" />
-                              </svg>
-                              <p className="uppercase text-xs">
-                                upload an image of your dog!
-                              </p>
-                            </div>
-                          )}
-
-                          <h5 class="mb-1 text-xl font-medium text-neutral-900 dark:text-white">
-                            {dog.name}
-                          </h5>
-                          <span class="text-sm text-neutral-500 dark:text-neutral-400">
-                            {dog.breed}
-                          </span>
-                          <div class="flex justify-between mt-4 md:mt-6">
-                            {/* <div className="flex flex-col"> */}
-                            <div>Age: {dog.age}</div>
-                          </div>
-                          {/* <div className="flex flex-col"> */}
-                          <div>
-                            Birthday:{" "}
-                            {new Intl.DateTimeFormat("en-US").format(
-                              new Date(dog.birthday)
+                                  <li>
+                                    <a
+                                      onClick={() =>
+                                        handleDogDeleteModal(dog, dog._id)
+                                      }
+                                      class="cursor-pointer block px-4 py-2 text-sm text-red-600 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white">
+                                      Delete
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <div
+                                      onClick={() => setShowDogActions(false)}
+                                      class="cursor-pointer block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white">
+                                      Cancel
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
                             )}
-                            {/* </div> */}
-                            {/* </div> */}
                           </div>
-                          <div>Gender: {dog.gender}</div>
-                          <div>Size: {dog.size}</div>
-                          <div>Weight: {dog.weight}</div>
-                          <div>Spayed/Neutered: {dog.spayedNeutered}</div>
-                          <div>Behavioral Issues: {dog.behavioralIssues}</div>
-                          <div>Medical Conditions: {dog.medicalConditions}</div>
-                          <div>Training Goals: {dog.trainingGoals}</div>
-                          <div>Additional Notes: {dog.additionalNotes}</div>
+                          <div class="flex flex-col items-center pb-10">
+                            {dog.photo ? (
+                              <img
+                                src={`${dog.photo}`}
+                                className="size-75 mb-3 rounded-full shadow-lg"
+                              />
+                            ) : (
+                              <>
+                                <div className="rounded-full size-75 shadow-lg p-4 flex flex-col items-center justify-center bg-neutral-50 dark:bg-neutral-600 mb-3">
+                                  <SiDatadog
+                                    size={170}
+                                    className="text-neutral-800 dark:text-neutral-300"
+                                  />
+
+                                  <p className="uppercase text-xs text-black dark:text-white">
+                                    upload an image of your dog!
+                                  </p>
+                                </div>
+                              </>
+                            )}
+
+                            <h5 class="text-2xl font-bold text-neutral-900 dark:text-white font-lexend uppercase leading-3 pt-1">
+                              {dog.name}
+                            </h5>
+                            <p class="text-lg text-neutral-600 dark:text-neutral-300 font-learn">
+                              {dog.breed}
+                            </p>
+
+                            <div className="grid gap-4 sm:grid-cols-2 sm:gap-8 lg:gap-16 font-instrument">
+                              {/* First Data Column of Dog Info */}
+                              <div className="space-y-2">
+                                {/* Gender */}
+                                <div className="leading-5">
+                                  <dt className="font-semibold text-neutral-900 dark:text-white tracking-wider">
+                                    Gender
+                                  </dt>
+                                  <dd className="text-neutral-500 dark:text-neutral-300">
+                                    {dog.gender}
+                                  </dd>
+                                </div>
+                                {/* Size */}
+                                <div className="leading-5">
+                                  <dt className="font-semibold text-neutral-900 dark:text-white tracking-wider">
+                                    Size
+                                  </dt>
+                                  <dd className="text-neutral-500 dark:text-neutral-300">
+                                    {dog.size}
+                                  </dd>
+                                </div>
+                                {/* Spayed/Neutered */}
+                                <div className="leading-5">
+                                  <dt className="font-semibold text-neutral-900 dark:text-white tracking-wider">
+                                    Spayed/Neutered
+                                  </dt>
+                                  <dd className="text-neutral-500 dark:text-neutral-300">
+                                    {dog.spayedNeutered}
+                                  </dd>
+                                </div>
+                              </div>
+
+                              {/* Second Data Column of Dog Info */}
+                              <div className="space-y-2 pl-20">
+                                {/* Age */}
+                                <div className="leading-5">
+                                  <dt className="font-semibold text-neutral-900 dark:text-white tracking-wider">
+                                    Age
+                                  </dt>
+                                  <dd className="text-neutral-500 dark:text-neutral-300">
+                                    {dog.age}
+                                  </dd>
+                                </div>
+                                {/* Weight */}
+                                <div className="leading-5">
+                                  <dt className="font-semibold text-neutral-900 dark:text-white tracking-wider">
+                                    Weight
+                                  </dt>
+                                  <dd className="text-neutral-500 dark:text-neutral-300">
+                                    {dog.weight} lbs
+                                  </dd>
+                                </div>
+                                {/* Birthday */}
+                                <div className="leading-5">
+                                  <dt className="font-semibold text-neutral-900 dark:text-white tracking-wider">
+                                    <span className="flex items-center space-x-1">
+                                      <span>Birthday </span>
+                                      <LiaBirthdayCakeSolid size={20} />
+                                      {/* <FaBirthdayCake size={15} /> */}
+                                    </span>
+                                  </dt>
+                                  <dd className="text-neutral-500 dark:text-neutral-300">
+                                    {new Intl.DateTimeFormat("en-US").format(
+                                      new Date(dog.birthday)
+                                    )}
+                                  </dd>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Additional Dog Info in a single Column */}
+                            <div className="flex flex-col font-instrument text-center px-3 space-y-2">
+                              {/* Behavioral Issues */}
+                              <div className="leading-5">
+                                <dt className="font-semibold text-neutral-900 dark:text-white tracking-wider">
+                                  Behavioral Issues
+                                </dt>
+                                {/* If user input nothing for Behavioral Issues then show "N/A" */}
+                                {dog.behavioralIssues === "" ? (
+                                  <dd className="text-neutral-500 dark:text-neutral-300">
+                                    N/A
+                                  </dd>
+                                ) : (
+                                  <dd className="text-neutral-500 dark:text-neutral-300">
+                                    {dog.behavioralIssues}
+                                  </dd>
+                                )}
+                              </div>
+                              {/* Medical Conditions */}
+                              <div className="leading-5">
+                                <dt className="font-semibold text-neutral-900 dark:text-white tracking-wider">
+                                  Medical Conditions
+                                </dt>
+                                {/* If user input nothing for Medical Conditions then show "N/A" */}
+                                {dog.medicalConditions === "" ? (
+                                  <dd className="text-neutral-500 dark:text-neutral-300">
+                                    N/A
+                                  </dd>
+                                ) : (
+                                  <dd className="text-neutral-500 dark:text-neutral-300">
+                                    {dog.medicalConditions}
+                                  </dd>
+                                )}
+                              </div>
+                              {/* Training Goals */}
+                              <div className="leading-5">
+                                <dt className="font-semibold text-neutral-900 dark:text-white tracking-wider">
+                                  Training Goals
+                                </dt>
+                                {/* If user input nothing for Training Goals then show "N/A" */}
+                                {dog.trainingGoals === "" ? (
+                                  <dd className="text-neutral-500 dark:text-neutral-300">
+                                    N/A
+                                  </dd>
+                                ) : (
+                                  <dd className="text-neutral-500 dark:text-neutral-300">
+                                    {dog.trainingGoals}
+                                  </dd>
+                                )}
+                              </div>
+                              {/* Additional Notes */}
+                              <div className="leading-5">
+                                <dt className="font-semibold text-neutral-900 dark:text-white tracking-wider">
+                                  Additional Notes
+                                </dt>
+                                {/* If user input nothing for Additional Notes then show "N/A" */}
+                                {dog.additionalNotes === "" ? (
+                                  <dd className="text-neutral-500 dark:text-neutral-300">
+                                    N/A
+                                  </dd>
+                                ) : (
+                                  <dd className="text-neutral-500 dark:text-neutral-300">
+                                    {dog.additionalNotes}
+                                  </dd>
+                                )}
+                              </div>
+                            </div>
+
+                           
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               <div className="my-8 rounded-lg border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800 md:p-8">
                 <div className="flex justify-between">
-                <h3 className="mb-4 text-xl font-semibold text-neutral-900 dark:text-white">
-                  Enrolled Training Classes
-                </h3>
-                <button
-                  onClick={() => navigate("/enroll")}
-                  type="button"
-                  class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                  Enroll Now
-                </button>
+                  <h3 className="mb-4 text-xl font-semibold text-neutral-900 dark:text-white">
+                    Enrolled Training Classes
+                  </h3>
+                  <button
+                    onClick={() => navigate("/enroll")}
+                    type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Enroll Now
+                  </button>
                 </div>
                 {/* {enrolledTrainingClasses.map((trainingClass) =>
                   trainingClass == null ? <div>Test</div> : null
@@ -879,21 +1103,21 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
           loggedInEmail={loggedInEmail}
           userId={userId}
           dog={dogEditForm}
-          />
-        )}
+        />
+      )}
 
       {showDeleteDogModal && (
         <DogDeleteModal
-        setShowDeleteDogModal={setShowDeleteDogModal}
-        dogToDelete={dogToDelete}
-        userId={userId}
+          setShowDeleteDogModal={setShowDeleteDogModal}
+          dogToDelete={dogToDelete}
+          userId={userId}
         />
       )}
 
       {showAddDogModal && (
         <DogAddModal
-        setShowAddDogModal={setShowAddDogModal}
-        loggedInEmail={loggedInEmail}
+          setShowAddDogModal={setShowAddDogModal}
+          loggedInEmail={loggedInEmail}
         />
       )}
 

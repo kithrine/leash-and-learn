@@ -165,7 +165,7 @@ const UserSideNav = ({ loggedInEmail }) => {
           <li>
             <div
               onClick={() => setShowAddDogModal(true)}
-              className="flex items-center p-2 text-base font-medium text-neutral-900 rounded-lg transition duration-75 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:text-white group"
+              className="flex items-center p-2 text-base font-medium text-neutral-900 rounded-lg transition duration-75 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:text-white group cursor-pointer"
             >
               <LuDog size={25} className="text-teal-400 dark:text-lime-400" />
               <span className="flex-1 ml-3">Add Dog</span>
