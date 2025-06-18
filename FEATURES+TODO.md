@@ -33,6 +33,8 @@
 - [ ] Ability to "like" and/or "favorite" a post
 ##### Blog Detail Page
 - [x] Save logged in user info in session storage and then check against user.id and the blog userId
+##### Add Blog Page
+- [ ] One day in the future, add a (?) icon next to the Author Title that has a popover explaining what information could be included for that field
 ##### Blog Comments
 - [ ] * Must have an account to post a comment - (needs to add logic to check for if the user is logged in SHOW the comment textarea, but if not, the textarea is disabled and text shows on top of it that "You must be logged in to be able to post a comment!")
 - [ ] Put a reminder by the start of the blog comments that you MUST have an account in order to post a comment
@@ -222,6 +224,9 @@ FOOTER
 
 DARK MODE TOASTS
 - [ ] ctrl+f globally for toast, and copy paste for dark mode toasts anywhere there is a toast
+
+FONTS
+- [ ] Add Instrument Sans EVERYWHEREEEEEEEEEEEEEEEE
 
 AT THE VERY VERY END
 - [ ] Delete the old BMDetail and TrainerDetail files and pages at the end
