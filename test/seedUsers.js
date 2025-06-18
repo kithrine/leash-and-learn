@@ -5,62 +5,111 @@ import axios from "axios";
 // console.log(process.env.SERVER_URL)
 
 const seedUsers = [
-  { firstName: "Kit",
-    lastName: "Tensfeldt",
-    email: "kit@leashandlearn.com",
-    username: "kit",
-    password: "test",
-    role: "Business Manager"
-  },
+  // { firstName: "Kit",
+  //   email: "kit@leashandlearn.com",
+  //   lastName: "Tensfeldt",
+  //   username: "kit",
+  //   password: "test",
+  //   role: "Business Manager",
+  //   avatar: "",
+  //   phoneNumber: "",
+  //   address: "",
+  //   city: "",
+  //   state: "",
+  //   zipCode: "",
+  //   dogs: []
+  // },
   { firstName: "Megan",
     lastName: "Alexander",
-    username: "megan",
     email: "megan@leashandlearn.com",
+    username: "megan",
     password: "test",
-    role: "Trainer"
+    role: "Trainer",
+    avatar: "",
+    phoneNumber: "",
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    dogs: []
   },
   { firstName: "Katherine",
     lastName: "Finch",
-    username: "katherine",
     email: "katherine@leashandlearn.com",
+    username: "katherine",
     password: "test",
-    role: "Trainer"
+    role: "Trainer",
+    avatar: "",
+    phoneNumber: "",
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    dogs: []
   },
-  { firstName: "Annie",
-    lastName: "Baysinger",
-    email: "annie@leashandlearn.com",
-    username: "annie",
-    password: "test",
-    role: "Trainer"
-  },
+  // { firstName: "Annie",
+  //   email: "annie@leashandlearn.com",
+  //   lastName: "Baysinger",
+  //   username: "annie",
+  //   password: "test",
+  //   role: "Trainer",
+  //   avatar: "",
+  //   phoneNumber: "",
+  //   address: "",
+  //   city: "",
+  //   state: "",
+  //   zipCode: "",
+  //   dogs: []
+  // },
   { firstName: "Jesse",
     lastName: "Soliz",
-    username: "jesse",
     email: "jesse@leashandlearn.com",
+    username: "jesse",
     password: "test",
-    role: "Trainer"
+    role: "Trainer",
+    avatar: "",
+    phoneNumber: "",
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    dogs: []
   },
   { firstName: "Audrey",
     lastName: "Radulovich",
-    username: "audrey",
     email: "audrey@leashandlearn.com",
+    username: "audrey",
     password: "test",
-    role: "Trainer"
+    role: "Trainer",
+    avatar: "",
+    phoneNumber: "",
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    dogs: []
   },
   { firstName: "Rashaun",
     lastName: "Marshall",
-    username: "rashaun",
     email: "rashaun@leashandlearn.com",
+    username: "rashaun",
     password: "test",
-    role: "Trainer"
+    role: "Trainer",
+    avatar: "",
+    phoneNumber: "",
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    dogs: []
   },
-  { firstName: "Kayla",
-    lastName: "Martin",
-    email: "kayla@gmail.com",
-    username: "kayla",
-    password: "test",
-    role: "User"
-  },
+  // { firstName: "Kayla",
+  //   lastName: "Martin",
+  //   email: "kayla@gmail.com",
+  //   username: "kayla",
+  //   password: "test",
+  //   role: "User"
+  // },
 ]
 
 // const seedUsers = generateFakeUsers(5)
@@ -71,3 +120,76 @@ seedUsers.forEach(async (user) => {
   console.log("addUser", addUser.data)
 })
 
+// const userSchema = new Schema({
+//   firstName: {
+//     type: String,
+//     default: ""
+//   },
+//   lastName: {
+//     type: String,
+//     default: ""
+//   },
+//   email: {
+//     type: String,
+//     default: ""
+//   },
+//   username: {
+//     type: String,
+//     default: ""
+//   },
+//   password: {
+//     type: String,
+//     default: ""
+//   },
+//   role: [ String ],
+//   avatar: {
+//     type: String,
+//     default: ""
+//   },
+//   phoneNumber: {
+//     type: String,
+//     default: ""
+//   },
+//   address: {
+//     type: String,
+//     default: ""
+//   },
+//   city: {
+//     type: String,
+//     default: ""
+//   },
+//   state: {
+//     type: String,
+//     default: ""
+//   },
+//   zipCode: {
+//     type: String,
+//     default: ""
+//   },
+//   dogs: [{
+//     name: String,
+//     age: String,
+//     breed: String,
+//     gender: String,
+//     weight: String,
+//     photo: String,
+//     size: String,
+//     birthday: Date,
+//     spayedNeutered: String,
+//     behavioralIssues: String,
+//     medicalConditions: String,
+//     trainingGoals: String,
+//     additionalNotes: String
+//   }],
+//   token: {
+//     type: [ String ]
+//   }
+// })
+
+// avatar: "",
+// phoneNumber: "",
+// address: "",
+// city: "",
+// state: "",
+// zipCode: "",
+// dogs: []
