@@ -132,7 +132,7 @@ class CustomizedAxisTick extends PureComponent {
 
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={16} textAnchor="end" fill="#666" transform="rotate(-35)">
+        <text x={0} y={0} dy={16} textAnchor="end" fill="currentColor" className="text-neutral-700 dark:text-neutral-300" transform="rotate(-35)">
           {payload.value}
         </text>
       </g>
@@ -145,7 +145,7 @@ export default class Example extends PureComponent {
 
   render() {
     return (
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="100%" className="bg-white dark:bg-neutral-800">
         <LineChart
           width={500}
           height={300}
@@ -158,7 +158,7 @@ export default class Example extends PureComponent {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" height={60} tick={<CustomizedAxisTick />} />
+          <XAxis dataKey="name" stroke="currentColor" className="text-neutral-700 dark:text-neutral-400" height={60} tick={<CustomizedAxisTick />}  />
           <YAxis />
           <Tooltip />
           <Legend />

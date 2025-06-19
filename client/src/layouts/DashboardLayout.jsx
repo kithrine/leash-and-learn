@@ -6,6 +6,7 @@ import TrainerDashboard from '../components/Trainer/TrainerDashboard';
 import UserDashboard from '../components/User/UserDashboard';
 import DashboardFooter from '../components/footers/DashboardFooter';
 import BMSideNav from '../components/navigation/BMSideNav';
+import BMTrainerDashboard from '../components/dashboards/BMTrainerDashboard';
 
 
 const DashboardLayout = () => {
@@ -38,10 +39,12 @@ const DashboardLayout = () => {
   return (
     <>
     {user.role.includes("Business Manager") &&
-    (<><BMDashboard loggedInEmail={loggedInEmail} /></>) }
+    (<BMTrainerDashboard loggedInEmail={loggedInEmail} />) }
 
+    {/* {user.role.includes("Trainer") &&
+    (<TrainerDashboard loggedInEmail={loggedInEmail} />) } */}
     {user.role.includes("Trainer") &&
-    (<TrainerDashboard loggedInEmail={loggedInEmail} />) }
+    (<BMTrainerDashboard loggedInEmail={loggedInEmail} />) }
 
     {user.role.includes("User") &&
     (<UserDashboard loggedInEmail={loggedInEmail} userId={userId} />) }

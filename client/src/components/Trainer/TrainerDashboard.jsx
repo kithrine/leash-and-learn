@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { trainingClassGetMany } from "../../redux/trainingClassSlice";
-import { userGetOne } from "../../redux/userSlice";
+import { useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { trainingClassGetMany } from "../../redux/trainingClassSlice"
+import { userGetOne } from "../../redux/userSlice"
 import TrainerSideNav from "../navigation/TrainerSideNav"
 import DashboardFooter from "../footers/DashboardFooter"
 import LineChartTrainer from "../charts/LineChartTrainer"
@@ -9,22 +9,21 @@ import LineChartTrainer from "../charts/LineChartTrainer"
 // import BarChartTotalNumberOfDogsPerService from "./BarChartTotalNumberOfDogsPerService";
 // import LineChartTotalDogsEnrolledPerServicePastYear from "./LineChartTotalDogsEnrolledPerServicePastYear"
 
-const TrainerDashboard = ({loggedInEmail}) => {
-  const navigate = useDispatch();
-  const dispatch = useDispatch();
+const TrainerDashboard = ({ loggedInEmail }) => {
+  const navigate = useDispatch()
+  const dispatch = useDispatch()
 
-  const { trainingClasses } = useSelector((state) => state.trainingClass);
-  const { user } = useSelector((state) => state.auth);
+  const { trainingClasses } = useSelector((state) => state.trainingClass)
+  const { user } = useSelector((state) => state.auth)
   // console.log("BMTrainingClassesDashboard trainingClasses", trainingClasses);
 
   useEffect(() => {
-    dispatch(trainingClassGetMany(user.username));
-  }, []);
+    dispatch(trainingClassGetMany(user.username))
+  }, [])
 
   useEffect(() => {
     dispatch(userGetOne(loggedInEmail))
   }, [])
-
 
   return (
     <>
@@ -48,7 +47,7 @@ const TrainerDashboard = ({loggedInEmail}) => {
             </div>
           </div> */}
           <div className="flex">
-          <h1 className="w-full text-center mb-3 phudu font-bold">
+            <h1 className="w-full text-center mb-3 phudu font-bold">
               Dogs Enrolled in Puppy Socialization - Year 2024
             </h1>
           </div>
@@ -56,7 +55,6 @@ const TrainerDashboard = ({loggedInEmail}) => {
             <div className="w-full h-80 mb-1 overflow-y-auto relative overflow-x-auto shadow-md sm:rounded-lg">
               <LineChartTrainer />
             </div>
-          
           </div>
           <div className="h-80 my-8 overflow-y-auto relative overflow-x-auto shadow-md sm:rounded-lg">
             <table className="overflow-y-auto w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -87,8 +85,7 @@ const TrainerDashboard = ({loggedInEmail}) => {
                   <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th
                       scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                       {trainingClass.trainingClassName}
                     </th>
                     <td className="px-6 py-4">
@@ -114,14 +111,12 @@ const TrainerDashboard = ({loggedInEmail}) => {
                       <button
                         onClick={() =>
                           navigate(`/training-classes/${trainingClass.id}`)
-                        }
-                      >
+                        }>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           height="25"
                           width="25"
-                          viewBox="0 0 512 512"
-                        >
+                          viewBox="0 0 512 512">
                           <path
                             fill="#d0c5f2"
                             d="M0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM297 385c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l71-71L120 280c-13.3 0-24-10.7-24-24s10.7-24 24-24l214.1 0-71-71c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L409 239c9.4 9.4 9.4 24.6 0 33.9L297 385z"
@@ -142,7 +137,6 @@ const TrainerDashboard = ({loggedInEmail}) => {
 }
 
 export default TrainerDashboard
-
 
 // {/* MY OTHER OLD LAYOUT WITH THE PURPLE SQUARES */}
 

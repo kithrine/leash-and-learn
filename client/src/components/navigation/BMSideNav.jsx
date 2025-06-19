@@ -2,10 +2,12 @@ import { Link, useNavigate } from "react-router"
 import { useSelector, useDispatch } from "react-redux"
 import { logout } from "../../redux/authSlice"
 
+
 const BMSideNav = ({loggedInEmail}) => {
   const dispatch = useDispatch()
   const { trainingClasses } = useSelector((state) => state.trainingClass)
   const { contacts } = useSelector((state) => state.contact)
+  const { user } = useSelector((state) => state.users)
 
 
   const handleLogout = async () => {
