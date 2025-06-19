@@ -476,8 +476,8 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                   </div>
                 </div>
               ) : (
-                <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800 md:p-8">
-                  {/* PROB GET RID OF THIS ONE */}
+                <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800 md:p-8 lg:mb-16">
+                  {/* Actually Pretty Good Cards for a future project - Save Somewhere! */}
                   {/* <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                       {user.dogs.map((dog, index) => (
                         <div key={index} className="group relative">
@@ -502,13 +502,10 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                       ))}
                     </div> */}
 
-                  <div className="mt-6 space-y-12 lg:grid lg:grid-cols-2 lg:space-y-6 lg:gap-x-6 justify-items-stretch justify-stretch justify-self-stretch content-stretch items-stretch self-stretch
-
-
-">
+                  <div className="space-y-12 lg:grid lg:grid-cols-2 lg:gap-y-6 lg:gap-x-6">
                     {user.dogs.map((dog, index) => (
-                      <div className="group relative min-w-full">
-                        <div class="w-full bg-white border border-neutral-200 rounded-lg shadow-sm dark:bg-neutral-700 dark:border-neutral-700">
+                      <div class="w-full bg-white border border-neutral-200 rounded-lg shadow-sm dark:bg-neutral-700 dark:border-neutral-700 min-h-full">
+             
                           <div class="flex justify-end px-4 pt-4">
                             <button
                               onClick={() => {
@@ -517,7 +514,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                               }}
                               id="dropdownButton"
                               data-dropdown-toggle="dropdown"
-                              class="inline-block text-neutral-500 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:ring-4 focus:outline-none focus:ring-neutral-200 dark:focus:ring-neutral-700 rounded-lg text-sm p-1.5"
+                              class="inline-block text-neutral-500 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-600 focus:ring-4 focus:outline-none focus:ring-neutral-200 dark:focus:ring-neutral-500 rounded-lg text-sm p-1.5 cursor-pointer"
                               type="button">
                               <span class="sr-only">Open dropdown</span>
                               <svg
@@ -533,7 +530,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                             {showDogActions && dogToDelete._id === dog._id && (
                               <div
                                 id="dropdown"
-                                class="z-10 text-base list-none bg-white divide-y divide-neutral-100 rounded-lg shadow-sm w-44 dark:bg-neutral-700 absolute">
+                                class="z-10 text-base list-none bg-neutral-50 divide-y divide-neutral-100 rounded-lg shadow-sm w-44 dark:bg-neutral-800 absolute">
                                 <ul
                                   class="py-2"
                                   aria-labelledby="dropdownButton">
@@ -738,52 +735,53 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                                 )}
                               </div>
                             </div>
-
-                           
                           </div>
                         </div>
-                      </div>
                     ))}
                   </div>
                 </div>
               )}
 
-              <div className="my-8 rounded-lg border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800 md:p-8">
-                <div className="flex justify-between">
-                  <h3 className="mb-4 text-xl font-semibold text-neutral-900 dark:text-white">
-                    Enrolled Training Classes
-                  </h3>
-                  <button
-                    onClick={() => navigate("/enroll")}
-                    type="button"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Enroll Now
-                  </button>
-                </div>
+<div className="flex justify-between">
+                <h2 className="pb-4 text-xl text-neutral-900 dark:text-white sm:text-3xl md:pb-6 font-learn font-bold tracking-widest underline underline-offset-8">
+                  Enrolled Training Classes
+                </h2>
+                <motion.button
+                  onClick={() => navigate("/enroll")}                  
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  type="button"
+                  class="text-white dark:text-black bg-teal-400 hover:bg-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-300 font-medium rounded-full text-sm px-5 mb-4 mt-1 text-center dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 cursor-pointer">
+                  Enroll Now
+                </motion.button>
+              </div>
+
+              {/* <div className="my-8 rounded-lg border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800 md:p-8"> */}
+                
                 {/* {enrolledTrainingClasses.map((trainingClass) =>
                   trainingClass == null ? <div>Test</div> : null
                 )} */}
 
-                <div className="min-h-96 max-h-96 w-full my-8 relative overflow-x-hidden shadow-md sm:rounded-lg">
-                  <table className="w-full text-sm text-left rtl:text-right text-neutral-500 dark:text-neutral-400">
-                    <thead className="text-xs text-neutral-700 uppercase bg-neutral-50 dark:bg-neutral-700 dark:text-neutral-400">
+                <div className="max-h-96 min-h-40 w-full relative overflow-x-hidden shadow-md sm:rounded-lg bg-white dark:bg-neutral-600 mb-16">
+                  <table className="w-full text-sm text-left rtl:text-right text-neutral-600 dark:text-neutral-300 font-instrument">
+                    <thead className="text-xs text-neutral-700 uppercase bg-violet-200 dark:bg-yellow-400 dark:text-neutral-900">
                       <tr>
-                        <th scope="col" className="px-6 py-3">
+                        <th scope="col" className="px-3 py-3">
                           Training Class Name
                         </th>
-                        <th scope="col" className="px-6 py-3">
+                        <th scope="col" className="px-3 py-3">
                           Type
                         </th>
-                        <th scope="col" className="px-6 py-3">
+                        <th scope="col" className="px-3 py-3">
                           Trainer
                         </th>
-                        <th scope="col" className="px-6 py-3">
+                        <th scope="col" className="px-3 py-3">
                           Start Date
                         </th>
-                        <th scope="col" className="px-6 py-3">
+                        <th scope="col" className="px-3 py-3">
                           End Date
                         </th>
-                        <th scope="col" className="px-6 py-3">
+                        <th scope="col" className="px-3 py-3">
                           Detail
                         </th>
                       </tr>
@@ -806,49 +804,51 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                           )} */}
                                 <th
                                   scope="row"
-                                  className="px-6 py-4 font-medium text-neutral-900 whitespace-nowrap dark:text-white">
+                                  className="px-3 py-4 font-medium text-neutral-900 whitespace-nowrap dark:text-white">
                                   {trainingClass.trainingClassName}
                                 </th>
-                                <td className="px-6 py-4">
+                                <td className="px-3 py-4">
                                   {trainingClass.trainingClassType}
                                 </td>
-                                <td className="px-6 py-4">
+                                <td className="px-3 py-4">
                                   {trainingClass.trainer.firstName}{" "}
                                   {trainingClass.trainer.lastName}
                                 </td>
-                                <td className="px-6 py-4">
+                                <td className="px-3 py-4">
                                   {new Intl.DateTimeFormat("en-US").format(
                                     new Date(trainingClass.startDate)
                                   )}
                                 </td>
-                                <td className="px-6 py-4">
+                                <td className="px-3 py-4">
                                   {new Intl.DateTimeFormat("en-US").format(
                                     new Date(trainingClass.endDate)
                                   )}
                                 </td>
 
                                 {/* DETAIL BUTTON */}
-                                <td className="px-6 py-4 justify-self-center">
+                                <td className="px-3 py-4 justify-self-center">
                                   <button
                                     onClick={() =>
                                       navigate(
                                         `/training-classes/${trainingClass.id}`
                                       )
-                                    }>
+                                    }
+                                    className="cursor-pointer text-violet-500 dark:text-yellow-300 transition duration-300 ease-in-out hover:scale-110 hover:-translate-y-0.5"
+                                    >
                                     <svg
                                       xmlns="http://www.w3.org/2000/svg"
                                       height="25"
                                       width="25"
                                       viewBox="0 0 512 512">
                                       <path
-                                        fill="#d0c5f2"
+                                        fill="currentColor"
                                         d="M0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM297 385c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l71-71L120 280c-13.3 0-24-10.7-24-24s10.7-24 24-24l214.1 0-71-71c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L409 239c9.4 9.4 9.4 24.6 0 33.9L297 385z"
                                       />
                                     </svg>
                                   </button>
                                 </td>
                               </tr>
-                            ) : null
+                            ) : (null)
                           )
                       )}
                     </tbody>
@@ -1015,7 +1015,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                     </div>
                   </div>
                 </div> */}
-              </div>
+              {/* </div> */}
             </div>
           </div>
 
