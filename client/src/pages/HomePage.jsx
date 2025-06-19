@@ -79,11 +79,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className={`${
-          storedTheme === "light"
-            ? "light-gray-church-bg"
-            : "dark-gray-church-bg"
-        }`}>
+      <div className={`${storedTheme === "light" ? "light-gray-church-bg" : "dark-gray-church-bg"}`}>
         <EnrollBanner />
         <ToastContainer />
         {/* <div className="w-1/12 h-7 bg-white rounded border-solid border border-black dark:bg-gray-700">

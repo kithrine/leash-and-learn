@@ -9,30 +9,26 @@ const ChatInterface = ({ setShowChatInterface }) => {
   const { user } = useSelector((state) => state.users)
   const { chats, chat, loading } = useSelector((state) => state.chat)
   const token = sessionStorage.getItem("token")
-  
-  
+
   if (!token && !sessionStorage.getItem("anonymousEmail")) {
     const anonymousEmail = window.crypto.randomUUID()
     console.log("anonymousEmail", anonymousEmail)
     sessionStorage.setItem("anonymousEmail", anonymousEmail)
   }
 
-  
-  
   const [chatForm, setChatForm] = useState({
     email: token ? user.email : sessionStorage.getItem("anonymousEmail"),
     prompt: "",
     model: "gemma2",
     date: new Date()
   })
-  
+
   useEffect(() => {
     console.log("chatForm useEffect", chatForm)
   }, [chatForm])
- 
+
   const [finalResponse, setFinalResponse] = useState("")
-  
-  
+
   useEffect(() => {
     if (token) {
       dispatch(getChatsByEmail(user.email))
@@ -45,14 +41,14 @@ const ChatInterface = ({ setShowChatInterface }) => {
       historyEnd.scrollIntoView({ behavior: "smooth" })
     }
   }, [chats])
-  
+
   const handleAIQuestion = async (e) => {
     e.preventDefault()
     console.log("chatForm", chatForm)
     // // If not logged in(no token)
     // if (!user.email && !token) {
     //   sessionStorage.setItem("anonymousEmail", anonymousEmail)
-    // } 
+    // }
     dispatch(addChat(chatForm))
     setChatForm({ ...chatForm, prompt: "" })
     setFinalResponse(chat.answer)
@@ -105,20 +101,20 @@ const ChatInterface = ({ setShowChatInterface }) => {
                         {chat.prompt !== "" && (
                           <>
                             {user.avatar ? (
-                    <img
-                      src={`${user.avatar}`}
-                      className="size-10 rounded-full"
-                    />
-                  ) : (
-                    <svg
-                    className="size-8 me-3 text-gray-200 dark:text-gray-700"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 20 20">
-                    <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
-                  </svg>
-                  )}
+                              <img
+                                src={`${user.avatar}`}
+                                className="size-10 rounded-full"
+                              />
+                            ) : (
+                              <svg
+                                className="size-8 me-3 text-gray-200 dark:text-gray-700"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                              </svg>
+                            )}
                             <div class="flex flex-col gap-1 w-full max-w-[320px]">
                               <div class="flex flex-row-reverse items-center gap-x-2 rtl:space-x-reverse">
                                 <span class="text-sm font-semibold text-gray-900 dark:text-white">
@@ -186,7 +182,6 @@ const ChatInterface = ({ setShowChatInterface }) => {
                     </div>
                   ))}
                   <div id="historyEnd" />
-
 
                   {/* <p className="font-bold font-palanquin tracking-wider text-lg">
                               {chat.prompt}

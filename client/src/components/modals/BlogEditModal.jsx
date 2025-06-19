@@ -67,7 +67,7 @@ const BlogEditModal = ({
   return (
     <>
       <div
-        id="updateProductModal"
+        id="updateBlogModal"
         tabIndex="-1"
         aria-hidden="true"
         className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
@@ -89,7 +89,7 @@ const BlogEditModal = ({
                 }}
                 type="button"
                 className="text-neutral-400 bg-transparent hover:bg-neutral-200 hover:text-neutral-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer"
-                data-modal-toggle="updateProductModal">
+                data-modal-toggle="updateBlogModal">
                 <svg
                   aria-hidden="true"
                   className="w-5 h-5"
