@@ -476,7 +476,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                   </div>
                 </div>
               ) : (
-                <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800 md:p-8 lg:mb-16">
+                <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800 md:p-8 lg:mb-16 drop-shadow-xl drop-shadow-neutral-300 dark:drop-shadow-black">
                   {/* Actually Pretty Good Cards for a future project - Save Somewhere! */}
                   {/* <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                       {user.dogs.map((dog, index) => (
@@ -762,7 +762,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                   trainingClass == null ? <div>Test</div> : null
                 )} */}
 
-                <div className="max-h-96 min-h-40 w-full relative overflow-x-hidden shadow-md sm:rounded-lg bg-white dark:bg-neutral-600 mb-16">
+                <div className="max-h-96 min-h-40 w-full relative overflow-x-hidden drop-shadow-xl drop-shadow-neutral-300 dark:drop-shadow-black sm:rounded-lg bg-white dark:bg-neutral-600 mb-16">
                   <table className="w-full text-sm text-left rtl:text-right text-neutral-600 dark:text-neutral-300 font-instrument">
                     <thead className="text-xs text-neutral-700 uppercase bg-violet-200 dark:bg-yellow-400 dark:text-neutral-900">
                       <tr>

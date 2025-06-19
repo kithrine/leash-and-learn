@@ -8,8 +8,10 @@ import {
   trainingClassGetManyByType
 } from "../redux/trainingClassSlice"
 import { toast } from "react-toastify"
+import { SiDatadog } from "react-icons/si"
+import * as motion from "motion/react-client"
 import DogAddModal from "../components/modals/DogAddModal"
-import StarBorder from "../components/reactbits+framer-motion/StarBorder"
+import UserDashboardFooter from "../components/footers/UserDashboardFooter"
 
 const EnrollForm = () => {
   const dispatch = useDispatch()
@@ -175,21 +177,21 @@ const EnrollForm = () => {
 
   return (
     <>
-      <section className="bg-white dark:bg-gray-900 min-h-[100vh] md:px-[13vw] mt-16">
-        <div className="py-8 px-4 mx-auto max-w-6xl lg:py-16  md:ml-[20vw]">
-          <h2 className="font-learn mb-4 text-6xl font-bold text-gray-900 dark:text-white tracking-wide">
+      <section className={`${storedTheme === "light" ? "light-kiwi-bg" : "dark-kiwi-bg"} min-h-[100vh] md:px-[13vw] mt-16`}>
+        <div className="py-8 px-4 mx-auto max-w-6xl lg:py-16  md:ml-[20vw] font-instrument animate__animated animate__fadeIn animate__slow">
+          <h2 className="font-lexend uppercase mb-4 text-4xl font-bold text-neutral-900 dark:text-white tracking-tighter">
             Training Class Enrollment Form
           </h2>
           <form onSubmit={handleEnroll}>
             <div className="">
               <div className="">
-                <h1 className="text-4xl font-palanquin-dark font-bold text-gray-800 dark:text-gray-100 underline underline-offset-4 pb-4 pt-10">Step 1: Choose a Class</h1>
+                <h1 className="text-3xl font-learn font-bold text-neutral-800 dark:text-neutral-100 underline underline-offset-8 pb-4 pt-4">Step 1: Choose a Class</h1>
               </div>
               {/* TYPE OF TRAINING/SERVICE */}
               <div>
                 <label
                   htmlFor="service-type"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  className="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">
                   Type of Training
                 </label>
                 <select
@@ -201,7 +203,7 @@ const EnrollForm = () => {
                     })
                   }
                   id="service-type"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-1/4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                  className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-1/4 p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                   <option defaultValue>Select type</option>
                   {/* {trainingClasses.map(type => (
                     <option value={type.trainingClassType}>{type.trainingClassType}</option>
@@ -214,26 +216,26 @@ const EnrollForm = () => {
                 </select>
               </div>
 
-              <div className="min-h-96 max-h-96 w-full my-8 relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <div className="min-h-96 max-h-96 w-full my-8 relative overflow-x-auto shadow-md sm:rounded-lg bg-white dark:bg-neutral-800 drop-shadow-xl drop-shadow-neutral-300 dark:drop-shadow-black">
+                <table className="w-full text-sm text-left rtl:text-right text-neutral-600 dark:text-neutral-300">
+                  <thead className="text-xs text-neutral-700 uppercase bg-violet-200 dark:bg-yellow-400 dark:text-neutral-900">
                     <tr>
-                      <th scope="col" className="px-6 py-3">
+                      <th scope="col" className="px-3 py-3">
                         Training Class Name
                       </th>
-                      <th scope="col" className="px-6 py-3">
+                      <th scope="col" className="px-3 py-3">
                         Type
                       </th>
-                      <th scope="col" className="px-6 py-3">
+                      <th scope="col" className="px-3 py-3">
                         Trainer
                       </th>
-                      <th scope="col" className="px-6 py-3">
+                      <th scope="col" className="px-3 py-3">
                         Start Date
                       </th>
-                      <th scope="col" className="px-6 py-3">
+                      <th scope="col" className="px-3 py-3">
                         End Date
                       </th>
-                      <th scope="col" className="px-6 py-3">
+                      <th scope="col" className="px-3 py-3">
                         Detail
                       </th>
                     </tr>
@@ -243,7 +245,7 @@ const EnrollForm = () => {
                       <tr
                         key={trainingClass.id}
                         onClick={() => handleRowClick(trainingClass.id)}
-                        className={`border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 ${selectedClass === trainingClass.id ? "bg-gray-200 dark:bg-slate-600" : "bg-white dark:bg-gray-800"}`}>
+                        className={`border-b dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-700 cursor-pointer ${selectedClass === trainingClass.id ? "bg-neutral-200 dark:bg-neutral-600" : "bg-white dark:bg-neutral-800"}`}>
                            {/* {selectedClass === trainingClass.id ? (
                             <span>Selected</span>
                           ) : (
@@ -251,35 +253,35 @@ const EnrollForm = () => {
                           )} */}
                         <th
                           scope="row"
-                          className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          className="px-3 py-4 font-medium text-neutral-900 whitespace-nowrap dark:text-white">
                           {trainingClass.trainingClassName}
                         </th>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-4">
                           {trainingClass.trainingClassType}
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-4">
                           {trainingClass.trainer.firstName}{" "}
                           {trainingClass.trainer.lastName}
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-4">
                           {new Intl.DateTimeFormat("en-US").format(
                             new Date(trainingClass.startDate)
                           )}
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-4">
                           {new Intl.DateTimeFormat("en-US").format(
                             new Date(trainingClass.endDate)
                           )}
                         </td>
 
                         {/* DETAIL BUTTON */}
-                        <td className="px-6 py-4 justify-self-center">
+                        <td className="px-3 py-4 justify-self-center">
                           <button
                             type="button"
                             onClick={() =>
                               navigate(`/training-classes/${trainingClass.id}`)
                             }
-                            className="cursor-pointer"
+                            className="cursor-pointer text-violet-500 dark:text-yellow-300 transition duration-300 ease-in-out hover:scale-110 hover:-tranneutral-y-0.5"
                             >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -287,7 +289,7 @@ const EnrollForm = () => {
                               width="25"
                               viewBox="0 0 512 512">
                               <path
-                                fill="#d0c5f2"
+                                fill="currentColor"
                                 d="M0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM297 385c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l71-71L120 280c-13.3 0-24-10.7-24-24s10.7-24 24-24l214.1 0-71-71c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L409 239c9.4 9.4 9.4 24.6 0 33.9L297 385z"
                               />
                             </svg>
@@ -301,7 +303,7 @@ const EnrollForm = () => {
             </div>
 
             <div className="">
-                <h1 className="text-4xl font-palanquin-dark font-bold text-gray-800 dark:text-gray-100 underline underline-offset-4 pb-4 pt-10">Step 2: Select a Dog</h1>
+                <h1 className="text-3xl font-learn font-bold text-neutral-800 dark:text-neutral-100 underline underline-offset-8 pb-4 pt-10">Step 2: Select a Dog</h1>
               </div>
 
 
@@ -312,7 +314,7 @@ const EnrollForm = () => {
                 <div
                   key={dog._id}
                   onClick={() => handleDogClick(dog._id)}
-                  class={`w-full max-h-[44vh] border rounded-lg shadow-sm p-2 hover:bg-gray-50 dark:hover:bg-gray-700 ${selectedDog === dog._id ? "bg-gray-200 dark:bg-slate-600 border-2 border-gray-600 dark:border-gray-400" : "bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-700"}`}>
+                  class={`w-full max-h-[42vh] border rounded-lg shadow-sm p-2 hover:bg-neutral-50 dark:hover:bg-neutral-700 drop-shadow-xl drop-shadow-neutral-300 dark:drop-shadow-black cursor-pointer ${selectedDog === dog._id ? "bg-neutral-200 dark:bg-neutral-600 border-2 border-neutral-600 dark:border-neutral-400" : "bg-white border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700"}`}>
 
                   {/* <button
                     type="button"
@@ -324,32 +326,31 @@ const EnrollForm = () => {
                       <span>Not selected</span>
                     )}
                   </button> */}
-                  <div class="flex flex-col items-center pb-10">
-                    {dog.photo ? (
-                      <img
-                        src={`${dog.photo}`}
-                        className="size-75 mb-3 rounded-full shadow-lg"
-                      />
-                    ) : (
-                      <div className="rounded-full size-75 shadow-lg p-4 flex flex-col items-center justify-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          height="78"
-                          viewBox="0 -960 960 960"
-                          width="78"
-                          fill="#666666">
-                          <path d="M194-80v-416h60v356h320v-223l102-102q30-30 46-68.5t16-80.5q0-42-16.5-80.5T676-762l-32-33-131 131H333l-53 53-43-42 71-71h180l156-156 75 75q38 38 58 87.5T798-614q-1 54-21 103.5T719-423l-85 85v258H194Zm187-215L180-496q-10-10-15-22.5t-5-26.5q0-14 5-27t15-23l77-78 117 116q27 27 41.5 61.5T430-423q0 35-12.5 68.5T381-295Z" />
-                        </svg>
-                        <p className="uppercase text-xs">
-                          upload an image of your dog!
-                        </p>
-                      </div>
-                    )}
+                  <div class="flex flex-col items-center pb-6">
+                  {dog.photo ? (
+                              <img
+                                src={`${dog.photo}`}
+                                className="size-75 mb-3 rounded-full shadow-lg"
+                              />
+                            ) : (
+                              <>
+                                <div className="rounded-full size-75 shadow-lg p-4 flex flex-col items-center justify-center bg-neutral-50 dark:bg-neutral-600 mb-3">
+                                  <SiDatadog
+                                    size={170}
+                                    className="text-neutral-800 dark:text-neutral-300"
+                                  />
 
-                    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+                                  <p className="uppercase text-xs text-black dark:text-white">
+                                    upload an image of your dog!
+                                  </p>
+                                </div>
+                              </>
+                            )}
+
+                    <h5 class="mb-1 text-xl font-bold font-lexend uppercase text-neutral-900 dark:text-white">
                       {dog.name}
                     </h5>
-                    {/* <span class="text-sm text-gray-500 dark:text-gray-400">
+                    {/* <span class="text-sm text-neutral-500 dark:text-neutral-400">
                       {dog.breed}
                     </span>
                     <div class="flex justify-between mt-4 md:mt-6">
@@ -393,23 +394,19 @@ const EnrollForm = () => {
 
             {/* ENROLL BUTTON */}
 
-            <StarBorder
-              as="button"
-              className="cursor-pointer"
-              color="cyan"
-              speed="5s"
-            >
-              Enroll
-            </StarBorder>
-            <button
+            <motion.button
               // disabled={submitDisabled}
               type="submit"
-              className="rounded-lg inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-gradient-to-br from-purple-400 to-fuchsia-300 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-purple-300">
-              Enroll
-            </button>
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="rounded-lg font-bold text-white dark:text-black bg-teal-400 hover:bg-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-300 text-sm px-5 py-2.5 mb-4 mt-1 text-center dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 cursor-pointer">
+              Enroll Now!
+            </motion.button>
           </form>
         </div>
       </section>
+
+      <UserDashboardFooter />
 
       {showAddDogModal && (
         <DogAddModal
