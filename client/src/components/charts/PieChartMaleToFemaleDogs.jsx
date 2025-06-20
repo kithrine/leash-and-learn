@@ -14,7 +14,8 @@ const data = [
   { name: "Female", value: 46 },
 ];
 
-const COLORS = ["#bcb3e0", "#e0b3cd", "#6d5542", "#beb09d"];
+const LIGHTCOLORS = ["#5eead4", "#c4b5fd", "#6d5542", "#beb09d"];
+const DARKCOLORS = ["#84cc16", "#facc15", "#6d5542", "#beb09d"];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
@@ -34,7 +35,8 @@ const renderCustomizedLabel = ({
     <text
       x={x}
       y={y}
-      fill="white"
+      fill="currentColor"
+      className="text-neutral-800 dark:text-neutral-800"
       textAnchor={x > cx ? "start" : "end"}
       dominantBaseline="central"
     >
@@ -43,8 +45,9 @@ const renderCustomizedLabel = ({
   );
 };
 const PieChartMaleToFemaleDogs = () => {
+  const storedTheme = localStorage.getItem("theme")
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer width="100%" height="100%" className="bg-white dark:bg-neutral-800">
       <PieChart width={400} height={400}>
         <Pie
           data={data}
@@ -57,7 +60,7 @@ const PieChartMaleToFemaleDogs = () => {
           dataKey="value"
         >
           {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            <Cell key={`cell-${index}`} fill={`${storedTheme === "light" ? LIGHTCOLORS[index % LIGHTCOLORS.length] : DARKCOLORS[index % DARKCOLORS.length]}`} />
           ))}
         </Pie>
         <Legend

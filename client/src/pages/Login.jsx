@@ -263,7 +263,7 @@ const Login = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       type="submit"
-                      className="w-full text-white bg-teal-400 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-500 transition-colors ease-in-out duration-200"
+                      className="w-full text-white bg-teal-400 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-500 transition-colors ease-in-out duration-200 cursor-pointer hover:cursor-pointer"
                       disabled={loading}
                     >
                       Sign in
@@ -272,7 +272,7 @@ const Login = () => {
                       Don’t have an account yet?{" "}
                       <Link
                         to="/sign-up"
-                        className="font-medium text-violet-600 hover:underline dark:text-yellow-400"
+                        className="font-medium text-violet-600 hover:underline dark:text-yellow-400 cursor-pointer"
                       >
                         Sign up
                       </Link>

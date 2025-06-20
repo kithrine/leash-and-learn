@@ -59,7 +59,7 @@ class CustomizedLabel extends PureComponent {
     const { x, y, stroke, value } = this.props;
 
     return (
-      <text x={x} y={y} dy={-4} fill={stroke} fontSize={10} textAnchor="middle">
+      <text x={x} y={y} dy={-4} fill="currentColor" className="text-neutral-700 dark:text-white" fontSize={10} textAnchor="middle">
         {value}
       </text>
     );
@@ -72,7 +72,7 @@ class CustomizedAxisTick extends PureComponent {
 
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={16} textAnchor="end" fill="#666" transform="rotate(-35)">
+        <text x={0} y={0} dy={16} textAnchor="end" fill="currentColor" className="text-neutral-700 dark:text-neutral-300" transform="rotate(-35)">
           {payload.value}
         </text>
       </g>
@@ -85,7 +85,7 @@ export default class Example extends PureComponent {
 
   render() {
     return (
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="100%" className="bg-white dark:bg-neutral-800 text-teal-400 dark:text-lime-500">
         <LineChart
           width={500}
           height={300}
@@ -98,11 +98,11 @@ export default class Example extends PureComponent {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" height={60} tick={<CustomizedAxisTick />} />
+          <XAxis dataKey="name" height={60} tick={<CustomizedAxisTick />} stroke="currentColor" className="text-neutral-700 dark:text-neutral-400" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="Number of Dogs" stroke="#beb09d" label={<CustomizedLabel />} />
+          <Line type="monotone" dataKey="Number of Dogs" stroke="currentColor" label={<CustomizedLabel />} />
        
         </LineChart>
       </ResponsiveContainer>
