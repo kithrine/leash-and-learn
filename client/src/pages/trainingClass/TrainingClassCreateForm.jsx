@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { trainingClassCreate } from "../../redux/trainingClassSlice";
 import { builderGetMany } from "../../redux/builderSlice";
-import BMSideNav from "../navigation/BMSideNav";
-import TrainingClassCreateConfirmationModal from "../modals/TrainingClassCreateConfirmationModal";
-import DashboardFooter from "../footers/DashboardFooter";
+import BMSideNav from "../../components/navigation/BMSideNav";
+import TrainingClassCreateConfirmationModal from "../../components/modals/TrainingClassCreateConfirmationModal";
+import DashboardFooter from "../../components/footers/DashboardFooter";
 // import { DatePicker } from "react-datepicker"
 // import 'react-datepicker/dist/react-datepicker.css';
 

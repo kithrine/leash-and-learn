@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import TrainingClassCreateForm from '../components/BM/TrainingClassCreateForm';
+import TrainingClassCreateForm from '../pages/trainingClass/TrainingClassCreateForm';
 import DashboardFooter from '../components/footers/DashboardFooter';
 
 
