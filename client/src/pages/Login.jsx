@@ -62,7 +62,7 @@ const Login = () => {
     <>
       {!loading ? (
         <>
-          <section className={`dark:bg-gray-900 pt-30 pb-15 ${storedTheme === "light" ? "light-gray-moroccan-bg" : "dark-gray-moroccan-bg"} transition-colors ease-in-out duration-200`}>
+          <section className={`dark:bg-gray-900 pt-30 pb-15 ${storedTheme === "light" ? "light-gray-moroccan-bg" : "dark-gray-moroccan-bg"} transition-colors ease-in-out duration-200 font-instrument`}>
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[78vh] lg:py-0">
               <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-neutral-800 dark:border-neutral-700 drop-shadow-2xl dark:drop-shadow-black transition-colors ease-in-out duration-200">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -151,7 +151,7 @@ const Login = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       type="submit"
-                      className="w-full text-white bg-teal-400 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-500 transition-colors ease-in-out duration-200"
+                      className="w-full text-white dark:text-black bg-teal-400 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 transition-colors ease-in-out duration-200"
                       disabled={loading}
                     >
                       Sign in
@@ -174,7 +174,7 @@ const Login = () => {
       ) : (
         // ***** IF LOADING
         <>
-        <section className={`dark:bg-gray-900 pt-30 pb-15 ${storedTheme === "light" ? "light-gray-moroccan-bg" : "dark-gray-moroccan-bg"} transition-colors ease-in-out duration-200`}>
+        <section className={`dark:bg-gray-900 pt-30 pb-15 ${storedTheme === "light" ? "light-gray-moroccan-bg" : "dark-gray-moroccan-bg"} transition-colors ease-in-out duration-200 font-instrument`}>
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[78vh] lg:py-0">
               <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-neutral-800 dark:border-neutral-700 drop-shadow-2xl dark:drop-shadow-black transition-colors ease-in-out duration-200">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -263,7 +263,7 @@ const Login = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       type="submit"
-                      className="w-full text-white bg-teal-400 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-500 transition-colors ease-in-out duration-200 cursor-pointer hover:cursor-pointer"
+                      className="w-full text-white dark:text-black bg-teal-400 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 transition-colors ease-in-out duration-200 cursor-pointer hover:cursor-pointer"
                       disabled={loading}
                     >
                       Sign in

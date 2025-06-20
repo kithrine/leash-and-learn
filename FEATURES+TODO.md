@@ -188,9 +188,9 @@ Training Class Detail page
 - [x] logic for showing the buttons depending on role
 - [x] move the file into a different folder, called "trainingClass"
 
-Navbar
+Navigations
 - [ ] add Enroll Link at the top
-- [ ] Need to do light/dark mode active links and hover colors
+- [ ] Need to do light/dark mode ACTIVE links and hover colors on the BM/Trainer SideNav and the User SideNav
 
 Under Construction page for the Company Blog
 - [ ] make one

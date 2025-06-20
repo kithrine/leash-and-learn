@@ -26,7 +26,7 @@ const BMTrainerSideNav = ({loggedInEmail}) => {
 
   return (
     <aside
-      className="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-neutral-200 md:translate-x-0 dark:bg-neutral-800 dark:border-neutral-700 font-instrument"
+      className="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-neutral-200 md:translate-x-0 dark:bg-neutral-800 dark:border-neutral-700 font-instrument animate__animated animate__slideInUp"
       aria-label="Sidenav"
       id="drawer-navigation"
     >
@@ -134,7 +134,7 @@ const BMTrainerSideNav = ({loggedInEmail}) => {
               <FaClipboardList size={25} className="text-teal-400 dark:text-lime-400" />
 
               <span className="flex-1 ml-3 whitespace-nowrap">Training Classes</span> 
-              <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-xs font-medium text-violet-600 bg-neutral-200 rounded-full dark:bg-neutral-900 dark:text-yellow-400">{trainingClasses.length}</span>
+              <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-xs font-medium text-neutral-800 bg-neutral-200 rounded-full dark:bg-neutral-900 dark:text-neutral-200">{trainingClasses.length}</span>
 
             </Link>
           </li>
@@ -159,7 +159,7 @@ const BMTrainerSideNav = ({loggedInEmail}) => {
 
               <svg className="text-teal-400 dark:text-lime-400" xmlns="http://www.w3.org/2000/svg" height="25" width="25" viewBox="0 0 512 512"><path fill="currentColor" d="M215.4 96L144 96l-36.2 0L96 96l0 8.8L96 144l0 40.4 0 89L.2 202.5c1.6-18.1 10.9-34.9 25.7-45.8L48 140.3 48 96c0-26.5 21.5-48 48-48l76.6 0 49.9-36.9C232.2 3.9 243.9 0 256 0s23.8 3.9 33.5 11L339.4 48 416 48c26.5 0 48 21.5 48 48l0 44.3 22.1 16.4c14.8 10.9 24.1 27.7 25.7 45.8L416 273.4l0-89 0-40.4 0-39.2 0-8.8-11.8 0L368 96l-71.4 0-81.3 0zM0 448L0 242.1 217.6 403.3c11.1 8.2 24.6 12.7 38.4 12.7s27.3-4.4 38.4-12.7L512 242.1 512 448s0 0 0 0c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64c0 0 0 0 0 0zM176 160l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
               <span className="flex-1 ml-3">Inbox</span>
-              <span className="float-right inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-xs font-medium text-violet-600 bg-neutral-200 rounded-full dark:bg-neutral-900 dark:text-yellow-400">{contacts.length}</span>
+              <span className="float-right inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-xs font-medium text-neutral-800 bg-neutral-200 rounded-full dark:bg-neutral-900 dark:text-neutral-200">{contacts.length}</span>
               {/* Light Mode without color accents looks really good too BELOW */}
               {/* <span className="float-right inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-xs font-medium text-neutral-800 bg-neutral-300 rounded-full dark:bg-neutral-900 dark:text-yellow-400">{contacts.length}</span> */}
             </Link>
@@ -171,13 +171,13 @@ const BMTrainerSideNav = ({loggedInEmail}) => {
         >
           
           <li>
-            <Link
-              to="/login"
-              className="flex items-center p-2 text-base font-medium text-neutral-900 rounded-lg transition duration-75 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:text-white group"
+            <div
+              // to="/login"
+              className="flex items-center p-2 text-base font-medium text-neutral-900 rounded-lg transition duration-75 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:text-white group cursor-pointer"
             >
               <svg className="text-teal-400 dark:text-lime-400" xmlns="http://www.w3.org/2000/svg" height="25" width="25" viewBox="0 0 512 512"><path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z"/></svg>
               <span onClick={handleLogout} className="ml-3">Logout</span>
-            </Link>
+            </div>
           </li>
         
         </ul>

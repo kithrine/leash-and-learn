@@ -3,6 +3,7 @@ import { Navigate, Outlet } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { trainingClassGetAll, trainingClassGetMany } from "../redux/trainingClassSlice";
 import { contactGetAll } from "../redux/contactSlice";
+import { userGetOne } from "../redux/userSlice";
 import BMTrainerSideNav from "../components/navigation/BMTrainerSideNav";
 import UserSideNav from "../components/navigation/UserSideNav";
 
@@ -16,17 +17,18 @@ const DashboardSideNavLayout = () => {
   
   useEffect(() => {
     console.log("$$$$$$$$$$ testing userID", userId)
+  }, [])
 
+  useEffect(() => {
+    dispatch(userGetOne(loggedInEmail))
   }, [])
   
-
   useEffect(() => {
     // console.log("user", user)
     if (user.role.includes("Business Manager")) {
       dispatch(trainingClassGetAll())
-    } else {
+    } else if (user.role.includes("Trainer")) {
       dispatch(trainingClassGetMany(user.username))
-    
     }
   }, [])
 
