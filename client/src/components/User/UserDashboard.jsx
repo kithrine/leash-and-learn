@@ -330,9 +330,14 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                       <dt className="font-semibold text-neutral-900 dark:text-white tracking-wider">
                         Phone Number
                       </dt>
+                      {user.phoneNumber !== "" ? (
                       <dd className="text-neutral-500 dark:text-neutral-300">
                         {user.phoneNumber}
-                      </dd>
+                      </dd>) : (
+                        <p className="text-neutral-500 dark:text-neutral-300 font-thin">
+                        Edit your profile details to add your phone number!
+                      </p>
+                      )}
                     </dl>
                     {/* <dl>
                   <dt className="font-semibold text-neutral-900 dark:text-white">
@@ -765,7 +770,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                 <div className="max-h-96 min-h-40 w-full relative overflow-x-hidden drop-shadow-xl drop-shadow-neutral-300 dark:drop-shadow-black sm:rounded-lg bg-white dark:bg-neutral-600 mb-16">
                   <table className="w-full text-sm text-left rtl:text-right text-neutral-600 dark:text-neutral-300 font-instrument">
                     <thead className="text-xs text-neutral-700 uppercase bg-violet-200 dark:bg-yellow-400 dark:text-neutral-900">
-                      <tr>
+                      <tr className="tracking-wider">
                         <th scope="col" className="px-3 py-3">
                           Training Class Name
                         </th>

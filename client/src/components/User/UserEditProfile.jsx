@@ -7,6 +7,7 @@ import { updateAvatar } from "../../redux/userSlice"
 import { toast } from "react-toastify"
 import * as motion from "motion/react-client"
 import UserDashboardFooter from "../footers/UserDashboardFooter"
+import DashboardFooter from "../footers/DashboardFooter"
 
 const UserEditProfile = () => {
   const dispatch = useDispatch()
@@ -161,7 +162,7 @@ const UserEditProfile = () => {
       </div> */}
           {/* {user.firstName} {user.address} */}
 
-          <div className="mx-auto max-w-screen-lg px-4 2xl:px-0 md:ml-[20vw]">
+          <div className={`mx-auto max-w-screen-lg px-4 2xl:px-0 ${user.role.includes("User") ? "md:ml-[20vw]" : "md:ml-64"}`}>
             <div className="mx-auto max-w-2xl text-center animate__animated animate__fadeIn">
               <h2 className="text-balance text-4xl pt-2 font-bold font-lexend uppercase tracking-tight text-neutral-900 dark:text-white md:text-4xl md:leading-3">
                 Edit Profile
@@ -201,8 +202,8 @@ const UserEditProfile = () => {
                       xmlns="http://www.w3.org/2000/svg"
                       width="40"
                       height="40"
-                      fill="#708090"
-                      class="bi bi-person-circle"
+                      fill="currentColor"
+                      class="bi bi-person-circle text-neutral-300 dark:text-neutral-600"
                       viewBox="0 0 16 16">
                       <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                       <path
@@ -519,7 +520,11 @@ const UserEditProfile = () => {
         </div>
       </section>
 
-      <UserDashboardFooter />
+      {user.role.includes("User") ? (
+        <UserDashboardFooter />
+      ) : (
+        <DashboardFooter />
+      )}
     </>
   )
 }

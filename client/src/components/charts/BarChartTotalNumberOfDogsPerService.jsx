@@ -13,27 +13,27 @@ import {
 const data = [
   {
     name: "Basic Obedience",
-    "Number of Dogs": 105,
+    "Number of Dogs": 108,
   },
   {
     name: "Behavior Modification",
-    "Number of Dogs": 38,
+    "Number of Dogs": 121,
   },
   {
     name: "Puppy Socialization",
-    "Number of Dogs": 68,
+    "Number of Dogs": 86,
   },
   {
     name: "Agility",
-    "Number of Dogs": 87,
+    "Number of Dogs": 97,
   },
   {
     name: "Advanced Obedience",
-    "Number of Dogs": 42,
+    "Number of Dogs": 72,
   },
   {
     name: "Service & Therapy Dog",
-    "Number of Dogs": 21,
+    "Number of Dogs": 51,
   },
 ];
 
