@@ -225,6 +225,9 @@ FOOTER
 DARK MODE TOASTS
 - [ ] ctrl+f globally for toast, and copy paste for dark mode toasts anywhere there is a toast
 
+BUTTONS
+- [ ] disabled icon once a button is clicked and it is loading so a user can't spam click
+
 FONTS
 - [ ] Add Instrument Sans EVERYWHEREEEEEEEEEEEEEEEE
 

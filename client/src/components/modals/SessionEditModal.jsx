@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import * as motion from "motion/react-client"
+
 
 import {
   trainingClassGetOne,
@@ -91,13 +93,15 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
 
   return (
     <>
-      <button
+      <motion.button
         onClick={() => handleSessionEditModal(session)}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         type="button"
-        className="text-black bg-gradient-to-r from-green-400 to-lime-400 hover:bg-gradient-to-l hover:from-green-400 hover:to-lime-400 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[10vw]"
+        className="text-black bg-gradient-to-r from-green-400 to-lime-400 hover:bg-gradient-to-l hover:from-green-400 hover:to-lime-400 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[5vw] cursor-pointer"
       >
         Edit
-      </button>
+      </motion.button>
 
       {showEditSessionModal && (
         <div

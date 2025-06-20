@@ -37,9 +37,7 @@ const BMTrainerDashboard = ({ loggedInEmail }) => {
   return (
     <>
       <div
-        className={`antialiased ${
-          storedTheme === "light" ? "light-marble-bg" : "dark-marble-bg"
-        }`}>
+        className={`antialiased ${storedTheme === "light" ? "light-marble-bg" : "dark-marble-bg"}`}>
         <main className="p-4 md:ml-64 h-auto pt-24 animate__animated animate__fadeIn animate__slower transition duration-200 ease-in-out">
           {/* BUSINESS MANAGER GRADIENT TEXT - LIGHT/DARK MODE */}
           {storedTheme === "light" && user.role.includes("Business Manager") ? (
