@@ -14,19 +14,19 @@ const DashboardLayout = () => {
   const dispatch = useDispatch()
   const { trainingClasses } = useSelector((state) => state.trainingClass);
   const { user } = useSelector(state => state.auth)
-  console.log("Dashboard user:", user)
+  // console.log("Dashboard user:", user)
 
   // console.log("user.email", user.email)
   const loggedInEmail = user.email
   const userId = user.id
 
-  if (user.role.includes("Business Manager")) {
-    // console.log("Business Manager")
-  } else if (user.role.includes("Trainer")) {
-    // console.log("Trainer")
-  } else {
-    // console.log("User")
-  }
+  // if (user.role.includes("Business Manager")) {
+  //   // console.log("Business Manager")
+  // } else if (user.role.includes("Trainer")) {
+  //   // console.log("Trainer")
+  // } else {
+  //   // console.log("User")
+  // }
 
   useEffect(() => {
     // console.log("user", user)

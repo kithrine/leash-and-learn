@@ -1,14 +1,9 @@
 import { useEffect } from "react";
 import { Navigate, Outlet } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import BMDashboard from '../components/BM/BMDashboard';
-import TrainerDashboard from '../components/Trainer/TrainerDashboard';
-import TrainerSideNav from "../components/navigation/TrainerSideNav";
-import UserDashboard from "../components/User/UserDashboard";
-import DashboardFooter from '../components/footers/DashboardFooter';
-import BMSideNav from "../components/navigation/BMSideNav";
 import { trainingClassGetAll, trainingClassGetMany } from "../redux/trainingClassSlice";
 import { contactGetAll } from "../redux/contactSlice";
+import BMTrainerSideNav from "../components/navigation/BMTrainerSideNav";
 import UserSideNav from "../components/navigation/UserSideNav";
 
 const DashboardSideNavLayout = () => {
@@ -51,14 +46,14 @@ const DashboardSideNavLayout = () => {
       {user.role.includes("Business Manager") && (
         <>
           {/* <BMDashboard /> */}
-          <BMSideNav loggedInEmail={loggedInEmail} />
+          <BMTrainerSideNav loggedInEmail={loggedInEmail} />
         </>
       )}
 
       {user.role.includes("Trainer") && (
         <>
           {/* <TrainerDashboard /> */}
-          <TrainerSideNav loggedInEmail={loggedInEmail} />
+          <BMTrainerSideNav loggedInEmail={loggedInEmail} />
         </>
       )}
 
