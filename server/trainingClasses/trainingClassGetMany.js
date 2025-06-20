@@ -3,7 +3,7 @@ import trainingClassModel from "./trainingClassModel.js"
 const trainingClassGetMany =  async (req, res) => {
 
   const { username } = req.params
-  console.log("username", username)
+  // console.log("username", username)
   // Validation
   // ** ONE THAT WORKS FOR TRAINERS! **
   if (!username || username === "") {
@@ -11,7 +11,7 @@ const trainingClassGetMany =  async (req, res) => {
   } 
   else {
     const getTrainingClasses = await trainingClassModel.find({ $or: [{"users.username": username}, {"trainer.username": username }] })
-    console.log("getTrainingClasses", getTrainingClasses)
+    // console.log("getTrainingClasses", getTrainingClasses)
     res.status(200).json({ "success": true, "trainingClasses": getTrainingClasses })
   }
 

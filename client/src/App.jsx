@@ -14,7 +14,7 @@ import ContactUs from "./pages/ContactUs"
 import FAQ from "./pages/FAQ"
 import DashboardSideNavLayout from "./layouts/DashboardSideNavLayout"
 import DashboardLayout from "./layouts/DashboardLayout"
-import TrainingClasses from "./layouts/TrainingClasses"
+import TrainingClassesLayout from "./layouts/TrainingClassesLayout"
 import TrainingClassDetail from "./pages/trainingClass/TrainingClassDetail"
 import CreateForm from "./layouts/CreateForm"
 import Inbox from "./pages/inbox/Inbox"
@@ -117,7 +117,7 @@ function App() {
           <Route element={<DashboardSideNavLayout />}>
             <Route path="/dashboard" element={<DashboardLayout />} />
             <Route path="/user/:id" element={<UserEditProfile />} />
-            <Route path="/training-classes" element={<TrainingClasses />} />
+            <Route path="/training-classes" element={<TrainingClassesLayout />} />
             <Route path="/training-classes/:id" element={<TrainingClassDetail />} />
             <Route path="/create-training-class" element={<CreateForm />} />
             <Route path="/inbox" element={<Inbox />} />

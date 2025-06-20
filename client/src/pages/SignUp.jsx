@@ -78,7 +78,7 @@ const SignUp = ({ users }) => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-neutral-900 md:text-2xl dark:text-white font-lexend uppercase text-center">
                 Create an account
               </h1>
-              <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+              <form className="space-y-4 md:space-y-6 font-instrument" onSubmit={handleSubmit}>
                 <div className="flex flex-row space-x-5">
                   <div>
                     <label
@@ -243,7 +243,7 @@ const SignUp = ({ users }) => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   type="submit"
-                  className="w-full text-white bg-teal-400 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-500 transition-colors ease-in-out duration-200">
+                  className="w-full text-white dark:text-black bg-teal-400 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 transition-colors ease-in-out duration-200">
                   Create an account
                 </motion.button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">

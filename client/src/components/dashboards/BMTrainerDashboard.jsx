@@ -40,7 +40,7 @@ const BMTrainerDashboard = ({ loggedInEmail }) => {
         className={`antialiased ${
           storedTheme === "light" ? "light-marble-bg" : "dark-marble-bg"
         }`}>
-        <main className="p-4 md:ml-64 h-auto pt-24 animate__animated animate__fadeIn animate__slow transition duration-200 ease-in-out">
+        <main className="p-4 md:ml-64 h-auto pt-24 animate__animated animate__fadeIn animate__slower transition duration-200 ease-in-out">
           {/* BUSINESS MANAGER GRADIENT TEXT - LIGHT/DARK MODE */}
           {storedTheme === "light" && user.role.includes("Business Manager") ? (
             <GradientText
@@ -286,7 +286,7 @@ const BMTrainerDashboard = ({ loggedInEmail }) => {
                   {trainingClasses.map((trainingClass, index) => (
                     <tr
                       key={index}
-                      className="bg-white border-b dark:bg-neutral-800 dark:border-neutral-700">
+                      className="bg-white border-b dark:bg-neutral-800 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-700">
                       <th
                         scope="row"
                         className="px-3 py-4 font-medium text-neutral-900 whitespace-nowrap dark:text-white">
