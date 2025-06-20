@@ -22,6 +22,7 @@ const TrainingClassDetail = () => {
   const { user } = useSelector((state) => state.auth)
   const { trainingClass } = useSelector((state) => state.trainingClass)
 
+  const [showTrainingClassEditModal, setShowTrainingClassEditModal] = useState(false)
   const [showSessionAddModal, setShowSessionAddModal] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [sessionToDelete, setSessionToDelete] = useState({})
@@ -189,6 +190,20 @@ const TrainingClassDetail = () => {
                       </dd>
                     )}
                   </div>
+                  {/* Button to Edit the Overview Details */}
+                    {user.role.includes("Business Manager") && (
+                      <div className="justify-self-center">
+                      <motion.button
+        onClick={() => setShowTrainingClassEditModal(true)}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        type="button"
+        className="w-[5vw] justify-self-center text-black bg-gradient-to-r from-green-400 to-lime-400 hover:bg-gradient-to-l hover:from-green-400 hover:to-lime-400 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 mt-4 cursor-pointer "
+        >
+        Edit
+      </motion.button>
+        </div>
+                    )}
                 </div>
               </div>
             </div>
@@ -551,6 +566,8 @@ const TrainingClassDetail = () => {
           </div>
         )}
       </div>
+      {showTrainingClassEditModal && (<TrainingClassEditModal setShowTrainingClassEditModal={setShowTrainingClassEditModal} />)}
+
       {user.role.includes("User") ? (
         <UserDashboardFooter />
       ) : (
