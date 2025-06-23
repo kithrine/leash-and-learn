@@ -302,7 +302,7 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
                 onClick={toggleTheme}
                 className={`p-2 transition-colors duration-500 rounded-full 
                bg-neutral-200 hover:bg-neutral-300
-             dark:bg-neutral-500 dark:hover:bg-neutral-700`}>
+             dark:bg-neutral-500 dark:hover:bg-neutral-700 cursor-pointer`}>
               {theme === "dark" ? (
                 <SunIcon className="w-6 h-6" />
               )

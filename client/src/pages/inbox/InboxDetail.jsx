@@ -15,6 +15,8 @@ const InboxDetail = () => {
   const [messageToDelete, setMessageToDelete] = useState({})
   const [showMessageDeleteModal, setShowMessageDeleteModal] = useState(false)
 
+  const storedTheme = localStorage.getItem("theme")
+
   useEffect(() => {
     console.log("Getting one message on Inbox Detail page")
     dispatch(getOneContact(id))
@@ -30,23 +32,32 @@ const InboxDetail = () => {
   const handleDeleteMessage = (id) => {
     dispatch(contactDelete(id))
     setShowMessageDeleteModal(false)
-    toast.success("Message deleted successfully!")
+    if (storedTheme === "dark") {
+      toast.warning("Message was deleted.", {
+        theme: "dark",
+        className: "font-instrument mt-14"
+      })
+    } else {
+      toast.warning("Message was deleted.", {
+        className: "font-instrument mt-14"
+      })
+    }
     navigate("/inbox")
 
   }
 
   return (
     <>
-      <section class="bg-white dark:bg-gray-900 min-h-[89.5vh]">
-        <div class="py-8 mt-10 px-4 mx-auto max-w-2xl lg:py-16">
-          <div className="flex flex-row gap-x-3 py-3">
+      <section class={`min-h-[89.5vh] font-instrument ${storedTheme === "light" ? "light-stars-bg" : "dark-stars-bg"} md:ml-36`}>
+        <div class="py-8 mt-10 px-4 mx-auto max-w-2xl lg:py-16 animate__animated animate__fadeInRight animate__slow">
+          <div className="flex flex-row gap-x-3 py-3 text-neutral-600 dark:text-neutral-300">
             <svg
               onClick={() => navigate("/inbox")}
               xmlns="http://www.w3.org/2000/svg"
               width="26"
               height="26"
               fill="currentColor"
-              class="bi bi-arrow-left-circle transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 cursor-pointer"
+              class="bi bi-arrow-left-circle transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 cursor-pointer hover:text-teal-500 dark:hover:text-yellow-400"
               viewBox="0 0 16 16">
               <path
                 fill-rule="evenodd"
@@ -62,19 +73,19 @@ const InboxDetail = () => {
               width="26"
               height="26"
               fill="currentColor"
-              class="bi bi-trash3 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 cursor-pointer"
+              class="bi bi-trash3 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 cursor-pointer hover:text-red-500"
               viewBox="0 0 16 16">
               <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
             </svg>
           </div>
-          <h2 class="mb-2 text-xl font-extrabold leading-none text-gray-900 md:text-2xl dark:text-white">
+          <h2 class="mb-2 text-xl font-extrabold leading-none text-neutral-900 md:text-2xl dark:text-white font-palanquin-dark tracking-wider">
             {contact.subject}
           </h2>
           <div className="flex justify-between">
-            <p class="mb-4 text-xl font-semibold leading-none text-gray-900 md:text-xl dark:text-white">
+            <p class="mb-4 text-xl font-semibold leading-none text-neutral-900 md:text-lg dark:text-white">
               {contact.firstName} {contact.lastName}
             </p>
-            <dt class="mb-2 leading-none text-gray-900 dark:text-white items-center content-center">
+            <dt class="mb-2 leading-none text-neutral-900 dark:text-white items-center content-center">
               {new Date(contact.date).toLocaleString("en-US", {
                 year: "numeric",
                 month: "long",
@@ -86,22 +97,22 @@ const InboxDetail = () => {
             </dt>
           </div>
           <dl>
-            <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">
+            <dd class="mb-4 font-light text-neutral-700 sm:mb-5 dark:text-neutral-200">
               <Markdown>{contact.message}</Markdown>
             </dd>
           </dl>
-          <dl class="flex items-center space-x-6">
+          <dl class="flex items-center space-x-6 tracking-wider">
             <div>
-              <dt class="mb-4 font-semibold leading-none text-gray-900 dark:text-white">
+              <dt class="mb-4 font-semibold leading-none text-neutral-900 dark:text-white">
                 {contact.email}
               </dt>
-              {/* <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">Electronics/PC</dd> */}
+              {/* <dd class="mb-4 font-light text-neutral-500 sm:mb-5 dark:text-neutral-400">Electronics/PC</dd> */}
             </div>
             <div>
-              <dt class="mb-4 font-semibold leading-none text-gray-900 dark:text-white">
+              <dt class="mb-4 font-semibold leading-none text-neutral-900 dark:text-white">
                 {contact.phone}
               </dt>
-              {/* <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">12kg</dd> */}
+              {/* <dd class="mb-4 font-light text-neutral-500 sm:mb-5 dark:text-neutral-400">12kg</dd> */}
             </div>
           </dl>
           {/* <div class="flex items-center space-x-4">
