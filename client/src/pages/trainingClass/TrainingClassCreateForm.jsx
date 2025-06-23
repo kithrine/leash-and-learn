@@ -1,14 +1,13 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { trainingClassCreate } from "../../redux/trainingClassSlice";
-import { builderGetMany } from "../../redux/builderSlice";
-import BMSideNav from "../../components/navigation/BMSideNav";
-import TrainingClassCreateConfirmationModal from "../../components/modals/TrainingClassCreateConfirmationModal";
-import DashboardFooter from "../../components/footers/DashboardFooter";
+import { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router"
+import { trainingClassCreate } from "../../redux/trainingClassSlice"
+import { builderGetMany } from "../../redux/builderSlice"
+import * as motion from "motion/react-client"
+import TrainingClassCreateConfirmationModal from "../../components/modals/TrainingClassCreateConfirmationModal"
+import DashboardFooter from "../../components/footers/DashboardFooter"
 // import { DatePicker } from "react-datepicker"
 // import 'react-datepicker/dist/react-datepicker.css';
-
 
 const TrainingClassCreateForm = () => {
   const [trainingClass, setTrainingClass] = useState({
@@ -17,39 +16,33 @@ const TrainingClassCreateForm = () => {
     trainingClassName: "",
     trainingClassDescription: "",
     startDate: "",
-    endDate: "",
-  });
-  const [showModal, setShowModal] = useState(false);
-  const [submitDisabled, setSubmitDisabled] = useState(false);
-  const { loading } = useSelector((state) => state.trainingClass);
-  const { builders } = useSelector((state) => state.builder);
-  const dispatch = useDispatch();
+    endDate: ""
+  })
+  const [showSuccessModal, setShowSuccessModal] = useState(false)
+  const [submitDisabled, setSubmitDisabled] = useState(false)
+  const { loading } = useSelector((state) => state.trainingClass)
+  const { builders } = useSelector((state) => state.builder)
+  const dispatch = useDispatch()
+
+  const storedTheme = localStorage.getItem("theme")
 
   useEffect(() => {
     dispatch(builderGetMany())
   }, [])
-  
-  useEffect(() => {
-    // console.log("builders", builders);
-  }, [builders]);
 
-  useEffect(() => {
-    // console.log("trainingClass", trainingClass);
-  }, [trainingClass]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log("handleSubmit");
+  const handleTrainingClassCreate = (e) => {
+    e.preventDefault()
+    // console.log("handleTrainingClassCreate");
     // Validation
-    dispatch(trainingClassCreate(trainingClass));
-    setShowModal(true);
-    setSubmitDisabled(true);
-  };
+    dispatch(trainingClassCreate(trainingClass))
+    setShowSuccessModal(true)
+    setSubmitDisabled(true)
+  }
 
   const getTrainer = (type) => {
     // let trainer = ""
     // switch (type) {
-    //   case "Basic Obedience" : 
+    //   case "Basic Obedience" :
     //     trainer = "Megan Alexander"
     //   case "Behavior Modification" :
     //     trainer = "Katherine Finch"
@@ -64,146 +57,126 @@ const TrainingClassCreateForm = () => {
     // }
     // return trainer
     // console.log(builders.filter(builder => builder.trainingClassType === type))
-    let trainingClass = builders.filter(builder => builder.trainingClassType === type)[0]
+    let trainingClass = builders.filter(
+      (builder) => builder.trainingClassType === type
+    )[0]
     // console.log(trainingClass)
     return `${trainingClass.trainer.firstName} ${trainingClass.trainer.lastName}`
   }
 
-
   return (
     <>
-      <section className="bg-white dark:bg-gray-900 min-h-[89.5vh]">
-        <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-          <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
-            Add A New Dog Training Class
-          </h2>
-          <form onSubmit={handleSubmit}>
-            <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-              {/* TYPE OF TRAINING/SERVICE */}
-              <div>
-                <label
-                  htmlFor="service-type"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Type of Training
-                </label>
-                <select
-                  value={trainingClass.trainingClassType}
-                  onChange={(e) =>
-                    setTrainingClass({
-                      ...trainingClass,
-                      trainingClassType: e.target.value,
-                      trainer: getTrainer(e.target.value)
-                    })
-                  }
-                  id="service-type"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                >
-                  <option defaultValue>Select type</option>
-                  {builders.map(type => (
-                    <option value={type.trainingClassType}>{type.trainingClassType}</option>
-                  ))}
-                  {/* <option value="Basic Obedience">Basic Obedience</option>
-                  <option value="Behavior Modification">
-                    Behavior Modification
-                  </option>
-                  <option value="Puppy Socialization">
-                    Puppy Socialization
-                  </option>
-                  <option value="Agility">Agility</option>
-                  <option value="Advanced Obedience">Advanced Obedience</option>
-                  <option value="Service & Therapy Dog Training">
-                    Service & Therapy Dog Training
-                  </option> */}
-                </select>
-              </div>
+      <section
+        className={`mt-16 py-8 antialiased md:py-8 ${
+          storedTheme === "light" ? "light-melt-bg" : "dark-melt-bg"
+        }`}>
+        <div className="md:ml-64">
+          <div className={`mx-auto max-w-screen-lg px-4 2xl:px-0 "`}>
+            <div className="mx-auto max-w-full text-center animate__animated animate__fadeIn animate__slower">
+              <h2 className="text-balance text-4xl pt-2 font-bold font-lexend uppercase tracking-tight text-neutral-900 dark:text-white md:text-4xl pb-6">
+                Create A New Dog Training Class
+              </h2>
+              {/* <p className="mt-2 text-lg/8 text-violet-600 dark:text-yellow-400 font-instrument">
+                Edit details of your profile
+              </p>
+               */}
+            </div>
+            <form
+              onSubmit={handleTrainingClassCreate}
+              className="mb-10 mx-auto md:mt-2 max-w-2xl bg-white dark:bg-neutral-800 px-10 py-10 rounded-2xl drop-shadow-xl drop-shadow-neutral-300 dark:drop-shadow-black font-instrument animate__animated animate__fadeInUp">
+              <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                <div className="sm:col-span-2 md:col-span-1">
+                  {/* TYPE OF TRAINING/SERVICE */}
+                  <label
+                    htmlFor="service-type"
+                    className="block text-sm/6 font-semibold text-neutral-900 dark:text-neutral-100 tracking-wider">
+                    Type of Training
+                  </label>
+                  <div className="flex items-center gap-x-2 mt-2.5">
+                    <select
+                      value={trainingClass.trainingClassType}
+                      onChange={(e) =>
+                        setTrainingClass({
+                          ...trainingClass,
+                          trainingClassType: e.target.value,
+                          trainer: getTrainer(e.target.value)
+                        })
+                      }
+                      id="service-type"
+                      className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                      <option defaultValue>Select type</option>
+                      {builders.map((type) => (
+                        <option value={type.trainingClassType}>
+                          {type.trainingClassType}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
 
-              {/* ASSIGN TRAINER */}
-              <div>
-                <label
-                  htmlFor="category"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Assign Trainer
-                </label>
-                <select
-                  value={trainingClass.trainer}
-                  onChange={(e) =>
-                    setTrainingClass({
-                      ...trainingClass,
-                      trainer: e.target.value,
-                    })
-                  }
-                  id="category"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                >
-                  <option defaultValue>Select trainer</option>
-                  <option value="Megan Alexander" >Megan Alexander</option>
-                  <option value="Katherine Finch">Katherine Finch</option>
-                  <option value="Annie Baysinger">Annie Baysinger</option>
-                  <option value="Jesse Soliz">Jesse Soliz</option>
-                  <option value="Audrey Radulovich">Audrey Radulovich</option>
-                  <option value="Rashaun Marshall">Rashaun Marshall</option>
-                </select>
-              </div>
+                {/* ASSIGN TRAINER */}
+                <div>
+                  <label
+                    htmlFor="trainer"
+                    className="block text-sm/6 font-semibold text-neutral-900 dark:text-neutral-100 tracking-wider">
+                    Assign Trainer
+                  </label>
+                  <div className="mt-2.5">
+                    <select
+                      value={trainingClass.trainer}
+                      onChange={(e) =>
+                        setTrainingClass({
+                          ...trainingClass,
+                          trainer: e.target.value
+                        })
+                      }
+                      id="trainer"
+                      className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                      <option defaultValue>Select trainer</option>
+                      <option value="Megan Alexander">Megan Alexander</option>
+                      <option value="Katherine Finch">Katherine Finch</option>
+                      <option value="Annie Baysinger">Annie Baysinger</option>
+                      <option value="Jesse Soliz">Jesse Soliz</option>
+                      <option value="Audrey Radulovich">
+                        Audrey Radulovich
+                      </option>
+                      <option value="Rashaun Marshall">Rashaun Marshall</option>
+                    </select>
+                  </div>
+                </div>
 
-              {/* NAME OF THE CLASS */}
-              <div className="sm:col-span-2">
-                <label
-                  htmlFor="class-name"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Class Name
-                </label>
-                <input
-                  value={trainingClass.trainingClassName}
-                  onChange={(e) =>
-                    setTrainingClass({
-                      ...trainingClass,
-                      trainingClassName: e.target.value,
-                    })
-                  }
-                  type="text"
-                  name="class-name"
-                  id="class-name"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                  placeholder="Type name of class"
-                  required=""
-                />
-                {/* ADD THE SYNTAX FOR NAMING THE CLASSES UNDERNEATH THE INPUT FEILD!! */}
-              </div>
+                {/* NAME OF THE CLASS */}
+                <div className="col-span-2">
+                  <label
+                    htmlFor="class-name"
+                    className="block text-sm/6 font-semibold text-neutral-900 dark:text-neutral-100 tracking-wider">
+                    Class Name
+                  </label>
+                  <div className="mt-2.5">
+                    <input
+                      value={trainingClass.trainingClassName}
+                      onChange={(e) =>
+                        setTrainingClass({
+                          ...trainingClass,
+                          trainingClassName: e.target.value
+                        })
+                      }
+                      type="text"
+                      name="class-name"
+                      id="class-name"
+                      className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      placeholder="Name of Class"
+                      required=""
+                    />
+                  </div>
+                </div>
 
-              {/* DESCRIPTION */}
-              <div className="sm:col-span-2">
-                <label
-                  htmlFor="description"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Description
-                </label>
-                <textarea
-                  value={trainingClass.trainingClassDescription}
-                  onChange={(e) =>
-                    setTrainingClass({
-                      ...trainingClass,
-                      trainingClassDescription: e.target.value,
-                    })
-                  }
-                  id="description"
-                  rows="8"
-                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                  placeholder="Your description here"
-                ></textarea>
-                {/* ADD WHAT SHOULD BE INCLUDED IN THE DESCRIPTION UNDERNEATH THE INPUT FEILD!! */}
-              </div>
 
-              {/* START DATE DATEPICKER */}
-              <div id="date-range-picker" date-rangepicker="true">
-                <div className="w-full">
+                {/* START DATE DATEPICKER */}
+                <div className="sm:col-span-2 md:col-span-1">
                   <label
                     htmlFor="datepicker-start-date"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
+                    className="block text-sm/6 font-semibold text-neutral-900 dark:text-neutral-100 tracking-wider mb-2">
                     Start Date
                   </label>
                   <input
@@ -211,63 +184,89 @@ const TrainingClassCreateForm = () => {
                     onChange={(e) =>
                       setTrainingClass({
                         ...trainingClass,
-                        startDate: e.target.value,
+                        startDate: e.target.value
                       })
                     }
                     type="date"
                     name="start-date"
                     id="datepicker-start-date"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Product brand"
+                    className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="Start Date"
                     required=""
                   />
                 </div>
+
+                {/* END DATE DATEPICKER */}
+                <div className="sm:col-span-2 md:col-span-1">
+                  <label
+                    htmlFor="datepicker-end-date"
+                    className="block text-sm/6 font-semibold text-neutral-900 dark:text-neutral-100 tracking-wider mb-2">
+                    End Date
+                  </label>
+                  <input
+                    value={trainingClass.endDate}
+                    onChange={(e) =>
+                      setTrainingClass({
+                        ...trainingClass,
+                        endDate: e.target.value
+                      })
+                    }
+                    type="date"
+                    name="end-date"
+                    id="datepicker-end-date"
+                    className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="End Date"
+                    required=""
+                  />
+                </div>
+
+                {/* DESCRIPTION */}
+                <div className="sm:col-span-2 md:col-span-2">
+                  <label
+                    htmlFor="description"
+                    className="block text-sm/6 font-semibold text-neutral-900 dark:text-neutral-100 tracking-wider">
+                    Description
+                  </label>
+                  <div className="mt-2.5">
+                    <textarea
+                      value={trainingClass.trainingClassDescription}
+                      onChange={(e) =>
+                        setTrainingClass({
+                          ...trainingClass,
+                          trainingClassDescription: e.target.value
+                        })
+                      }
+                      id="description"
+                      rows="8"
+                      className="block p-2.5 w-full text-sm text-neutral-900 bg-neutral-50 rounded-lg border border-neutral-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      placeholder="Description of Class"
+                    />
+                  </div>
+                </div>
               </div>
 
-              {/* END DATE DATEPICKER */}
-              <div className="w-full">
-                <label
-                  htmlFor="datepicker-end-date"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  End Date
-                </label>
-                <input
-                  value={trainingClass.endDate}
-                  onChange={(e) =>
-                    setTrainingClass({
-                      ...trainingClass,
-                      endDate: e.target.value,
-                    })
-                  }
-                  type="date"
-                  name="end-date"
-                  id="datepicker-end-date"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                  placeholder="$2999"
-                  required=""
-                />
+              {/* CREATE CLASS BUTTON */}
+              <div className="mt-3">
+                <motion.button
+                  type="submit"
+                  disabled={submitDisabled}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="block rounded-lg font-bold text-white dark:text-black bg-teal-400 hover:bg-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-300 text-sm px-5 py-2.5 mt-1 text-center dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 cursor-pointer shadow-sm">
+                  Create Class
+                </motion.button>
               </div>
-            </div>
-
-            {/* ADD CLASS BUTTON */}
-            <button
-              disabled={submitDisabled}
-              type="submit"
-              className="rounded-lg inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-gradient-to-br from-purple-400 to-fuchsia-300 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-purple-300"
-            >
-              Add Class
-            </button>
-          </form>
+            </form>
+          </div>
         </div>
       </section>
-      {showModal && <TrainingClassCreateConfirmationModal />}
       <DashboardFooter />
+      {showSuccessModal && <TrainingClassCreateConfirmationModal />}
     </>
-  );
-};
+  )
+}
 
-export default TrainingClassCreateForm;
+export default TrainingClassCreateForm
 
 // {
 /* <div
@@ -278,7 +277,7 @@ export default TrainingClassCreateForm;
                 <div className="relative">
                   <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                     <svg
-                      className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                      className="w-4 h-4 text-neutral-500 dark:text-neutral-400"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
@@ -294,15 +293,15 @@ export default TrainingClassCreateForm;
                     id="datepicker-range-start"
                     name="start"
 										datepicker="true"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Select date start"
                   />
                 </div>
-                <span className="mx-4 text-gray-500">to</span>
+                <span className="mx-4 text-neutral-500">to</span>
                 <div className="relative">
                   <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                     <svg
-                      className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                      className="w-4 h-4 text-neutral-500 dark:text-neutral-400"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
@@ -318,7 +317,7 @@ export default TrainingClassCreateForm;
                     id="datepicker-range-end"
                     name="end"
 										datepicker="true"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Select date end"
                   />
                 </div>
