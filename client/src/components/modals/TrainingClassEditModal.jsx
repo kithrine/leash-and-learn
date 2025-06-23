@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { trainingClassGetOne, trainingClassUpdate } from "../../redux/trainingClassSlice";
 import { userGetMany } from "../../redux/userSlice";
+import { toast } from "react-toastify";
 import * as motion from "motion/react-client"
 
 
@@ -13,7 +14,7 @@ const TrainingClassEditModal = ({setShowTrainingClassEditModal}) => {
   const { users } = useSelector((state) => state.users);
   const { trainingClass } = useSelector((state) => state.trainingClass);
 
-  const [showModal, setShowModal] = useState(false);
+  const storedTheme = localStorage.getItem("theme")
   const [trainingClassEditForm, setTrainingClassEditForm] = useState({
     trainingClassType: "",
     trainer: { firstName: "" },
@@ -43,7 +44,17 @@ const TrainingClassEditModal = ({setShowTrainingClassEditModal}) => {
     // Validation
     // dispatch(trainingClassUpdate(trainingClass));
     dispatch(trainingClassUpdate({ trainingClassId, trainingClassEditForm: { ...trainingClassEditForm}}))
-    setShowModal(false);
+    setShowTrainingClassEditModal(false);
+    if (storedTheme === "dark") {
+      toast.success("Training Class updated successfully!", {
+        theme: "dark",
+        className: "mt-14"
+      })
+    } else {
+      toast.success("Training Class updated successfully!", {
+        className: "mt-14"
+      })
+    }
   };
 
   // useEffect(() => {
@@ -87,8 +98,11 @@ const TrainingClassEditModal = ({setShowTrainingClassEditModal}) => {
         id="updateProductModal"
         tabIndex="-1"
         aria-hidden="true"
-        className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-49 justify-center items-center w-full md:inset-0 h-modal md:h-full drop-shadow-xl drop-shadow-neutral-300 dark:drop-shadow-black animate__animated animate__fadeInUp"
+        className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-40 justify-center items-center w-full md:inset-0 h-modal md:h-full drop-shadow-xl drop-shadow-neutral-300 dark:drop-shadow-black animate__animated animate__fadeInUp"
       >
+        <div
+        className="fixed inset-0 bg-neutral-500/75 transition-opacity"
+        aria-hidden="true"></div>
         <div className="relative p-4 w-full max-w-3xl h-full md:h-auto justify-self-center mt-28 md:ml-64">
           {/* <!-- Modal content --> */}
           <div className="relative p-4 bg-white rounded-lg shadow dark:bg-neutral-800 sm:p-5">
@@ -266,16 +280,20 @@ const TrainingClassEditModal = ({setShowTrainingClassEditModal}) => {
                 
               </div>
               <div className="flex items-center space-x-4">
-                <button
+                <motion.button
                   onClick={handleSubmit}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   type="submit"
-                  className="text-white bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-800"
+                  className="focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-800 text-black bg-gradient-to-r from-green-400 to-lime-400 hover:bg-gradient-to-l hover:from-green-400 hover:to-lime-400 cursor-pointer"
                 >
                   Update
-                </button>
-                <button
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   type="button"
-                  className="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+                  className="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900 cursor-pointer"
                 >
                   <svg
                     className="mr-1 -ml-1 w-5 h-5"
@@ -290,7 +308,7 @@ const TrainingClassEditModal = ({setShowTrainingClassEditModal}) => {
                     ></path>
                   </svg>
                   Delete
-                </button>
+                </motion.button>
               </div>
             </form>
           </div>

@@ -1,64 +1,24 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import * as motion from "motion/react-client"
-
-
 import {
   trainingClassGetOne,
   trainingClassSessionUpdate,
 } from "../../redux/trainingClassSlice";
+import * as motion from "motion/react-client"
+import { toast } from "react-toastify";
 
-const SessionEditModal = ({ session, handleDatepickerFormat }) => {
+const SessionEditModal = ({ session, handleDatepickerFormat, setShowEditSessionModal, sessionEditForm, setSessionEditForm }) => {
   const dispatch = useDispatch();
   let trainingClassId = location.pathname.split("/")[2];
   const { id } = useParams();
   const { trainingClass } = useSelector((state) => state.trainingClass);
-  const [showEditSessionModal, setShowEditSessionModal] = useState(false);
-  // const [sessionEditForm, setSessionEditForm] = useState({
-    //   sessionIndex: 0,
-    //   submitEnabled: true,
-    //   sessionName: "",
-    //   sessionDescription: "",
-    //   sessionType: "",
-    //   percentComplete: 0,
-    //   sessionDate: null,
-    //   sessionTime: "",
-    //   sessionDuration: 0,
-    //   activitiesPerformed: "",
-    //   customers: [],
-    // });
-    const [sessionEditForm, setSessionEditForm] = useState({
-      sessionIndex: session.sessionIndex,
-      sessionName: session.sessionName,
-      sessionDescription: session.sessionDescription,
-      sessionType: session.sessionType,
-      percentComplete: session.percentComplete,
-      sessionDate: session.sessionDate,
-      sessionTime: session.sessionTime,
-      sessionDuration: session.sessionDuration,
-      activitiesPerformed: session.activitiesPerformed,
-      customers: [],
-    });
-    
-    // console.log("session on edit modal: ", session);
-  // console.log("testing edit text: ", sessionEditForm);
+  const storedTheme = localStorage.getItem("theme")
+
 
   useEffect(() => {
-    // console.log(
-    //   "trainingClassSessions useEffect location",
-    //   location,
-    //   trainingClassId
-    // );
     dispatch(trainingClassGetOne(trainingClassId));
   }, []);
-
-  // useEffect(() => {
-  //   console.log("trainingClassSessions useEffect trainingClass", trainingClass)
-  //   console.log("trainingClassSessions useEffect trainingClass.sessions", trainingClass.sessions)
-  //   setSessionEditForm(trainingClass.sessions)
-  // }, [trainingClass])
 
   useEffect(() => {
     setSessionEditForm(session);
@@ -69,53 +29,40 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
   // useEffect(() => {
   //   console.log("sessionEditForm", sessionEditForm)
   // }, [sessionEditForm])
-  
-  // const handleDatepickerFormat = (classDate) => {
-  //   // convert string to date
-  //   let newDate = new Date(classDate);
-  //   // Set  hours back because of UTC
-  //   let dateMinus7 = newDate.setHours(newDate.getHours() + 7);
-  //   // Use en-CA default format
-  //   return new Date(dateMinus7).toLocaleDateString("en-CA");
-  // };
 
-  const handleSessionEditModal = (session) => {
-    // setSessionEditForm(session);
-    setShowEditSessionModal(true);
-  };
-
-  const handleUpdate = () => {
+  const handleSessionUpdate = () => {
     // console.log("trainingClassId:", trainingClassId, "session:", sessionEditForm);
     dispatch(trainingClassSessionUpdate({ trainingClassId, sessionId: sessionEditForm._id, sessionEditForm })); // add trainingClassId
     setShowEditSessionModal(false)
-    toast.success("Training Session updated successfully!");
+    if (storedTheme === "dark") {
+      toast.success("Training Session updated successfully!", {
+        theme: "dark",
+        className: "mt-14"
+      })
+    } else {
+      toast.success("Training Session updated successfully!", {
+        className: "mt-14"
+      })
+    }
   };
 
   return (
     <>
-      <motion.button
-        onClick={() => handleSessionEditModal(session)}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        type="button"
-        className="text-black bg-gradient-to-r from-green-400 to-lime-400 hover:bg-gradient-to-l hover:from-green-400 hover:to-lime-400 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[5vw] cursor-pointer"
-      >
-        Edit
-      </motion.button>
-
-      {showEditSessionModal && (
         <div
           id="updateProductModal"
           tabIndex="-1"
           aria-hidden="true"
-          className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center justify-self-center ml-96 w-full md:inset-0 h-modal md:h-full"
+          className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-49 justify-center items-center w-full md:inset-0 h-modal md:h-full drop-shadow-xl drop-shadow-neutral-300 dark:drop-shadow-black animate__animated animate__fadeInUp"
         >
-          <div className="relative p-4 ml-80 w-full max-w-3xl h-full md:h-auto">
+           {/* <div
+        className="fixed inset-0 bg-neutral-500/75 transition-opacity min-h-[104.5vh]"
+        aria-hidden="true"></div> */}
+          <div className="relative p-4 w-full max-w-3xl h-full md:h-auto justify-self-center mt-16 md:ml-64 drop-shadow-xl drop-shadow-neutral-300 dark:drop-shadow-black">
             {/* <!-- Modal content --> */}
-            <div className="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+            <div className="relative p-4 bg-white rounded-lg shadow dark:bg-neutral-800 sm:p-5">
               {/* <!-- Modal header --> */}
-              <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-neutral-600">
+                <h3 className="text-xl font-semibold text-neutral-900 dark:text-white font-lexend uppercase">
                   Edit Session
                 </h3>
                 <button
@@ -123,8 +70,8 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                     setShowEditSessionModal(false);
                   }}
                   type="button"
-                  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                  data-modal-toggle="updateProductModal"
+                  className="text-neutral-400 bg-transparent hover:bg-neutral-200 hover:text-neutral-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer"
+                  data-modal-toggle="addSessionModal"
                 >
                   <svg
                     aria-hidden="true"
@@ -144,11 +91,14 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
               </div>
               {/* <!-- Modal body --> */}
               <form action="#">
-                <section className="bg-white dark:bg-gray-900">
-                  <div className="py-4 px-4 mx-auto lg:px-6">
+                <section className="font-instrument">
+                  {/* <div className="py-4 px-4 mx-auto lg:px-6"> */}
                     <div className="space-y-8 sm:gap-6 xl:gap-10 lg:space-y-0">
                       {/* <!-- Edit Session Content --> */}
-                      <div className="flex flex-col justify-between p-6 mx-auto max-w-2xl text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+                      <div className="flex flex-col justify-between p-6 text-center text-neutral-900 bg-white rounded-xl border border-neutral-100 shadow dark:border-neutral-600 xl:px-8 dark:bg-neutral-800 dark:text-white">
+                      <label className="flex justify-self-center text-center mx-auto">
+                              Session Name:{" "}
+                            </label>
                         <textarea
                           value={sessionEditForm.sessionName}
                           onChange={(e) =>
@@ -157,14 +107,16 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                               sessionName: e.target.value,
                             })
                           }
-                          className="block px-2 py-1 mb-4 text-2xl rounded-lg border focus:ring-[#beb09d]focus:border-[#beb09d] bg-gray-50 text-black focus:outline-[#beb09d] border-[#cccccc]"
+                          className="block px-2 py-1 mb-4 text-2xl rounded-lg border focus:ring-teal-400 focus:border-teal-400 bg-neutral-50 focus:outline-teal-400 border-[#cccccc] dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-lime-400 dark:focus:border-lime-400 dark:focus:outline-lime-400"
                           autoComplete="off"
                           resize="none"
                         />
                         {/* <h3 className="mb-4 text-2xl font-semibold">
                           {sessionForm.sessionName}
                         </h3> */}
-
+                        <label className="flex justify-self-center text-center mx-auto">
+                              Session Description:{" "}
+                            </label>
                         <textarea
                           value={sessionEditForm.sessionDescription}
                           onChange={(e) =>
@@ -173,12 +125,12 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                               sessionDescription: e.target.value,
                             })
                           }
-                          className="font-light bg-gray-50 text-gray-700 sm:text-lg dark:text-gray-400 block px-2 py-1 text-2xl rounded-lg border focus:ring-[#beb09d]focus:border-[#beb09d] text-black focus:outline-[#beb09d] border-[#cccccc]"
+                          className="font-light bg-neutral-50 sm:text-lg  block px-2 py-1 text-2xl rounded-lg border focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-400 border-[#cccccc] dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-lime-400 dark:focus:border-lime-400 dark:focus:outline-lime-400"
                           rows={6}
                         />
 
                         {/* <!-- List --> */}
-                        <ul role="list" className="my-4 space-y-4 text-left">
+                        <ul role="list" className="mt-4 space-y-4 text-left">
                           <li className="flex items-center justify-between space-x-3">
                             <label htmlFor="session-type">Session Type:</label>
                             <input
@@ -191,13 +143,13 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                               }
                               type="text"
                               id="session-type"
-                              className="block w-1/2 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-[#beb09d]focus:border-[#beb09d] text-black focus:outline-[#beb09d] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                              className="block w-1/2 p-2 text-neutral-900 border border-neutral-300 rounded-lg bg-neutral-50 text-sm focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-400 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-lime-400 dark:focus:border-lime-400 dark:focus:outline-lime-400"
                             />
 
                             {/* *** Tried to do a selectbox - will have to save for later for sure to do it this way */}
 
                             {/* <select
-                            value={sessionEditForm.sessionType} id="session-type" className="block w-1/2 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-[#beb09d]focus:border-[#beb09d] text-black focus:outline-[#beb09d] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            value={sessionAddForm.sessionType} id="session-type" className="block w-1/2 p-2 text-neutral-900 border border-neutral-300 rounded-lg bg-neutral-50 text-xs focus:ring-[#beb09d]focus:border-[#beb09d] text-black focus:outline-[#beb09d] dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-lime-400 dark:focus:border-lime-400 dark:focus:outline-lime-400">
                               <option value="Group">Group</option>
                               <option value="Private">Private</option>
                             </select> */}
@@ -216,7 +168,7 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                               }
                               type="text"
                               id="small-input"
-                              className="block w-1/2 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-[#beb09d]focus:border-[#beb09d] text-black focus:outline-[#beb09d] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                              className="block w-1/2 p-2 text-neutral-900 border border-neutral-300 rounded-lg bg-neutral-50 text-sm focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-400 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-lime-400 dark:focus:border-lime-400 dark:focus:outline-lime-400"
                             />
                           </li>
 
@@ -238,7 +190,7 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                               }
                               type="date"
                               id="small-input"
-                              className="block w-1/2 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-[#beb09d]focus:border-[#beb09d] text-black focus:outline-[#beb09d] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                              className="block w-1/2 p-2 text-neutral-900 border border-neutral-300 rounded-lg bg-neutral-50 text-sm focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-400 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-lime-400 dark:focus:border-lime-400 dark:focus:outline-lime-400"
                             />
                           </li>
 
@@ -254,14 +206,14 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                               }
                               type="text"
                               id="small-input"
-                              className="block w-1/2 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-[#beb09d]focus:border-[#beb09d] text-black focus:outline-[#beb09d] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                              className="block w-1/2 p-2 text-neutral-900 border border-neutral-300 rounded-lg bg-neutral-50 text-sm focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-400 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-lime-400 dark:focus:border-lime-400 dark:focus:outline-lime-400"
                             />
                           </li>
 
                           <li className="flex justify-between items-center space-x-3">
                             <label>
                               Session Duration{" "}
-                              <span className="text-xs">(in hours)</span>:{" "}
+                              <span className="text-sm">(in hours)</span>:{" "}
                             </label>
                             <input
                               value={sessionEditForm.sessionDuration}
@@ -273,7 +225,7 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                               }
                               type="text"
                               id="small-input"
-                              className="block w-1/2 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-[#beb09d]focus:border-[#beb09d] text-black focus:outline-[#beb09d] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                              className="block w-1/2 p-2 text-neutral-900 border border-neutral-300 rounded-lg bg-neutral-50 text-sm focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-400 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-lime-400 dark:focus:border-lime-400 dark:focus:outline-lime-400"
                             />
                           </li>
 
@@ -289,33 +241,29 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                                   activitiesPerformed: e.target.value,
                                 })
                               }
-                              className="block w-full mx-auto px-2 py-1 mb-4 text-lg rounded-lg border bg-gray-50 focus:ring-[#beb09d]focus:border-[#beb09d] text-black focus:outline-[#beb09d] border-[#cccccc]"
+                              className="block w-full mx-auto px-2 py-1 text-lg rounded-lg border bg-neutral-50 focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-400 border-[#cccccc] dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-lime-400 dark:focus:border-lime-400 dark:focus:outline-lime-400"
                               autoComplete="off"
                               rows={3}
                               resize="none"
                             />
                           </li>
-
-                          <li className="flex items-center space-x-3">
-                            <span>
-                              Customers: <span className="font-semibold"></span>
-                            </span>
-                          </li>
                         </ul>
                       </div>
                     </div>
-                  </div>
+                  {/* </div> */}
                 </section>
-                <div className="flex items-center space-x-4">
-                  <button
-                    onClick={handleUpdate}
+                <div className="flex items-center space-x-4 pt-1 font-instrument">
+                  <motion.button
+                    onClick={handleSessionUpdate}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     // disabled={!sessionId.submitEnabled}
                     type="button"
-                    className="text-white bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-800 disabled:opacity-50"
+                    className="text-white dark:text-black bg-teal-400 hover:bg-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-300 font-medium rounded-full text-sm px-5 py-2.5 mt-1 text-center dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 cursor-pointer disabled:opacity-50"
                   >
-                    Update Session
-                  </button>
-                  <button
+                   Update Session
+                  </motion.button>
+                  {/* <button
                     type="button"
                     className="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
                   >
@@ -332,13 +280,12 @@ const SessionEditModal = ({ session, handleDatepickerFormat }) => {
                       ></path>
                     </svg>
                     Delete
-                  </button>
+                  </button> */}
                 </div>
               </form>
             </div>
           </div>
         </div>
-      )}
     </>
   );
 };

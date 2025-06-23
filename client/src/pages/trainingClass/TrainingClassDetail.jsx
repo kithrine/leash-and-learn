@@ -24,9 +24,24 @@ const TrainingClassDetail = () => {
 
   const [showTrainingClassEditModal, setShowTrainingClassEditModal] = useState(false)
   const [showSessionAddModal, setShowSessionAddModal] = useState(false)
-  const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [showEditSessionModal, setShowEditSessionModal] = useState(false);
+  const [showSessionDeleteModal, setShowSessionDeleteModal] = useState(false)
+  const [sessionToEdit, setSessionToEdit] = useState({})
   const [sessionToDelete, setSessionToDelete] = useState({})
   const [loading, setLoading] = useState(true)
+
+  const [sessionEditForm, setSessionEditForm] = useState({
+    // sessionIndex: session.sessionIndex,
+    // sessionName: session.sessionName,
+    // sessionDescription: session.sessionDescription,
+    // sessionType: session.sessionType,
+    // percentComplete: session.percentComplete,
+    // sessionDate: session.sessionDate,
+    // sessionTime: session.sessionTime,
+    // sessionDuration: session.sessionDuration,
+    // activitiesPerformed: session.activitiesPerformed,
+    // customers: [],
+  });
 
   const storedTheme = localStorage.getItem("theme")
 
@@ -50,15 +65,43 @@ const TrainingClassDetail = () => {
     return new Date(dateMinus7).toLocaleDateString("en-CA")
   }
 
-  const handleDelete = (session) => {
-    // console.log("handleDelete", id, session)
-    dispatch(
-      trainingClassSessionDelete({
-        trainingClassId: id,
-        sessionId: session._id
-      })
-    )
+  const handleSessionEditModal = (session, id) => {
+    // setSessionEditForm(session);
+    if (session._id === id) {
+      console.log(
+        "IMPORTANT INFORMATION SESSION EDIT sessionEdit in handleSessionEditModal",
+        session,
+        id
+      )
+      setShowEditSessionModal(true)
+      setSessionEditForm(session)
+    }
+    setShowEditSessionModal(true);
+  };
+
+  const handleSessionDeleteModal = (session, id) => {
+    console.log("session.id handleSessionDeleteModal", session, id)
+    if (session._id === id) {
+      console.log(
+        "IMPORTANT INFORMATION DAWG sessionDelete in handleSessionDeleteModal",
+        session,
+        id
+      )
+      setShowSessionDeleteModal(true)
+      setSessionToDelete(session)
+    }
+    console.log("session delete sessionToDelete", sessionToDelete)
   }
+
+  // const handleSessionDelete = (session) => {
+  //   // console.log("handleSessionDelete", id, session)
+  //   dispatch(
+  //     trainingClassSessionDelete({
+  //       trainingClassId: id,
+  //       sessionId: session._id
+  //     })
+  //   )
+  // }
 
   // const handleSessionEdit = (session) => {
   //   setSessionForm(session);
@@ -329,18 +372,18 @@ const TrainingClassDetail = () => {
                             />
                             <button
                               onClick={() => {
-                                setShowDeleteModal(true)
+                                setShowSessionDeleteModal(true)
                                 setSessionToDelete(session)
                               }}
                               type="button"
                               className="text-white bg-gradient-to-r from-rose-700 to-red-500 hover:bg-gradient-to-l hover:from-rose-700 hover:to-red-500 focus:ring-4 focus:outline-none focus:ring-red-600 dark:focus:ring-red-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[10vw]">
                               Delete
                             </button>
-                            {showDeleteModal &&
+                            {showSessionDeleteModal &&
                               sessionToDelete._id === session._id && (
                                 <SessionDeleteModal
-                                  setShowDeleteModal={setShowDeleteModal}
-                                  handleDelete={handleDelete}
+                                  setShowSessionDeleteModal={setShowSessionDeleteModal}
+                                  handleSessionDelete={handleSessionDelete}
                                   session={session}
                                 />
                               )}
@@ -430,7 +473,7 @@ const TrainingClassDetail = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   type="button"
-                  class="text-white dark:text-black bg-teal-400 hover:bg-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-300 font-medium rounded-full text-sm px-5 mb-4 mt-1 text-center dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 cursor-pointer">
+                  class="text-white dark:text-black font-instrument bg-teal-400 hover:bg-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-300  rounded-full text-sm px-5 mb-4 mt-1 text-center dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 cursor-pointer">
                   Add Session
                 </motion.button>
                   ) : null}
@@ -531,31 +574,35 @@ const TrainingClassDetail = () => {
                         {user.role.includes("Business Manager") ||
                         user.role.includes("Trainer") ? (
                           <>
-                            <SessionEditModal
+                            <motion.button
+                              onClick={() => handleSessionEditModal(session, session._id)}
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                              type="button"
+                              className="text-black bg-gradient-to-r from-green-400 to-lime-400 hover:bg-gradient-to-l hover:from-green-400 hover:to-lime-400 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[5vw] cursor-pointer"
+                            >
+                              Edit
+                            </motion.button>
+                            {/* <SessionEditModal
                               handleDatepickerFormat={handleDatepickerFormat}
                               session={session}
-                            />
+                            setShowEditSessionModal={setShowEditSessionModal}
+                            /> */}
                             <motion.button
                               onClick={() => {
-                                setShowDeleteModal(true)
-                                setSessionToDelete(session)
+                                // setShowSessionDeleteModal(true)
+                                // setSessionToDelete(session)
+                                handleSessionDeleteModal(session, session._id)
                               }}
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                               type="button"
-                              className="text-white bg-gradient-to-r from-rose-700 to-red-500 hover:bg-gradient-to-l hover:from-rose-700 hover:to-red-500 focus:ring-4 focus:outline-none focus:ring-red-600 dark:focus:ring-red-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[5vw] cursor-pointer transition duration-300 ease-in-out">
+                              className="text-white bg-gradient-to-r from-rose-700 to-red-500 hover:bg-gradient-to-l hover:from-rose-700 hover:to-red-500 focus:ring-4 focus:outline-none focus:ring-red-600 dark:focus:ring-red-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[5vw] cursor-pointer">
                               Delete
                             </motion.button>
                           </>
                         ) : null}
-                        {showDeleteModal &&
-                          sessionToDelete._id === session._id && (
-                            <SessionDeleteModal
-                              setShowDeleteModal={setShowDeleteModal}
-                              handleDelete={handleDelete}
-                              session={session}
-                            />
-                          )}
+
                       </div>
                     </div>
                   ))}
@@ -567,6 +614,27 @@ const TrainingClassDetail = () => {
         )}
       </div>
       {showTrainingClassEditModal && (<TrainingClassEditModal setShowTrainingClassEditModal={setShowTrainingClassEditModal} />)}
+
+        {showEditSessionModal && (
+          <SessionEditModal
+          handleDatepickerFormat={handleDatepickerFormat}
+          session={sessionEditForm}
+          setShowEditSessionModal={setShowEditSessionModal}
+          sessionEditForm={sessionEditForm}
+          setSessionEditForm={setSessionEditForm}
+          />
+        )}
+        {showSessionDeleteModal &&
+          // sessionToDelete._id === session._id && 
+          (
+            <SessionDeleteModal
+            setShowSessionDeleteModal={setShowSessionDeleteModal}
+            // handleSessionDelete={handleSessionDelete}
+            sessionToDelete={sessionToDelete}
+            />
+          )}
+
+
 
       {user.role.includes("User") ? (
         <UserDashboardFooter />
