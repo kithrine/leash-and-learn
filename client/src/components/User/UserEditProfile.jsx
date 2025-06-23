@@ -148,22 +148,12 @@ const UserEditProfile = () => {
 
   return (
     <>
-      <section className={`mt-16 py-8 antialiased dark:bg-neutral-900 md:py-8 ${
+      <section className={`mt-16 py-8 antialiased md:py-8 ${
             storedTheme === "light" ? "light-marble-bg" : "dark-marble-bg"
           }`}>
         <div className="md:px-[13vw]">
-          {/* <div className="flex p-8 px-[9vw]"> */}
-          {/* <UserSideNav /> */}
-          {/* <div className="grid grid-cols-2 gap-8 md:ml-[16vw]">
-          <div className="col-span-2 h-36 w-[66vw] bg-teal-300"></div>
-          <div className="h-[30vh] w-full bg-blue-300"></div>
-          <div className=""></div>
-        </div>
-      </div> */}
-          {/* {user.firstName} {user.address} */}
-
           <div className={`mx-auto max-w-screen-lg px-4 2xl:px-0 ${user.role.includes("User") ? "md:ml-[20vw]" : "md:ml-64"}`}>
-            <div className="mx-auto max-w-2xl text-center animate__animated animate__fadeIn">
+            <div className="mx-auto max-w-2xl text-center animate__animated animate__fadeIn animate__slower">
               <h2 className="text-balance text-4xl pt-2 font-bold font-lexend uppercase tracking-tight text-neutral-900 dark:text-white md:text-4xl md:leading-3">
                 Edit Profile
               </h2>
