@@ -747,7 +747,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                 </div>
               )}
 
-<div className="flex justify-between">
+              <div className="flex justify-between">
                 <h2 className="pb-4 text-xl text-neutral-900 dark:text-white sm:text-3xl md:pb-6 font-learn font-bold tracking-widest underline underline-offset-8">
                   Enrolled Training Classes
                 </h2>

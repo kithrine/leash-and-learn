@@ -18,7 +18,7 @@ const TrainingClasses = () => {
     <>
       <div className={`antialiased dark:bg-neutral-900 min-h-[90vh] ${storedTheme === "light" ? "light-endless-clouds-bg" : "dark-endless-clouds-bg"}`}>
         <main className="p-4 md:ml-64 h-auto pt-20 animate__animated animate__fadeIn animate__slower">
-          <h3 className="text-center text-4xl font-bold font-lexend pt-8 dark:text-white">LIST OF TRAINING CLASSES</h3>
+          <h3 className="text-center text-4xl font-bold font-lexend py-8 dark:text-white">LIST OF TRAINING CLASSES</h3>
 
           <section className="p-3 sm:p-5 font-instrument drop-shadow-xl drop-shadow-neutral-300 dark:drop-shadow-black">
             <div className="mx-auto px-4 lg:px-12">

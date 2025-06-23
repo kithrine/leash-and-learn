@@ -28,7 +28,7 @@ const DogDeleteModal = ({
   }
   return (
     <div
-      className="relative z-40"
+      className="relative z-40 font-instrument"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true">
@@ -60,7 +60,7 @@ const DogDeleteModal = ({
                   </div>
                   <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                     <h3
-                      className="text-base font-semibold text-neutral-900 dark:text-white"
+                      className="text-base font-semibold text-neutral-900 dark:text-white tracking-wider"
                       id="modal-title">
                       Delete Dog
                     </h3>
