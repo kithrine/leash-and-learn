@@ -48,7 +48,7 @@ const InboxDetail = () => {
 
   return (
     <>
-      <section class={`min-h-[89.5vh] font-instrument ${storedTheme === "light" ? "light-stars-bg" : "dark-stars-bg"} md:ml-36`}>
+      <section class={`min-h-[89.5vh] font-instrument ${storedTheme === "light" ? "light-stars-bg" : "dark-stars-bg"} md:ml-64`}>
         <div class="py-8 mt-10 px-4 mx-auto max-w-2xl lg:py-16 animate__animated animate__fadeInRight animate__slow">
           <div className="flex flex-row gap-x-3 py-3 text-neutral-600 dark:text-neutral-300">
             <svg
@@ -152,6 +152,7 @@ const InboxDetail = () => {
           </div> */}
         </div>
       </section>
+      <DashboardFooter />
 
       {showMessageDeleteModal && (
         <MessageDeleteModal 
@@ -161,7 +162,6 @@ const InboxDetail = () => {
         />
       )}
 
-      <DashboardFooter />
     </>
   )
 }

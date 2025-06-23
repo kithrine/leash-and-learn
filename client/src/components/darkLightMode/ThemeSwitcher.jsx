@@ -16,7 +16,7 @@ const ThemeSwitcher = () => {
   };
 
   return (
-    <button onClick={toggleTheme} className="px-4 py-2 bg-gray-200 text-gray-700 rounded">
+    <button onClick={toggleTheme} className="px-4 py-2 bg-neutral-200 text-neutral-700 rounded">
       {isDarkMode ? 'Light Mode' : 'Dark Mode'}
     </button>
   );

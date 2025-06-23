@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="mx-auto max-w-screen-xl text-center">
           <Link
             to="/"
-            className="flex justify-center items-center text-5xl font-semibold text-gray-900 dark:text-white space-x-3 rtl:space-x-reverse"
+            className="flex justify-center items-center text-5xl font-semibold text-neutral-900 dark:text-white space-x-3 rtl:space-x-reverse"
           >
             <div className="absolute">
               <svg
@@ -42,7 +42,7 @@ const Footer = () => {
           <p className="mt-8 font-thin text-lg tracking-widest font-stretch-extra-expanded text-black dark:text-white">
             Where every dog's full potential is unleashed™
           </p>
-          <ul className="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
+          <ul className="flex flex-wrap justify-center items-center mb-6 text-neutral-900 dark:text-white">
             <li>
               <a href="#" className="mr-4 hover:underline md:mr-6 ">
                 About
@@ -75,7 +75,7 @@ const Footer = () => {
               </Link>
             </li>
           </ul>
-          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          <span className="text-sm text-neutral-500 sm:text-center dark:text-neutral-400">
             © 2021-2025{" "}
             <a href="#" className="hover:underline">
               Leash & Learn™

@@ -11,7 +11,7 @@ const ChatButton = () => {
         <button 
           onMouseEnter={() => setShowPopover(true)} // Show popover on hover
           onMouseLeave={() => setShowPopover(false)} // Hide popover on leave
-          className="bg-gray-100 p-3 rounded-full border-2 border-gray-400"
+          className="bg-neutral-100 p-3 rounded-full border-2 border-neutral-400"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@ const ChatButton = () => {
           </svg>
         </button>
       {showPopover && ( // Show the popover only when showPopover is true
-        <div className="absolute z-10 bg-gray-800 text-white p-2 rounded shadow arrow"> 
+        <div className="absolute z-10 bg-neutral-800 text-white p-2 rounded shadow arrow"> 
           Ask AI!  
         </div>
       )}
@@ -53,9 +53,9 @@ const ChatButton = () => {
         <div
           data-popover
           id="popover-default"
-          class="fixed right-0 bottom-26 z-10 inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 ease-in-out bg-white border border-gray-200 rounded-lg shadow-xs dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-          <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
-            <h3 class="font-semibold text-gray-900 dark:text-white">ASK AI</h3>
+          class="fixed right-0 bottom-26 z-10 inline-block w-64 text-sm text-neutral-500 transition-opacity duration-300 ease-in-out bg-white border border-neutral-200 rounded-lg shadow-xs dark:text-neutral-400 dark:border-neutral-600 dark:bg-neutral-800">
+          <div class="px-3 py-2 bg-neutral-100 border-b border-neutral-200 rounded-t-lg dark:border-neutral-600 dark:bg-neutral-700">
+            <h3 class="font-semibold text-neutral-900 dark:text-white">ASK AI</h3>
           </div>
           <div class="px-3 py-2">
             <p>
@@ -77,9 +77,9 @@ const ChatButton = () => {
 export default ChatButton
 
 {
-  /* <div data-popover id="popover-default" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-    <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
-        <h3 class="font-semibold text-gray-900 dark:text-white">Popover title</h3>
+  /* <div data-popover id="popover-default" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-neutral-500 transition-opacity duration-300 bg-white border border-neutral-200 rounded-lg shadow-xs opacity-0 dark:text-neutral-400 dark:border-neutral-600 dark:bg-neutral-800">
+    <div class="px-3 py-2 bg-neutral-100 border-b border-neutral-200 rounded-t-lg dark:border-neutral-600 dark:bg-neutral-700">
+        <h3 class="font-semibold text-neutral-900 dark:text-white">Popover title</h3>
     </div>
     <div class="px-3 py-2">
         <p>And here's some amazing content. It's very engaging. Right?</p>

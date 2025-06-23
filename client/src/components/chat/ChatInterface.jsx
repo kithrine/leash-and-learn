@@ -63,16 +63,16 @@ const ChatInterface = ({ setShowChatInterface }) => {
         className="max-h-auto fixed right-0 bottom-0 z-50 h-[calc(100%-1rem)] max-h-[full] w-full items-center justify-center overflow-y-auto overflow-x-hidden antialiased md:inset-0 drop-shadow-2xl">
         <div className="max-h-auto relative mt-22 justify-self-end max-h-full w-full max-w-xl p-4">
           {/* <!-- Modal content --> */}
-          <div className="relative rounded-lg bg-white shadow dark:bg-gray-800">
+          <div className="relative rounded-lg bg-white shadow dark:bg-neutral-800">
             {/* <!-- Modal header --> */}
-            <div className="flex items-center justify-between rounded-t border-b border-gray-200 p-4 dark:border-gray-700 md:p-4">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white font-learn tracking-widest">
+            <div className="flex items-center justify-between rounded-t border-b border-neutral-200 p-4 dark:border-neutral-700 md:p-4">
+              <h3 className="text-lg font-semibold text-neutral-900 dark:text-white font-learn tracking-widest">
                 Ask AI
               </h3>
               <button
                 onClick={() => setShowChatInterface(false)}
                 type="button"
-                className="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-neutral-400 hover:bg-neutral-200 hover:text-neutral-900 dark:hover:bg-neutral-600 dark:hover:text-white"
                 data-modal-toggle="aiChatInterfaceModal">
                 <svg
                   className="h-3 w-3"
@@ -94,7 +94,7 @@ const ChatInterface = ({ setShowChatInterface }) => {
             {/* <!-- Modal body --> */}
             <form onSubmit={handleAIQuestion} className="p-4 md:p-5">
               <div className="mb-5 flex flex-col">
-                <div className="w-full h-[50vh] bg-gray-50 overflow-y-auto rounded-lg border-gray-300 border pb-4">
+                <div className="w-full h-[50vh] bg-neutral-50 overflow-y-auto rounded-lg border-neutral-300 border pb-4">
                   {chats.map((chat, index) => (
                     <div className="flex flex-col space-y-3 px-2">
                       <div class="flex flex-row-reverse gap-2.5 mt-8">
@@ -107,7 +107,7 @@ const ChatInterface = ({ setShowChatInterface }) => {
                               />
                             ) : (
                               <svg
-                                className="size-8 me-3 text-gray-200 dark:text-gray-700"
+                                className="size-8 me-3 text-neutral-200 dark:text-neutral-700"
                                 aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="currentColor"
@@ -117,10 +117,10 @@ const ChatInterface = ({ setShowChatInterface }) => {
                             )}
                             <div class="flex flex-col gap-1 w-full max-w-[320px]">
                               <div class="flex flex-row-reverse items-center gap-x-2 rtl:space-x-reverse">
-                                <span class="text-sm font-semibold text-gray-900 dark:text-white">
+                                <span class="text-sm font-semibold text-neutral-900 dark:text-white">
                                   You
                                 </span>
-                                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                                <span class="text-sm font-normal text-neutral-500 dark:text-neutral-400">
                                   {new Date(chat.date).toLocaleString("en-US", {
                                     year: "numeric",
                                     month: "long",
@@ -130,8 +130,8 @@ const ChatInterface = ({ setShowChatInterface }) => {
                                   })}
                                 </span>
                               </div>
-                              <div class="flex flex-col leading-1.5 p-4 border-blue-200 bg-blue-100 rounded-es-xl rounded-ee-xl rounded-ss-xl dark:bg-gray-700 drop-shadow-xs">
-                                <p class="text-sm font-normal text-gray-900 dark:text-white">
+                              <div class="flex flex-col leading-1.5 p-4 border-blue-200 bg-blue-100 rounded-es-xl rounded-ee-xl rounded-ss-xl dark:bg-neutral-700 drop-shadow-xs">
+                                <p class="text-sm font-normal text-neutral-900 dark:text-white">
                                   {" "}
                                   {chat.prompt}
                                 </p>
@@ -154,10 +154,10 @@ const ChatInterface = ({ setShowChatInterface }) => {
                             </svg>
                             <div class="flex flex-col gap-1 w-full max-w-[320px]">
                               <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                                <span class="text-sm font-semibold text-gray-900 dark:text-white">
+                                <span class="text-sm font-semibold text-neutral-900 dark:text-white">
                                   Chatbot
                                 </span>
-                                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                                <span class="text-sm font-normal text-neutral-500 dark:text-neutral-400">
                                   {new Date(chat.date).toLocaleString("en-US", {
                                     year: "numeric",
                                     month: "long",
@@ -167,8 +167,8 @@ const ChatInterface = ({ setShowChatInterface }) => {
                                   })}
                                 </span>
                               </div>
-                              <div class="flex flex-col leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700 drop-shadow-sm">
-                                <p class="text-sm font-normal text-gray-900 dark:text-white">
+                              <div class="flex flex-col leading-1.5 p-4 border-neutral-200 bg-neutral-100 rounded-e-xl rounded-es-xl dark:bg-neutral-700 drop-shadow-sm">
+                                <p class="text-sm font-normal text-neutral-900 dark:text-white">
                                   {" "}
                                   {chat.answer.length > 0 && (
                                     <Markdown>{chat.answer}</Markdown>
@@ -205,7 +205,7 @@ const ChatInterface = ({ setShowChatInterface }) => {
                 <div className="w-full pt-3">
                   <label
                     htmlFor="question"
-                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                    className="mb-2 block text-sm font-medium text-neutral-900 dark:text-white">
                     {" "}
                     Question{" "}
                   </label>
@@ -216,12 +216,12 @@ const ChatInterface = ({ setShowChatInterface }) => {
                     }
                     id="question"
                     rows="4"
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                    className="block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 focus:border-blue-500 focus:ring-blue-500 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder:text-neutral-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                     placeholder="Ask me about dogs!"
                   />
                 </div>
               </div>
-              <div className="border-t border-gray-200 pt-4 dark:border-gray-700 md:pt-5">
+              <div className="border-t border-neutral-200 pt-4 dark:border-neutral-700 md:pt-5">
                 <button
                   type="submit"
                   className="me-2 inline-flex items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -231,7 +231,7 @@ const ChatInterface = ({ setShowChatInterface }) => {
                   onClick={() => setShowChatInterface(false)}
                   type="button"
                   data-modal-toggle="accountInformationModal2"
-                  className="me-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">
+                  className="me-2 rounded-lg border border-neutral-200 bg-white px-5 py-2.5 text-sm font-medium text-neutral-900 hover:bg-neutral-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-neutral-100 dark:border-neutral-600 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-white dark:focus:ring-neutral-700">
                   Cancel
                 </button>
               </div>

@@ -80,40 +80,40 @@ const BMDetail = () => {
           <ToastContainer />
           <div className="">
             {/* Training Class Details */}
-            <div className="w-10/12 justify-self-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div className="w-10/12 justify-self-center bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700">
               <ul
-                className="text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400 rtl:divide-x-reverse"
+                className="text-sm font-medium text-center text-neutral-500 divide-x divide-neutral-200 rounded-lg sm:flex dark:divide-neutral-600 dark:text-neutral-400 rtl:divide-x-reverse"
                 id="fullWidthTab"
                 data-tabs-toggle="#fullWidthTabContent"
                 role="tablist"
               >
                 {/* Training Class Name */}
                 <li className="w-full">
-                  <div className="learn font-bold text-stone-700 text-3xl inline-block w-full p-4 rounded-ss-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">
+                  <div className="learn font-bold text-stone-700 text-3xl inline-block w-full p-4 rounded-ss-lg bg-neutral-50 hover:bg-neutral-100 focus:outline-none dark:bg-neutral-700 dark:hover:bg-neutral-600">
                     {trainingClass.trainingClassName}
                   </div>
                 </li>
               </ul>
-              <div className="border-t border-gray-200 dark:border-gray-600">
-                <div className="p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800">
+              <div className="border-t border-neutral-200 dark:border-neutral-600">
+                <div className="p-4 bg-white rounded-lg md:p-8 dark:bg-neutral-800">
                   <div>
-                    <dl className="divide-y divide-gray-100">
+                    <dl className="divide-y divide-neutral-100">
                       {/* Training Class Type */}
                       <div className="text-center px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
-                        <dt className="text-sm/6 font-medium text-gray-900">
+                        <dt className="text-sm/6 font-medium text-neutral-900">
                           Type
                         </dt>
-                        <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-1 sm:mt-0">
+                        <dd className="mt-1 text-sm/6 text-neutral-700 sm:col-span-1 sm:mt-0">
                           {trainingClass.trainingClassType}
                         </dd>
                       </div>
 
                       {/* Trainer */}
                       <div className="text-center px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
-                        <dt className="text-sm/6 font-medium text-gray-900">
+                        <dt className="text-sm/6 font-medium text-neutral-900">
                           Trainer
                         </dt>
-                        <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-1 sm:mt-0">
+                        <dd className="mt-1 text-sm/6 text-neutral-700 sm:col-span-1 sm:mt-0">
                           {trainingClass.trainer.firstName}{" "}
                           {trainingClass.trainer.lastName}
                         </dd>
@@ -121,20 +121,20 @@ const BMDetail = () => {
 
                       {/* Training Class Description */}
                       <div className="text-center px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
-                        <dt className="text-sm/6 font-medium text-gray-900">
+                        <dt className="text-sm/6 font-medium text-neutral-900">
                           Description
                         </dt>
-                        <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-1 sm:mt-0">
+                        <dd className="mt-1 text-sm/6 text-neutral-700 sm:col-span-1 sm:mt-0">
                           {trainingClass.trainingClassDescription}
                         </dd>
                       </div>
 
                       {/* Start Date */}
                       <div className="text-center px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
-                        <dt className="text-sm/6 font-medium text-gray-900">
+                        <dt className="text-sm/6 font-medium text-neutral-900">
                           Start Date
                         </dt>
-                        <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-1 sm:mt-0">
+                        <dd className="mt-1 text-sm/6 text-neutral-700 sm:col-span-1 sm:mt-0">
                           {new Intl.DateTimeFormat("en-US").format(
                             new Date(trainingClass.startDate)
                           )}
@@ -143,10 +143,10 @@ const BMDetail = () => {
 
                       {/* End Date */}
                       <div className="text-center px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
-                        <dt className="text-sm/6 font-medium text-gray-900">
+                        <dt className="text-sm/6 font-medium text-neutral-900">
                           End Date
                         </dt>
-                        <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-1 sm:mt-0">
+                        <dd className="mt-1 text-sm/6 text-neutral-700 sm:col-span-1 sm:mt-0">
                           {new Intl.DateTimeFormat("en-US").format(
                             new Date(trainingClass.endDate)
                           )}
@@ -164,13 +164,13 @@ const BMDetail = () => {
           </div>
 
           {/* TRAINING CLASS SESSIONS FOR SPECIFIC TRAINING CLASS */}
-          <section className="bg-white dark:bg-gray-900">
+          <section className="bg-white dark:bg-neutral-900">
             <div className="py-8 px-4 mx-auto lg:py-16 lg:px-6">
               <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-                <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+                <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-neutral-900 dark:text-white">
                   Training Class Sessions
                 </h2>
-                {/* <p className="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
+                {/* <p className="mb-5 font-light text-neutral-500 sm:text-xl dark:text-neutral-400">
                   Here at Flowbite we focus on markets where technology,
                   innovation, and capital can unlock long-term value and drive
                   economic growth.
@@ -198,18 +198,18 @@ const BMDetail = () => {
                 {/* <!-- Training Class 8 Week Cards --> */}
                 {trainingClass.sessions.map((session, index) => (
                   <div
-                    className="flex flex-col justify-between p-6 mx-auto max-w-2xl text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white min-w-[35vw]"
+                    className="flex flex-col justify-between p-6 mx-auto max-w-2xl text-center text-neutral-900 bg-white rounded-lg border border-neutral-100 shadow dark:border-neutral-600 xl:p-8 dark:bg-neutral-800 dark:text-white min-w-[35vw]"
                     key={index}
                   >
                     <h3 className="mb-4 text-3xl font-semibold">
                       {session.sessionName}
                     </h3>
-                    <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+                    <p className="font-light text-neutral-500 sm:text-lg dark:text-neutral-400">
                       {session.sessionDescription}
                     </p>
                     {/* <div className="flex justify-center items-baseline my-8">
                       <span className="mr-2 text-5xl font-extrabold">$29</span>
-                      <span className="text-gray-500 dark:text-gray-400">
+                      <span className="text-neutral-500 dark:text-neutral-400">
                         /month
                       </span>
                     </div> */}
