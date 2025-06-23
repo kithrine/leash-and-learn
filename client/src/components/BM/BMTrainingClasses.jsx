@@ -25,14 +25,14 @@ const BMTrainingClasses = () => {
   return (
     <>
       <BMSideNav />
-      <div className="antialiased dark:bg-gray-900 min-h-[89vh]">
+      <div className="antialiased dark:bg-neutral-900 min-h-[89vh]">
         <main className="p-4 md:ml-64 h-auto pt-20">
           <h3 className="learn text-center text-4xl font-bold">LIST OF TRAINING CLASSES</h3>
 
-          <section className="dark:bg-gray-900 p-3 sm:p-5">
+          <section className="dark:bg-neutral-900 p-3 sm:p-5">
             <div className="mx-auto px-4 lg:px-12">
               {/* <!-- Start coding here --> */}
-              <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+              <div className="bg-white dark:bg-neutral-800 relative shadow-md sm:rounded-lg overflow-hidden">
                 <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                   <div className="w-full md:w-1/2">
                     <form className="flex items-center">
@@ -43,7 +43,7 @@ const BMTrainingClasses = () => {
                         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                           <svg
                             aria-hidden="true"
-                            className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                            className="w-5 h-5 text-neutral-500 dark:text-neutral-400"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +58,7 @@ const BMTrainingClasses = () => {
                         <input
                           type="text"
                           id="simple-search"
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500"
+                          className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-stone-500 focus:border-stone-500 block w-full pl-10 p-2 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-stone-500 dark:focus:border-stone-500"
                           placeholder="Search"
                           required=""
                         />
@@ -91,7 +91,7 @@ const BMTrainingClasses = () => {
                       <button
                         id="actionsDropdownButton"
                         data-dropdown-toggle="actionsDropdown"
-                        className="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-stone-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                        className="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-neutral-900 focus:outline-none bg-white rounded-lg border border-neutral-200 hover:bg-neutral-100 hover:text-stone-700 focus:z-10 focus:ring-4 focus:ring-neutral-200 dark:focus:ring-neutral-700 dark:bg-neutral-800 dark:text-neutral-400 dark:border-neutral-600 dark:hover:text-white dark:hover:bg-neutral-700"
                         type="button"
                       >
                         <svg
@@ -111,16 +111,16 @@ const BMTrainingClasses = () => {
                       </button>
                       <div
                         id="actionsDropdown"
-                        className="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                        className="hidden z-10 w-44 bg-white rounded divide-y divide-neutral-100 shadow dark:bg-neutral-700 dark:divide-neutral-600"
                       >
                         <ul
-                          className="py-1 text-sm text-gray-700 dark:text-gray-200"
+                          className="py-1 text-sm text-neutral-700 dark:text-neutral-200"
                           aria-labelledby="actionsDropdownButton"
                         >
                           <li>
                             <a
                               href="#"
-                              className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                              className="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white"
                             >
                               Mass Edit
                             </a>
@@ -129,7 +129,7 @@ const BMTrainingClasses = () => {
                         <div className="py-1">
                           <a
                             href="#"
-                            className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                            className="block py-2 px-4 text-sm text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white"
                           >
                             Delete all
                           </a>
@@ -138,13 +138,13 @@ const BMTrainingClasses = () => {
                       <button
                         id="filterDropdownButton"
                         data-dropdown-toggle="filterDropdown"
-                        className="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-stone-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                        className="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-neutral-900 focus:outline-none bg-white rounded-lg border border-neutral-200 hover:bg-neutral-100 hover:text-stone-700 focus:z-10 focus:ring-4 focus:ring-neutral-200 dark:focus:ring-neutral-700 dark:bg-neutral-800 dark:text-neutral-400 dark:border-neutral-600 dark:hover:text-white dark:hover:bg-neutral-700"
                         type="button"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           aria-hidden="true"
-                          className="h-4 w-4 mr-2 text-gray-400"
+                          className="h-4 w-4 mr-2 text-neutral-400"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
@@ -169,28 +169,28 @@ const BMTrainingClasses = () => {
                           />
                         </svg>
                       </button>
-                      {/* <div id="filterDropdown" className="z-10 hidden w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
-                            <h6 className="mb-3 text-sm font-medium text-gray-900 dark:text-white">Choose brand</h6>
+                      {/* <div id="filterDropdown" className="z-10 hidden w-48 p-3 bg-white rounded-lg shadow dark:bg-neutral-700">
+                            <h6 className="mb-3 text-sm font-medium text-neutral-900 dark:text-white">Choose brand</h6>
                             <ul className="space-y-2 text-sm" aria-labelledby="filterDropdownButton">
                                 <li className="flex items-center">
-                                    <input id="apple" type="checkbox" value="" className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-stone-600 focus:ring-stone-500 dark:focus:ring-stone-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                    <label htmlFor="apple" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Apple (56)</label>
+                                    <input id="apple" type="checkbox" value="" className="w-4 h-4 bg-neutral-100 border-neutral-300 rounded text-stone-600 focus:ring-stone-500 dark:focus:ring-stone-600 dark:ring-offset-neutral-700 focus:ring-2 dark:bg-neutral-600 dark:border-neutral-500" />
+                                    <label htmlFor="apple" className="ml-2 text-sm font-medium text-neutral-900 dark:text-neutral-100">Apple (56)</label>
                                 </li>
                                 <li className="flex items-center">
-                                    <input id="fitbit" type="checkbox" value="" className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-stone-600 focus:ring-stone-500 dark:focus:ring-stone-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                    <label htmlFor="fitbit" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Microsoft (16)</label>
+                                    <input id="fitbit" type="checkbox" value="" className="w-4 h-4 bg-neutral-100 border-neutral-300 rounded text-stone-600 focus:ring-stone-500 dark:focus:ring-stone-600 dark:ring-offset-neutral-700 focus:ring-2 dark:bg-neutral-600 dark:border-neutral-500" />
+                                    <label htmlFor="fitbit" className="ml-2 text-sm font-medium text-neutral-900 dark:text-neutral-100">Microsoft (16)</label>
                                 </li>
                                 <li className="flex items-center">
-                                    <input id="razor" type="checkbox" value="" className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-stone-600 focus:ring-stone-500 dark:focus:ring-stone-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                    <label htmlFor="razor" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Razor (49)</label>
+                                    <input id="razor" type="checkbox" value="" className="w-4 h-4 bg-neutral-100 border-neutral-300 rounded text-stone-600 focus:ring-stone-500 dark:focus:ring-stone-600 dark:ring-offset-neutral-700 focus:ring-2 dark:bg-neutral-600 dark:border-neutral-500" />
+                                    <label htmlFor="razor" className="ml-2 text-sm font-medium text-neutral-900 dark:text-neutral-100">Razor (49)</label>
                                 </li>
                                 <li className="flex items-center">
-                                    <input id="nikon" type="checkbox" value="" className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-stone-600 focus:ring-stone-500 dark:focus:ring-stone-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                    <label htmlFor="nikon" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Nikon (12)</label>
+                                    <input id="nikon" type="checkbox" value="" className="w-4 h-4 bg-neutral-100 border-neutral-300 rounded text-stone-600 focus:ring-stone-500 dark:focus:ring-stone-600 dark:ring-offset-neutral-700 focus:ring-2 dark:bg-neutral-600 dark:border-neutral-500" />
+                                    <label htmlFor="nikon" className="ml-2 text-sm font-medium text-neutral-900 dark:text-neutral-100">Nikon (12)</label>
                                 </li>
                                 <li className="flex items-center">
-                                    <input id="benq" type="checkbox" value="" className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-stone-600 focus:ring-stone-500 dark:focus:ring-stone-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                    <label htmlFor="benq" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">BenQ (74)</label>
+                                    <input id="benq" type="checkbox" value="" className="w-4 h-4 bg-neutral-100 border-neutral-300 rounded text-stone-600 focus:ring-stone-500 dark:focus:ring-stone-600 dark:ring-offset-neutral-700 focus:ring-2 dark:bg-neutral-600 dark:border-neutral-500" />
+                                    <label htmlFor="benq" className="ml-2 text-sm font-medium text-neutral-900 dark:text-neutral-100">BenQ (74)</label>
                                 </li>
                             </ul>
                         </div> */}
@@ -198,8 +198,8 @@ const BMTrainingClasses = () => {
                   </div>
                 </div>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <table className="w-full text-sm text-left text-neutral-500 dark:text-neutral-400">
+                    <thead className="text-xs text-neutral-700 uppercase bg-neutral-50 dark:bg-neutral-700 dark:text-neutral-400">
                       <tr>
                         <th scope="col" className="px-4 py-3">
                           Training Class Name
@@ -223,10 +223,10 @@ const BMTrainingClasses = () => {
                     </thead>
                     <tbody>
                       {trainingClasses.map((trainingClass) => (
-                        <tr onClick={() => navigate(`/training-classes/${trainingClass.id}`)} className="hover:bg-gray-50 cursor-pointer border-b dark:border-gray-700">
+                        <tr onClick={() => navigate(`/training-classes/${trainingClass.id}`)} className="hover:bg-neutral-50 cursor-pointer border-b dark:border-neutral-700">
                           <th
                             scope="row"
-                            className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                            className="px-4 py-3 font-medium text-neutral-900 whitespace-nowrap dark:text-white"
                           >
                             {" "}
                             {trainingClass.trainingClassName}
@@ -252,7 +252,7 @@ const BMTrainingClasses = () => {
                             <button
                               id="apple-imac-27-dropdown-button"
                               data-dropdown-toggle="apple-imac-27-dropdown"
-                              className="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
+                              className="inline-flex items-center p-0.5 text-sm font-medium text-center text-neutral-500 hover:text-neutral-800 rounded-lg focus:outline-none dark:text-neutral-400 dark:hover:text-neutral-100"
                               type="button"
                             >
                               <svg
@@ -267,16 +267,16 @@ const BMTrainingClasses = () => {
                             </button>
                             <div
                               id="apple-imac-27-dropdown"
-                              className="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                              className="hidden z-10 w-44 bg-white rounded divide-y divide-neutral-100 shadow dark:bg-neutral-700 dark:divide-neutral-600"
                             >
                               <ul
-                                className="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                className="py-1 text-sm text-neutral-700 dark:text-neutral-200"
                                 aria-labelledby="apple-imac-27-dropdown-button"
                               >
                                 <li>
                                   <a
                                     href="#"
-                                    className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    className="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white"
                                   >
                                     Show
                                   </a>
@@ -284,7 +284,7 @@ const BMTrainingClasses = () => {
                                 <li>
                                   <a
                                     href="#"
-                                    className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    className="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white"
                                   >
                                     Edit
                                   </a>
@@ -293,7 +293,7 @@ const BMTrainingClasses = () => {
                               <div className="py-1">
                                 <a
                                   href="#"
-                                  className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                  className="block py-2 px-4 text-sm text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white"
                                 >
                                   Delete
                                 </a>
@@ -311,13 +311,13 @@ const BMTrainingClasses = () => {
                   className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
                   aria-label="Table navigation"
                 >
-                  <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                  <span className="text-sm font-normal text-neutral-500 dark:text-neutral-400">
                     Showing
-                    <span className="font-semibold text-gray-900 dark:text-white">
+                    <span className="font-semibold text-neutral-900 dark:text-white">
                     {" "}1-{trainingClasses.length}
                     </span>
                     {/* of
-                    <span className="font-semibold text-gray-900 dark:text-white">
+                    <span className="font-semibold text-neutral-900 dark:text-white">
                       1000
                     </span> */}
                   </span>
@@ -325,7 +325,7 @@ const BMTrainingClasses = () => {
                     <li>
                       <a
                         href="#"
-                        className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-neutral-500 bg-white rounded-l-lg border border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-white"
                       >
                         <span className="sr-only">Previous</span>
                         <svg
@@ -346,7 +346,7 @@ const BMTrainingClasses = () => {
                     <li>
                       <a
                         href="#"
-                        className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-neutral-500 bg-white border border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-white"
                       >
                         1
                       </a>
@@ -354,7 +354,7 @@ const BMTrainingClasses = () => {
                     <li>
                       <a
                         href="#"
-                        className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-neutral-500 bg-white border border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-white"
                       >
                         2
                       </a>
@@ -363,7 +363,7 @@ const BMTrainingClasses = () => {
                       <a
                         href="#"
                         aria-current="page"
-                        className="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-stone-600 bg-stone-50 border border-stone-300 hover:bg-stone-100 hover:text-stone-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                        className="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-stone-600 bg-stone-50 border border-stone-300 hover:bg-stone-100 hover:text-stone-700 dark:border-neutral-700 dark:bg-neutral-700 dark:text-white"
                       >
                         3
                       </a>
@@ -371,7 +371,7 @@ const BMTrainingClasses = () => {
                     <li>
                       <a
                         href="#"
-                        className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-neutral-500 bg-white border border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-white"
                       >
                         ...
                       </a>
@@ -379,7 +379,7 @@ const BMTrainingClasses = () => {
                     <li>
                       <a
                         href="#"
-                        className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-neutral-500 bg-white border border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-white"
                       >
                         100
                       </a>
@@ -387,7 +387,7 @@ const BMTrainingClasses = () => {
                     <li>
                       <a
                         href="#"
-                        className="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        className="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-neutral-500 bg-white rounded-r-lg border border-neutral-300 hover:bg-neutral-100 hover:text-neutral-700 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-white"
                       >
                         <span className="sr-only">Next</span>
                         <svg
@@ -432,7 +432,7 @@ const BMTrainingClasses = () => {
               </thead>
               {trainingClasses.map((trainingClass) => (
                 <tbody
-                  className="bg-white text-gray-500 bg-[#FFFFFF] text-[#4e4f51]"
+                  className="bg-white text-neutral-500 bg-[#FFFFFF] text-[#4e4f51]"
                   style={{ backgroundColor: "#FFFFFF", color: "#4e4f51" }}
                 >
                   <tr className=" py-10">
@@ -455,7 +455,7 @@ const BMTrainingClasses = () => {
             </table>
           </div> */}
           {/* {trainingClasses.map((trainingClass) => (
-            <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-24 mb-4">
+            <div className="border-2 border-dashed rounded-lg border-neutral-300 dark:border-neutral-600 h-24 mb-4">
               <h1>{trainingClass.trainingClassName}</h1>
             </div>
           ))} */}

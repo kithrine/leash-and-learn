@@ -17,7 +17,7 @@
 //       <button onClick={() => setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light')}>Toggle Theme</button>
 
 //       {/* Apply the active theme to your app */}
-//       <div className={`bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white ${theme}`}> 
+//       <div className={`bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-white ${theme}`}> 
 //         {/* ...your application content here */}
 //       </div>
 //     </div>
@@ -41,7 +41,7 @@ function ThemeToggle() {
 
 
       {/* Apply the active theme to your app */}
-      <div className={`bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white ${theme}`}> 
+      <div className={`bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-white ${theme}`}> 
         {/* ...your application content here */}
       </div>    
     </div>  
