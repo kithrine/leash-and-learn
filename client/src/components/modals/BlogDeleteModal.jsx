@@ -1,11 +1,11 @@
-const BlogDeleteModal = ({ setShowBlogDeleteModal, handleBlogDelete, blogToDelete}) => {
+const BlogDeleteModal = ({ setShowBlogDeleteModal, handleBlogDelete, blogToDelete, setShowBlogActions }) => {
   
   return (
 <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 
   <div className="fixed inset-0 bg-neutral-500/75 transition-opacity" aria-hidden="true"></div>
 
-  <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+  <div className="fixed inset-0 z-10 w-screen overflow-y-auto font-instrument">
     <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 animate__animated animate__fadeIn">
   
       <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
@@ -17,7 +17,7 @@ const BlogDeleteModal = ({ setShowBlogDeleteModal, handleBlogDelete, blogToDelet
               </svg>
             </div>
             <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-              <h3 className="text-base font-semibold text-neutral-900 dark:text-white" id="modal-title">Delete Blog Post</h3>
+              <h3 className="text-base font-semibold text-neutral-900 dark:text-white tracking-wider" id="modal-title">Delete Blog Post</h3>
               <div className="mt-2">
                 <p className="text-sm text-neutral-500 dark:text-neutral-300">Are you sure you want to delete this blog post? All of your data will be permanently removed. This action cannot be undone.</p>
               </div>
@@ -29,7 +29,7 @@ const BlogDeleteModal = ({ setShowBlogDeleteModal, handleBlogDelete, blogToDelet
           onClick={() => handleBlogDelete(blogToDelete.id)}
           type="button" className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto cursor-pointer transition duration-300 ease-in-out">Delete</button>
           <button 
-          onClick={() => setShowBlogDeleteModal(false)}
+          onClick={() => {setShowBlogDeleteModal(false); setShowBlogActions(false)}}
           type="button" 
           className="mt-3 inline-flex w-full justify-center rounded-md bg-white dark:bg-neutral-500 dark:hover:bg-neutral-600 px-3 py-2 text-sm font-semibold text-neutral-900 shadow-sm ring-1 ring-inset ring-neutral-300 dark:text-neutral-200 hover:bg-neutral-100 sm:mt-0 sm:w-auto cursor-pointer transition duration-300 ease-in-out">Cancel</button>
         </div>

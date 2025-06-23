@@ -89,6 +89,7 @@ const BlogDetail = () => {
 
   const handleBlogEdit = (e) => {
     e.preventDefault()
+    setShowBlogActions(false)
     dispatch(updateBlog({ id, blogEditForm: { ...blogEditForm } }))
     if (storedTheme === "dark") {
       toast.success("Blog updated successfully!", {
@@ -98,7 +99,6 @@ const BlogDetail = () => {
       toast.success("Blog updated successfully!")
     }
     setShowBlogEditModal(false)
-    setShowBlogActions(false)
   }
 
   const handleBlogDelete = async () => {
@@ -148,6 +148,7 @@ const BlogDetail = () => {
       console.log("if firing", comment, id)
       setShowCommentEditModal(true)
       setCommentEditForm(comment)
+      setShowCommentActions(false)
     }
     console.log("commentEditForm", commentEditForm)
   }
@@ -288,6 +289,7 @@ const BlogDetail = () => {
                           handleBlogDelete={handleBlogDelete}
                           blogToDelete={blogToDelete}
                           setShowBlogDeleteModal={setShowBlogDeleteModal}
+                          setShowBlogActions={setShowBlogActions}
                         />
                       )}
                       <li>
@@ -489,19 +491,19 @@ const BlogDetail = () => {
                                   onClick={() =>
                                     handleCommentEditModal(comment, comment._id)
                                   }
-                                  class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
+                                  class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
                                   Edit
                                 </a>
                               </li>
                               <li>
                                 <a
                                   onClick={() => handleDeleteComment(comment)}
-                                  class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
+                                  class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
                                   Remove
                                 </a>
                               </li>
                               <li>
-                                <a class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white">
+                                <a class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
                                   Report
                                 </a>
                               </li>
@@ -540,6 +542,7 @@ const BlogDetail = () => {
                     <BlogCommentEditModal
                       handleEditComment={handleEditComment}
                       setShowCommentEditModal={setShowCommentEditModal}
+                      setShowCommentActions={setShowCommentActions}
                       commentEditForm={commentEditForm}
                       setCommentEditForm={setCommentEditForm}
                       comment={comment}

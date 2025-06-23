@@ -74,7 +74,7 @@ const BlogEditModal = ({
         <div
           className="fixed inset-0 bg-neutral-500/75 transition-opacity"
           aria-hidden="true"></div>
-        <div className="relative p-4 w-full max-w-3xl h-full md:h-auto justify-self-center mt-28 ">
+        <div className="relative p-4 w-full max-w-3xl h-full md:h-auto justify-self-center mt-28 font-instrument animate__animated animate__fadeInRight">
           {/* <!-- Modal content --> */}
           <div className="relative p-4 bg-white rounded-lg shadow dark:bg-neutral-800 sm:p-5">
             {/* <!-- Modal header --> */}
@@ -162,45 +162,7 @@ const BlogEditModal = ({
                     <option value="Heartwarming Stories">Heartwarming Stories</option>
                   </select>
                 </div>
-                {/* END UP DELETING */}
-                {/* <div class="w-full hidden">
-                    <label
-                      for="authorFirstName"
-                      class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">
-                      Author First Name
-                    </label>
-                    <input
-                    value={blogEditForm.authorFirstName}
-                    onChange={(e) =>
-                      setBlogEditForm({ ...blogEditForm, authorFirstName: e.target.value })
-                    }
-                      type="text"
-                      name="authorFirstName"
-                      id="authorFirstName"
-                      class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      placeholder="First name"
-                      disabled={true}
-                    />
-                  </div>
-                  <div class="w-full hidden">
-                    <label
-                      for="authorLastName"
-                      class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">
-                      Author Last Name
-                    </label>
-                    <input
-                    value={blogEditForm.authorLastName}
-                    onChange={(e) =>
-                      setBlogEditForm({ ...blogEditForm, authorLastName: e.target.value })
-                    }
-                      type="text"
-                      name="authorLastName"
-                      id="authorLastName"
-                      class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      placeholder="Last name"
-                      disabled={true}
-                    />
-                  </div> */}
+               
                 <div class="w-full">
                   <label
                     for="authorTitle"
@@ -320,7 +282,7 @@ const BlogEditModal = ({
                       setBlogEditForm({ ...blogEditForm, body: e.target.value })
                     }
                     id="body"
-                    rows="20"
+                    rows="15"
                     class="block p-2.5 w-full text-sm text-neutral-900 bg-neutral-50 rounded-lg border border-neutral-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="Write about dogs here!"></textarea>
                 </div>
@@ -385,7 +347,7 @@ const BlogEditModal = ({
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   type="submit"
-                  className="text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-800 cursor-pointer transition duration-300 ease-in-out">
+                  className="text-white bg-teal-400 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 dark:text-neutral-800 cursor-pointer transition duration-300 ease-in-out hover:-translate-y-1">
                   Update Blog
                 </motion.button>
                 <motion.button
@@ -393,7 +355,7 @@ const BlogEditModal = ({
                   whileTap={{ scale: 0.95 }}
                   onClick={() => {setShowBlogEditModal(false); setShowBlogActions(false)}}
                   type="button"
-                  className="text-neutral-400 inline-flex items-center hover:text-white border border-neutral-400 hover:bg-neutral-400 focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-neutral-200 dark:text-neutral-200 dark:hover:text-white dark:hover:bg-neutral-600 dark:focus:ring-neutral-900 cursor-pointer transition duration-300 ease-in-out">
+                  className="text-neutral-400 inline-flex items-center hover:text-white border border-neutral-400 hover:bg-neutral-400 focus:ring-4 focus:outline-none focus:ring-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-neutral-200 dark:text-neutral-200 dark:hover:text-white dark:hover:bg-neutral-600 dark:focus:ring-neutral-900 cursor-pointer transition duration-300 ease-in-out hover:-translate-y-1">
                  
                   Cancel
                 </motion.button>

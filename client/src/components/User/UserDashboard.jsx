@@ -85,6 +85,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
         id
       )
       setShowEditDogModal(true)
+      setShowDogActions(false)
       setDogEditForm(dog)
     }
     console.log("dog edit form", dogEditForm)
@@ -99,6 +100,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
         id
       )
       setShowDeleteDogModal(true)
+      setShowDogActions(false)
       setDogEditForm(dog)
     }
     console.log("dog delete dogToDelete", dogToDelete)

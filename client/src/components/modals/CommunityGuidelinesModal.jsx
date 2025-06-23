@@ -8,9 +8,9 @@ const CommunityGuidelinesModal = ({setShowCommGuideModal}) => {
         tabindex="-1"
         class=" overflow-y-auto overflow-x-hidden fixed top-0 mt-26 z-20 w-full md:inset-0 h-modal md:h-full">
         <div class="relative p-4 w-full max-w-7xl h-full md:h-auto justify-self-center mb-12 font-instrument">
-          <div class="relative p-4 bg-white rounded-lg shadow dark:bg-neutral-800 md:p-8 animate__animated animate__fadeIn">
-            <div class="mb-4 text-sm font-light text-neutral-500 dark:text-neutral-300">
-              <h3 class="mb-3 text-2xl font-bold text-neutral-900 dark:text-white">
+          <div class="relative p-4 bg-white rounded-lg shadow dark:bg-neutral-800 md:p-8 drop-shadow-xl drop-shadow-neutral-400 dark:drop-shadow-black animate__animated animate__fadeInLeft">
+            <div class="mb-4 text-sm font-light text-neutral-700 dark:text-neutral-200">
+              <h3 class="mb-3 text-2xl font-bold text-neutral-900 dark:text-white tracking-wider">
                 Community Guidelines for Leash & Learn Blog
               </h3>
               <div className='text-base'>
