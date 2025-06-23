@@ -14,7 +14,7 @@ const EnrollBanner = () => {
     <> 
     {showEnrollBanner && (
 
-      <div className="fixed left-0 top-18 right-0 z-49 isolate flex items-center gap-x-6 overflow-hidden bg-neutral-50 dark:bg-neutral-800 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+      <div className="fixed left-0 top-18 right-0 z-49 isolate flex items-center gap-x-6 overflow-hidden bg-neutral-50 dark:bg-neutral-800 px-6 py-2.5 sm:px-3.5 sm:before:flex-1 font-instrument">
         <div
           className="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
           aria-hidden="true"
@@ -41,7 +41,7 @@ const EnrollBanner = () => {
         </div>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <p className="text-sm/6 text-neutral-900 dark:text-white">
-            <strong className="font-semibold">Ready to begin your journey and join our pack?</strong>
+            <strong className="font-semibold tracking-wide">Ready to begin your journey and join our pack?</strong>
             <svg
               viewBox="0 0 2 2"
               className="mx-2 inline size-0.5 fill-current"
@@ -56,7 +56,7 @@ const EnrollBanner = () => {
             whileTap={{ scale: 0.95 }}>
           <Link
             to="/enroll"
-            className="flex-none rounded-full bg-neutral-900 dark:bg-neutral-100 px-3.5 py-1 text-sm font-semibold text-white dark:text-black shadow-sm hover:bg-neutral-700 dark:hover:bg-neutral-300  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
+            className="flex-none rounded-full bg-teal-400 dark:bg-lime-400 px-3.5 py-1 text-sm font-semibold text-white dark:text-black shadow-sm hover:bg-teal-500 dark:hover:bg-lime-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 tracking-wide"
           >
             Enroll now <span aria-hidden="true">&rarr;</span>
           </Link>

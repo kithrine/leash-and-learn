@@ -143,7 +143,7 @@ const AddBlog = () => {
           storedTheme === "light"
             ? "light-rounded-plus-bg"
             : "dark-rounded-plus-bg"
-        } transition duration-200 ease-in-out`}>
+        }`}>
         <div className="pt-20 mt-8 mx-auto max-w-screen-xl px-4 lg:px-12 font-instrument relative">
           {/* <div className="bg-white dark:bg-neutral-800 relative drop-shadow-lg sm:rounded-lg overflow-hidden p-8"> */}
           <div className="text-center dark:text-white text-shadow-md text-shadow-violet-200 dark:text-shadow-lg dark:text-shadow-black animate__animated animate__fadeIn animate__slow">

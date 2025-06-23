@@ -6,11 +6,11 @@ const TACModal = ({ setShowTACModal }) => {
       <div
         id="info-popup"
         tabindex="-1"
-        class=" overflow-y-auto overflow-x-hidden fixed top-0 mt-22 z-20 w-full md:inset-0 h-modal md:h-full">
-        <div class="relative p-4 w-full max-w-6xl h-full md:h-auto justify-self-center mb-12">
-          <div class="relative p-4 bg-white rounded-lg shadow dark:bg-neutral-800 md:p-8 drop-shadow-2xl transition ease-in-out duration-200">
-            <div class="mb-4 text-sm font-light text-gray-500 dark:text-gray-200">
-              <h3 class="mb-3 text-2xl font-bold text-gray-900 dark:text-white">
+        class=" overflow-y-auto overflow-x-hidden fixed top-0 mt-16 z-20 w-full md:inset-0 h-modal md:h-full">
+        <div class="relative p-4 w-full max-w-6xl h-full md:h-auto justify-self-center mb-12 font-instrument">
+          <div class="relative p-4 bg-white rounded-lg shadow dark:bg-neutral-800 md:px-8 md:py-5 drop-shadow-xl drop-shadow-neutral-400 dark:drop-shadow-black animate__animated animate__fadeInLeft transition ease-in-out duration-200">
+            <div class="mb-4 text-sm font-light text-neutral-500 dark:text-neutral-200">
+              <h3 class="mb-3 text-2xl font-bold text-neutral-900 dark:text-white tracking-wider">
                 Terms and Conditions
               </h3>
               <p>
@@ -141,7 +141,7 @@ const TACModal = ({ setShowTACModal }) => {
                 onClick={() => setShowTACModal(false)}
                   id="close-modal"
                   type="button"
-                  class="py-2 px-4 w-full text-sm font-medium text-gray-500 bg-neutral-100 rounded-lg border border-gray-200 sm:w-auto hover:bg-neutral-200 focus:ring-4 focus:outline-none focus:ring-gray-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600 transition ease-in-out duration-200 hover:scale-110">
+                  class="py-2 px-4 w-full text-sm font-medium text-neutral-500 bg-neutral-100 rounded-lg border border-neutral-200 sm:w-auto hover:bg-neutral-200 focus:ring-4 focus:outline-none focus:ring-neutral-300 hover:text-neutral-900 focus:z-10 dark:bg-neutral-700 dark:text-neutral-300 dark:border-neutral-500 dark:hover:text-white dark:hover:bg-neutral-600 dark:focus:ring-neutral-600 transition ease-in-out duration-200 hover:scale-110 cursor-pointer">
                   Close
                 </button>
               </div>
