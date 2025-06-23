@@ -1,4 +1,4 @@
-import React from 'react'
+import { Link } from "react-router"
 
 const UserDashboardFooter = () => {
   return (
@@ -6,7 +6,7 @@ const UserDashboardFooter = () => {
     <div className="dark:bg-neutral-900">
       <footer className="bg-white rounded-lg shadow sm:flex sm:items-center sm:justify-between p-4 sm:p-6 xl:p-8 dark:bg-neutral-800 antialiased">
   <p className="mb-4 text-sm text-center text-neutral-500 dark:text-neutral-400 sm:mb-0">
-      &copy; 2021-2025 <a href="https://flowbite.com/" className="hover:underline" target="_blank">Leash & Learn™</a>. All rights reserved.
+      &copy; 2021-2025 <Link to="/" className="hover:underline" target="_blank">Leash & Learn™</Link>. All rights reserved.
   </p>
   <div className="flex justify-center items-center space-x-1">
     <a href="#" data-tooltip-target="tooltip-facebook" className="inline-flex justify-center p-2 text-neutral-500 rounded-lg cursor-pointer dark:text-neutral-400 dark:hover:text-white hover:text-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-600">
