@@ -3,6 +3,8 @@ import '../../App.css'
 
 
 export default function LoadingThreeDotsJumping() {
+const storedTheme = localStorage.getItem("theme")
+
   const dotVariants = {
       jump: {
           y: -30,
@@ -21,9 +23,9 @@ export default function LoadingThreeDotsJumping() {
     transition={{ staggerChildren: -0.2, staggerDirection: -1 }}
     className="container"
 >
-    <motion.div className="dot" variants={dotVariants} />
-    <motion.div className="dot" variants={dotVariants} />
-    <motion.div className="dot" variants={dotVariants} />
+    <motion.div className={`${storedTheme === "light" ? "light-dot" : "dark-dot"}`} variants={dotVariants} />
+    <motion.div className={`${storedTheme === "light" ? "light-dot" : "dark-dot"}`} variants={dotVariants} />
+    <motion.div className={`${storedTheme === "light" ? "light-dot" : "dark-dot"}`} variants={dotVariants} />
 </motion.div>
   )
 };

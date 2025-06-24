@@ -93,11 +93,19 @@
   gap: 10px;
 }
 
-.dot {
+.light-dot {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #35c0ad;
+  background-color: #2dd4bf;
+  /* background: linear-gradient(to right, orange, hotpink, yellow); */
+  will-change: transform;
+}
+.dark-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #84cc16;
   /* background: linear-gradient(to right, orange, hotpink, yellow); */
   will-change: transform;
 }
