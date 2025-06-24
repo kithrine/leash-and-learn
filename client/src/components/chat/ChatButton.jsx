@@ -53,14 +53,14 @@ const ChatButton = () => {
         <div
           data-popover
           id="popover-default"
-          class="fixed right-0 bottom-26 z-10 inline-block w-64 text-sm text-neutral-500 transition-opacity duration-300 ease-in-out bg-white border border-neutral-200 rounded-lg shadow-xs dark:text-neutral-400 dark:border-neutral-600 dark:bg-neutral-800">
-          <div class="px-3 py-2 bg-neutral-100 border-b border-neutral-200 rounded-t-lg dark:border-neutral-600 dark:bg-neutral-700">
-            <h3 class="font-semibold text-neutral-900 dark:text-white">ASK AI</h3>
+          class="fixed right-0 bottom-26 z-10 inline-block w-64 text-sm text-neutral-500 transition-opacity duration-300 ease-in-out bg-white border border-neutral-200 rounded-lg shadow-xs dark:text-neutral-400 dark:border-neutral-600 dark:bg-neutral-800 animate__animated animate__fadeIn">
+          <div class="px-3 py-2 bg-teal-400 border-b border-teal-500 rounded-t-lg dark:border-lime-500 dark:bg-lime-400">
+            <h3 class="text-xs tracking-tighter font-bold text-black dark:text-neutral-900 font-lexend text-center">ASK LEASH & LEARN AI</h3>
           </div>
-          <div class="px-3 py-2">
-            <p>
+          <div class="px-3 py-2 bg-teal-50 dark:bg-lime-50">
+            <p className="font-instrument text-neutral-700 text-center">
               Chat with AI to ask any questions you may have about the services
-              we provide or anything and everything to do with dogs and dog
+              we provide or anything and everything to do with dogs & dog
               training!
             </p>
           </div>
