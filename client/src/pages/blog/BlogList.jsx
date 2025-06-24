@@ -34,13 +34,13 @@ const BlogList = () => {
           </h1>
           <h1 class="mb-4 text-3xl font-extrabold leading-none text-white text-shadow-md dark:text-shadow-lg text-shadow-black md:text-4xl lg:text-5xl font-lexend tracking-tighter uppercase">Community Blog</h1>
           
-          <p class="mb-8 text-lg font-normal text-white dark:text-neutral-200 text-shadow-md text-shadow-black lg:text-xl sm:px-16 lg:px-48">
+          <p class="mb-8 text-lg font-normal text-white dark:text-neutral-200 text-shadow-md text-shadow-black lg:text-xl sm:px-16 lg:px-48 font-instrument">
             {/* Discover how to train your dog like a pro with our easy-to-follow
             tips and tricks. We cover everything from basic commands to advanced
             techniques in dog training. 🐾 Click here to start learning → */}
             Welcome to the Leash & Learn Community Blog! Share your thoughts, ask questions, and connect with fellow dog lovers by joining our community. Remember: you'll need an account to post blog entries or leave comments - it's easy to sign up!
           </p>
-          <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+          <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 font-instrument">
             <Link
               to="/create-blog"
               class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white dark:text-black rounded-lg bg-teal-400 hover:bg-teal-500 focus:ring-4 focus:ring-teal-300 dark:bg-yellow-400 dark:hover:bg-yellow-500 dark:focus:ring-yellow-600 transition duration-200 ease-in-out hover:-translate-y-1 hover:scale-105">
@@ -78,14 +78,14 @@ const BlogList = () => {
           <motion.div  initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1.5 }}>
-        <div className="text-center text-5xl font-encode font-bold uppercase pb-2 text-black dark:text-neutral-200">
+        <div className="text-center text-5xl font-palanquin tracking-wide font-bold uppercase pb-2 text-black dark:text-neutral-200">
           Explore Community Blog Posts Below!
         </div>
         
         <div className="border-t border-violet-200 dark:border-yellow-300 w-1/2 justify-self-center"></div>
 
         {/* Search bar */}
-<form class="max-w-lg mx-auto pt-8">
+<form class="max-w-lg mx-auto pt-8 font-instrument">
     <div class="flex">
         <label for="search-dropdown" class="mb-2 text-sm font-medium text-neutral-900 sr-only dark:text-white">Your Email</label>
         <button id="dropdown-button" data-dropdown-toggle="dropdown" class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-neutral-900 bg-neutral-100 border border-neutral-300 rounded-s-lg hover:bg-neutral-200 focus:ring-4 focus:outline-none focus:ring-neutral-100 dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:focus:ring-neutral-700 dark:text-white dark:border-neutral-600 drop-shadow-lg drop-shadow-violet-100 dark:drop-shadow-black" type="button">All categories <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">

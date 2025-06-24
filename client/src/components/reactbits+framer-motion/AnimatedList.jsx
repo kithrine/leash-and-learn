@@ -109,6 +109,8 @@ const AnimatedList = ({
     setKeyboardNav(false)
   }, [selectedIndex, keyboardNav])
 
+  const reverseBlogs = blogs.toReversed()
+
   return (
     <div className={`relative w-[80vw] justify-self-center ${className}`}>
       <div
@@ -124,7 +126,7 @@ const AnimatedList = ({
         //   scrollbarColor: "#222 #060606"
         // }}
       >
-        {blogs.map((blog, index) => (
+        {reverseBlogs.map((blog, index) => (
           <AnimatedItem
             key={index}
             delay={0.1}
@@ -138,7 +140,7 @@ const AnimatedList = ({
             }}>
             <div
               onClick={() => navigate(`/blog/${blog.id}`)}
-              className={`p-4 bg-neutral-50 dark:bg-[#111] rounded-lg shadow-md shadow-neutral-400 dark:shadow-black ${
+              className={`p-4 bg-neutral-50 dark:bg-[#111] rounded-lg shadow-md shadow-neutral-400 dark:shadow-black font-instrument ${
                 selectedIndex === index ? "bg-[#222]" : ""
               } ${itemClassName}`}>
               <div class="py-6 flex flex-wrap md:flex-nowrap">
@@ -158,7 +160,7 @@ const AnimatedList = ({
                   <div className="flex flex-col">
                     <div className="flex justify-between">
                       <div className="flex items-center">
-                        <div className="relative z-10 rounded-full bg-teal-300 dark:bg-yellow-400 px-3 py-1.5 font-medium text-neutral-900 hover:bg-teal-400 dark:hover:bg-yellow-500 text-xs">
+                        <div className="relative z-10 rounded-full bg-teal-300 dark:bg-yellow-400 px-3 py-1.5 font-bold text-neutral-900 hover:bg-teal-400 dark:hover:bg-yellow-500 text-xs">
                           {blog.category}
                         </div>
                         <span className="px-2 dark:text-neutral-300"> · </span>

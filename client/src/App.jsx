@@ -25,11 +25,12 @@ import BlogList from "./pages/blog/BlogList"
 import AddBlog from "./pages/blog/AddBlog"
 import BlogDetail from "./pages/blog/BlogDetail"
 import UserEditProfile from "./components/User/UserEditProfile"
-import ChatButton from "./components/chat/chatButton"
+import ChatButton from "./components/chat/ChatButton"
 import InboxDetail from "./pages/inbox/InboxDetail"
 import EnrollForm from "./pages/EnrollForm"
 import "react-toastify/dist/ReactToastify.css"
 import "./App.css"
+import CompanyBlog from "./pages/blog/CompanyBlog"
 
 function App() {
   const dispatch = useDispatch()
@@ -113,6 +114,7 @@ function App() {
         <Route path="/blog-homepage" element={<BlogHomepage />} />
         <Route path="/blog-list" element={<BlogList />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/company-blog" element={<CompanyBlog />} />
         <Route element={<PrivateRoute />}>
           <Route element={<DashboardSideNavLayout />}>
             <Route path="/dashboard" element={<DashboardLayout />} />

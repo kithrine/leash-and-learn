@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux"
 import { deleteDog } from "../../redux/userSlice"
+import { toast } from "react-toastify"
 
 const DogDeleteModal = ({
   setShowDeleteDogModal,
@@ -20,10 +21,13 @@ const DogDeleteModal = ({
     setShowDeleteDogModal(false)
     if (storedTheme === "dark") {
       toast.warning("Dog was deleted.", {
-        theme: "dark"
+        theme: "dark",
+        className: "mt-15"
       })
     } else {
-      toast.warning("Dog was deleted.")
+      toast.warning("Dog was deleted.", {
+        className: "mt-15"
+      })
     }
   }
   return (

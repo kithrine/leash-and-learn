@@ -7,10 +7,13 @@ import {
 } from "framer-motion";
 
 const IMGS = [
+  "../../assets/images/dog-table-train.jpg",
   "../../assets/images/training018.jpg",
-  "../../assets/images/training029.jpg",
+  "../../assets/images/agility-dog-tire.jpg",
+  // "../../assets/images/training029.jpg",
   "../../assets/images/training019.jpg",
-  "../../assets/images/training045.jpg",
+  // "../../assets/images/puppies.png",
+  // "../../assets/images/training045.jpg",
   "../../assets/images/l&l06.jpg",
   
 ];

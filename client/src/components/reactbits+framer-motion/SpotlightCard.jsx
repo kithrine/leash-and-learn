@@ -31,6 +31,13 @@ const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(255, 2
     setOpacity(0);
   };
 
+  const storedTheme = localStorage.getItem("theme")
+
+  // const lightSpotlightColor = "#ddd6fe 10%"
+  const lightSpotlightColor = "rgba(232, 181, 255, 0.4)"
+  // const darkSpotlightColor = "#facc15 10%"
+  const darkSpotlightColor = "rgba(255, 234, 44, 0.25)"
+
   return (
     <div
       ref={divRef}
@@ -45,7 +52,7 @@ const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(255, 2
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
         style={{
           opacity,
-          background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 80%)`,
+          background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${storedTheme === "light" ? lightSpotlightColor : darkSpotlightColor}, transparent 80%)`,
         }}
       />
       {children}

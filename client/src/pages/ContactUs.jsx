@@ -45,10 +45,21 @@ const ContactUs = () => {
     dispatch(contactAdd({ ... contactForm}))
 
     // console.log(getContact);
-    toast.success("Message sent successfully!", { autoClose: 2000});
+    if (storedTheme === "dark") {
+      toast.success("Message sent successfully!", {
+        theme: "dark",
+        autoClose: 2000
+      })
+    } else {
+      toast.success("Message sent successfully!", {
+        autoClose: 2000
+      })
+    }
+    // toast.success("Message sent successfully!", { autoClose: 2000});
     setTimeout(() => {
       navigate("/")
     }, 2500);
+    // navigate("/")
   };
 
   return (
@@ -99,7 +110,7 @@ const ContactUs = () => {
           </div>
           <form
             onSubmit={handleSubmit}
-            className="mb-20 mx-auto mt-16 max-w-xl sm:mt-8 px-3"
+            className="mb-20 mx-auto mt-16 max-w-xl sm:mt-8 px-3 font-instrument"
           >
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
               <div>
@@ -305,7 +316,7 @@ const ContactUs = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
-                className="block w-full rounded-md px-3.5 py-2.5 text-center text-sm font-semibold text-white focus:ring-4 focus:outline-none focus:ring-teal-300 bg-teal-400 hover:bg-teal-500 dark:bg-lime-600 dark:hover:bg-lime-700 shadow-sm hover:bg-gradient-to-l focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400 dark:focus:ring-lime-500 transition-colors ease-in-out duration-200"
+                className="block w-full rounded-md px-3.5 py-2.5 text-center text-sm font-semibold text-white focus:ring-4 focus:outline-none focus:ring-teal-300 bg-teal-400 hover:bg-teal-500 dark:bg-lime-600 dark:hover:bg-lime-700 shadow-sm hover:bg-gradient-to-l focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400 dark:focus:ring-lime-500 transition-colors ease-in-out duration-200 cursor-pointer"
               >
                 Submit
               </motion.button>
