@@ -22,6 +22,14 @@ const AnimatedItem = ({ children, delay = 0, index, onMouseEnter, onClick }) => 
 
 const AnimatedListBlogCategories = ({
   items = [
+    // {
+    //   name: "Foundational Training",
+    //   icon: 
+    // },
+    // {
+    //   name: "Advanced Training",
+    //   icon: 
+    // },
     'Foundational Training', 'Advanced Training', 'Training Tools & Techniques', 'Specific Breed Focus', 'Dog Behavior',
     'Health & Wellness', 'Dog Care', 'Everything Puppies!', 'Community & Lifestyle', 'Fun & Entertainment',
     'DIY', 'Heartwarming Stories', 'Products & Reviews'
