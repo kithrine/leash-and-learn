@@ -32,7 +32,7 @@ const Footer = () => {
                   </span>{" "}
                   <span className="learn mr-1"> learn</span>
                 </span>
-                <span className="dog-training text-center text-lg font-bold -mt-2">
+                <span className="dog-training text-center text-lg font-bold -mt-2 text-neutral-800 dark:text-neutral-400">
                   DOG TRAINING
                 </span>
               </div>
@@ -42,7 +42,7 @@ const Footer = () => {
           <p className="mt-8 font-thin text-lg tracking-widest font-stretch-extra-expanded text-black dark:text-white">
             Where every dog's full potential is unleashed™
           </p>
-          <ul className="flex flex-wrap justify-center items-center mb-6 text-neutral-900 dark:text-white">
+          <ul className="flex flex-wrap justify-center items-center mb-6 text-neutral-900 dark:text-white font-instrument">
             <li>
               <a href="#" className="mr-4 hover:underline md:mr-6 ">
                 About

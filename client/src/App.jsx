@@ -25,11 +25,12 @@ import BlogList from "./pages/blog/BlogList"
 import AddBlog from "./pages/blog/AddBlog"
 import BlogDetail from "./pages/blog/BlogDetail"
 import UserEditProfile from "./components/User/UserEditProfile"
-import ChatButton from "./components/chat/chatButton"
+import ChatButton from "./components/chat/ChatButton"
 import InboxDetail from "./pages/inbox/InboxDetail"
 import EnrollForm from "./pages/EnrollForm"
 import "react-toastify/dist/ReactToastify.css"
 import "./App.css"
+import CompanyBlog from "./pages/blog/CompanyBlog"
 
 function App() {
   const dispatch = useDispatch()
@@ -41,6 +42,7 @@ function App() {
     dispatch(userGetAll())
   }, [])
 
+  // Login token
   useEffect(() => {
     if (user.token) {
       const checkToken = async () => {
@@ -51,24 +53,16 @@ function App() {
     }
   }, [])
 
+  // Automatically scrolls to the top of the page anytime you navigate around the app
   const scrollToTop = () => {
     // window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scrolling effect
     window.scrollTo({ top: 0 });
   };
-
   useEffect(() => {
     scrollToTop()
   }, [useLocation()])
 
-  // useEffect(() => {
-  //   const topOfPage = document.getElementById("topOfPage")
-  //   if (topOfPage) {
-  //     // topOfPage.scrollIntoView({ top: 0, behavior: "smooth" })
-  //     window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scrolling effect
-
-  //   }
-  // }, [])
-
+  // LIGHT/DARK MODE THEME TOGGLE
   const getInitialTheme = () => {
     const storedTheme = localStorage.getItem("theme")
     if (storedTheme) return storedTheme // Use stored theme if available
@@ -84,18 +78,6 @@ function App() {
     localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light'); // Update localStorage 
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light'); // Update state and re-render     
   }
-
-  // useEffect(() => {
-  //   const token = sessionStorage.getItem("token");
-  //   if (token) {
-  //     const checkToken = async () => {
-  //       const loginToken = token.split(",")[0];
-  //       dispatch(checkLogin(loginToken));
-  //       // console.log("getToken:", getToken)
-  //     };
-  //     checkToken();
-  //   }
-  // }, []);
 
   return (
     <> 
@@ -113,6 +95,7 @@ function App() {
         <Route path="/blog-homepage" element={<BlogHomepage />} />
         <Route path="/blog-list" element={<BlogList />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/company-blog" element={<CompanyBlog />} />
         <Route element={<PrivateRoute />}>
           <Route element={<DashboardSideNavLayout />}>
             <Route path="/dashboard" element={<DashboardLayout />} />

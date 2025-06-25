@@ -12,6 +12,7 @@ import DogEditModal from "../modals/DogEditModal"
 import DogDeleteModal from "../modals/DogDeleteModal"
 import UserDashboardFooter from "../footers/UserDashboardFooter"
 import GradientText from "../reactbits+framer-motion/GradientText"
+import { ToastContainer, toast } from "react-toastify"
 
 const UserDashboard = ({ handleLogout, loggedInEmail }) => {
   const navigate = useNavigate()
@@ -108,6 +109,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
 
   return (
     <>
+        {/* <ToastContainer /> */}
       {loading ? (
         <div
           className={`min-h-[100vh] mt-16 ${
@@ -598,7 +600,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                               </>
                             )}
 
-                            <h5 class="text-2xl font-bold text-neutral-900 dark:text-white font-lexend uppercase leading-3 pt-1">
+                            <h5 class="text-2xl font-bold text-neutral-900 dark:text-white font-lexend uppercase leading-4 pb-1 pt-1">
                               {dog.name}
                             </h5>
                             <p class="text-lg text-neutral-600 dark:text-neutral-300 font-learn">
@@ -769,7 +771,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                   trainingClass == null ? <div>Test</div> : null
                 )} */}
 
-                <div className="max-h-96 min-h-40 w-full relative overflow-x-hidden drop-shadow-xl drop-shadow-neutral-300 dark:drop-shadow-black sm:rounded-lg bg-white dark:bg-neutral-600 mb-16">
+                <div className="max-h-96 min-h-40 w-full relative overflow-x-hidden drop-shadow-xl drop-shadow-neutral-300 dark:drop-shadow-black sm:rounded-lg bg-white dark:bg-neutral-800 mb-16">
                   <table className="w-full text-sm text-left rtl:text-right text-neutral-600 dark:text-neutral-300 font-instrument">
                     <thead className="text-xs text-neutral-700 uppercase bg-violet-200 dark:bg-yellow-400 dark:text-neutral-900">
                       <tr className="tracking-wider">

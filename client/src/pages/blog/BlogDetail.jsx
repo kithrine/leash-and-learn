@@ -186,7 +186,7 @@ const BlogDetail = () => {
       <main
         class={`pt-8 pb-16 lg:pt-26 lg:pb-24 mt-8 ${
           storedTheme === "light" ? "light-charlie-bg" : "dark-charlie-bg"
-        } antialiased transition duration-200 ease-in-out`}>
+        } antialiased transition duration-200 ease-in-out font-instrument`}>
         <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
           <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
             <header class="mb-4 lg:mb-1 not-format">
@@ -216,7 +216,7 @@ const BlogDetail = () => {
                     <p class="text-base text-violet-600 dark:text-lime-400 italic">
                       {blog.authorTitle}
                     </p>
-                    <div class="text-sm text-neutral-600 dark:text-neutral-400">
+                    <div class="text-sm text-neutral-700 dark:text-neutral-300">
                       <time pubdate>
                         {new Date(blog.date).toLocaleString("en-US", {
                           year: "numeric",
@@ -322,10 +322,10 @@ const BlogDetail = () => {
                   />
                 ) : null}
               </figure>
-              <div className="inline-flex z-10 rounded-full bg-teal-300 dark:bg-yellow-400 px-3 py-1.5 font-medium text-neutral-900 hover:bg-teal-400 dark:hover:bg-yellow-500 text-xs">
+              <div className="inline-flex z-10 rounded-full bg-teal-300 dark:bg-yellow-400 px-3 py-1.5 text-neutral-900 hover:bg-teal-400 dark:hover:bg-yellow-500 text-xs font-bold">
                 {blog.category}
               </div>
-              <h1 class="pb-4 text-3xl font-extrabold leading-tight text-black lg:pb-2 lg:pt-3 lg:text-4xl dark:text-white font-phudu tracking-wider animate__animated animate__fadeInUp animate__slow">
+              <h1 class="pb-4 text-3xl font-extrabold leading-tighter text-black lg:pb-2 lg:pt-3 lg:text-4xl dark:text-white font-palanquin-dark animate__animated animate__fadeInUp animate__slow">
                 {blog.title}
               </h1>
             </header>
@@ -429,7 +429,7 @@ const BlogDetail = () => {
                             </svg>
                           )}
 
-                          <div className="flex flex-col text-center">
+                          <div className="flex flex-col text-center tracking-wide">
                             <span>
                               {comment.firstName} {comment.lastName}
                             </span>
@@ -443,8 +443,9 @@ const BlogDetail = () => {
                         <p class="text-xs text-neutral-600 dark:text-neutral-400">
                           <time
                             pubdate
-                            datetime="2022-02-08"
-                            title="February 8th, 2022">
+                            // datetime="2022-02-08"
+                            // title="February 8th, 2022"
+                            >
                             {new Date(comment.timestamp).toLocaleString(
                               "en-US"
                             )}

@@ -153,7 +153,7 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="navbar-user"
           >
-            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-neutral-800 md:dark:bg-neutral-900 dark:border-neutral-700">
+            <ul className="flex flex-col font-medium font-instrument p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-neutral-800 md:dark:bg-neutral-900 dark:border-neutral-700">
               {/* <div className="flex flex-row space-between p-4"> */}
 
               {/* HOME */}
@@ -162,9 +162,9 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
                   to="/"
                   className={`block py-2 px-3 ${
                     location.pathname === "/"
-                      ? "bg-purple-300 md:bg-transparent md:text-purple-300"
+                      ? "bg-teal-400 md:bg-transparent md:text-teal-400 dark:bg-lime-400 dark:md:text-lime-400 dark:md:bg-transparent"
                       : "text-gray-900"
-                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-500 md:p-0 dark:text-white md:dark:hover:text-lime-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                   aria-current="page"
                 >
                   Home
@@ -177,9 +177,9 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
                   to="/about"
                   className={`block py-2 px-3 ${
                     location.pathname === "/about"
-                      ? "bg-purple-300 md:bg-transparent md:text-purple-300"
+                      ? "bg-teal-400 md:bg-transparent md:text-teal-400 dark:bg-lime-400 dark:md:text-lime-400 dark:md:bg-transparent"
                       : "text-gray-900"
-                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-500 md:p-0 dark:text-white md:dark:hover:text-lime-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                 >
                   About
                 </Link>
@@ -191,9 +191,9 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
                   to="/services"
                   className={`block py-2 px-3 ${
                     location.pathname === "/services"
-                      ? "bg-purple-300 md:bg-transparent md:text-purple-300"
+                      ? "bg-teal-400 md:bg-transparent md:text-teal-400 dark:bg-lime-400 dark:md:text-lime-400 dark:md:bg-transparent"
                       : "text-gray-900"
-                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-500 md:p-0 dark:text-white md:dark:hover:text-lime-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                 >
                   Services
                 </Link>
@@ -205,9 +205,9 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
                   to="/success-stories"
                   className={`block py-2 px-3 ${
                     location.pathname === "/success-stories"
-                      ? "bg-purple-300 md:bg-transparent md:text-purple-300"
+                      ? "bg-teal-400 md:bg-transparent md:text-teal-400 dark:bg-lime-400 dark:md:text-lime-400 dark:md:bg-transparent"
                       : "text-gray-900"
-                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-500 md:p-0 dark:text-white md:dark:hover:text-lime-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                 >
                   Success Stories
                 </Link>
@@ -219,9 +219,9 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
                   to="/FAQ"
                   className={`block py-2 px-3 ${
                     location.pathname === "/FAQ"
-                      ? "bg-purple-300 md:bg-transparent md:text-purple-300"
+                      ? "bg-teal-400 md:bg-transparent md:text-teal-400 dark:bg-lime-400 dark:md:text-lime-400 dark:md:bg-transparent"
                       : "text-gray-900"
-                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-500 md:p-0 dark:text-white md:dark:hover:text-lime-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                 >
                   FAQ
                 </Link>
@@ -233,9 +233,9 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
                   to="/blog-homepage"
                   className={`block py-2 px-3 ${
                     location.pathname === "/blog-homepage"
-                      ? "bg-purple-300 md:bg-transparent md:text-purple-300"
+                      ? "bg-teal-400 md:bg-transparent md:text-teal-400 dark:bg-lime-400 dark:md:text-lime-400 dark:md:bg-transparent"
                       : "text-gray-900"
-                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-500 md:p-0 dark:text-white md:dark:hover:text-lime-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                 >
                   Blog
                 </Link>
@@ -247,11 +247,25 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
                   to="/contact-us"
                   className={`block py-2 px-3 ${
                     location.pathname === "/contact-us"
-                      ? "bg-purple-300 md:bg-transparent md:text-purple-300"
+                      ? "bg-teal-400 md:bg-transparent md:text-teal-400 dark:bg-lime-400 dark:md:text-lime-400 dark:md:bg-transparent"
                       : "text-gray-900"
-                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-500 md:p-0 dark:text-white md:dark:hover:text-lime-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                 >
                   Contact Us
+                </Link>
+              </li>
+
+              {/* ENROLL */}
+              <li>
+                <Link
+                  to="/enroll"
+                  className={`block py-2 px-3 ${
+                    location.pathname === "/enroll"
+                      ? "bg-teal-400 md:bg-transparent md:text-teal-400 dark:bg-lime-400 dark:md:text-lime-400 dark:md:bg-transparent"
+                      : "text-gray-900"
+                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-500 md:p-0 dark:text-white md:dark:hover:text-lime-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                >
+                  Enroll
                 </Link>
               </li>
 
@@ -261,14 +275,15 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
                   to="/dashboard"
                   className={`block py-2 px-3 ${
                     location.pathname === "/dashboard"
-                      ? "bg-purple-300 md:bg-transparent md:text-purple-300"
+                      ? "bg-teal-400 md:bg-transparent md:text-teal-400 dark:bg-lime-400 dark:md:text-lime-400 dark:md:bg-transparent"
                       : "text-gray-900"
-                  } mr-60 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                  } mr-60 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-500 md:p-0 dark:text-white md:dark:hover:text-lime-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                 >
                   Dashboard
                 </Link>
               </li>
               {/* </div> */}
+
 
               {/* LOGIN/LOGOUT */}
               <li className="pr-8">
@@ -277,9 +292,9 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
                     to="/login"
                     className={`block py-2 px-3 ${
                       location.pathname === "/login"
-                        ? "bg-purple-300 md:bg-transparent md:text-purple-300"
+                        ? "bg-teal-400 md:bg-transparent md:text-teal-400 dark:bg-lime-400 dark:md:text-lime-400 dark:md:bg-transparent"
                         : "text-gray-900"
-                    } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                    } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-500 md:p-0 dark:text-white md:dark:hover:text-lime-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                   >
                     Login
                   </Link>
@@ -288,9 +303,9 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
                     onClick={handleLogout}
                     className={`block py-2 px-3 ${
                       location.pathname === "/login"
-                        ? "bg-purple-300 md:bg-transparent md:text-purple-300"
+                        ? "bg-teal-400 md:bg-transparent md:text-teal-400 dark:bg-lime-400 dark:md:text-lime-400 dark:md:bg-transparent"
                         : "text-gray-900"
-                    } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-purple-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 cursor-pointer`}
+                    } rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-500 md:p-0 dark:text-white md:dark:hover:text-lime-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 cursor-pointer`}
                   >
                     Logout
                   </span>

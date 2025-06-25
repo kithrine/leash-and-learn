@@ -100,14 +100,16 @@ const AddBlog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     dispatch(addBlog(addBlogForm))
-    toast.dark = true
-    toast.success("Post added successfully.", {
-      position: "top-right",
-      autoClose: 5000,
-      closeOnClick: true,
-      className: "dark-toast",
-      theme: "dark"
-    })
+    if (storedTheme === "dark") {
+      toast.success("Post added successfully!", {
+        theme: "dark",
+        position: "top-right",
+      })
+    } else {
+      toast.success("Post added successfully!", {
+        position: "top-right",
+      })
+    }
     //Redirect to BlogList (All posts page)
     navigate("/blog-list")
     // sessionStorage.setItem("checkUser", user.email)
@@ -467,7 +469,7 @@ const AddBlog = () => {
                     </svg>
                   )} */}
 
-                        <label
+                        {/* <label
                           for="dropzone-file"
                           class="flex flex-col items-center justify-center w-full h-36 border-2 border-neutral-300 border-dashed rounded-lg cursor-pointer bg-neutral-50 dark:hover:bg-neutral-800 dark:bg-neutral-700 hover:bg-neutral-100">
                           <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -500,7 +502,14 @@ const AddBlog = () => {
                             type="file"
                             class="hidden"
                           />
-                        </label>
+                        </label> */}
+
+<input
+                    onChange={handleCoverPhotoUpload}
+                    class="block w-full text-sm text-neutral-900 border border-neutral-300 rounded-lg cursor-pointer bg-neutral-50 dark:text-neutral-400 focus:outline-none dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 p-2"
+                    id="file_input"
+                    type="file"
+                  />
                       </div>
                     </div>
                   </div>

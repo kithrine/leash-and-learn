@@ -22,6 +22,14 @@ const AnimatedItem = ({ children, delay = 0, index, onMouseEnter, onClick }) => 
 
 const AnimatedListBlogCategories = ({
   items = [
+    // {
+    //   name: "Foundational Training",
+    //   icon: 
+    // },
+    // {
+    //   name: "Advanced Training",
+    //   icon: 
+    // },
     'Foundational Training', 'Advanced Training', 'Training Tools & Techniques', 'Specific Breed Focus', 'Dog Behavior',
     'Health & Wellness', 'Dog Care', 'Everything Puppies!', 'Community & Lifestyle', 'Fun & Entertainment',
     'DIY', 'Heartwarming Stories', 'Products & Reviews'
@@ -124,7 +132,7 @@ const AnimatedListBlogCategories = ({
               }
             }}
           >
-            <div className={`p-4 bg-gray-300 dark:bg-neutral-950 rounded-lg shadow-md shadow-neutral-400 dark:shadow-black ${selectedIndex === index ? 'bg-[#222]' : ''} ${itemClassName}`}>
+            <div className={`p-4 bg-neutral-200 dark:bg-neutral-950 rounded-lg shadow-md shadow-neutral-400 dark:shadow-black ${selectedIndex === index ? 'bg-[#222]' : ''} ${itemClassName}`}>
               <p className="text-neutral-900 dark:text-white font-learn uppercase font-bold tracking-widest text-xl m-0">{item}</p>
             </div>
           </AnimatedItem>
