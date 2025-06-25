@@ -314,7 +314,7 @@ const EnrollForm = () => {
                 <div
                   key={dog._id}
                   onClick={() => handleDogClick(dog._id)}
-                  class={`w-full max-h-[42vh] border rounded-lg shadow-sm p-2 hover:bg-neutral-50 dark:hover:bg-neutral-700 drop-shadow-xl drop-shadow-neutral-300 dark:drop-shadow-black cursor-pointer ${selectedDog === dog._id ? "bg-neutral-200 dark:bg-neutral-600 border-2 border-neutral-600 dark:border-neutral-400" : "bg-white border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700"}`}>
+                  class={`w-full max-h-[42vh] border rounded-lg shadow-sm p-2 hover:bg-neutral-50 dark:hover:bg-neutral-700 drop-shadow-xl drop-shadow-neutral-300 dark:drop-shadow-black cursor-pointer mb-7 ${selectedDog === dog._id ? "bg-neutral-200 dark:bg-neutral-600 border-2 border-neutral-600 dark:border-neutral-400" : "bg-white border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700"}`}>
 
                   {/* <button
                     type="button"

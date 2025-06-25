@@ -10,7 +10,7 @@ const SessionDeleteModal = ({ setShowSessionDeleteModal, sessionToDelete }) => {
   const storedTheme = localStorage.getItem("theme")
 
   const handleSessionDelete = (session) => {
-    // console.log("handleSessionDelete", id, session)
+    console.log("handleSessionDelete", id, session)
     dispatch(
       trainingClassSessionDelete({
         trainingClassId: id,
@@ -43,7 +43,7 @@ const SessionDeleteModal = ({ setShowSessionDeleteModal, sessionToDelete }) => {
 
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 md:ml-64 animate__animated animate__fadeIn">
-          <form onSubmit={handleSessionDelete}>
+          <form>
             <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
               <div className="bg-white dark:bg-neutral-800 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start">
@@ -81,7 +81,8 @@ const SessionDeleteModal = ({ setShowSessionDeleteModal, sessionToDelete }) => {
               </div>
               <div className="bg-neutral-50 dark:bg-neutral-900 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                 <button
-                  type="submit"
+                  onClick={() => handleSessionDelete(sessionToDelete)}
+                  type="button"
                   className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto cursor-pointer transition duration-300 ease-in-out">
                   Delete
                 </button>

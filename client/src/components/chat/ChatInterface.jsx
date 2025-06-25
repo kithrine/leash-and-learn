@@ -46,10 +46,6 @@ const ChatInterface = ({ setShowChatInterface }) => {
   const handleAIQuestion = async (e) => {
     e.preventDefault()
     console.log("chatForm", chatForm)
-    // // If not logged in(no token)
-    // if (!user.email && !token) {
-    //   sessionStorage.setItem("anonymousEmail", anonymousEmail)
-    // }
     dispatch(addChat(chatForm))
     setChatForm({ ...chatForm, prompt: "" })
     setFinalResponse(chat.answer)
@@ -183,18 +179,6 @@ const ChatInterface = ({ setShowChatInterface }) => {
                     </div>
                   ))}
                   <div id="historyEnd" />
-
-                  {/* <p className="font-bold font-palanquin tracking-wider text-lg">
-                              {chat.prompt}
-                            </p>
-                        
-                          <div className={`px-3 py-1`}>
-                            <p className="font-instrument text-lg">
-                              {chat.answer.length > 0 && (
-                                <Markdown>{chat.answer}</Markdown>
-                              )}
-                            </p>
-                          </div> */}
                 </div>
 
                 {loading ? (

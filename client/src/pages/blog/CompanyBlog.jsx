@@ -15,7 +15,7 @@ const CompanyBlog = () => {
 `}>
         <div class="pt-18 py-8 px-4 mx-auto max-w-screen-md text-center lg:py-26 lg:px-12">
           <svg
-            class="mx-auto mb-4 w-10 h-10 text-neutral-400"
+            class="mx-auto mb-4 w-10 h-10 text-teal-400 dark:text-lime-400"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512">
             <path

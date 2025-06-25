@@ -4,7 +4,7 @@ const UsernameAccountAlert = () => {
   return (
     <>
       <div
-        class="flex items-center p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-200 dark:bg-neutral-600 dark:text-yellow-400"
+        class="flex items-center p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-200 dark:bg-neutral-900 dark:text-yellow-400"
         role="alert">
         <svg
           class="shrink-0 inline w-4 h-4 me-3"
