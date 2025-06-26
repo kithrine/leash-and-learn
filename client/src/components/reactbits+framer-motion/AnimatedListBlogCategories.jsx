@@ -1,5 +1,16 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { BsBricks, BsArrowThroughHeart } from "react-icons/bs";
+import { HiTrophy } from "react-icons/hi2";
+import { FaTools } from "react-icons/fa";
+import { RiFocus3Line } from "react-icons/ri";
+import { GiSniffingDog, GiDogHouse, GiBalloonDog, GiPartyPopper, GiDogBowl } from "react-icons/gi";
+import { MdOutlineHealthAndSafety } from "react-icons/md";
+import { LuDog } from "react-icons/lu";
+import { FaPeopleGroup } from "react-icons/fa6";
+
+
+
 
 const AnimatedItem = ({ children, delay = 0, index, onMouseEnter, onClick }) => {
   const ref = useRef(null);
@@ -22,17 +33,62 @@ const AnimatedItem = ({ children, delay = 0, index, onMouseEnter, onClick }) => 
 
 const AnimatedListBlogCategories = ({
   items = [
-    // {
-    //   name: "Foundational Training",
-    //   icon: 
-    // },
-    // {
-    //   name: "Advanced Training",
-    //   icon: 
-    // },
-    'Foundational Training', 'Advanced Training', 'Training Tools & Techniques', 'Specific Breed Focus', 'Dog Behavior',
-    'Health & Wellness', 'Dog Care', 'Everything Puppies!', 'Community & Lifestyle', 'Fun & Entertainment',
-    'DIY', 'Heartwarming Stories', 'Products & Reviews'
+    {
+      name: "Foundational Training",
+      icon: <BsBricks size={25} />
+    },
+    {
+      name: "Advanced Training",
+      icon: <HiTrophy size={25} />
+    },
+    {
+      name: "Training Tools & Techniques",
+      icon: <FaTools size={25} />
+    },
+    {
+      name: "Specific Breed Focus",
+      icon: <RiFocus3Line size={25} />
+    },
+    {
+      name: "Dog Behavior",
+      icon: <GiSniffingDog size={25} />
+    },
+    {
+      name: "Health & Wellness",
+      icon: <MdOutlineHealthAndSafety size={25} />
+    },
+    {
+      name: "Dog Care",
+      icon: <GiDogHouse size={25} />
+    },
+    {
+      name: "Everything Puppies!",
+      icon: <LuDog size={25} />
+    },
+    {
+      name: "Community & Lifestyle",
+      icon: <FaPeopleGroup size={25} />
+    },
+    {
+      name: "Fun & Entertainment",
+      icon: <GiPartyPopper size={25} />
+    },
+    {
+      name: "DIY",
+      icon: <GiBalloonDog size={25} />
+    },
+    {
+      name: "Heartwarming Stories",
+      icon: <BsArrowThroughHeart size={25} />
+    },
+    {
+      name: "Products & Reviews",
+      icon: <GiDogBowl size={25} />
+    },
+   
+    // 'Foundational Training', 'Advanced Training', 'Training Tools & Techniques', 'Specific Breed Focus', 'Dog Behavior',
+    // 'Health & Wellness', 'Dog Care', 'Everything Puppies!', 'Community & Lifestyle', 'Fun & Entertainment',
+    // 'DIY', 'Heartwarming Stories', 'Products & Reviews'
   ],
   onItemSelect,
   showGradients = true,
@@ -132,8 +188,8 @@ const AnimatedListBlogCategories = ({
               }
             }}
           >
-            <div className={`p-4 bg-neutral-200 dark:bg-neutral-950 rounded-lg shadow-md shadow-neutral-400 dark:shadow-black ${selectedIndex === index ? 'bg-[#222]' : ''} ${itemClassName}`}>
-              <p className="text-neutral-900 dark:text-white font-learn uppercase font-bold tracking-widest text-xl m-0">{item}</p>
+            <div className={`p-4 bg-neutral-100 dark:bg-neutral-950 rounded-lg shadow-md shadow-neutral-400 dark:shadow-black ${selectedIndex === index ? 'bg-[#222]' : ''} ${itemClassName}`}>
+              <p className="text-neutral-900 dark:text-white font-learn uppercase font-bold tracking-widest text-xl m-0 flex items-center gap-x-3"><span className='text-teal-400 dark:text-lime-400'>{item.icon}</span>{item.name}</p>
             </div>
           </AnimatedItem>
         ))}

@@ -231,7 +231,7 @@ const BlogDetail = () => {
                 </div>
                 {user.id === blog.userId ||
                 user.role.includes("Business Manager") ||
-                user.role.includes("Trainer") ? (
+                user.role.includes("Trainer") || user.id ? (
                   <button
                     onClick={() => {
                       setShowBlogActions(!showBlogActions)
