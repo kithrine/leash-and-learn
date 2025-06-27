@@ -128,35 +128,47 @@ const EnrollForm = () => {
       dispatch(trainingClassEnroll(enrollmentInfo))
       if (storedTheme === "dark") {
         toast.success("Successfully Enrolled!", {
-          theme: "dark"
+          theme: "dark",
+          className: "text-sm"
         })
       } else {
-        toast.success("Successfully Enrolled!")
+        toast.success("Successfully Enrolled!", {
+          className: "text-sm"
+        })
       }
       navigate("/dashboard")
     } else if (selectedClass === null && selectedDog !== null) {
       if (storedTheme === "dark") {
         toast.warning("You must select a class in order to enroll!", {
-          theme: "dark"
+          theme: "dark",
+          className: "text-sm"
         })
       } else {
-        toast.warning("You must select a class in order to enroll!")
+        toast.warning("You must select a class in order to enroll!", {
+          className: "text-sm"
+        })
       }
     } else if (selectedClass !== null && selectedDog === null) {
       if (storedTheme === "dark") {
         toast.warning("You must select a dog in order to enroll!", {
-          theme: "dark"
+          theme: "dark",
+          className: "text-sm"
         })
       } else {
-        toast.warning("You must select a dog in order to enroll!")
+        toast.warning("You must select a dog in order to enroll!", {
+          className: "text-sm"
+        })
       }
     } else {
       if (storedTheme === "dark") {
         toast.error("You must select a class and a dog in order to enroll", {
-          theme: "dark"
+          theme: "dark",
+          className: "text-sm",
         })
       } else {
-        toast.error("You must select a class and a dog in order to enroll")
+        toast.error("You must select a class and a dog in order to enroll", {
+          className: "text-sm"
+        })
       }
     }
   }
