@@ -7,7 +7,7 @@ import {
   trainingClassEnroll,
   trainingClassGetManyByType
 } from "../redux/trainingClassSlice"
-import { toast } from "react-toastify"
+import { toast, ToastContainer } from "react-toastify"
 import { SiDatadog } from "react-icons/si"
 import * as motion from "motion/react-client"
 import DogAddModal from "../components/modals/DogAddModal"
@@ -177,6 +177,7 @@ const EnrollForm = () => {
 
   return (
     <>
+    <ToastContainer />
       <section className={`${storedTheme === "light" ? "light-kiwi-bg" : "dark-kiwi-bg"} min-h-[100vh] md:px-[13vw] mt-16`}>
         <div className="py-8 px-4 mx-auto max-w-6xl lg:py-16  md:ml-[20vw] font-instrument animate__animated animate__fadeIn animate__slow">
           <h2 className="font-lexend uppercase mb-4 text-4xl font-bold text-neutral-900 dark:text-white tracking-tighter">
