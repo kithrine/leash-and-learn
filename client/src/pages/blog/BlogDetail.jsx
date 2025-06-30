@@ -179,6 +179,14 @@ const BlogDetail = () => {
     console.log("is this working")
   }
 
+  const handleRedirectAfterLogin = () => {
+    const returnUrl = window.location.href; // Get the current URL they were on
+    console.log("returnUrl", returnUrl)
+    // Set a cookie named 'returnTo' with their original URL
+    document.cookie = "returnTo=" + encodeURIComponent(returnUrl);
+    navigate("/login")
+  }
+
   return (
     <>
     <ToastContainer />
@@ -362,7 +370,8 @@ const BlogDetail = () => {
                       or{" "}
                       <span
                         className="underline cursor-pointer hover:font-bold"
-                        onClick={() => navigate("/login")}>
+                        // onClick={() => navigate("/login")}> // Regular navigate to the Login Page
+                        onClick={handleRedirectAfterLogin}> 
                         log in
                       </span>
                       .

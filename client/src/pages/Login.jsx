@@ -26,14 +26,23 @@ const Login = () => {
   useEffect(() => {
     console.log("useEffect", isLoggedIn);
     if (isLoggedIn && user.token) {
-      // sessionStorage.setItem("token", user.token); // Store token
-      navigate("/dashboard"); // Navigate to dashboard
+      // sessionStorage.setItem("token", user.token); // Store token 
+      // navigate("/dashboard"); // Navigate to dashboard ***
+      // Inside your authentication logic after a successful login...
+      const returnTo = decodeURIComponent(document.cookie.split("returnTo=")[1]); // Extract the 'returnTo' cookie value
+
+      if (returnTo) {  // Check if there is a stored URL 
+          window.location.href = returnTo; // Redirect to the saved page
+      } else { 
+        // If no stored URL, redirect to dashboard
+        window.location.href = '/dashboard'; 
+      }
     }
   }, [isLoggedIn]);
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("handleSubmit");
+    console.log("handleLogin");
     // Validation
     if (loginForm.email === "" || loginForm.password === "") {
       // Show error message/styling
@@ -71,7 +80,7 @@ const Login = () => {
                   </h1>
                   <p className="text-lg text-neutral-700 dark:text-neutral-100 font-learn leading-tight font-bold tracking-wider">*NOTE: You must have an account in order to enroll in a training class, post a blog, or leave comments on a blog.</p>
                   <form
-                    onSubmit={handleSubmit}
+                    onSubmit={handleLogin}
                     className="space-y-4 md:space-y-6"
                   >
                     <div>
@@ -183,7 +192,7 @@ const Login = () => {
                   </h1>
                   <p className="text-lg text-neutral-700 dark:text-neutral-100 font-learn leading-tight font-bold tracking-wider">*NOTE: You must have an account in order to enroll in a training class, post a blog, or leave comments on a blog.</p>
                   <form
-                    onSubmit={handleSubmit}
+                    // onSubmit={handleLogin}
                     className="space-y-4 md:space-y-6"
                   >
                     <div>
@@ -194,13 +203,13 @@ const Login = () => {
                         Email
                       </label>
                       <input
-                        value={loginForm.email}
-                        onChange={(e) =>
-                          setLoginForm({
-                            ...loginForm,
-                            email: e.target.value, 
-                          })
-                        }
+                        // value={loginForm.email}
+                        // onChange={(e) =>
+                        //   setLoginForm({
+                        //     ...loginForm,
+                        //     email: e.target.value, 
+                        //   })
+                        // }
                         type="email"
                         name="email"
                         id="email"
@@ -217,13 +226,13 @@ const Login = () => {
                         Password
                       </label>
                       <input
-                        value={loginForm.password}
-                        onChange={(e) =>
-                          setLoginForm({
-                            ...loginForm,
-                            password: e.target.value,
-                          })
-                        }
+                        // value={loginForm.password}
+                        // onChange={(e) =>
+                        //   setLoginForm({
+                        //     ...loginForm,
+                        //     password: e.target.value,
+                        //   })
+                        // }
                         type="password"
                         name="password"
                         id="password"
