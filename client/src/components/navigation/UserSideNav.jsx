@@ -44,6 +44,8 @@ const UserSideNav = ({ loggedInEmail }) => {
     }
     dispatch(chatLogout())
     // Make service call to logout
+    sessionStorage.removeItem("returnTo")
+
   };
   
 

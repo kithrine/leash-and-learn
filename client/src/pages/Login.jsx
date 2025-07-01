@@ -23,22 +23,40 @@ const Login = () => {
     }, 2000)
   }, []);
 
+  let redirectAfterLogin
+
   useEffect(() => {
     console.log("useEffect", isLoggedIn);
     if (isLoggedIn && user.token) {
       // sessionStorage.setItem("token", user.token); // Store token 
-      // navigate("/dashboard"); // Navigate to dashboard ***
-      // Inside your authentication logic after a successful login...
-      const returnTo = decodeURIComponent(document.cookie.split("returnTo=")[1]); // Extract the 'returnTo' cookie value
 
-      if (returnTo) {  // Check if there is a stored URL 
-          window.location.href = returnTo; // Redirect to the saved page
-      } else { 
-        // If no stored URL, redirect to dashboard
-        window.location.href = '/dashboard'; 
-      }
+      redirectAfterLogin = sessionStorage.getItem("returnTo")
+      console.log("redirectAfterLogin", redirectAfterLogin)
+    
+          if (redirectAfterLogin) {
+            // navigate(`/${redirectAfterLogin}`)
+            window.location.href = redirectAfterLogin
+          } else {
+            // navigate("/dashboard"); // Navigate to dashboard ***
+            window.location.href = '/dashboard'; 
+          }
+
+
+      
+
+      // // Inside your authentication logic after a successful login...
+      // const returnTo = decodeURIComponent(document.cookie.split("returnTo=")[1]); // Extract the 'returnTo' cookie value
+
+      // if (returnTo) {  // Check if there is a stored URL 
+      //     window.location.href = returnTo; // Redirect to the saved page
+      // } else { 
+      //   // If no stored URL, redirect to dashboard
+      //   window.location.href = '/dashboard'; 
+      // }
     }
   }, [isLoggedIn]);
+
+  
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -50,6 +68,27 @@ const Login = () => {
     } else {
       dispatch(authLogin({ ...loginForm }));
       
+  //     redirectAfterLogin = sessionStorage.getItem("returnTo")
+  // console.log("redirectAfterLogin", redirectAfterLogin)
+
+  //     if (redirectAfterLogin) {
+  //       // navigate(`/${redirectAfterLogin}`)
+  //       window.location.href = redirectAfterLogin
+  //     } else {
+  //       // navigate("/dashboard"); // Navigate to dashboard ***
+  //       window.location.href = '/dashboard'; 
+  //     }
+
+      // const returnTo = decodeURIComponent(document.cookie.split("returnTo=")[1]); // Extract the 'returnTo' cookie value
+
+      // if (returnTo) {  // Check if there is a stored URL 
+      //     window.location.href = returnTo; // Redirect to the saved page
+      // } else { 
+      //   // If no stored URL, redirect to dashboard
+      //   navigate("/dashboard")
+      // }
+
+
       // const loginUser = await axios.post(`${import.meta.env.VITE_NODE_SERVER_URL}/users/login`, { ...loginForm })
       // console.log("loginUser:", loginUser)
       // // Destructure success and user for the "if" statement

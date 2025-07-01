@@ -21,6 +21,7 @@ const NavBar = ({ theme, setTheme, toggleTheme}) => {
       dispatch(logout(logoutToken));
     }
     dispatch(chatLogout())
+    sessionStorage.removeItem("returnTo")
     // Make service call to logout
   };
 

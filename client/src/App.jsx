@@ -4,6 +4,7 @@ import { Routes, Route, useLocation } from "react-router"
 import { checkLogin } from "./redux/authSlice"
 import { userGetAll } from "./redux/userSlice"
 import { ToastContainer } from "react-toastify"
+import { Toaster } from "react-hot-toast"
 import NavBar from "./components/navigation/NavBar"
 import PrivateRoute from "./components/PrivateRoute"
 import HomePage from "./pages/HomePage"
@@ -36,7 +37,6 @@ function App() {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
   const { users } = useSelector((state) => state.users)
-  
 
   useEffect(() => {
     dispatch(userGetAll())
@@ -83,6 +83,7 @@ function App() {
     <> 
       <div className={`${theme}`}>
       <ToastContainer />
+      <Toaster />
       <NavBar theme={theme} setTheme={setTheme} toggleTheme={toggleTheme} />
       <ChatButton />
       <Routes>

@@ -10,6 +10,7 @@ import {
   updateBlogComment
 } from "../../redux/blogSlice"
 import { toast, ToastContainer } from "react-toastify"
+// import toast from "react-hot-toast"
 import * as motion from "motion/react-client"
 import Markdown from "react-markdown"
 import BlogDeleteModal from "../../components/modals/BlogDeleteModal"
@@ -17,6 +18,7 @@ import BlogNavigation from "../../components/navigation/BlogNavigation"
 import BlogEditModal from "../../components/modals/BlogEditModal"
 import BlogCommentEditModal from "../../components/modals/BlogCommentEditModal"
 import Footer from "../../components/footers/Footer"
+import { userGetOne } from "../../redux/userSlice"
 
 const BlogDetail = () => {
   const dispatch = useDispatch()
@@ -25,6 +27,7 @@ const BlogDetail = () => {
   const { blog } = useSelector((state) => state.blog)
   const { user } = useSelector((state) => state.users)
   // const { authUser } = useSelector(state => state.auth)
+
 
   let blogId = location.pathname.split("/")[2]
   const [showBlogEditModal, setShowBlogEditModal] = useState(false)
@@ -71,6 +74,19 @@ const BlogDetail = () => {
   const storedTheme = localStorage.getItem("theme")
   const token = sessionStorage.getItem("token")
 
+  const darkHotToast = {
+    // ...default themes settings...
+    colors: {
+      // success: '#4CAF50', // Adjust success color to a darker shade, e.g., #388E3C 
+      // error: '#F44336', //  Adjust error color as well (already somewhat dark)
+      // info: '#2196F3',   // ... and so on for other toast types 
+      background: '#212529', // Background color - darker shade of gray 
+      text: '#fff'        // Text color - white to contrast with the dark background
+    },
+  
+    // Add more styling as needed, like border colors, shadows, etc.
+  };
+
   // const userEmail = sessionStorage.getItem("checkUser")
   // console.log("userEmail", userEmail)
 
@@ -83,9 +99,20 @@ const BlogDetail = () => {
     // console.log("blog", blog)
   }, [])
 
-  useEffect(() => {
-    console.log("blog", blog)
-  }, [blog])
+  // ATTEMPT AT TRYING TO FIX THE BUG WHERE WHEN A USER LOGS IN FROM CLICKING THE LOGIN BUTTON ON THE ALERT BY THE COMMENTS SECTION, WHEN A USER LOGS IN AND IS REDIRECTED TO THAT SPECIFIC BLOG, IT IS NOT GRABBING THE USER OBJECT IN ORDER TO DISPLAY THE BLOG/COMMENT ACTIONS IF IT IS A BM/TRAINER OR A USER THAT POSTED THE CONTENT
+    // Tried and added loggedInEmail from the App.jsx page by grabbing the user.email from the authSlice, and passed it in through the component route and at the top of this component with props
+    // All the other stuff tried doing and added is below 
+    // useEffect(() => {
+    //   console.log("loggedInEmail user", loggedInEmail, user)
+    // }, [loggedInEmail])
+  
+    // useEffect(() => {
+    //   dispatch(userGetOne(loggedInEmail))
+    // }, [])
+  
+    // console.log("USERRRRR", user)
+
+
 
   const handleBlogEdit = (e) => {
     e.preventDefault()
@@ -176,14 +203,24 @@ const BlogDetail = () => {
   const handleDeleteComment = (comment) => {
     console.log("handleDeleteComment", id, comment)
     dispatch(deleteBlogComment({ blogId: id, commentId: comment._id }))
-    console.log("is this working")
+    if (storedTheme === "dark") {
+      toast.success("Comment deleted successfully!", {
+        theme: "dark"
+      })
+    } else {
+      toast.success("Comment deleted successfully!")
+    }
   }
 
+  let redirectAfterLogin
+
   const handleRedirectAfterLogin = () => {
-    const returnUrl = window.location.href; // Get the current URL they were on
-    console.log("returnUrl", returnUrl)
-    // Set a cookie named 'returnTo' with their original URL
-    document.cookie = "returnTo=" + encodeURIComponent(returnUrl);
+    redirectAfterLogin = sessionStorage.setItem("returnTo", window.location.href)
+    console.log("redirectAfterLogin", redirectAfterLogin)
+    // const returnUrl = window.location.href; // Get the current URL they were on
+    // console.log("returnUrl", returnUrl)
+    // // Set a cookie named 'returnTo' with their original URL
+    // document.cookie = "returnTo=" + encodeURIComponent(returnUrl);
     navigate("/login")
   }
 

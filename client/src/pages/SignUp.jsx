@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router"
 import { useDispatch } from "react-redux"
 import { userGetAll } from "../redux/userSlice"
 import { userCreate } from "../redux/userSlice"
+import toast, { Toaster } from 'react-hot-toast';
 import * as motion from "motion/react-client"
 import TACModal from "../components/modals/TACModal"
 import Footer from "../components/footers/Footer"
@@ -33,7 +34,7 @@ const SignUp = ({ users }) => {
     dispatch(userGetAll())
   }, [])
 
-  const handleSubmit = (e) => {
+  const handleAccountCreate = (e) => {
     e.preventDefault()
 
     let checkEmail = users.filter((user) => user.email === signUpForm.email).map((user) => {return user.email}).join()
@@ -54,6 +55,9 @@ const SignUp = ({ users }) => {
       console.log("userForm form sign up", userForm)
       dispatch(userCreate(userForm))
       navigate("/login")
+      toast.success("Account Created", {
+        theme: "dark"
+      })
     } else if (checkEmail === signUpForm.email) {
       setShowEmailAccountAlert(true)
     } else if (checkUsername === signUpForm.username) {
@@ -78,7 +82,7 @@ const SignUp = ({ users }) => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-neutral-900 md:text-2xl dark:text-white font-lexend uppercase text-center">
                 Create an account
               </h1>
-              <form className="space-y-4 md:space-y-6 font-instrument" onSubmit={handleSubmit}>
+              <form className="space-y-4 md:space-y-6 font-instrument" onSubmit={handleAccountCreate}>
                 <div className="flex flex-row space-x-5">
                   <div>
                     <label

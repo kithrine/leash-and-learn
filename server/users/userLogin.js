@@ -34,7 +34,7 @@ const userLogin = async (req, res) => {
     console.log("token:", token);
     loginUser.token.push(token);
     loginUser.save();
-    console.log("loginUser:", loginUser);
+    // console.log("loginUser:", loginUser);
     const user = {
       firstName: loginUser.firstName,
       lastName: loginUser.lastName,
