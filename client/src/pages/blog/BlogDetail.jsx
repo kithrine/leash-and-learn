@@ -98,6 +98,11 @@ const BlogDetail = () => {
     dispatch(blogGetOne(id))
     // console.log("blog", blog)
   }, [])
+  
+  useEffect(() => {
+    console.log("user id", user.id, "blog id", blog.userId)
+
+  }, [user.id])
 
   // ATTEMPT AT TRYING TO FIX THE BUG WHERE WHEN A USER LOGS IN FROM CLICKING THE LOGIN BUTTON ON THE ALERT BY THE COMMENTS SECTION, WHEN A USER LOGS IN AND IS REDIRECTED TO THAT SPECIFIC BLOG, IT IS NOT GRABBING THE USER OBJECT IN ORDER TO DISPLAY THE BLOG/COMMENT ACTIONS IF IT IS A BM/TRAINER OR A USER THAT POSTED THE CONTENT
     // Tried and added loggedInEmail from the App.jsx page by grabbing the user.email from the authSlice, and passed it in through the component route and at the top of this component with props

@@ -5,6 +5,7 @@ import { authLogin } from "../redux/authSlice";
 import * as motion from "motion/react-client"
 import Footer from "../components/footers/Footer";
 import { calcLength } from "framer-motion";
+import { userGetOne } from "../redux/userSlice";
 
 const Login = () => {
   const [loginForm, setLoginForm] = useState({ email: "", password: "" });
@@ -26,19 +27,21 @@ const Login = () => {
   let redirectAfterLogin
 
   useEffect(() => {
-    console.log("useEffect", isLoggedIn);
+    console.log("useEffect isLoggedIn", isLoggedIn);
     if (isLoggedIn && user.token) {
       // sessionStorage.setItem("token", user.token); // Store token 
 
+      // **TODO: Set the port to import.meta..BLAH BLAH
       redirectAfterLogin = sessionStorage.getItem("returnTo")
+      // redirectAfterLogin = sessionStorage.getItem("returnTo")
       console.log("redirectAfterLogin", redirectAfterLogin)
     
           if (redirectAfterLogin) {
-            // navigate(`/${redirectAfterLogin}`)
-            window.location.href = redirectAfterLogin
+            navigate(`${redirectAfterLogin.replace("http://localhost:3333", "")}`)
+            // window.location.href = redirectAfterLogin
           } else {
-            // navigate("/dashboard"); // Navigate to dashboard ***
-            window.location.href = '/dashboard'; 
+            navigate("/dashboard"); // Navigate to dashboard ***
+            // window.location.href = '/dashboard'; 
           }
 
 
@@ -67,6 +70,7 @@ const Login = () => {
       console.log("form error");
     } else {
       dispatch(authLogin({ ...loginForm }));
+      dispatch(userGetOne(loginForm.email))
       
   //     redirectAfterLogin = sessionStorage.getItem("returnTo")
   // console.log("redirectAfterLogin", redirectAfterLogin)
