@@ -72,12 +72,12 @@ const BlogCommentEditModal = ({ handleEditComment, setShowCommentEditModal, comm
             </div>
             {/* <!-- Modal body --> */}
             <form onSubmit={handleEditComment}>
-                <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
                  
-                  <div class="sm:col-span-2">
+                  <div className="sm:col-span-2">
                     {/* <label
                       for="comment"
-                      class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">
+                      className="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">
                       Body
                     </label> */}
                     <textarea
@@ -87,7 +87,7 @@ const BlogCommentEditModal = ({ handleEditComment, setShowCommentEditModal, comm
                     }
                       id="comment"
                       rows="15"
-                      class="block p-2.5 w-full text-sm text-neutral-900 bg-neutral-50 rounded-lg border border-neutral-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      className="block p-2.5 w-full text-sm text-neutral-900 bg-neutral-50 rounded-lg border border-neutral-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       placeholder="Write about dogs here!"></textarea>
                   </div>
                 </div>

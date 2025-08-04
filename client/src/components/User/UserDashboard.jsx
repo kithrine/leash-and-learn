@@ -164,41 +164,41 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                 Account Overview
               </h2>
 
-              <section class="bg-white dark:bg-neutral-900 border-t border-b border-neutral-200 dark:border-neutral-700">
-                <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-                  <div class="mx-auto max-w-screen-sm text-center">
-                    <h2 class="mb-4 text-4xl tracking-tight font-extrabold leading-tight text-neutral-900 dark:text-white">
+              <section className="bg-white dark:bg-neutral-900 border-t border-b border-neutral-200 dark:border-neutral-700">
+                <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+                  <div className="mx-auto max-w-screen-sm text-center">
+                    <h2 className="mb-4 text-4xl tracking-tight font-extrabold leading-tight text-neutral-900 dark:text-white">
                       Enroll in a Training Class Today!
                     </h2>
-                    <p class="mb-4 leading-tight text-neutral-900 dark:text-white font-instrument tracking-wide">
+                    <p className="mb-4 leading-tight text-neutral-900 dark:text-white font-instrument tracking-wide">
                       Join a fun and supportive learning environment where you
                       and your dog can thrive together. Click below to find the
                       perfect class for your needs!
                     </p>
 
-                    <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 font-instrument">
+                    <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 font-instrument">
                       <Link
                         to="/enroll"
-                        class="inline-flex justify-center items-center py-2 px-3 text-base font-medium text-center text-white dark:text-black rounded-lg bg-violet-500 hover:bg-violet-600 focus:ring-4 focus:ring-violet-300 dark:bg-yellow-400 dark:hover:bg-yellow-500 dark:focus:ring-yellow-600 transition duration-200 ease-in-out hover:-translate-y-1 hover:scale-105">
+                        className="inline-flex justify-center items-center py-2 px-3 text-base font-medium text-center text-white dark:text-black rounded-lg bg-violet-500 hover:bg-violet-600 focus:ring-4 focus:ring-violet-300 dark:bg-yellow-400 dark:hover:bg-yellow-500 dark:focus:ring-yellow-600 transition duration-200 ease-in-out hover:-translate-y-1 hover:scale-105">
                         Enroll Now
                         <svg
-                          class="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+                          className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
                           aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 14 10">
                           <path
                             stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="M1 5h12m0 0L9 1m4 4L9 9"
                           />
                         </svg>
                       </Link>
                       <button
                         to=""
-                        class="inline-flex justify-center items-center py-2 px-3 sm:ms-4 text-base font-medium text-center text-neutral-800 dark:text-neutral-200 rounded-lg border border-neutral-800 hover:bg-neutral-800 hover:text-white dark:border-neutral-300 dark:hover:bg-gray-100 dark:hover:text-neutral-900 focus:ring-4 focus:ring-gray-400 transition duration-200 ease-in-out hover:-translate-y-1 hover:scale-105 cursor-pointer">
+                        className="inline-flex justify-center items-center py-2 px-3 sm:ms-4 text-base font-medium text-center text-neutral-800 dark:text-neutral-200 rounded-lg border border-neutral-800 hover:bg-neutral-800 hover:text-white dark:border-neutral-300 dark:hover:bg-gray-100 dark:hover:text-neutral-900 focus:ring-4 focus:ring-gray-400 transition duration-200 ease-in-out hover:-translate-y-1 hover:scale-105 cursor-pointer">
                         Add Dog
                       </button>
                     </div>
@@ -443,7 +443,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   type="button"
-                  class="text-white dark:text-black bg-teal-400 hover:bg-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-300 font-medium rounded-full text-sm px-5 mb-4 mt-1 text-center dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 cursor-pointer">
+                  className="text-white dark:text-black bg-teal-400 hover:bg-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-300 font-medium rounded-full text-sm px-5 mb-4 mt-1 text-center dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 cursor-pointer">
                   Add Dog
                 </motion.button>
               </div>
@@ -452,9 +452,9 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
               {user.dogs.length === 0 ? (
                 <div className="pt-5 pb-12 animate-wiggle-minimized drop-shadow-xl drop-shadow-gray-400 dark:drop-shadow-black">
                   <div
-                    class="bg-violet-100 border-l-8 border-violet-500 text-violet-700 p-4 dark:bg-yellow-300 dark:border-yellow-600 dark:text-yellow-700"
+                    className="bg-violet-100 border-l-8 border-violet-500 text-violet-700 p-4 dark:bg-yellow-300 dark:border-yellow-600 dark:text-yellow-700"
                     role="alert">
-                    <p class="font-anton tracking-wider text-xl">
+                    <p className="font-anton tracking-wider text-xl">
                       You have not added a dog yet!
                     </p>
                     {/* <p>
@@ -513,9 +513,9 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
 
                   <div className="space-y-12 lg:grid lg:grid-cols-2 lg:gap-y-6 lg:gap-x-6">
                     {user.dogs.map((dog, index) => (
-                      <div class="w-full bg-white border border-neutral-200 rounded-lg shadow-sm dark:bg-neutral-700 dark:border-neutral-700 min-h-full">
+                      <div className="w-full bg-white border border-neutral-200 rounded-lg shadow-sm dark:bg-neutral-700 dark:border-neutral-700 min-h-full">
              
-                          <div class="flex justify-end px-4 pt-4">
+                          <div className="flex justify-end px-4 pt-4">
                             <button
                               onClick={() => {
                                 setShowDogActions(true)
@@ -523,11 +523,11 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                               }}
                               id="dropdownButton"
                               data-dropdown-toggle="dropdown"
-                              class="inline-block text-neutral-500 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-600 focus:ring-4 focus:outline-none focus:ring-neutral-200 dark:focus:ring-neutral-500 rounded-lg text-sm p-1.5 cursor-pointer"
+                              className="inline-block text-neutral-500 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-600 focus:ring-4 focus:outline-none focus:ring-neutral-200 dark:focus:ring-neutral-500 rounded-lg text-sm p-1.5 cursor-pointer"
                               type="button">
-                              <span class="sr-only">Open dropdown</span>
+                              <span className="sr-only">Open dropdown</span>
                               <svg
-                                class="w-5 h-5"
+                                className="w-5 h-5"
                                 aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="currentColor"
@@ -539,23 +539,23 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                             {showDogActions && dogToDelete._id === dog._id && (
                               <div
                                 id="dropdown"
-                                class="z-10 text-base list-none bg-neutral-50 divide-y divide-neutral-100 rounded-lg shadow-sm w-44 dark:bg-neutral-800 absolute">
+                                className="z-10 text-base list-none bg-neutral-50 divide-y divide-neutral-100 rounded-lg shadow-sm w-44 dark:bg-neutral-800 absolute">
                                 <ul
-                                  class="py-2"
+                                  className="py-2"
                                   aria-labelledby="dropdownButton">
                                   <li>
                                     <div
                                       onClick={() =>
                                         handleDogEditModal(dog, dog._id)
                                       }
-                                      class="cursor-pointer block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white">
+                                      className="cursor-pointer block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white">
                                       Edit
                                     </div>
                                   </li>
                                   {/* <li>
                                   <a
                                     href="#"
-                                    class="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white">
+                                    className="block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white">
                                     Export Data
                                   </a>
                                 </li> */}
@@ -564,14 +564,14 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                                       onClick={() =>
                                         handleDogDeleteModal(dog, dog._id)
                                       }
-                                      class="cursor-pointer block px-4 py-2 text-sm text-red-600 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white">
+                                      className="cursor-pointer block px-4 py-2 text-sm text-red-600 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white">
                                       Delete
                                     </a>
                                   </li>
                                   <li>
                                     <div
                                       onClick={() => setShowDogActions(false)}
-                                      class="cursor-pointer block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white">
+                                      className="cursor-pointer block px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white">
                                       Cancel
                                     </div>
                                   </li>
@@ -579,7 +579,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                               </div>
                             )}
                           </div>
-                          <div class="flex flex-col items-center pb-10">
+                          <div className="flex flex-col items-center pb-10">
                             {dog.photo ? (
                               <img
                                 src={`${dog.photo}`}
@@ -600,10 +600,10 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                               </>
                             )}
 
-                            <h5 class="text-2xl font-bold text-neutral-900 dark:text-white font-lexend uppercase leading-4 pb-1 pt-1">
+                            <h5 className="text-2xl font-bold text-neutral-900 dark:text-white font-lexend uppercase leading-4 pb-1 pt-1">
                               {dog.name}
                             </h5>
-                            <p class="text-lg text-neutral-600 dark:text-neutral-300 font-learn">
+                            <p className="text-lg text-neutral-600 dark:text-neutral-300 font-learn">
                               {dog.breed}
                             </p>
 
@@ -760,7 +760,7 @@ const UserDashboard = ({ handleLogout, loggedInEmail }) => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   type="button"
-                  class="text-white dark:text-black bg-teal-400 hover:bg-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-300 font-medium rounded-full text-sm px-5 mb-4 mt-1 text-center dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 cursor-pointer">
+                  className="text-white dark:text-black bg-teal-400 hover:bg-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-300 font-medium rounded-full text-sm px-5 mb-4 mt-1 text-center dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 cursor-pointer">
                   Enroll Now
                 </motion.button>
               </div>

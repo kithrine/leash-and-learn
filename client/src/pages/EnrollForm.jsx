@@ -327,7 +327,7 @@ const EnrollForm = () => {
                 <div
                   key={dog._id}
                   onClick={() => handleDogClick(dog._id)}
-                  class={`w-full max-h-[42vh] border rounded-lg shadow-sm p-2 hover:bg-neutral-50 dark:hover:bg-neutral-700 drop-shadow-xl drop-shadow-neutral-300 dark:drop-shadow-black cursor-pointer mb-7 ${selectedDog === dog._id ? "bg-neutral-200 dark:bg-neutral-600 border-2 border-neutral-600 dark:border-neutral-400" : "bg-white border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700"}`}>
+                  className={`w-full max-h-[42vh] border rounded-lg shadow-sm p-2 hover:bg-neutral-50 dark:hover:bg-neutral-700 drop-shadow-xl drop-shadow-neutral-300 dark:drop-shadow-black cursor-pointer mb-7 ${selectedDog === dog._id ? "bg-neutral-200 dark:bg-neutral-600 border-2 border-neutral-600 dark:border-neutral-400" : "bg-white border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700"}`}>
 
                   {/* <button
                     type="button"
@@ -339,7 +339,7 @@ const EnrollForm = () => {
                       <span>Not selected</span>
                     )}
                   </button> */}
-                  <div class="flex flex-col items-center pb-6">
+                  <div className="flex flex-col items-center pb-6">
                   {dog.photo ? (
                               <img
                                 src={`${dog.photo}`}
@@ -360,13 +360,13 @@ const EnrollForm = () => {
                               </>
                             )}
 
-                    <h5 class="mb-1 text-xl font-bold font-lexend uppercase text-neutral-900 dark:text-white">
+                    <h5 className="mb-1 text-xl font-bold font-lexend uppercase text-neutral-900 dark:text-white">
                       {dog.name}
                     </h5>
-                    {/* <span class="text-sm text-neutral-500 dark:text-neutral-400">
+                    {/* <span className="text-sm text-neutral-500 dark:text-neutral-400">
                       {dog.breed}
                     </span>
-                    <div class="flex justify-between mt-4 md:mt-6">
+                    <div className="flex justify-between mt-4 md:mt-6">
                       <div>Age: {dog.age}</div>
                     </div>
                     <div>
@@ -392,13 +392,13 @@ const EnrollForm = () => {
                : 
               //  <div className="">
                 
-              //   <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert">
-              //     <p class="font-learn uppercase font-bold tracking-wider text-xl">** You have no dogs! **</p>
+              //   <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert">
+              //     <p className="font-learn uppercase font-bold tracking-wider text-xl">** You have no dogs! **</p>
               //     <p>You currently have no dogs added to your profile. Please add a dog to your profile by clicking the button below, or by going to your dashboard and clicking the "Add Dog" button under the Dogs section.</p>
               //     <button
               //     onClick={() => setShowAddDogModal(true)}
               //     type="button"
-              //     class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 my-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              //     className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 my-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               //     Add Dog
               //   </button>
               //   </div>
@@ -406,9 +406,9 @@ const EnrollForm = () => {
 
               <div className="pt-5 pb-12 animate-wiggle-minimized drop-shadow-xl drop-shadow-gray-400 dark:drop-shadow-black">
                   <div
-                    class="bg-violet-100 border-l-8 border-violet-500 text-violet-700 p-4 dark:bg-yellow-300 dark:border-yellow-600 dark:text-yellow-700"
+                    className="bg-violet-100 border-l-8 border-violet-500 text-violet-700 p-4 dark:bg-yellow-300 dark:border-yellow-600 dark:text-yellow-700"
                     role="alert">
-                    <p class="font-anton tracking-wider text-xl">
+                    <p className="font-anton tracking-wider text-xl">
                       ** You have no dogs! **
                     </p>
                    
@@ -418,7 +418,7 @@ const EnrollForm = () => {
                     <button
                   onClick={() => setShowAddDogModal(true)}
                   type="button"
-                  class="text-white bg-violet-700 hover:bg-violet-800 focus:outline-none focus:ring-4 focus:ring-violet-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 my-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800 cursor-pointer transition duration-300 ease-in-out hover:scale-105 hover:-translate-y-1">
+                  className="text-white bg-violet-700 hover:bg-violet-800 focus:outline-none focus:ring-4 focus:ring-violet-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 my-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800 cursor-pointer transition duration-300 ease-in-out hover:scale-105 hover:-translate-y-1">
                   Add Dog
                 </button>
                   </div>

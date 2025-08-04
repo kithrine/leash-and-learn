@@ -397,9 +397,9 @@ const TrainingClassDetail = () => {
                     {user.role.includes("User") ? (
                       <div className="">
                         <div
-                          class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4"
+                          className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4"
                           role="alert">
-                          <p class="font-learn uppercase font-bold tracking-wider text-xl">
+                          <p className="font-learn uppercase font-bold tracking-wider text-xl">
                             ** No Dogs Currently Enrolled! **
                           </p>
                           <p>
@@ -413,9 +413,9 @@ const TrainingClassDetail = () => {
                     ) : (
                       <div className="px-40">
                         {/* <div
-                          class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4"
+                          className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4"
                           role="alert">
-                          <p class="font-learn uppercase font-bold tracking-wider text-xl">
+                          <p className="font-learn uppercase font-bold tracking-wider text-xl">
                             ** No Dogs Currently Enrolled! **
                           </p>
                           <p>
@@ -427,9 +427,9 @@ const TrainingClassDetail = () => {
 
                         <div className="pt-5 animate-wiggle-minimized drop-shadow-xl drop-shadow-gray-400 dark:drop-shadow-black">
                   <div
-                    class="bg-violet-100 border-l-8 border-violet-500 text-violet-700 p-4 dark:bg-yellow-300 dark:border-yellow-600 dark:text-yellow-700"
+                    className="bg-violet-100 border-l-8 border-violet-500 text-violet-700 p-4 dark:bg-yellow-300 dark:border-yellow-600 dark:text-yellow-700"
                     role="alert">
-                    <p class="font-anton tracking-wider text-xl">
+                    <p className="font-anton tracking-wider text-xl">
                     ** No Dogs Currently Enrolled! **
                     </p>
                     {/* <p>
@@ -473,7 +473,7 @@ const TrainingClassDetail = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   type="button"
-                  class="text-white dark:text-black font-instrument bg-teal-400 hover:bg-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-300  rounded-full text-sm px-5 mb-4 mt-1 text-center dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 cursor-pointer">
+                  className="text-white dark:text-black font-instrument bg-teal-400 hover:bg-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-300  rounded-full text-sm px-5 mb-4 mt-1 text-center dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-600 cursor-pointer">
                   Add Session
                 </motion.button>
                   ) : null}

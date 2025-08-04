@@ -43,8 +43,8 @@ const HomePage = () => {
           </div> */}
         {/* <div className="pt-42 mb-20"> */}
         <div className="mb-0">
-          <section class="bg-no-repeat bg-[url('./assets/images/giant-dog2-cropped.jpg')] dark:bg-neutral-500 dark:bg-blend-multiply bg-neutral-700 bg-blend-soft-light bg-[50%] min-h-[110vh]">
-            <div class="pt-8 px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-45">
+          <section className="bg-no-repeat bg-[url('./assets/images/giant-dog2-cropped.jpg')] dark:bg-neutral-500 dark:bg-blend-multiply bg-neutral-700 bg-blend-soft-light bg-[50%] min-h-[110vh]">
+            <div className="pt-8 px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-45">
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -108,27 +108,27 @@ const HomePage = () => {
           {/* <FramerSplitText text="Where every dog's full potential is unleashed" /> */}
         </div>
 
-        <section class={`pt-8`}>
-          <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
-            <div class="font-light text-neutral-500 sm:text-lg dark:text-neutral-400">
-              <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-neutral-900 dark:text-black bg-[#FFDD00] -skew-x-8 pl-4 pb-2 transition-colors ease-in-out duration-300 animate">
+        <section className={`pt-8`}>
+          <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+            <div className="font-light text-neutral-500 sm:text-lg dark:text-neutral-400">
+              <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-neutral-900 dark:text-black bg-[#FFDD00] -skew-x-8 pl-4 pb-2 transition-colors ease-in-out duration-300 animate">
               Where Training is an Adventure!
               </h2>
-              <p class="mb-4 text-black dark:text-white font-instrument font-bold tracking-wider">
+              <p className="mb-4 text-black dark:text-white font-instrument font-bold tracking-wider">
               At Leash & Learn Dog Training, we believe in unlocking your dog's potential through positive reinforcement. Our experienced trainers guide both pups and owners with patience, clarity, and a whole lot of love. We celebrate each milestone, big or small, creating a fun and rewarding learning environment where dogs thrive and bonds deepen. 
               </p>
               <p className="text-black dark:text-white font-instrument font-bold tracking-wider">
               Whether you’re tackling basic obedience or navigating complex behavioral challenges, we're here to empower you with the tools for a happier, more harmonious life together.
               </p>
             </div>
-            {/* <div class="grid grid-cols-2 gap-4 mt-8"> */}
+            {/* <div className="grid grid-cols-2 gap-4 mt-8"> */}
               {/* <img
-                class="w-full rounded-lg"
+                className="w-full rounded-lg"
                 src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png"
                 alt="office content 1"
               />
               <img
-                class="mt-4 w-full lg:mt-10 rounded-lg"
+                className="mt-4 w-full lg:mt-10 rounded-lg"
                 src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-1.png"
                 alt="office content 2"
               /> */}

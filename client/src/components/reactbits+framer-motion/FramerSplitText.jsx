@@ -33,14 +33,14 @@ export default function FramerSplitText() {
   return (
     <div className="container" ref={containerRef}>
       <h1 className="h1">
-        <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">
+        <p className="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">
           The Leash & Learn Community Blog is more than just a collection of
           articles – it's a vibrant space where dog lovers from all walks of
           life can connect, share their experiences, and learn together. We
           believe that every dog owner has something valuable to contribute,
           whether it's a heartwarming story, a helpful training tip, or simply a
           shared passion for our furry companions. 
-        <span class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">
+        <span className="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">
           We encourage you to join the conversation! Leave comments on posts,
           start discussions in the forums, and connect with fellow dog
           enthusiasts who understand your love for these amazing animals. Here

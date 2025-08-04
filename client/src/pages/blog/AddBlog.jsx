@@ -149,12 +149,12 @@ const AddBlog = () => {
         <div className="pt-20 mt-8 mx-auto max-w-screen-xl px-4 lg:px-12 font-instrument relative">
           {/* <div className="bg-white dark:bg-neutral-800 relative drop-shadow-lg sm:rounded-lg overflow-hidden p-8"> */}
           <div className="text-center dark:text-white text-shadow-md text-shadow-violet-200 dark:text-shadow-lg dark:text-shadow-black animate__animated animate__fadeIn animate__slow">
-            <h1 class="text-3xl font-extrabold leading-none md:text-5xl lg:text-5xl pt-4">
+            <h1 className="text-3xl font-extrabold leading-none md:text-5xl lg:text-5xl pt-4">
               <span className="font-leash text-7xl">Leash</span>{" "}
               <span className="font-and">&</span>{" "}
               <span className="font-learn uppercase">Learn</span>{" "}
             </h1>
-            <h1 class="mb-4 text-2xl font-extrabold leading-none md:text-4xl lg:text-3xl font-lexend tracking-tighter uppercase text-neutral-800 dark:text-neutral-200 -mt-2">
+            <h1 className="mb-4 text-2xl font-extrabold leading-none md:text-4xl lg:text-3xl font-lexend tracking-tighter uppercase text-neutral-800 dark:text-neutral-200 -mt-2">
               Community Blog
             </h1>
           </div>
@@ -167,10 +167,10 @@ const AddBlog = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1.5 }}
             className="bg-white dark:bg-neutral-800 relative drop-shadow-lg sm:rounded-lg overflow-hidden dark:drop-shadow-black">
-            <section class="bg-white dark:bg-neutral-900">
-              <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+            <section className="bg-white dark:bg-neutral-900">
+              <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
                 <div className="text-neutral-900 dark:text-white pb-4">
-                  <h2 class="text-2xl font-bold tracking-wide text-center">
+                  <h2 className="text-2xl font-bold tracking-wide text-center">
                     Add a new blog post!
                   </h2>
                   <h2 className="">
@@ -188,11 +188,11 @@ const AddBlog = () => {
                 </div>
                 <div className="border-t border-violet-200 dark:border-neutral-700"></div>
                 <form onSubmit={handleSubmit} className="pt-6">
-                  <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                    <div class="sm:col-span-2 lg:col-span-1">
+                  <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                    <div className="sm:col-span-2 lg:col-span-1">
                       <label
                         for="blogTitle"
-                        class="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
+                        className="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
                         Blog Title
                       </label>
                       <input
@@ -206,7 +206,7 @@ const AddBlog = () => {
                         type="text"
                         name="blogTitle"
                         id="blogTitle"
-                        class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Title of blog"
                         required=""
                       />
@@ -215,7 +215,7 @@ const AddBlog = () => {
                     <div>
                       <label
                         for="category"
-                        class="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
+                        className="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
                         Category
                       </label>
                       <select
@@ -227,7 +227,7 @@ const AddBlog = () => {
                           })
                         }
                         id="category"
-                        class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                         <option selected="">Select category</option>
                         <option value="Foundational Training">
                           Foundational Training
@@ -265,10 +265,10 @@ const AddBlog = () => {
                       </select>
                     </div>
 
-                    <div class="w-full hidden">
+                    <div className="w-full hidden">
                       <label
                         for="authorFirstName"
-                        class="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
+                        className="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
                         Author First Name
                       </label>
                       <input
@@ -282,16 +282,16 @@ const AddBlog = () => {
                         type="text"
                         name="authorFirstName"
                         id="authorFirstName"
-                        class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="First name"
                         required=""
                       />
                     </div>
 
-                    <div class="w-full hidden">
+                    <div className="w-full hidden">
                       <label
                         for="authorFirstName"
-                        class="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
+                        className="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
                         Author Last Name
                       </label>
                       <input
@@ -305,16 +305,16 @@ const AddBlog = () => {
                         type="text"
                         name="authorLastName"
                         id="authorLastName"
-                        class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Last name"
                         required=""
                       />
                     </div>
 
-                    <div class="w-full">
+                    <div className="w-full">
                       <label
                         for="authorTitle"
-                        class="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
+                        className="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
                         Author Title
                       </label>
                       <input
@@ -327,7 +327,7 @@ const AddBlog = () => {
                         }
                         name="authorTitle"
                         id="authorTitle"
-                        class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="ex) Job title, 'Dog Lover', etc."
                         required=""
                       />
@@ -336,7 +336,7 @@ const AddBlog = () => {
                     <div>
                       <label
                         for="readTime"
-                        class="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
+                        className="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
                         Read Time
                       </label>
                       <div className="flex space-x-2">
@@ -351,7 +351,7 @@ const AddBlog = () => {
                           type="number"
                           name="readTime"
                           id="readTime"
-                          class="w-[80%] bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                          className="w-[80%] bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                           placeholder="0"
                           required
                         />
@@ -364,7 +364,7 @@ const AddBlog = () => {
                     {/* <div>
                     <label
                       for="subCategory"
-                      class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">
+                      className="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">
                       Subcategory
                     </label>
                     <select
@@ -373,7 +373,7 @@ const AddBlog = () => {
                       setAddBlogForm({ ...addBlogForm, subCategory: e.target.value })
                     }
                       id="subCategory"
-                      class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                      className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                       <option selected="">Select subcategory</option>
                       <option value="TV">TV/Monitors</option>
                       <option value="PC">PC</option>
@@ -391,11 +391,11 @@ const AddBlog = () => {
                           width="40"
                           height="40"
                           fill="currentColor"
-                          class="bi bi-person-circle"
+                          className="bi bi-person-circle"
                           viewBox="0 0 16 16">
                           <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                           <path
-                            fill-rule="evenodd"
+                            fillRule="evenodd"
                             d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
                           />
                         </svg>
@@ -406,16 +406,16 @@ const AddBlog = () => {
                           type="file"
                           name="avatar"
                           id="avatar"
-                          class="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                          className="bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                           placeholder="Upload an avatar image"
                         />
                       </div>
                     </div>
 
-                    <div class="sm:col-span-2">
+                    <div className="sm:col-span-2">
                       <label
                         for="body"
-                        class="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
+                        className="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
                         Body
                       </label>
                       <textarea
@@ -428,17 +428,17 @@ const AddBlog = () => {
                         }
                         id="body"
                         rows="20"
-                        class="block p-2.5 w-full text-sm text-neutral-900 bg-neutral-50 rounded-lg border border-neutral-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        className="block p-2.5 w-full text-sm text-neutral-900 bg-neutral-50 rounded-lg border border-neutral-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Write about dogs here!"></textarea>
                     </div>
 
-                    <div class="sm:col-span-2">
+                    <div className="sm:col-span-2">
                       <label
                         for="coverPhoto"
-                        class="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
+                        className="block mb-2 tracking-wide font-medium text-neutral-900 dark:text-white">
                         Cover Photo
                       </label>
-                      <div class="flex items-center justify-center w-full">
+                      <div className="flex items-center justify-center w-full">
                         {/* 
                     {blog.coverPhoto ? (
                     <img
@@ -459,11 +459,11 @@ const AddBlog = () => {
                       width="40"
                       height="40"
                       fill="#708090"
-                      class="bi bi-person-circle"
+                      className="bi bi-person-circle"
                       viewBox="0 0 16 16">
                       <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
                       />
                     </svg>
@@ -471,27 +471,27 @@ const AddBlog = () => {
 
                         {/* <label
                           for="dropzone-file"
-                          class="flex flex-col items-center justify-center w-full h-36 border-2 border-neutral-300 border-dashed rounded-lg cursor-pointer bg-neutral-50 dark:hover:bg-neutral-800 dark:bg-neutral-700 hover:bg-neutral-100">
-                          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                          className="flex flex-col items-center justify-center w-full h-36 border-2 border-neutral-300 border-dashed rounded-lg cursor-pointer bg-neutral-50 dark:hover:bg-neutral-800 dark:bg-neutral-700 hover:bg-neutral-100">
+                          <div className="flex flex-col items-center justify-center pt-5 pb-6">
                             <svg
-                              class="w-8 h-8 mb-4 text-neutral-500 dark:text-neutral-400"
+                              className="w-8 h-8 mb-4 text-neutral-500 dark:text-neutral-400"
                               aria-hidden="true"
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 20 16">
                               <path
                                 stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                               />
                             </svg>
-                            <p class="mb-2 text-sm text-neutral-500 dark:text-neutral-400">
-                              <span class="font-semibold">Click to upload</span>{" "}
+                            <p className="mb-2 text-sm text-neutral-500 dark:text-neutral-400">
+                              <span className="font-semibold">Click to upload</span>{" "}
                               or drag and drop
                             </p>
-                            <p class="text-xs text-neutral-500 dark:text-neutral-400">
+                            <p className="text-xs text-neutral-500 dark:text-neutral-400">
                               SVG, PNG, JPG or GIF (MAX. 800x400px)
                             </p>
                           </div>
@@ -500,13 +500,13 @@ const AddBlog = () => {
                             onChange={handleCoverPhotoUpload}
                             id="dropzone-file"
                             type="file"
-                            class="hidden"
+                            className="hidden"
                           />
                         </label> */}
 
 <input
                     onChange={handleCoverPhotoUpload}
-                    class="block w-full text-sm text-neutral-900 border border-neutral-300 rounded-lg cursor-pointer bg-neutral-50 dark:text-neutral-400 focus:outline-none dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 p-2"
+                    className="block w-full text-sm text-neutral-900 border border-neutral-300 rounded-lg cursor-pointer bg-neutral-50 dark:text-neutral-400 focus:outline-none dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 p-2"
                     id="file_input"
                     type="file"
                   />
@@ -517,7 +517,7 @@ const AddBlog = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     type="submit"
-                    class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white dark:text-black bg-teal-400 rounded-lg focus:ring-4 hover:bg-teal-500 focus:ring-teal-200 dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-700 cursor-pointer">
+                    className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white dark:text-black bg-teal-400 rounded-lg focus:ring-4 hover:bg-teal-500 focus:ring-teal-200 dark:bg-lime-400 dark:hover:bg-lime-500 dark:focus:ring-lime-700 cursor-pointer">
                     Add Blog
                   </motion.button>
                 </form>

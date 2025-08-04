@@ -229,14 +229,14 @@ const BlogDetail = () => {
     <ToastContainer />
       <BlogNavigation />
       <main
-        class={`pt-8 pb-16 lg:pt-26 lg:pb-24 mt-8 ${
+        className={`pt-8 pb-16 lg:pt-26 lg:pb-24 mt-8 ${
           storedTheme === "light" ? "light-charlie-bg" : "dark-charlie-bg"
         } antialiased transition duration-200 ease-in-out font-instrument`}>
-        <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
-          <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
-            <header class="mb-4 lg:mb-1 not-format">
-              <address class="flex items-center mb-6 not-italic justify-between">
-                <div class="inline-flex items-center mr-3 text-sm text-neutral-900 dark:text-white animate__animated animate__fadeIn animate__slow">
+        <div className="flex justify-between px-4 mx-auto max-w-screen-xl ">
+          <article className="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
+            <header className="mb-4 lg:mb-1 not-format">
+              <address className="flex items-center mb-6 not-italic justify-between">
+                <div className="inline-flex items-center mr-3 text-sm text-neutral-900 dark:text-white animate__animated animate__fadeIn animate__slow">
                   {blog.avatar ? (
                     <img
                       src={`${blog.avatar}`}
@@ -255,13 +255,13 @@ const BlogDetail = () => {
                   <div className="leading-tight">
                     <p
                       rel="author"
-                      class="text-xl font-bold text-neutral-900 dark:text-white">
+                      className="text-xl font-bold text-neutral-900 dark:text-white">
                       {blog.authorFirstName} {blog.authorLastName}
                     </p>
-                    <p class="text-base text-violet-600 dark:text-lime-400 italic">
+                    <p className="text-base text-violet-600 dark:text-lime-400 italic">
                       {blog.authorTitle}
                     </p>
-                    <div class="text-sm text-neutral-700 dark:text-neutral-300">
+                    <div className="text-sm text-neutral-700 dark:text-neutral-300">
                       <time pubdate>
                         {new Date(blog.date).toLocaleString("en-US", {
                           year: "numeric",
@@ -283,30 +283,30 @@ const BlogDetail = () => {
                     }}
                     id="dropdownBlogButton"
                     data-dropdown-toggle="dropdownBlog"
-                    class="inline-flex items-center p-2 text-sm font-medium text-center text-neutral-500 bg-white rounded-lg hover:bg-neutral-100 focus:ring-4 focus:outline-none focus:ring-neutral-50 dark:text-neutral-400 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:ring-neutral-600 rotate-90 border border-neutral-200 dark:border-neutral-800 drop-shadow-sm dark:drop-shadow-black drop-shadow-violet-100 hover:transition hover:duration-500 hover:ease-in-out cursor-pointer animate__animated animate__fadeIn animate__slow animate__delay-1s"
+                    className="inline-flex items-center p-2 text-sm font-medium text-center text-neutral-500 bg-white rounded-lg hover:bg-neutral-100 focus:ring-4 focus:outline-none focus:ring-neutral-50 dark:text-neutral-400 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:ring-neutral-600 rotate-90 border border-neutral-200 dark:border-neutral-800 drop-shadow-sm dark:drop-shadow-black drop-shadow-violet-100 hover:transition hover:duration-500 hover:ease-in-out cursor-pointer animate__animated animate__fadeIn animate__slow animate__delay-1s"
                     type="button">
                     <svg
-                      class="w-8 h-8"
+                      className="w-8 h-8"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
                       viewBox="0 0 16 3">
                       <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
                     </svg>
-                    <span class="sr-only">Blog settings</span>
+                    <span className="sr-only">Blog settings</span>
                   </button>
                 ) : null}
                 {showBlogActions && (
                   <div
                     id="blogActions"
-                    class="absolute z-10 w-36 ml-[35%] mt-[6%] bg-white rounded divide-y divide-neutral-100 shadow dark:bg-neutral-700 dark:divide-neutral-600">
+                    className="absolute z-10 w-36 ml-[35%] mt-[6%] bg-white rounded divide-y divide-neutral-100 shadow dark:bg-neutral-700 dark:divide-neutral-600">
                     <ul
-                      class="py-1 text-sm text-neutral-700 dark:text-neutral-200"
+                      className="py-1 text-sm text-neutral-700 dark:text-neutral-200"
                       aria-labelledby="dropdownMenuIconHorizontalButton">
                       <li>
                         <a
                           onClick={() => setShowBlogEditModal(true)}
-                          class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
+                          className="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
                           Edit
                         </a>
                       </li>
@@ -325,7 +325,7 @@ const BlogDetail = () => {
                             setShowBlogDeleteModal(true)
                             setBlogToDelete(id)
                           }}
-                          class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
+                          className="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
                           Remove
                         </a>
                       </li>
@@ -338,14 +338,14 @@ const BlogDetail = () => {
                         />
                       )}
                       <li>
-                        <a class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
+                        <a className="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
                           Report
                         </a>
                       </li>
                       <li>
                         <div
                           onClick={() => setShowBlogActions(false)}
-                          class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
+                          className="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
                           Close
                         </div>
                       </li>
@@ -354,7 +354,7 @@ const BlogDetail = () => {
                 )}
               </address>
               {/* <div>
-              <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">Yellow</span>
+              <span className="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">Yellow</span>
 
               </div> */}
 
@@ -370,7 +370,7 @@ const BlogDetail = () => {
               <div className="inline-flex z-10 rounded-full bg-teal-300 dark:bg-yellow-400 px-3 py-1.5 text-neutral-900 hover:bg-teal-400 dark:hover:bg-yellow-500 text-xs font-bold">
                 {blog.category}
               </div>
-              <h1 class="pb-4 text-3xl font-extrabold leading-tighter text-black lg:pb-2 lg:pt-3 lg:text-4xl dark:text-white font-palanquin-dark animate__animated animate__fadeInUp animate__slow">
+              <h1 className="pb-4 text-3xl font-extrabold leading-tighter text-black lg:pb-2 lg:pt-3 lg:text-4xl dark:text-white font-palanquin-dark animate__animated animate__fadeInUp animate__slow">
                 {blog.title}
               </h1>
             </header>
@@ -380,9 +380,9 @@ const BlogDetail = () => {
             </div>
 
             <div className="border-t opacity-55 border-teal-300 dark:border-yellow-300 "></div>
-            <section class="not-format pt-6">
-              <div class="flex justify-between items-center mb-6">
-                <h2 class="text-lg lg:text-2xl font-bold text-neutral-900 dark:text-white">
+            <section className="not-format pt-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-lg lg:text-2xl font-bold text-neutral-900 dark:text-white">
                   Discussion ({blog.comments.length})
                 </h2>
               </div>
@@ -392,9 +392,9 @@ const BlogDetail = () => {
               {!token ? (
                 <div className="pt-5 pb-12 animate-wiggle drop-shadow-xl drop-shadow-gray-400 dark:drop-shadow-black">
                   <div
-                    class="bg-violet-100 border-l-8 border-violet-500 text-violet-700 p-4 dark:bg-lime-300 dark:border-lime-600 dark:text-lime-700"
+                    className="bg-violet-100 border-l-8 border-violet-500 text-violet-700 p-4 dark:bg-lime-300 dark:border-lime-600 dark:text-lime-700"
                     role="alert">
-                    <p class="font-anton tracking-wider text-xl">
+                    <p className="font-anton tracking-wider text-xl">
                       You must have an account to post a comment!
                     </p>
                     <p>
@@ -416,9 +416,9 @@ const BlogDetail = () => {
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleAddComment} class="mb-6">
-                  <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700">
-                    <label for="comment" class="sr-only">
+                <form onSubmit={handleAddComment} className="mb-6">
+                  <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700">
+                    <label for="comment" className="sr-only">
                       Your comment
                     </label>
                     <textarea
@@ -431,7 +431,7 @@ const BlogDetail = () => {
                       }
                       id="comment"
                       rows="6"
-                      class="p-1 w-full text-sm text-neutral-900 border-0 focus:ring-0 dark:text-white dark:placeholder-neutral-400 dark:bg-neutral-800"
+                      className="p-1 w-full text-sm text-neutral-900 border-0 focus:ring-0 dark:text-white dark:placeholder-neutral-400 dark:bg-neutral-800"
                       placeholder="Write a comment..."
                       required></textarea>
                   </div>
@@ -439,7 +439,7 @@ const BlogDetail = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     type="submit"
-                    class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white dark:text-black bg-teal-400 dark:bg-lime-400 rounded-lg focus:ring-4 focus:ring-teal-200 dark:focus:ring-lime-300 hover:bg-teal-500 dark:hover:bg-lime-500 cursor-pointer">
+                    className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white dark:text-black bg-teal-400 dark:bg-lime-400 rounded-lg focus:ring-4 focus:ring-teal-200 dark:focus:ring-lime-300 hover:bg-teal-500 dark:hover:bg-lime-500 cursor-pointer">
                     Post comment
                   </motion.button>
                 </form>
@@ -450,12 +450,12 @@ const BlogDetail = () => {
                 <>
                   <article
                     value={index}
-                    class="p-6 mb-6 text-base bg-white rounded-lg dark:bg-neutral-900 drop-shadow-md dark:drop-shadow-sm dark:drop-shadow-black animate__animated animate__fadeInRight animate__slow">
-                    <div class="flex justify-between items-center mb-2">
-                      <div class="flex items-center">
-                        <p class="inline-flex items-center mr-3 font-semibold text-sm text-neutral-900 dark:text-white">
+                    className="p-6 mb-6 text-base bg-white rounded-lg dark:bg-neutral-900 drop-shadow-md dark:drop-shadow-sm dark:drop-shadow-black animate__animated animate__fadeInRight animate__slow">
+                    <div className="flex justify-between items-center mb-2">
+                      <div className="flex items-center">
+                        <p className="inline-flex items-center mr-3 font-semibold text-sm text-neutral-900 dark:text-white">
                           {/* <img
-                          class="mr-2 w-6 h-6 rounded-full"
+                          className="mr-2 w-6 h-6 rounded-full"
                           src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
                           alt="user avatar"
                         /> */}
@@ -486,7 +486,7 @@ const BlogDetail = () => {
                           </span> */}
                           </div>
                         </p>
-                        <p class="text-xs text-neutral-600 dark:text-neutral-400">
+                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
                           <time
                             pubdate
                             // datetime="2022-02-08"
@@ -509,17 +509,17 @@ const BlogDetail = () => {
                           }}
                           id="dropdownComment1Button"
                           data-dropdown-toggle="dropdownComment1"
-                          class="inline-flex items-center p-2 text-sm font-medium text-center text-violet-500 bg-white rounded-lg hover:bg-neutral-100 focus:ring-4 focus:outline-none focus:ring-neutral-50 dark:text-lime-400 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:ring-neutral-600 hover:transition hover:duration-500 hover:ease-in-out cursor-pointer"
+                          className="inline-flex items-center p-2 text-sm font-medium text-center text-violet-500 bg-white rounded-lg hover:bg-neutral-100 focus:ring-4 focus:outline-none focus:ring-neutral-50 dark:text-lime-400 dark:bg-neutral-900 dark:hover:bg-neutral-700 dark:focus:ring-neutral-600 hover:transition hover:duration-500 hover:ease-in-out cursor-pointer"
                           type="button">
                           <svg
-                            class="w-4 h-4"
+                            className="w-4 h-4"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor"
                             viewBox="0 0 16 3">
                             <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
                           </svg>
-                          <span class="sr-only">Comment settings</span>
+                          <span className="sr-only">Comment settings</span>
                         </button>
                       ) : null}
 
@@ -529,35 +529,35 @@ const BlogDetail = () => {
                         commentToDelete._id === comment._id && (
                           <div
                             id="dropdownComment1"
-                            class={`absolute z-10 w-36 ml-[32.5vw] mt-28 bg-white rounded divide-y divide-neutral-100 shadow dark:bg-neutral-700 dark:divide-neutral-600`}>
+                            className={`absolute z-10 w-36 ml-[32.5vw] mt-28 bg-white rounded divide-y divide-neutral-100 shadow dark:bg-neutral-700 dark:divide-neutral-600`}>
                             <ul
-                              class="py-1 text-sm text-neutral-700 dark:text-neutral-200"
+                              className="py-1 text-sm text-neutral-700 dark:text-neutral-200"
                               aria-labelledby="dropdownMenuIconHorizontalButton">
                               <li>
                                 <a
                                   onClick={() =>
                                     handleCommentEditModal(comment, comment._id)
                                   }
-                                  class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
+                                  className="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
                                   Edit
                                 </a>
                               </li>
                               <li>
                                 <a
                                   onClick={() => handleDeleteComment(comment)}
-                                  class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
+                                  className="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
                                   Remove
                                 </a>
                               </li>
                               <li>
-                                <a class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
+                                <a className="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
                                   Report
                                 </a>
                               </li>
                               <li>
                                 <div
                                   onClick={() => setShowCommentActions(false)}
-                                  class="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
+                                  className="block py-2 px-4 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:hover:text-white cursor-pointer">
                                   Close
                                 </div>
                               </li>
@@ -569,12 +569,12 @@ const BlogDetail = () => {
                     <p className="text-black dark:text-white animate__animated animate__fadeIn animate__slow">
                       {comment.comment}
                     </p>
-                    <div class="flex items-center mt-4 space-x-4">
+                    <div className="flex items-center mt-4 space-x-4">
                       <button
                         type="button"
-                        class="flex items-center font-medium text-sm text-neutral-500 hover:underline dark:text-neutral-400">
+                        className="flex items-center font-medium text-sm text-neutral-500 hover:underline dark:text-neutral-400">
                         <svg
-                          class="mr-1.5 w-3 h-3"
+                          className="mr-1.5 w-3 h-3"
                           aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="currentColor"
@@ -690,93 +690,93 @@ const BlogDetail = () => {
 
       {/* <aside
         aria-label="Related articles"
-        class="py-8 lg:py-24 bg-neutral-50 dark:bg-neutral-800">
-        <div class="px-4 mx-auto max-w-screen-xl">
-          <h2 class="mb-8 text-2xl font-bold text-neutral-900 dark:text-white">
+        className="py-8 lg:py-24 bg-neutral-50 dark:bg-neutral-800">
+        <div className="px-4 mx-auto max-w-screen-xl">
+          <h2 className="mb-8 text-2xl font-bold text-neutral-900 dark:text-white">
             Related articles
           </h2>
-          <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-            <article class="max-w-xs">
+          <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+            <article className="max-w-xs">
               <a >
                 <img
                   src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-1.png"
-                  class="mb-5 rounded-lg"
+                  className="mb-5 rounded-lg"
                   alt="Image 1"
                 />
               </a>
-              <h2 class="mb-2 text-xl font-bold leading-tight text-neutral-900 dark:text-white">
+              <h2 className="mb-2 text-xl font-bold leading-tight text-neutral-900 dark:text-white">
                 <a >Our first office</a>
               </h2>
-              <p class="mb-4 text-neutral-500 dark:text-neutral-400">
+              <p className="mb-4 text-neutral-500 dark:text-neutral-400">
                 Over the past year, Volosoft has undergone many changes! After
                 months of preparation.
               </p>
               <a
                 
-                class="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline">
+                className="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline">
                 Read in 2 minutes
               </a>
             </article>
-            <article class="max-w-xs">
+            <article className="max-w-xs">
               <a >
                 <img
                   src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-2.png"
-                  class="mb-5 rounded-lg"
+                  className="mb-5 rounded-lg"
                   alt="Image 2"
                 />
               </a>
-              <h2 class="mb-2 text-xl font-bold leading-tight text-neutral-900 dark:text-white">
+              <h2 className="mb-2 text-xl font-bold leading-tight text-neutral-900 dark:text-white">
                 <a >Enterprise design tips</a>
               </h2>
-              <p class="mb-4  text-neutral-500 dark:text-neutral-400">
+              <p className="mb-4  text-neutral-500 dark:text-neutral-400">
                 Over the past year, Volosoft has undergone many changes! After
                 months of preparation.
               </p>
               <a
                 
-                class="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline">
+                className="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline">
                 Read in 12 minutes
               </a>
             </article>
-            <article class="max-w-xs">
+            <article className="max-w-xs">
               <a >
                 <img
                   src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-3.png"
-                  class="mb-5 rounded-lg"
+                  className="mb-5 rounded-lg"
                   alt="Image 3"
                 />
               </a>
-              <h2 class="mb-2 text-xl font-bold leading-tight text-neutral-900 dark:text-white">
+              <h2 className="mb-2 text-xl font-bold leading-tight text-neutral-900 dark:text-white">
                 <a >We partnered with Google</a>
               </h2>
-              <p class="mb-4  text-neutral-500 dark:text-neutral-400">
+              <p className="mb-4  text-neutral-500 dark:text-neutral-400">
                 Over the past year, Volosoft has undergone many changes! After
                 months of preparation.
               </p>
               <a
                 
-                class="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline">
+                className="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline">
                 Read in 8 minutes
               </a>
             </article>
-            <article class="max-w-xs">
+            <article className="max-w-xs">
               <a >
                 <img
                   src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-4.png"
-                  class="mb-5 rounded-lg"
+                  className="mb-5 rounded-lg"
                   alt="Image 4"
                 />
               </a>
-              <h2 class="mb-2 text-xl font-bold leading-tight text-neutral-900 dark:text-white">
+              <h2 className="mb-2 text-xl font-bold leading-tight text-neutral-900 dark:text-white">
                 <a >Our first project with React</a>
               </h2>
-              <p class="mb-4  text-neutral-500 dark:text-neutral-400">
+              <p className="mb-4  text-neutral-500 dark:text-neutral-400">
                 Over the past year, Volosoft has undergone many changes! After
                 months of preparation.
               </p>
               <a
                 
-                class="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline">
+                className="inline-flex items-center font-medium underline underline-offset-4 text-blue-600 dark:text-blue-500 hover:no-underline">
                 Read in 4 minutes
               </a>
             </article>
@@ -784,27 +784,27 @@ const BlogDetail = () => {
         </div>
       </aside>
 
-      <section class="bg-white dark:bg-neutral-900">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-          <div class="mx-auto max-w-screen-md sm:text-center">
-            <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl dark:text-white">
+      <section className="bg-white dark:bg-neutral-900">
+        <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+          <div className="mx-auto max-w-screen-md sm:text-center">
+            <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl dark:text-white">
               Sign up for our newsletter
             </h2>
-            <p class="mx-auto mb-8 max-w-2xl  text-neutral-500 md:mb-12 sm:text-xl dark:text-neutral-400">
+            <p className="mx-auto mb-8 max-w-2xl  text-neutral-500 md:mb-12 sm:text-xl dark:text-neutral-400">
               Stay up to date with the roadmap progress, announcements and
               exclusive discounts feel free to sign up with your email.
             </p>
             <form action="#">
-              <div class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
-                <div class="relative w-full">
+              <div className="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
+                <div className="relative w-full">
                   <label
                     for="email"
-                    class="hidden mb-2 text-sm font-medium text-neutral-900 dark:text-neutral-300">
+                    className="hidden mb-2 text-sm font-medium text-neutral-900 dark:text-neutral-300">
                     Email address
                   </label>
-                  <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                  <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                     <svg
-                      class="w-4 h-4 text-neutral-500 dark:text-neutral-400"
+                      className="w-4 h-4 text-neutral-500 dark:text-neutral-400"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
@@ -814,7 +814,7 @@ const BlogDetail = () => {
                     </svg>
                   </div>
                   <input
-                    class="block p-3 pl-9 w-full text-sm text-neutral-900 bg-white rounded-lg border border-neutral-300 sm:rounded-none sm:rounded-l-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="block p-3 pl-9 w-full text-sm text-neutral-900 bg-white rounded-lg border border-neutral-300 sm:rounded-none sm:rounded-l-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Enter your email"
                     type="email"
                     id="email"
@@ -824,16 +824,16 @@ const BlogDetail = () => {
                 <div>
                   <button
                     type="submit"
-                    class="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border cursor-pointer bg-blue-700 border-blue-600 sm:rounded-none sm:rounded-r-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    className="py-3 px-5 w-full text-sm font-medium text-center text-white rounded-lg border cursor-pointer bg-blue-700 border-blue-600 sm:rounded-none sm:rounded-r-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     Subscribe
                   </button>
                 </div>
               </div>
-              <div class="mx-auto max-w-screen-sm text-sm text-left text-neutral-500 newsletter-form-footer dark:text-neutral-300">
+              <div className="mx-auto max-w-screen-sm text-sm text-left text-neutral-500 newsletter-form-footer dark:text-neutral-300">
                 We care about the protection of your data.{" "}
                 <a
                   
-                  class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                   Read our Privacy Policy
                 </a>
                 .
@@ -843,147 +843,147 @@ const BlogDetail = () => {
         </div>
       </section>
 
-      <footer class="bg-neutral-50 dark:bg-neutral-800 antialiased">
-        <div class="p-4 py-6 mx-auto max-w-screen-xl md:p-8 lg:p-10">
-          <div class="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
+      <footer className="bg-neutral-50 dark:bg-neutral-800 antialiased">
+        <div className="p-4 py-6 mx-auto max-w-screen-xl md:p-8 lg:p-10">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
             <div>
-              <h2 class="mb-6 text-sm font-semibold text-neutral-900 uppercase dark:text-white">
+              <h2 className="mb-6 text-sm font-semibold text-neutral-900 uppercase dark:text-white">
                 Company
               </h2>
-              <ul class="text-neutral-500 dark:text-neutral-400">
-                <li class="mb-4">
-                  <a  class=" hover:underline">
+              <ul className="text-neutral-500 dark:text-neutral-400">
+                <li className="mb-4">
+                  <a  className=" hover:underline">
                     About
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a  class="hover:underline">
+                <li className="mb-4">
+                  <a  className="hover:underline">
                     Careers
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a  class="hover:underline">
+                <li className="mb-4">
+                  <a  className="hover:underline">
                     Brand Center
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a  class="hover:underline">
+                <li className="mb-4">
+                  <a  className="hover:underline">
                     Blog
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h2 class="mb-6 text-sm font-semibold text-neutral-900 uppercase dark:text-white">
+              <h2 className="mb-6 text-sm font-semibold text-neutral-900 uppercase dark:text-white">
                 Help center
               </h2>
-              <ul class="text-neutral-500 dark:text-neutral-400">
-                <li class="mb-4">
-                  <a  class="hover:underline">
+              <ul className="text-neutral-500 dark:text-neutral-400">
+                <li className="mb-4">
+                  <a  className="hover:underline">
                     Discord Server
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a  class="hover:underline">
+                <li className="mb-4">
+                  <a  className="hover:underline">
                     Twitter
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a  class="hover:underline">
+                <li className="mb-4">
+                  <a  className="hover:underline">
                     Facebook
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a  class="hover:underline">
+                <li className="mb-4">
+                  <a  className="hover:underline">
                     Contact Us
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h2 class="mb-6 text-sm font-semibold text-neutral-900 uppercase dark:text-white">
+              <h2 className="mb-6 text-sm font-semibold text-neutral-900 uppercase dark:text-white">
                 Legal
               </h2>
-              <ul class="text-neutral-500 dark:text-neutral-400">
-                <li class="mb-4">
-                  <a  class="hover:underline">
+              <ul className="text-neutral-500 dark:text-neutral-400">
+                <li className="mb-4">
+                  <a  className="hover:underline">
                     Privacy Policy
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a  class="hover:underline">
+                <li className="mb-4">
+                  <a  className="hover:underline">
                     Licensing
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a  class="hover:underline">
+                <li className="mb-4">
+                  <a  className="hover:underline">
                     Terms
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h2 class="mb-6 text-sm font-semibold text-neutral-900 uppercase dark:text-white">
+              <h2 className="mb-6 text-sm font-semibold text-neutral-900 uppercase dark:text-white">
                 Company
               </h2>
-              <ul class="text-neutral-500 dark:text-neutral-400">
-                <li class="mb-4">
-                  <a  class=" hover:underline">
+              <ul className="text-neutral-500 dark:text-neutral-400">
+                <li className="mb-4">
+                  <a  className=" hover:underline">
                     About
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a  class="hover:underline">
+                <li className="mb-4">
+                  <a  className="hover:underline">
                     Careers
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a  class="hover:underline">
+                <li className="mb-4">
+                  <a  className="hover:underline">
                     Brand Center
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a  class="hover:underline">
+                <li className="mb-4">
+                  <a  className="hover:underline">
                     Blog
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h2 class="mb-6 text-sm font-semibold text-neutral-900 uppercase dark:text-white">
+              <h2 className="mb-6 text-sm font-semibold text-neutral-900 uppercase dark:text-white">
                 Download
               </h2>
-              <ul class="text-neutral-500 dark:text-neutral-400">
-                <li class="mb-4">
-                  <a  class="hover:underline">
+              <ul className="text-neutral-500 dark:text-neutral-400">
+                <li className="mb-4">
+                  <a  className="hover:underline">
                     iOS
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a  class="hover:underline">
+                <li className="mb-4">
+                  <a  className="hover:underline">
                     Android
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a  class="hover:underline">
+                <li className="mb-4">
+                  <a  className="hover:underline">
                     Windows
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a  class="hover:underline">
+                <li className="mb-4">
+                  <a  className="hover:underline">
                     MacOS
                   </a>
                 </li>
               </ul>
             </div>
           </div>
-          <hr class="my-6 border-neutral-200 sm:mx-auto dark:border-neutral-700 lg:my-8" />
-          <div class="text-center">
+          <hr className="my-6 border-neutral-200 sm:mx-auto dark:border-neutral-700 lg:my-8" />
+          <div className="text-center">
             <a
               
-              class="flex justify-center items-center mb-5 text-2xl font-semibold text-neutral-900 dark:text-white">
+              className="flex justify-center items-center mb-5 text-2xl font-semibold text-neutral-900 dark:text-white">
               <svg
-                class="mr-2 h-8"
+                className="mr-2 h-8"
                 viewBox="0 0 33 33"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -1118,28 +1118,28 @@ const BlogDetail = () => {
               </svg>
               Flowbite
             </a>
-            <span class="block text-sm text-center text-neutral-500 dark:text-neutral-400">
+            <span className="block text-sm text-center text-neutral-500 dark:text-neutral-400">
               © 2021-2022{" "}
-              <a  class="hover:underline">
+              <a  className="hover:underline">
                 Flowbite™
               </a>
               . All Rights Reserved.
             </span>
-            <ul class="flex justify-center mt-5 space-x-5">
+            <ul className="flex justify-center mt-5 space-x-5">
               <li>
                 <a
                   
-                  class="text-neutral-500 hover:text-neutral-900 dark:hover:text-white dark:text-neutral-400">
+                  className="text-neutral-500 hover:text-neutral-900 dark:hover:text-white dark:text-neutral-400">
                   <svg
-                    class="h-4 w-4"
+                    className="h-4 w-4"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
                     viewBox="0 0 8 19">
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     />
                   </svg>
                 </a>
@@ -1147,9 +1147,9 @@ const BlogDetail = () => {
               <li>
                 <a
                   
-                  class="text-neutral-500 hover:text-neutral-900 dark:hover:text-white dark:text-neutral-400">
+                  className="text-neutral-500 hover:text-neutral-900 dark:hover:text-white dark:text-neutral-400">
                   <svg
-                    class="w-4 h-4"
+                    className="w-4 h-4"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -1164,17 +1164,17 @@ const BlogDetail = () => {
               <li>
                 <a
                   
-                  class="text-neutral-500 hover:text-neutral-900 dark:hover:text-white dark:text-neutral-400">
+                  className="text-neutral-500 hover:text-neutral-900 dark:hover:text-white dark:text-neutral-400">
                   <svg
-                    class="w-4 h-4"
+                    className="w-4 h-4"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
                     viewBox="0 0 20 20">
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     />
                   </svg>
                 </a>
@@ -1182,17 +1182,17 @@ const BlogDetail = () => {
               <li>
                 <a
                   
-                  class="text-neutral-500 hover:text-neutral-900 dark:hover:text-white dark:text-neutral-400">
+                  className="text-neutral-500 hover:text-neutral-900 dark:hover:text-white dark:text-neutral-400">
                   <svg
-                    class="w-4 h-4"
+                    className="w-4 h-4"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
                     viewBox="0 0 20 20">
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M10 0a10 10 0 1 0 10 10A10.009 10.009 0 0 0 10 0Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.094 20.094 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0 0 4.769-3.366ZM8 1.707a8.821 8.821 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.758 45.758 0 0 0 8 1.707ZM1.642 8.262a8.57 8.57 0 0 1 4.73-5.981A53.998 53.998 0 0 1 9.54 7.222a32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01 7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.64 31.64 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM10 18.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0 0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 13.113 11a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     />
                   </svg>
                 </a>

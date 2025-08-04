@@ -143,20 +143,20 @@ const AnimatedList = ({
               className={`p-4 bg-neutral-50 dark:bg-[#111] rounded-lg shadow-md shadow-neutral-400 dark:shadow-black font-instrument ${
                 selectedIndex === index ? "bg-[#222]" : ""
               } ${itemClassName}`}>
-              <div class="py-6 flex flex-wrap md:flex-nowrap">
-                <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col min-h-50">
+              <div className="py-6 flex flex-wrap md:flex-nowrap">
+                <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col min-h-50">
                   {blog.coverPhoto ? (
                     <img
                       className="m-auto rounded-md h-50 w-200"
                       src={`${blog.coverPhoto}`}
                     />
                   ) : null}
-                  {/* <span class="font-semibold title-font text-gray-700">
+                  {/* <span className="font-semibold title-font text-gray-700">
                     {blog.category}
                   </span>
-                  <span class="mt-1 text-gray-500 text-sm">12 Jun 2019</span> */}
+                  <span className="mt-1 text-gray-500 text-sm">12 Jun 2019</span> */}
                 </div>
-                <div class="md:flex-grow pl-8">
+                <div className="md:flex-grow pl-8">
                   <div className="flex flex-col">
                     <div className="flex justify-between">
                       <div className="flex items-center">
@@ -175,10 +175,10 @@ const AnimatedList = ({
                       </time>
                     </div>
                   </div>
-                  <h2 class="text-2xl font-medium text-black dark:text-white title-font mb-2">
+                  <h2 className="text-2xl font-medium text-black dark:text-white title-font mb-2">
                     {blog.title}
                   </h2>
-                  <p class="leading-relaxed line-clamp-3 text-neutral-800 dark:text-neutral-100">{blog.body}</p>
+                  <p className="leading-relaxed line-clamp-3 text-neutral-800 dark:text-neutral-100">{blog.body}</p>
                   <div className="flex justify-between items-center py-3">
                     <div className="flex items-center gap-x-3">
                       <div>
@@ -202,16 +202,16 @@ const AnimatedList = ({
                         {blog.authorFirstName} {blog.authorLastName}
                       </div>
                     </div>
-                    <a class="text-violet-500 dark:text-lime-400 inline-flex items-center transition duration-200 ease-in-out hover:-translate-y-1 hover:scale-105">
+                    <a className="text-violet-500 dark:text-lime-400 inline-flex items-center transition duration-200 ease-in-out hover:-translate-y-1 hover:scale-105">
                       Read More
                       <svg
-                        class="w-4 h-4 ml-2"
+                        className="w-4 h-4 ml-2"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
-                        stroke-width="2"
+                        strokeWidth="2"
                         fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round">
+                        strokeLinecap="round"
+                        strokeLinejoin="round">
                         <path d="M5 12h14"></path>
                         <path d="M12 5l7 7-7 7"></path>
                       </svg>

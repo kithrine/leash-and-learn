@@ -6,11 +6,11 @@ const CommunityGuidelinesModal = ({setShowCommGuideModal}) => {
       <div
         id="info-popup"
         tabindex="-1"
-        class=" overflow-y-auto overflow-x-hidden fixed top-0 mt-26 z-20 w-full md:inset-0 h-modal md:h-full">
-        <div class="relative p-4 w-full max-w-7xl h-full md:h-auto justify-self-center mb-12 font-instrument">
-          <div class="relative p-4 bg-white rounded-lg shadow dark:bg-neutral-800 md:p-8 drop-shadow-xl drop-shadow-neutral-400 dark:drop-shadow-black animate__animated animate__fadeInLeft">
-            <div class="mb-4 text-sm font-light text-neutral-700 dark:text-neutral-200">
-              <h3 class="mb-3 text-2xl font-bold text-neutral-900 dark:text-white tracking-wider">
+        className=" overflow-y-auto overflow-x-hidden fixed top-0 mt-26 z-20 w-full md:inset-0 h-modal md:h-full">
+        <div className="relative p-4 w-full max-w-7xl h-full md:h-auto justify-self-center mb-12 font-instrument">
+          <div className="relative p-4 bg-white rounded-lg shadow dark:bg-neutral-800 md:p-8 drop-shadow-xl drop-shadow-neutral-400 dark:drop-shadow-black animate__animated animate__fadeInLeft">
+            <div className="mb-4 text-sm font-light text-neutral-700 dark:text-neutral-200">
+              <h3 className="mb-3 text-2xl font-bold text-neutral-900 dark:text-white tracking-wider">
                 Community Guidelines for Leash & Learn Blog
               </h3>
               <div className='text-base'>
@@ -69,18 +69,18 @@ const CommunityGuidelinesModal = ({setShowCommGuideModal}) => {
               </p>
               </div>
             </div>
-            <div class="flex items-center pt-0 space-y-4 sm:flex sm:space-y-0 justify-end">
+            <div className="flex items-center pt-0 space-y-4 sm:flex sm:space-y-0 justify-end">
               {/* <a
                 href="#"
-                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                 Learn more about privacy
               </a> */}
-              <div class="items-center space-y-4 sm:space-x-4 sm:flex sm:space-y-0">
+              <div className="items-center space-y-4 sm:space-x-4 sm:flex sm:space-y-0">
                 <button
                 onClick={() => setShowCommGuideModal(false)}
                   id="close-modal"
                   type="button"
-                  class="py-2 px-4 w-full text-sm font-medium text-neutral-500 bg-white rounded-lg border border-neutral-200 sm:w-auto hover:bg-neutral-100 focus:ring-4 focus:outline-none focus:ring-blue-300 hover:text-neutral-900 focus:z-10 dark:bg-neutral-700 dark:text-neutral-300 dark:border-neutral-500 dark:hover:text-white dark:hover:bg-neutral-600 dark:focus:ring-neutral-600 cursor-pointer transition duration-200 ease-in-out hover:-translate-y-1 hover:scale-105">
+                  className="py-2 px-4 w-full text-sm font-medium text-neutral-500 bg-white rounded-lg border border-neutral-200 sm:w-auto hover:bg-neutral-100 focus:ring-4 focus:outline-none focus:ring-blue-300 hover:text-neutral-900 focus:z-10 dark:bg-neutral-700 dark:text-neutral-300 dark:border-neutral-500 dark:hover:text-white dark:hover:bg-neutral-600 dark:focus:ring-neutral-600 cursor-pointer transition duration-200 ease-in-out hover:-translate-y-1 hover:scale-105">
                   Close
                 </button>
               </div>
