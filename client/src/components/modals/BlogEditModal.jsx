@@ -4,13 +4,7 @@ import { blogGetOne, updateCoverPhoto } from "../../redux/blogSlice"
 import { useParams } from "react-router"
 import * as motion from "motion/react-client"
 
-const BlogEditModal = ({
-  handleBlogEdit,
-  setShowBlogEditModal,
-  blogEditForm,
-  setBlogEditForm,
-  setShowBlogActions
-}) => {
+const BlogEditModal = ({ handleBlogEdit, setShowBlogEditModal, blogEditForm, setBlogEditForm, setShowBlogActions }) => {
   const dispatch = useDispatch()
   const { blog } = useSelector((state) => state.blog)
   const { id } = useParams()

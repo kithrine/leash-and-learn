@@ -236,7 +236,7 @@ const SessionAddModal = ({setShowSessionAddModal, handleDatepickerFormat}) => {
                             />
                           </li>
 
-                          <li className="flex flex-col mx-auto items-center text-center justify-self-center">
+                          <li className="flex flex-col items-center text-center">
                             <label className="flex justify-self-center text-center mx-auto">
                               Activities Performed:{" "}
                             </label>
@@ -248,9 +248,9 @@ const SessionAddModal = ({setShowSessionAddModal, handleDatepickerFormat}) => {
                                   activitiesPerformed: e.target.value,
                                 })
                               }
-                              className="block w-full mx-auto px-2 py-1 text-lg rounded-lg border bg-neutral-50 focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-400 border-[#cccccc] dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-lime-400 dark:focus:border-lime-400 dark:focus:outline-lime-400"
+                              className="block w-full mx-auto px-2 py-1 text-base rounded-lg border bg-neutral-50 focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-400 border-[#cccccc] dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-lime-400 dark:focus:border-lime-400 dark:focus:outline-lime-400"
                               autoComplete="off"
-                              rows={3}
+                              rows={4}
                               resize="none"
                             />
                           </li>

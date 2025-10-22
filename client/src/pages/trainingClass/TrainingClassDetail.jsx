@@ -556,6 +556,7 @@ const TrainingClassDetail = () => {
                             {session.sessionDuration} hours
                           </span>
                         </li>
+                        {user.role.includes("Business Manager") || user.role.includes("Trainer") ?
                         <li className="flex flex-col mx-auto items-center text-center justify-self-center space-x-3">
                           <h1 className="font-semibold flex justify-self-center text-center mx-auto tracking-wider">
                             Activities Performed:{" "}
@@ -563,7 +564,17 @@ const TrainingClassDetail = () => {
                           <span className="block w-full mx-auto">
                             {session.activitiesPerformed}
                           </span>
-                        </li>
+                        </li> 
+                        : user.role.includes("User") && session.activitiesPerformed !== "" ? 
+                        <li className="flex flex-col mx-auto items-center text-center justify-self-center space-x-3">
+                          <h1 className="font-semibold flex justify-self-center text-center mx-auto tracking-wider">
+                            Activities Performed:{" "}
+                          </h1>
+                          <span className="block w-full mx-auto">
+                            {session.activitiesPerformed}
+                          </span>
+                        </li> : null
+                        } 
                         {/* <li className="flex items-center space-x-3">
                         <h1 className="font-semibold">Customers: </h1>
                         <span>{session.customers}</span>
