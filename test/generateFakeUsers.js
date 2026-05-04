@@ -7,9 +7,9 @@ const generateFakeUser = () => {
     email: faker.internet.email(),
     username: faker.internet.username(),
     // password: faker.string.alpha(4),
-    password: faker.helpers.fake("test"),
+    password: faker.helpers.fake("$argon2id$v=19$m=65536,t=3,p=4$YkFKUX343TE2hE6A2sjghA$uzvZ0s+PKDvIlGXaIjYsUVKrJjOe5JH0k+6F6LI97+s"),
     // password: faker.helpers.arrayElement(["test"]),
-    role: faker.helpers.arrayElement([ "User", "Trainer" ])
+    role: faker.helpers.arrayElement([ "User" ])
   }
 }
 
